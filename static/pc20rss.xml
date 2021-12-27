@@ -1,0 +1,290 @@
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md" version="2.0">
+      <channel>
+            <title>Podcasting 2.0</title>
+            <description>The Podcast Index presents Podcasting 2.0 - Upgrading Podcasting</description>
+            <link>http://podcastindex.org</link>
+            <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+            <language>en</language>
+            <generator>Freedom Controller</generator>
+            <pubDate>Tue, 26 Oct 2021 18:52:47 +0000</pubDate>
+            <lastBuildDate>Tue, 26 Oct 2021 18:52:47 +0000</lastBuildDate>
+            <podcast:locked owner="adam@curry.com">yes</podcast:locked>
+            <podcast:funding url="https://paypal.me/podcastindex">Value 4 Value</podcast:funding>
+            <managingEditor>adam@curry.com (Adam Curry)</managingEditor>
+            <webMaster>adam@curry.com (Adam Curry)</webMaster>
+            <itunes:owner>
+                  <itunes:email>adam@curry.com</itunes:email>
+                  <itunes:name>Adam Curry</itunes:name>
+            </itunes:owner>
+            <image>
+                  <url>https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg</url>
+                  <title>Podcasting 2.0</title>
+                  <link>http://podcastindex.org</link>
+                  <description>The Podcast Index presents Podcasting 2.0 - Upgrading Podcasting</description>
+                  <width>144</width>
+                  <height>144</height>
+            </image>
+            <itunes:summary>The Podcast Index presents Podcasting 2.0 - Upgrading Podcasting</itunes:summary>
+            <itunes:author>Podcast Index LLC</itunes:author>
+            <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:keywords>podcasting,media,software</itunes:keywords>
+            <itunes:category text="News &amp; Politics" />
+            <itunes:category text="Technology" />
+            <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+                  <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="95" />
+                  <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" split="5" customKey="112111100" customValue="wal_j39hpWOkxCDUYg" />
+                  <podcast:valueRecipient name="CurioCaster RSS Generator" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" fee="true" split="5" />
+            </podcast:value>
+            <podcast:guid>917393e3-1b1e-5cef-ace4-edaa54e1f810</podcast:guid>
+            <podcast:social priority="1" platform="activitypub" podcastAccountId="@heloise@lespoesiesdheloise.fr" podcastAccountUrl="https://lespoesiesdheloise.fr/@heloise">
+                  <podcast:socialSignUp priority="1" homeUrl="https://enfants-et-famille.podcasts.chat/public" signUpUrl="https://enfants-et-famille.podcasts.chat/auth/sign_up" />
+                  <podcast:socialSignUp priority="2" homeUrl="https://mamot.fr/public" signUpUrl="https://mamot.fr/auth/sign_up" />
+                  <podcast:socialSignUp priority="3" homeUrl="https://podcastindex.social/public" signUpUrl="https://podcastindex.social/auth/sign_up" />
+            </podcast:social>
+            <podcast:social priority="666" platform="facebook" podcastAccountId="LesPoesiesDHeloise" podcastAccountUrl="https://www.facebook.com/LesPoesiesDHeloise">
+                  <podcast:socialSignUp homeUrl="https://www.facebook.com/" signUpUrl="https://www.facebook.com/r.php?display=page" />
+            </podcast:social>
+            <item>
+                  <title>Episode 59: Double or Nothing</title>
+                  <podcast:socialInteract priority="1" platform="activitypub" podcastAccountId="@heloise@lespoesiesdheloise.fr" pubDate="2021-04-14T10:25:42Z">https://lespoesiesdheloise.fr/@heloise/notes/4ba8df51-d67d-405d-a475-6471e1235c1c</podcast:socialInteract>
+                  <podcast:socialInteract priority="666" platform="facebook" podcastAccountId="LesPoesiesDHeloise" pubDate="2021-04-14T10:25:42Z">https://www.facebook.com/LesPoesiesDHeloise/posts/399766303947452</podcast:socialInteract>
+
+                  <description>&lt;h2&gt;PC20-59-2021-10-22 Podcasting 2.0: &quot;Double or Nothing&quot;&lt;/h2&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for October 22nd 2021 Episode 59: Double or Nothing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and are joined by Oscar Merry, the creator of the Fountain app&lt;/p&gt;
+&lt;p&gt;I&#39;m Adam Curry in the Heart of Hill Country Texas&lt;/p&gt;
+&lt;p&gt;And In Alabama, -The man who has more padded walls than an asylum- My Friend on the Other End -- Dave Jones!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-59-2021-10-22-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;Oscar Merry&lt;/p&gt;
+&lt;p&gt;LPCF&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.fm/clip/IsfolcGpU&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lex Fridman name check&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stephanlivera.com/episode/313/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Gigi boostagrams&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Umbrel all in one box&lt;/p&gt;
+&lt;p&gt;Boostsagrams vs streaming&lt;/p&gt;
+&lt;p&gt;V4V pitch&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;540927/4586472664#t=778,5137&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Facebag&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;540927/4586472664#t=1561,5137&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FB monetization&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;540927/4586472664#t=2167,5137&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FB hosting&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hello Creator Dave!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 10/22/2021 14:15:35 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC205920211022Podcas-P8ktHmxFJrbrfhhrp7vK4XCw5Bz2sb.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+                  <link>http://adam.curry.com/html/PC205720211008Podcas-Z7qSx1X16NGXDBv7d7Nb7F4tsMjr9w.html</link>
+                  <guid isPermaLink="false">PC2059</guid>
+                  <pubDate>Fri, 22 Oct 2021 19:16:56 +0000</pubDate>
+                  <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2059" type="application/json" />
+                  <podcast:transcript url="https://mp3s.nashownotes.com/PC20-59-Captions.srt" type="application/srt" />
+                  <itunes:subtitle>Episode 59: Double or Nothing</itunes:subtitle>
+                  <itunes:summary>&lt;h2&gt;PC20-59-2021-10-22 Podcasting 2.0: &quot;Double or Nothing&quot;&lt;/h2&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for October 22nd 2021 Episode 59: Double or Nothing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and are joined by Oscar Merry, the creator of the Fountain app&lt;/p&gt;
+&lt;p&gt;I&#39;m Adam Curry in the Heart of Hill Country Texas&lt;/p&gt;
+&lt;p&gt;And In Alabama, -The man who has more padded walls than an asylum- My Friend on the Other End -- Dave Jones!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-59-2021-10-22-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;Oscar Merry&lt;/p&gt;
+&lt;p&gt;LPCF&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.fm/clip/IsfolcGpU&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lex Fridman name check&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stephanlivera.com/episode/313/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Gigi boostagrams&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Umbrel all in one box&lt;/p&gt;
+&lt;p&gt;Boostsagrams vs streaming&lt;/p&gt;
+&lt;p&gt;V4V pitch&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;540927/4586472664#t=778,5137&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Facebag&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;540927/4586472664#t=1561,5137&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FB monetization&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;540927/4586472664#t=2167,5137&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FB hosting&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hello Creator Dave!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 10/22/2021 14:15:35 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC205920211022Podcas-P8ktHmxFJrbrfhhrp7vK4XCw5Bz2sb.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+                  <itunes:author>Podcast Index LLC</itunes:author>
+                  <author>Podcast Index LLC</author>
+                  <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+                  <itunes:explicit>no</itunes:explicit>
+                  <itunes:keywords>podcasting,curry,podfather,technology,deverlopers</itunes:keywords>
+                  <enclosure url="https://mp3s.nashownotes.com/PC20-59-2021-10-22-Final.mp3" length="70881847" type="audio/mpeg" />
+                  <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+                  <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+                  <podcast:person href="https://www.fountain.fm/" img="https://noagendaassets.com/enc/1634930330.371_3vhhmawv400x400.jpg" group="cast" role="guest">Oscar Merry</podcast:person>
+                  <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+                        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="80" />
+                        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" split="5" customValue="wal_j39hpWOkxCDUYg" customKey="112111100" />
+                        <podcast:valueRecipient name="CurioCaster RSS Generator" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+                        <podcast:valueRecipient name="Lightning Podcast Charity Fund" type="node" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" customKey="112111100" customValue="wal_SV5Uf4N3n5Xsc4" split="10" />
+                  </podcast:value>
+            </item>
+            <item>
+                  <title>Episode 58: Activity in the Pub!</title>
+                  <description>&lt;div&gt;
+&lt;p&gt;&lt;b&gt;Podcasting 2.0 for October 15th 2021 Episode 58: Activity in the Pub!&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with news about the all new podcasterwallet.com&lt;/p&gt;
+&lt;p&gt;I&#39;m Adam Curry in the Heart of Hill Country Texas&lt;/p&gt;
+&lt;p&gt;And In Alabama, -The man who can bake a wallet with drop shadow in a heartbeat- My Friend on the Other End -- Dave Jones!&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;i&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;i&gt;Value4Value.io Explains how this works!&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-58-2021-10-15-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Support us with your Time Talent and&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;b&gt;ShowNotes&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Positioning&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Podcaster wallet&lt;/p&gt;
+&lt;p&gt;New podfriend beta&lt;/p&gt;
+&lt;p&gt;El Salvador trip&lt;/p&gt;
+&lt;p&gt;Brian of London PodPing&lt;/p&gt;
+&lt;p&gt;Ring of fire&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://shiny.podping-stats.com/apps/Podping/PodpingPlayer/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;New PodPing watcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnbc.com/2021/10/15/bitcoin-is-inches-away-from-reaching-60000-amid-etf-speculation.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bitcoin ETF&#39;s&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 10/15/2021 14:13:18 by&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://adam.curry.com/opml/PC205820211015Podcas-Dbrd83C5ZW4P5v61VQ5rNMcxTCfrlt.opml&quot; title=&quot;Link to the opml for this document.&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+                  <link>http://adam.curry.com/html/PC205720211008Podcas-Z7qSx1X16NGXDBv7d7Nb7F4tsMjr9w.html</link>
+                  <guid isPermaLink="false">PC2058</guid>
+                  <pubDate>Fri, 15 Oct 2021 19:13:48 +0000</pubDate>
+                  <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2058" type="application/json" />
+                  <podcast:transcript url="https://mp3s.nashownotes.com/PC20-58-Captions.srt" type="application/srt" />
+                  <itunes:subtitle>Episode 58: Activity in the Pub!</itunes:subtitle>
+                  <itunes:summary>&lt;div&gt;
+&lt;p&gt;&lt;b&gt;Podcasting 2.0 for October 15th 2021 Episode 58: Activity in the Pub!&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with news about the all new podcasterwallet.com&lt;/p&gt;
+&lt;p&gt;I&#39;m Adam Curry in the Heart of Hill Country Texas&lt;/p&gt;
+&lt;p&gt;And In Alabama, -The man who can bake a wallet with drop shadow in a heartbeat- My Friend on the Other End -- Dave Jones!&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;i&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;i&gt;Value4Value.io Explains how this works!&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-58-2021-10-15-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Support us with your Time Talent and&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;b&gt;ShowNotes&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Positioning&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Podcaster wallet&lt;/p&gt;
+&lt;p&gt;New podfriend beta&lt;/p&gt;
+&lt;p&gt;El Salvador trip&lt;/p&gt;
+&lt;p&gt;Brian of London PodPing&lt;/p&gt;
+&lt;p&gt;Ring of fire&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://shiny.podping-stats.com/apps/Podping/PodpingPlayer/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;New PodPing watcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnbc.com/2021/10/15/bitcoin-is-inches-away-from-reaching-60000-amid-etf-speculation.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bitcoin ETF&#39;s&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 10/15/2021 14:13:18 by&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://adam.curry.com/opml/PC205820211015Podcas-Dbrd83C5ZW4P5v61VQ5rNMcxTCfrlt.opml&quot; title=&quot;Link to the opml for this document.&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+                  <itunes:author>Podcast Index LLC</itunes:author>
+                  <author>Podcast Index LLC</author>
+                  <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+                  <itunes:explicit>no</itunes:explicit>
+                  <itunes:keywords>podcasting,curry,podfather,technology,deverlopers</itunes:keywords>
+                  <enclosure url="https://mp3s.nashownotes.com/PC20-58-2021-10-15-Final.mp3" length="70881847" type="audio/mpeg" />
+                  <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+                  <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+                  <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+                        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="90" />
+                        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02dd306e68c46681aa21d88a436fb35355a8579dd30201581cefa17cb179fc4c15" split="5" />
+                        <podcast:valueRecipient name="CurioCaster RSS Generator" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+                  </podcast:value>
+            </item>
+            <item>
+                  <title>Episode 57: Rebel Rubes</title>
+                  <description>&lt;p&gt;&lt;b&gt;Podcasting 2.0 for October 8th 2021 Episode 57: Rebel Rubes&lt;/b&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and we&#39;re joined by Sir Brian of London&lt;/p&gt;
+&lt;p&gt;I&#39;m Adam Curry in the Heart of Hill Country Texas&lt;/p&gt;
+&lt;p&gt;And In Alabama, -The man who is doing all of his State&#39;s Tax Returns single handedly - My Friend on the Other End -- Dave Jones!&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;i&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-57-2021-10-08-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Support us with your Time Talent and&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;b&gt;ShowNotes&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Positioning&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://adam.curry.com/enc/1633712541.319_boostagrambits.rar&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://adam.curry.com/enc/1633712541.319_boostagrambits.rar&quot;&gt;BoostagramBits.rar&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://valuecaster.vercel.app/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;V4V Valucaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podping.watch/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodPing Watcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://3speak.tv/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;3speak.tv&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Origin of the name Podcasting&lt;/p&gt;
+&lt;p&gt;Chris Messina - Podland - The Atom Deja Vu&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;And from the Promised Land - Master of The Hive -&amp;nbsp;&lt;a href=&quot;https://brianoflondon.me/&quot;&gt;Sir Brian of London&lt;/a&gt;&amp;nbsp;[Pal of the Pod]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/brianoflondon/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Brian&#39;s Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Brian&#39;s Node: 0396693dee59afd67f178af392990d907d3a9679fa7ce00e806b8e373ff6b70bd8&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 10/08/2021 13:52:18 by&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://adam.curry.com/opml/PC205720211008Podcas-Z7qSx1X16NGXDBv7d7Nb7F4tsMjr9w.opml&quot; title=&quot;Link to the opml for this document.&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+                  <link>http://adam.curry.com/html/PC205720211008Podcas-Z7qSx1X16NGXDBv7d7Nb7F4tsMjr9w.html</link>
+                  <guid isPermaLink="false">PC2057</guid>
+                  <pubDate>Fri, 08 Oct 2021 18:55:32 +0000</pubDate>
+                  <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2057" type="application/json" />
+                  <podcast:transcript url="https://mp3s.nashownotes.com/PC20-57-Captions.srt" type="application/srt" />
+                  <itunes:subtitle>Episode 57: Rebel Rubes</itunes:subtitle>
+                  <itunes:summary>&lt;p&gt;&lt;b&gt;Podcasting 2.0 for October 8th 2021 Episode 57: Rebel Rubes&lt;/b&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and we&#39;re joined by Sir Brian of London&lt;/p&gt;
+&lt;p&gt;I&#39;m Adam Curry in the Heart of Hill Country Texas&lt;/p&gt;
+&lt;p&gt;And In Alabama, -The man who is doing all of his State&#39;s Tax Returns single handedly - My Friend on the Other End -- Dave Jones!&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;i&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-57-2021-10-08-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Support us with your Time Talent and&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;&lt;b&gt;ShowNotes&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;Positioning&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://adam.curry.com/enc/1633712541.319_boostagrambits.rar&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://adam.curry.com/enc/1633712541.319_boostagrambits.rar&quot;&gt;BoostagramBits.rar&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://valuecaster.vercel.app/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;V4V Valucaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podping.watch/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodPing Watcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://3speak.tv/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;3speak.tv&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Origin of the name Podcasting&lt;/p&gt;
+&lt;p&gt;Chris Messina - Podland - The Atom Deja Vu&lt;/p&gt;
+&lt;p&gt;&lt;span&gt;And from the Promised Land - Master of The Hive -&amp;nbsp;&lt;a href=&quot;https://brianoflondon.me/&quot;&gt;Sir Brian of London&lt;/a&gt;&amp;nbsp;[Pal of the Pod]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/brianoflondon/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Brian&#39;s Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Brian&#39;s Node: 0396693dee59afd67f178af392990d907d3a9679fa7ce00e806b8e373ff6b70bd8&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 10/08/2021 13:52:18 by&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;http://adam.curry.com/opml/PC205720211008Podcas-Z7qSx1X16NGXDBv7d7Nb7F4tsMjr9w.opml&quot; title=&quot;Link to the opml for this document.&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+                  <itunes:author>Podcast Index LLC</itunes:author>
+                  <author>Podcast Index LLC</author>
+                  <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+                  <itunes:explicit>no</itunes:explicit>
+                  <itunes:keywords>podcasting,curry,podfather,technology,deverlopers</itunes:keywords>
+                  <enclosure url="https://mp3s.nashownotes.com/PC20-57-2021-10-08-Final.mp3" length="70881847" type="audio/mpeg" />
+                  <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+                  <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+                  <podcast:person href="https://gist.github.com/brianoflondon/" img="https://noagendaassets.com/enc/1633719509.451_sirbrianoflondon.png" group="cast" role="guest">Brian of London</podcast:person>
+                  <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+                        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="80" />
+                        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02dd306e68c46681aa21d88a436fb35355a8579dd30201581cefa17cb179fc4c15" split="5" />
+                        <podcast:valueRecipient name="CurioCaster RSS Generator" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+                        <podcast:valueRecipient name="Brian of London" type="node" address="0396693dee59afd67f178af392990d907d3a9679fa7ce00e806b8e373ff6b70bd8" split="10" customKey="818818" customValue="brianoflondon" />
+                  </podcast:value>
+            </item>
+      </channel>
+</rss>
