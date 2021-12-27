@@ -1,0 +1,215 @@
+@import '@fontsource/fira-mono';
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
+
+:root {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+		'Helvetica Neue', sans-serif;
+	--font-mono: 'Fira Mono', monospace;
+	--pure-white: #ffffff;
+	--primary-color: #ffffff;
+	--secondary-color: #ffffff;
+	--tertiary-color: #ffffff;
+	--accent-color-red: #333;
+	--accent-color-darkred: #111;
+	--accent-color-green: #345737;
+	--heading-color: rgba(0, 0, 0, 0.6);
+	--primary-text-color: #333;
+	--text-color: #333;
+	--icon-color: #333;
+	--text-color-light: #ddd;
+	--background-without-opacity: rgba(255, 255, 255, 0.7);
+	--border-color: rgba(0, 0, 0, 0.15);
+	--selected-color: #eee;
+	--hover-color: #ccc;
+	--active-color: #bbb;
+
+	--primary-button-color-light: hsl(226, 82%, 50%);
+	--primary-button-color-dark:  hsl(226, 82%, 30%);
+
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
+
+	--color-2: #a3b5d9;
+	--color-highlight: #af905c;
+	--color-4: #6c0600;
+}
+
+
+
+
+html,
+body,
+#svelte {
+	height: 100vh;
+	width: 100%;
+	font-size: initial;
+	background-color: hsl(226, 82%, 20%);
+	color: var(--primary-text-color);
+}
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	width: 100%;
+	margin: 0;
+	background-color: var(--tertiary-color);
+	background: linear-gradient(
+		180deg,
+		var(--primary-color) 0%,
+		var(--secondary-color) 15%,
+		var(--tertiary-color) 50%,
+		var(--secondary-color) 85%,
+		var(--primary-color) 100%
+	);
+}
+
+body::before {
+	content: '';
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	z-index: -1;
+	background: radial-gradient(50% 50% at 50% 50%, #fff 0%, rgba(255, 255, 255, 0) 100%);
+	opacity: 0.05;
+}
+
+h1,
+h2,
+p {
+	color: var(--text-color);
+}
+
+a {
+	color: var(--accent-color-red);
+	font-weight: 550;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+label {
+	display: block;
+}
+
+input,
+button,
+select,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid var(--border-color);
+	border-radius: 2px;
+	background-color: var(--tertiary-color);
+}
+
+input:disabled {
+	color: var(--text-color-light);
+}
+
+button {
+	color: var(--text-color);
+	cursor: pointer;
+	background-color: var(--text-color-light);
+	outline: none;
+}
+
+button:disabled {
+	color: var(--text-color);
+}
+
+button:not(:disabled):active {
+	background-color: var(--text-color-light);
+}
+
+button:focus {
+	border-color: var(--text-color);
+}
+
+button.fancy {
+	background-color: #333;
+	margin: 0;
+	color: #eee;
+	padding: 2px 8px;
+	margin: 0;
+	color: #f0f0f0;
+	text-shadow: 0 1px #c0c0c0;
+	background: #333;
+	border: 1px solid;
+	border-color: #cfcfcf #a7a7a7 #8e8f8f;
+	border-radius: 50px;
+	outline: 0;
+	box-shadow: inset 0 1px hsla(0, 0%, 42.7%, 1), 0 2px 2px rgba(0, 0, 0, 0.33);
+	text-shadow: 1px 4px 6px rgb(82, 82, 82), 0 0 0 #000, 1px 4px 6px rgb(82, 82, 82);
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--heading-color);
+	border-radius: 10px;
+}
+
+ul,
+div {
+	scrollbar-color: var(--heading-color) transparent;
+	scrollbar-width: thin;
+}
+
+#confetti-canvas {
+	z-index: 1000;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+button.primary {
+	margin: 0;
+	color: #eee;
+	padding: 0;
+	height: 35.78px;
+	width: 136.63px;
+	font-weight: 525;
+	color: var(--tertiary-color);
+	text-shadow: 0 1px #c0c0c0;
+	background: var(--accent-color-red);
+	border: 1px solid;
+	border-color: #cfcfcf #a7a7a7 #8e8f8f;
+	border-radius: 50px;
+	outline: 0;
+	background-image: linear-gradient(
+		to bottom,
+		var(--primary-button-color-light),
+		var(--primary-button-color-dark)
+	);
+	box-shadow:  0 2px 2px rgba(0, 0, 0, 0.33);
+	text-shadow: 1px 4px 6px rgb(82, 82, 82), 0 0 0 #000, 1px 4px 6px rgb(82, 82, 82);
+}
+

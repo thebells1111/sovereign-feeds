@@ -1,0 +1,895 @@
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md" version="2.0">
+  <channel>
+    <title>Podcasting 2.0</title>
+    <description>The Podcast Index presents Podcasting 2.0 - Upgrading Podcasting</description>
+    <link>http://podcastindex.org</link>
+    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+    <language>en</language>
+    <generator>Freedom Controller</generator>
+    <pubDate>Fri, 11 Mar 2022 14:17:15 +0000</pubDate>
+    <lastBuildDate>Fri, 11 Mar 2022 14:17:15 +0000</lastBuildDate>
+    <podcast:locked owner="adam@curry.com">yes</podcast:locked>
+    <podcast:funding url="https://paypal.me/podcastindex">Value 4 Value</podcast:funding>
+    <managingEditor>adam@curry.com (Adam Curry)</managingEditor>
+    <webMaster>adam@curry.com (Adam Curry)</webMaster>
+    <itunes:owner>
+      <itunes:email>adam@curry.com</itunes:email>
+      <itunes:name>Adam Curry</itunes:name>
+    </itunes:owner>
+    <image>
+      <url>https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg</url>
+      <title>Podcasting 2.0</title>
+      <link>http://podcastindex.org</link>
+      <description>The Podcast Index presents Podcasting 2.0 - Upgrading Podcasting</description>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    <itunes:summary>The Podcast Index presents Podcasting 2.0 - Upgrading Podcasting</itunes:summary>
+    <itunes:author>Podcast Index LLC</itunes:author>
+    <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:keywords>podcasting,media,software</itunes:keywords>
+    <itunes:category text="News &amp; Politics" />
+    <itunes:category text="Technology" />
+    <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+      <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="95" />
+      <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" split="5" customKey="112111100" customValue="wal_j39hpWOkxCDUYg" />
+      <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" fee="true" split="5" />
+    </podcast:value>
+    <podcast:guid>917393e3-1b1e-5cef-ace4-edaa54e1f810</podcast:guid>
+    <podcast:medium>podcast</podcast:medium>
+    <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    <item>
+      <title>Episode 76: Pining for PodPing</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for March 4th 2022 Episode 76: &quot;Pining for PodPing&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guest Dan Benjamin CEO of Fireside.FM&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-76-2022-03-04-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Dan Benjamin&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.spooler.fm/index.html#team&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Spooler&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://fireside.fm/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Fireside.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Todd Cochran node&lt;/p&gt;
+&lt;p&gt;Liquidity and fees&lt;/p&gt;
+&lt;p&gt;Claim codes should be features in namespace&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://newsletter.impervious.ai/impervious-browser-functionality-overview/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Impervious browser&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Put us in your value split&lt;/p&gt;
+&lt;p&gt;03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 03/04/2022 14:18:33 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207620220304Podcas-W2FTrnXglvd1rnKlSp4dq0sGTR7DWR.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC207620220304Podcas-W2FTrnXglvd1rnKlSp4dq0sGTR7DWR.html</link>
+      <guid isPermaLink="false" isPermalink="false">PC2076</guid>
+      <pubDate>Fri, 04 Mar 2022 20:27:12 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2076" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-76-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 76: Pining for PodPing</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for March 4th 2022 Episode 76: &quot;Pining for PodPing&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guest Dan Benjamin CEO of Fireside.FM&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-76-2022-03-04-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Dan Benjamin&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.spooler.fm/index.html#team&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Spooler&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://fireside.fm/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Fireside.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Todd Cochran node&lt;/p&gt;
+&lt;p&gt;Liquidity and fees&lt;/p&gt;
+&lt;p&gt;Claim codes should be features in namespace&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://newsletter.impervious.ai/impervious-browser-functionality-overview/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Impervious browser&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Put us in your value split&lt;/p&gt;
+&lt;p&gt;03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 03/04/2022 14:18:33 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207620220304Podcas-W2FTrnXglvd1rnKlSp4dq0sGTR7DWR.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-76-2022-03-04-Final.mp3" length="72504678" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://fireside.fm/" img="https://cdn.masto.host/podcastindexsocial/accounts/headers/000/007/481/original/9c7924f2313bfcc6.jpg" group="cast" role="guest">Dan Benjamin</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="mastodon" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave" protocol="activitypub">https://podcastindex.social/web/@dave/107899726350312258</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 75: Liquidifying for Love</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 25th 2022 Episode 75: Liquidifying for Love&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guest Roy Sheinfeld from&amp;nbsp;&lt;em&gt;Payment Provider&lt;/em&gt;&amp;nbsp;Breez&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-75-2022-02-25-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Roy Sheinfeld - Breez&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/breez-technology/lightning-is-a-liquidity-network-550896ca27ea&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Is a Liquidity Network | Breez Technology&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/rusty_twit/status/1496644913379049472&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Flame War&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/fiatjaf/status/1496544090992881668&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Email that was posted on twitter in the flame war&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Self Custody&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.impervious.ai/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Impervious.ai&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bisq.wiki/Main_Page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bisq Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;John Spurlock on podland&lt;/p&gt;
+&lt;p&gt;Comments &amp;amp; Boostagrams - How different from Superchat and YT comments?&lt;/p&gt;
+&lt;p&gt;Being called a shitcoiner&lt;/p&gt;
+&lt;p&gt;Tailscale pihole success&lt;/p&gt;
+&lt;p&gt;Fiat Fun Scribbles&lt;/p&gt;
+&lt;p&gt;Acast email marketing - agents use it&lt;/p&gt;
+&lt;p&gt;Put us in your value split&lt;/p&gt;
+&lt;p&gt;03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 02/25/2022 14:20:24 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207520220225Podcas-N6msb4sWjClGJ7VRlW7QlSl2LNPJmL.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC207520220225Podcas-N6msb4sWjClGJ7VRlW7QlSl2LNPJmL.html</link>
+      <guid isPermaLink="false" isPermalink="false">PC2075</guid>
+      <pubDate>Fri, 25 Feb 2022 20:21:38 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2075" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-75-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 75: Liquidifying for Love</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 25th 2022 Episode 75: Liquidifying for Love&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guest Roy Sheinfeld from&amp;nbsp;&lt;em&gt;Payment Provider&lt;/em&gt;&amp;nbsp;Breez&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-75-2022-02-25-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Roy Sheinfeld - Breez&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/breez-technology/lightning-is-a-liquidity-network-550896ca27ea&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Is a Liquidity Network | Breez Technology&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/rusty_twit/status/1496644913379049472&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Flame War&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/fiatjaf/status/1496544090992881668&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Email that was posted on twitter in the flame war&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Self Custody&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.impervious.ai/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Impervious.ai&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bisq.wiki/Main_Page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bisq Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;John Spurlock on podland&lt;/p&gt;
+&lt;p&gt;Comments &amp;amp; Boostagrams - How different from Superchat and YT comments?&lt;/p&gt;
+&lt;p&gt;Being called a shitcoiner&lt;/p&gt;
+&lt;p&gt;Tailscale pihole success&lt;/p&gt;
+&lt;p&gt;Fiat Fun Scribbles&lt;/p&gt;
+&lt;p&gt;Acast email marketing - agents use it&lt;/p&gt;
+&lt;p&gt;Put us in your value split&lt;/p&gt;
+&lt;p&gt;03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 02/25/2022 14:20:24 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207520220225Podcas-N6msb4sWjClGJ7VRlW7QlSl2LNPJmL.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-75-2022-02-25-Final.mp3" length="" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://breez.technology/" img="https://c.neevacdn.net/image/fetch/s--2JDiMzLA--/https%3A//tse3.mm.bing.net/th%3Fid%3DOIP.yAvgaC8ovQzFLNcELwjk2wAAAA%26pid%3DApi?savepath=th" group="cast" role="guest">Roy Sheinfeld - Breez</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="mastodon" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave" protocol="activitypub">https://podcastindex.social/web/@dave/107859997087498370</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 74: Confetti Canon</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 25th 2022 Episode 75: Liquidifying for Love&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guest Roy Sheinfeld from&amp;nbsp;&lt;em&gt;Payment Provider&lt;/em&gt;&amp;nbsp;Breez&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Value4Value.io Explains how this works!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-75-2022-02-25-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Roy Sheinfeld - Breez&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/breez-technology/lightning-is-a-liquidity-network-550896ca27ea&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Is a Liquidity Network | Breez Technology&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/rusty_twit/status/1496644913379049472&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Flame War&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/fiatjaf/status/1496544090992881668&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Email that was posted on twitter in the flame war&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Self Custody&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.impervious.ai/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Impervious.ai&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bisq.wiki/Main_Page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bisq Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;John Spurlock on podland&lt;/p&gt;
+&lt;p&gt;Comments &amp;amp; Boostagrams - How different from Superchat and YT comments?&lt;/p&gt;
+&lt;p&gt;Being called a shitcoiner&lt;/p&gt;
+&lt;p&gt;Tailscale pihole success&lt;/p&gt;
+&lt;p&gt;Fiat Fun Scribbles&lt;/p&gt;
+&lt;p&gt;Acast email marketing - agents use it&lt;/p&gt;
+&lt;p&gt;Put us in your value split&lt;/p&gt;
+&lt;p&gt;03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 02/25/2022 14:20:24 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207520220225Podcas-N6msb4sWjClGJ7VRlW7QlSl2LNPJmL.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC207420220218Podcas-5LwJlBc82BTBMLQ8kwN3Zw4xqsM5xq.html</link>
+      <guid isPermaLink="false">PC2074</guid>
+      <pubDate>Fri, 18 Feb 2022 20:53:21 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2074" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-74-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 74: Confetti Canon</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 25th 2022 Episode 75: Liquidifying for Love&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guest Roy Sheinfeld from&amp;nbsp;&lt;em&gt;Payment Provider&lt;/em&gt;&amp;nbsp;Breez&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Value4Value.io Explains how this works!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-75-2022-02-25-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Roy Sheinfeld - Breez&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/breez-technology/lightning-is-a-liquidity-network-550896ca27ea&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Is a Liquidity Network | Breez Technology&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/rusty_twit/status/1496644913379049472&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Lightning Flame War&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/fiatjaf/status/1496544090992881668&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Email that was posted on twitter in the flame war&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Self Custody&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.impervious.ai/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Impervious.ai&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bisq.wiki/Main_Page&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bisq Wiki&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;John Spurlock on podland&lt;/p&gt;
+&lt;p&gt;Comments &amp;amp; Boostagrams - How different from Superchat and YT comments?&lt;/p&gt;
+&lt;p&gt;Being called a shitcoiner&lt;/p&gt;
+&lt;p&gt;Tailscale pihole success&lt;/p&gt;
+&lt;p&gt;Fiat Fun Scribbles&lt;/p&gt;
+&lt;p&gt;Acast email marketing - agents use it&lt;/p&gt;
+&lt;p&gt;Put us in your value split&lt;/p&gt;
+&lt;p&gt;03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 02/25/2022 14:20:24 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207520220225Podcas-N6msb4sWjClGJ7VRlW7QlSl2LNPJmL.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-74-2022-02-18-Final.mp3" length="88471241" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://podcastindex.social/@agates" img="https://cdn.masto.host/podcastindexsocial/accounts/avatars/000/005/741/original/fcee3e2e12ac67c2.jpeg" group="cast" role="host">Sir Alecks Gates</podcast:person>
+      <podcast:person href="https://podcastindex.social/web/@brianoflondon" img="https://cdn.masto.host/podcastindexsocial/accounts/avatars/000/002/602/original/09b9d0febd9fbb6d.png" group="cast" role="host">Sir Brian of London</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="69" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+        <podcast:valueRecipient name="Sir Alecks Gates" type="node" address="02b66d7caae1acb51a95e036fc12b1e6837d9143141fcff520876b04b9d82f36d1" split="10" />
+        <podcast:valueRecipient name="Sir Brian of London" type="node" address="0396693dee59afd67f178af392990d907d3a9679fa7ce00e806b8e373ff6b70bd8" customKey="818818" customValue="podping" split="10" />
+      </podcast:value>
+      <podcast:socialInteract platform="mastodon" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave" protocol="activitypub">https://podcastindex.social/web/@dave/107820346391460741</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 73: Spinning Gold out of Yarn</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 11th 2022 Episode 73: Spinning Gold out of Yarn&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guests Kevin and Tom from Buzzsprout.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-73-2022-02-11-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Satoshi Stick&lt;/p&gt;
+&lt;p&gt;Live radio, Brian Kilmead&lt;/p&gt;
+&lt;p&gt;Podcasts Are No Longer Private Conversations - The Atlantic&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Podcasting is not so much an &quot;Industry&quot;, it&#39;s more analogous to sport&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Podcasting HOF&lt;/p&gt;
+&lt;p&gt;Cross App Comments&lt;/p&gt;
+&lt;p&gt;PodPing&lt;/p&gt;</description>
+      <link>http://adam.curry.com/html/PC207320220211Podcas-5Cj46VJQFq4kH9QcfZQSD1q0FlBJTb.html</link>
+      <guid isPermaLink="false">PC2073</guid>
+      <pubDate>Fri, 11 Feb 2022 20:19:06 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2073" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-73-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 73: Spinning Gold out of Yarn</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 11th 2022 Episode 73: Spinning Gold out of Yarn&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with guests Kevin and Tom from Buzzsprout.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-73-2022-02-11-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Satoshi Stick&lt;/p&gt;
+&lt;p&gt;Live radio, Brian Kilmead&lt;/p&gt;
+&lt;p&gt;Podcasts Are No Longer Private Conversations - The Atlantic&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Podcasting is not so much an &quot;Industry&quot;, it&#39;s more analogous to sport&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Podcasting HOF&lt;/p&gt;
+&lt;p&gt;Cross App Comments&lt;/p&gt;
+&lt;p&gt;PodPing&lt;/p&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-73-2022-02-11-Final.mp3" length="" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://buzzsprout.com/" img="https://cdn.masto.host/podcastindexsocial/accounts/avatars/000/000/985/original/ffbe1c68e03d3ced.jpg" group="cast" role="guest">Tom Rossi</podcast:person>
+      <podcast:person href="https://buzzsprout.com/" img="https://cdn.masto.host/podcastindexsocial/accounts/avatars/000/003/666/original/b1d0717e57f03357.jpg" group="cast" role="guest">Kevin Finn</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="69" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+        <podcast:valueRecipient name="Buzzsprout" type="node" address="03c457fafbc8b91b462ef0b8f61d4fd96577a4b58c18b50e59621fd0f41a8ae1a4" split="20" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave">https://podcastindex.social/web/@dave/107780731968782368</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 72: Hitting the Apex</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 4th 2022 Episode 72: Hitting the Apex&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org - we have abuffet dinner for board members due to our late start&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-72-2022-02-04-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We picked a good time to start this project&lt;/p&gt;
+&lt;p&gt;Spotify deplatforming is real&lt;/p&gt;
+&lt;p&gt;Legacy Apps is key term&lt;/p&gt;
+&lt;p&gt;Newpodcastapps.com&lt;/p&gt;
+&lt;p&gt;Tom Woods 7 year old Podcasting 2.0 explanation&lt;/p&gt;
+&lt;p&gt;CastOS&lt;/p&gt;
+&lt;p&gt;Shit is getting weird in markets and supply chains&lt;/p&gt;
+&lt;p&gt;Boostagrams&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podcastindex.social/@benjaminbellamy/107678896820914225&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boostagram Icon&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PodPings from Seriously Simple Podcast WordPress plugin&lt;/p&gt;
+&lt;p&gt;Sir Peet&#39;s sugar beets&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 02/04/2022 19:21:16 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207220220204Podcas-CsGw3g79LW8SFSXj8F9XjwnkqKcLJ0.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC207220220204Podcas-CsGw3g79LW8SFSXj8F9XjwnkqKcLJ0.html</link>
+      <guid isPermaLink="false">PC2072</guid>
+      <pubDate>Sat, 05 Feb 2022 01:21:37 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2072" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-72-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 72: Hitting the Apex</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for February 4th 2022 Episode 72: Hitting the Apex&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org - we have abuffet dinner for board members due to our late start&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-72-2022-02-04-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We picked a good time to start this project&lt;/p&gt;
+&lt;p&gt;Spotify deplatforming is real&lt;/p&gt;
+&lt;p&gt;Legacy Apps is key term&lt;/p&gt;
+&lt;p&gt;Newpodcastapps.com&lt;/p&gt;
+&lt;p&gt;Tom Woods 7 year old Podcasting 2.0 explanation&lt;/p&gt;
+&lt;p&gt;CastOS&lt;/p&gt;
+&lt;p&gt;Shit is getting weird in markets and supply chains&lt;/p&gt;
+&lt;p&gt;Boostagrams&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podcastindex.social/@benjaminbellamy/107678896820914225&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boostagram Icon&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PodPings from Seriously Simple Podcast WordPress plugin&lt;/p&gt;
+&lt;p&gt;Sir Peet&#39;s sugar beets&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 02/04/2022 19:21:16 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207220220204Podcas-CsGw3g79LW8SFSXj8F9XjwnkqKcLJ0.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-72-2022-02-04-Final.mp3" length="" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave">https://podcastindex.social/web/@dave/107742391354629931</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 71: SPECS and SPACS</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for January 28th 2022 Episode 71: SPECS and SPACS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and dive deep into how stuff breaks in an open world. The board agrees there is much progress to report this week!&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-71-2022-01-28-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Helipad specs&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://usocial.me/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;usocial | The minimalist feed reader, feed aggregator and podcast client&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Anchor specs&lt;/p&gt;
+&lt;p&gt;PodPing new version&lt;/p&gt;
+&lt;p&gt;Live tag&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://desfemmesmagazine.com/pages/faqs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FAQs &amp;ndash; Des Femmes Magazine&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;New Hosting company&lt;/p&gt;
+&lt;p&gt;comments&lt;/p&gt;
+&lt;p&gt;New hardware company&lt;/p&gt;
+&lt;p&gt;On Ramp Fountain partner&lt;/p&gt;
+&lt;p&gt;Fountain promotions&lt;/p&gt;
+&lt;p&gt;Share link previews&lt;/p&gt;
+&lt;p&gt;Podfriend blue screen&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 01/28/2022 14:18:55 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207120220128Podcas-s8t7FrW72H4lKsx2zgQdvl2n2qKrhb.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC207120220128Podcas-s8t7FrW72H4lKsx2zgQdvl2n2qKrhb.html</link>
+      <guid isPermaLink="false">PC2071</guid>
+      <pubDate>Fri, 28 Jan 2022 20:22:42 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2071" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-71-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 71: SPECS and SPACS</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for January 28th 2022 Episode 71: SPECS and SPACS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and dive deep into how stuff breaks in an open world. The board agrees there is much progress to report this week!&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-71-2022-01-28-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Helipad specs&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://usocial.me/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;usocial | The minimalist feed reader, feed aggregator and podcast client&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Anchor specs&lt;/p&gt;
+&lt;p&gt;PodPing new version&lt;/p&gt;
+&lt;p&gt;Live tag&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://desfemmesmagazine.com/pages/faqs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FAQs &amp;ndash; Des Femmes Magazine&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;New Hosting company&lt;/p&gt;
+&lt;p&gt;comments&lt;/p&gt;
+&lt;p&gt;New hardware company&lt;/p&gt;
+&lt;p&gt;On Ramp Fountain partner&lt;/p&gt;
+&lt;p&gt;Fountain promotions&lt;/p&gt;
+&lt;p&gt;Share link previews&lt;/p&gt;
+&lt;p&gt;Podfriend blue screen&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 01/28/2022 14:18:55 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207120220128Podcas-s8t7FrW72H4lKsx2zgQdvl2n2qKrhb.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-71-2022-01-28-Final.mp3" length="70881847" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave">https://podcastindex.social/web/@dave/107701409160687156</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 70: Testing the TAM</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for January 21st 2022 Episode 70: Testing the TAM&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and welcome Thomas Barrasso to the board meeting, who&#39;s podcast app has 9 million users in India&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-70-2022-01-21-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thomas Barrasso (PodLP)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@tbarrasso/podcasts-for-the-next-billion-1474778454e1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcasts for the Next Billion. Designing a podcast client for KaiOS&amp;hellip; | by Thomas Barrasso | Medium&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://beebom.com/google-investment-kaios-feature-phones/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Google Bets Big on Feature Phones Future With $22 Million Investment in KaiOS | Beebom&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Images&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.podlp.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodLP Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Netflix devalues content&lt;/p&gt;
+&lt;p&gt;The TAM&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podcastfont.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast font&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 01/21/2022 11:52:23 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207020220121Podcas-Dj423qrffjnmCFrRVhk46DtF8xMC6l.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC207020220121Podcas-Dj423qrffjnmCFrRVhk46DtF8xMC6l.html</link>
+      <guid isPermaLink="false">PC2070</guid>
+      <pubDate>Fri, 21 Jan 2022 18:10:58 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2070" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-70-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 70: Testing the TAM</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for January 21st 2022 Episode 70: Testing the TAM&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org and welcome Thomas Barrasso to the board meeting, who&#39;s podcast app has 9 million users in India&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-70-2022-01-21-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thomas Barrasso (PodLP)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@tbarrasso/podcasts-for-the-next-billion-1474778454e1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcasts for the Next Billion. Designing a podcast client for KaiOS&amp;hellip; | by Thomas Barrasso | Medium&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://beebom.com/google-investment-kaios-feature-phones/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Google Bets Big on Feature Phones Future With $22 Million Investment in KaiOS | Beebom&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Images&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.podlp.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodLP Blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Netflix devalues content&lt;/p&gt;
+&lt;p&gt;The TAM&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podcastfont.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast font&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 01/21/2022 11:52:23 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC207020220121Podcas-Dj423qrffjnmCFrRVhk46DtF8xMC6l.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-70-2022-01-21-Final.mp3" length="70881847" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://podlp.com/" img="https://miro.medium.com/fit/c/262/262/2*eC8-n0dlgLMCFI1QUnMd-g.jpeg" group="cast" role="host">Thomas Barrasso</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@dave" podcastAccountUrl="https://podcastindex.social/users/dave">https://podcastindex.social/web/@dave/107661337145982563</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 69: All Aboard!</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for January 14th 2022 Episode 69: All Aboard!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with Alberto &amp;amp; Ben from RSS.com including the live tag, podping and value4value on-boarding news&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-68-2021-12-31-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Alberto Betella and Ben Richardson from RSS.com&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://rss.com/blog/the-history-of-rss-podcasting-part-two/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The History of RSS Podcasting with Ben and Alberto - Part 2 | RSS.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Live Tag&lt;/p&gt;
+&lt;p&gt;Use open protocols&lt;/p&gt;
+&lt;p&gt;Reverse the thinking, it&#39;s another destination for streamers&lt;/p&gt;
+&lt;p&gt;Just a notification system&lt;/p&gt;
+&lt;p&gt;V4V&lt;/p&gt;
+&lt;p&gt;Fountain Ranker&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.thegatewaypundit.com/2021/12/without-warning-gateway-pundit-banned-paypal/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Gateway pundit banned from paypal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Podcast networks taking a network fee&lt;/p&gt;
+&lt;p&gt;If you treat v4v as tips, tips is all you&#39;ll get&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;On Boarding Partner&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Podping&lt;/p&gt;
+&lt;p&gt;Podping aggregation in-app&lt;/p&gt;
+&lt;p&gt;Apple, go use podping. No one can ever know!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podping.watch/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Poding Ping Watcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Podcastindex-org/podping-hivewriter&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podping Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cross App Comments&lt;/p&gt;
+&lt;p&gt;Dead feeds&lt;/p&gt;
+&lt;p&gt;Podcast graveyard!&lt;/p&gt;
+&lt;p&gt;Podcast font&lt;/p&gt;
+&lt;p&gt;https://podcastfont.com/&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.coindesk.com/markets/2022/01/12/dorsey-proposes-non-profit-bitcoin-legal-defense-fund-for-developers/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Dorsey legal defence fund&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dreb informal poll email&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;Ryan Heise transcript service :podcasting2.0:&lt;/p&gt;
+&lt;p&gt;TODO Mike Neuman feed fixes&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 01/14/2022 14:00:27 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC206920220114Podcas-8cHvH0c8NJ7lSSCk0qBpSRn1q9nXq8.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC206920220114Podcas-8cHvH0c8NJ7lSSCk0qBpSRn1q9nXq8.html</link>
+      <guid isPermaLink="false">PC2069</guid>
+      <pubDate>Fri, 14 Jan 2022 20:02:32 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2069" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-69-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 69: All Aboard!</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for January 14th 2022 Episode 69: All Aboard!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with Alberto &amp;amp; Ben from RSS.com including the live tag, podping and value4value on-boarding news&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-68-2021-12-31-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Alberto Betella and Ben Richardson from RSS.com&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://rss.com/blog/the-history-of-rss-podcasting-part-two/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The History of RSS Podcasting with Ben and Alberto - Part 2 | RSS.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Live Tag&lt;/p&gt;
+&lt;p&gt;Use open protocols&lt;/p&gt;
+&lt;p&gt;Reverse the thinking, it&#39;s another destination for streamers&lt;/p&gt;
+&lt;p&gt;Just a notification system&lt;/p&gt;
+&lt;p&gt;V4V&lt;/p&gt;
+&lt;p&gt;Fountain Ranker&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.thegatewaypundit.com/2021/12/without-warning-gateway-pundit-banned-paypal/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Gateway pundit banned from paypal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Podcast networks taking a network fee&lt;/p&gt;
+&lt;p&gt;If you treat v4v as tips, tips is all you&#39;ll get&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;On Boarding Partner&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Podping&lt;/p&gt;
+&lt;p&gt;Podping aggregation in-app&lt;/p&gt;
+&lt;p&gt;Apple, go use podping. No one can ever know!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podping.watch/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Poding Ping Watcher&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Podcastindex-org/podping-hivewriter&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podping Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cross App Comments&lt;/p&gt;
+&lt;p&gt;Dead feeds&lt;/p&gt;
+&lt;p&gt;Podcast graveyard!&lt;/p&gt;
+&lt;p&gt;Podcast font&lt;/p&gt;
+&lt;p&gt;https://podcastfont.com/&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.coindesk.com/markets/2022/01/12/dorsey-proposes-non-profit-bitcoin-legal-defense-fund-for-developers/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Dorsey legal defence fund&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dreb informal poll email&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;Ryan Heise transcript service :podcasting2.0:&lt;/p&gt;
+&lt;p&gt;TODO Mike Neuman feed fixes&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 01/14/2022 14:00:27 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC206920220114Podcas-8cHvH0c8NJ7lSSCk0qBpSRn1q9nXq8.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-69-2022-01-14-Final.mp3" length="70881847" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://rss.com" img="https://twitter.com/albertobeta/photo" group="cast" role="guest">Alberto Betella</podcast:person>
+      <podcast:person href="https://rss.com" img="https://podcastindex.social/@Ben" group="cast" role="guest">Ben Richardson</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@adam" podcastAccountUrl="https://podcastindex.social/users/adam">https://podcastindex.social/users/adam/statuses/107622174364201316</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 68: Mind the Gap!</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for December 31st 2021 Episode 68: Mind the Gap&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Value4Value.io Explains how this works!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-68-2021-12-31-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hill Top Cafe Jimmie Vaughn tip jar&lt;/p&gt;
+&lt;p&gt;Gigi article&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ableandthewolf.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Able and the Wolf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Directory&lt;/p&gt;
+&lt;p&gt;ETH v4v&lt;/p&gt;
+&lt;p&gt;Ryan Heise transcript service :podcasting2.0:&lt;/p&gt;
+&lt;p&gt;Roku&lt;/p&gt;
+&lt;p&gt;Helipad update&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 12/31/2021 14:06:11 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC206820211231Podcas-S9dx1hdktTWMQWmWBN2lf8hVQ9tgnG.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC206820211231Podcas-S9dx1hdktTWMQWmWBN2lf8hVQ9tgnG.html#,5</link>
+      <guid isPermaLink="false">PC2068</guid>
+      <pubDate>Fri, 31 Dec 2021 20:08:54 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2068" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-68-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 68: Mind the Gap!</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for December 31st 2021 Episode 68: Mind the Gap&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Value4Value.io Explains how this works!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-68-2021-12-31-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hill Top Cafe Jimmie Vaughn tip jar&lt;/p&gt;
+&lt;p&gt;Gigi article&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ableandthewolf.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Able and the Wolf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Directory&lt;/p&gt;
+&lt;p&gt;ETH v4v&lt;/p&gt;
+&lt;p&gt;Ryan Heise transcript service :podcasting2.0:&lt;/p&gt;
+&lt;p&gt;Roku&lt;/p&gt;
+&lt;p&gt;Helipad update&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 12/31/2021 14:06:11 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC206820211231Podcas-S9dx1hdktTWMQWmWBN2lf8hVQ9tgnG.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,developers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-68-2021-12-31-Final.mp3" length="70881847" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="89" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@adam" podcastAccountUrl="https://podcastindex.social/users/adam">https://podcastindex.social/users/adam/statuses/107542886857514892</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <item>
+      <title>Episode 67: Satoshi Stocking Stuffer</title>
+      <description>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for December 24th 2021 Episode 67: Satoshi Stocking Stuffer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with a review of the year in Podcasting 2.0 and special guest James Cridland&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Value4Value.io Explains how this works!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-67-2021-12-24-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;James Cridland&lt;/p&gt;
+&lt;p&gt;100K sat bet&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.rcsworks.com/zetta/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Zetta - RCS Sound Software&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Only 3 sats/minutes&lt;/p&gt;
+&lt;p&gt;Captivate&lt;/p&gt;
+&lt;p&gt;Image Tag PodLP&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 12/24/2021 09:07:18 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC206720211224Podcas-BZ60QL6SPP8rfWdBqhbHdgwlCcbsSF.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</description>
+      <link>http://adam.curry.com/html/PC206720211224Podcas-BZ60QL6SPP8rfWdBqhbHdgwlCcbsSF.html#,5</link>
+      <guid isPermaLink="false">PC2067</guid>
+      <pubDate>Fri, 24 Dec 2021 15:10:15 +0000</pubDate>
+      <podcast:chapters url="http://34.117.70.159/http%3Amp3s.nashownotes.compc20rss.xml/PC2067" type="application/json" />
+      <podcast:transcript url="https://mp3s.nashownotes.com/PC20-67-Captions.srt" type="application/srt" />
+      <itunes:subtitle>Episode 67: Satoshi Stocking Stuffer</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;&lt;strong&gt;Podcasting 2.0 for December 24th 2021 Episode 67: Satoshi Stocking Stuffer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Adam &amp;amp; Dave discuss the week&#39;s developments on podcastindex.org with a review of the year in Podcasting 2.0 and special guest James Cridland&lt;/p&gt;
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;Crank those value sliders up on any of these value4value streaming payment apps:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://breez.technology/&quot;&gt;Breez app&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://curiocaster.com/&quot;&gt;CurioCaster&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fountain.fm/&quot;&gt;Fountain.FM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podfriend.com/&quot;&gt;Podfriend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podstation.github.io/&quot;&gt;Podstation Browser extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://podverse.com/&quot;&gt;Podverse&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sphinx.chat/&quot;&gt;Sphinx Chat App&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://value4value.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Value4Value.io Explains how this works!&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp3s.nashownotes.com/PC20-67-2021-12-24-Final.mp3&quot;&gt;Download the mp3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Podcast Feed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://podcastindex.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PodcastIndex.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://preservepodcasting.com/&quot;&gt;Preservepodcasting.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the podcasting 2.0 apps and services&amp;nbsp;&lt;a href=&quot;http://newpodcastapps.com/&quot;&gt;newpodcastapps.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Support us with your Time Talent and&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/donate/?token=m0z6N1K047lEsGvPDr3KMumKYHlUHRAdwPNY645UB0LR9fGf_OtpVByzHId7TEFYo9nXNS5aF33Zdjn9&amp;amp;fromUL=true&amp;amp;country.x=US&amp;amp;locale.x=en_US&quot;&gt;Treasure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ShowNotes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Positioning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ablekirby/BoostBait&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Boost Bait&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;James Cridland&lt;/p&gt;
+&lt;p&gt;100K sat bet&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.rcsworks.com/zetta/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Zetta - RCS Sound Software&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Only 3 sats/minutes&lt;/p&gt;
+&lt;p&gt;Captivate&lt;/p&gt;
+&lt;p&gt;Image Tag PodLP&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;small&gt;Last Modified 12/24/2021 09:07:18 by&amp;nbsp;&lt;a href=&quot;http://freedomcontroller.com/&quot;&gt;Freedom Controller&lt;/a&gt;&lt;/small&gt;&amp;nbsp;&lt;a title=&quot;Link to the opml for this document.&quot; href=&quot;http://adam.curry.com/opml/PC206720211224Podcas-BZ60QL6SPP8rfWdBqhbHdgwlCcbsSF.opml&quot;&gt;&amp;nbsp;&lt;/a&gt;&lt;/div&gt;</itunes:summary>
+      <itunes:author>Podcast Index LLC</itunes:author>
+      <author>Podcast Index LLC</author>
+      <itunes:image href="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg" />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords>podcasting,curry,podfather,technology,deverlopers</itunes:keywords>
+      <enclosure url="https://mp3s.nashownotes.com/PC20-67-2021-12-24-Final.mp3" length="70881847" type="audio/mpeg" />
+      <podcast:person group="cast" role="host" img="https://feeds.podcastindex.org/adam_avatar.jpg" href="http://curry.com">Adam Curry</podcast:person>
+      <podcast:person href="http://dave.sobr.org" img="https://feeds.podcastindex.org/dave_avatar.jpg" group="cast" role="host">Dave Jones</podcast:person>
+      <podcast:person href="https://podnews.net" img="https://james.cridland.net/front-image.jpg" group="cast" role="host">James Cridland</podcast:person>
+      <podcast:value type="lightning" method="keysend" suggested="0.00000005000">
+        <podcast:valueRecipient name="Podcastindex.org" type="node" address="03ae9f91a0cb8ff43840e3c322c4c61f019d8c1c3cea15a25cfc425ac605e61a4a" split="59" />
+        <podcast:valueRecipient name="Dreb Scott (Chapters)" type="node" address="02453e4e93322d60219808c00c2e6d1f1c673420e95b5511a33c40cfb4df5e9148" split="5" />
+        <podcast:valueRecipient name="Sovereign Feeds" address="033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500" type="node" customKey="112111100" customValue="wal_MB9T45QHGyW" split="5" />
+        <podcast:valueRecipient name="James Cridland" type="node" address="02b307fdad2e68d08ba5a59cfc8a0a7ec0ff375291e1082fa22a5524e68608c520" split="30" />
+        <podcast:valueRecipient name="Boostagram Monitor" type="node" address="038399372001f2741d58d6ec4846fccb78daa1a485e69e2eebc5aadba047d35956" split="1" />
+      </podcast:value>
+      <podcast:socialInteract platform="activitypub" podcastAccountId="@adam" podcastAccountUrl="https://podcastindex.social/users/adam">https://podcastindex.social/users/adam/statuses/107502559836140349</podcast:socialInteract>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </item>
+    <podcast:liveItem status="pending" start="2022-03-12T06:30:00.000Z" chat="https://kiwiirc.com/nextclient/irc.zeronode.net/#Podcasting20" end="2022-03-12T08:30:00.000Z">
+      <title>Podcasting 2.0 Live</title>
+      <author />
+      <description>&lt;p&gt;The Live Stream for Podcasting 2.0&lt;/p&gt;</description>
+      <duration />
+      <enclosure length="" type="audio/mpeg" url="https://listen.noagendastream.com/noagenda" />
+      <guid isPermaLink="false" isPermalink="false">PC2.0 Live 3/11/22</guid>
+      <itunes:keywords />
+      <itunes:subtitle>Podcasting 2.0 Live</itunes:subtitle>
+      <itunes:summary>&lt;p&gt;The Live Stream for Podcasting 2.0&lt;/p&gt;</itunes:summary>
+      <link />
+      <podcast:contentLink href="http://adam.curry.com/html/NoAgendaStreamandCha-1414965812.html">Listen Live in the Troll Room</podcast:contentLink>
+      <podcast:images srcset="https://noagendaassets.com/enc/1601061118.678_pciavatar.jpg 816w" />
+    </podcast:liveItem>
+  </channel>
+</rss>
