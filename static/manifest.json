@@ -1,0 +1,22 @@
+{
+  "name": "Sovereign Feeds",
+  "short_name": "Sovereign Feeds",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#333",
+  "background_color": "#333",
+  "description": "Sovereign Feeds",
+  "icons": [
+    {
+      "src": "SF192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "SF512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
