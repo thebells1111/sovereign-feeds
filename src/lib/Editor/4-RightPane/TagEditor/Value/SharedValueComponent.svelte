@@ -141,8 +141,13 @@
 					<label>
 						<h4>
 							Value Recipient Name
-							<button on:click={handleProviderSelect.bind(this, 'Alby')}>Use Alby</button>
-							<button on:click={handleProviderSelect.bind(this, 'Fountain')}>Use Fountain</button>
+							<button class="provider primary " on:click={handleProviderSelect.bind(this, 'Alby')}
+								>Use Alby</button
+							>
+							<button
+								class="provider primary"
+								on:click={handleProviderSelect.bind(this, 'Fountain')}>Use Fountain</button
+							>
 						</h4>
 						<input
 							type="text"
@@ -351,5 +356,30 @@
 		cursor: pointer;
 		display: block;
 		width: 48px;
+	}
+
+	button.primary {
+		width: 80%;
+		margin-left: 10%;
+		margin-top: 8px;
+	}
+	button.primary.self {
+		background-image: linear-gradient(
+			to bottom,
+			hsla(197, 100%, 43.7%, 1),
+			hsla(197, 100%, 26.7%, 1)
+		);
+	}
+
+	button.provider {
+		background-image: linear-gradient(
+			to bottom,
+			hsla(197, 100%, 43.7%, 1),
+			hsla(197, 100%, 26.7%, 1)
+		);
+		margin-left: 8px;
+		margin-top: 0;
+		margin-bottom: 8px;
+		width: 140px;
 	}
 </style>
