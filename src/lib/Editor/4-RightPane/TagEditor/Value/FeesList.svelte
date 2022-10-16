@@ -92,8 +92,8 @@
 					activeRecipient?.['@_customValue'] === r['@_customValue']}
 				on:click={(e) => selectRecipient(r)}
 			>
-				<p>{r['@_name']}</p>
 				<p>{r['@_split']}%</p>
+				<p>{r['@_name']}</p>
 				<button on:click|stopPropagation={handleDelete.bind(this, r)} class="delete"
 					><Delete /></button
 				>
@@ -105,10 +105,11 @@
 
 	{#if getFeeRecipients(data?.['podcast:valueRecipient'])?.length}
 		<div class="fees-list-total">
-			<p style={'color:hsla(292, 100%, 33%, 1); font-weight:700'}>Total fees Percentage:</p>
 			<p style={'color:hsla(292, 100%, 33%, 1); font-weight:700'}>
 				{fees}%
 			</p>
+			<p style={'color:hsla(292, 100%, 33%, 1); font-weight:700'}>Total fees Percentage:</p>
+
 			<p class="spacer" />
 		</div>
 	{/if}
@@ -150,14 +151,19 @@
 		display: flex;
 		cursor: pointer;
 		align-items: center;
-		justify-content: space-between;
 	}
 
 	.fees-recepient p:first-of-type,
 	.fees-list-total p:first-of-type {
+		width: 50px;
+	}
+
+	.fees-recepient p:nth-of-type(2),
+	.fees-list-total p:nth-of-type(2) {
 		font-size: 1.1em;
 		font-weight: 600;
-		width: 60%;
+		text-align: left;
+		width: 100%;
 	}
 
 	.fees-recepient p {
@@ -166,13 +172,6 @@
 
 	.fees-list-total p {
 		padding: 4px 8px 4px 0;
-	}
-
-	.fees-recepient p:nth-of-type(2),
-	.fees-list-total p:nth-of-type(2) {
-		width: 50px;
-		text-align: center;
-		padding: 4px 0;
 	}
 
 	.fees-list-total {
