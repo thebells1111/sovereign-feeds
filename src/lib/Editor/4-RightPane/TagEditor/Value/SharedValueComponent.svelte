@@ -6,7 +6,7 @@
 	export let data = {};
 	let index = 1;
 	let activeRecipient = data['podcast:valueRecipient']?.[index - 1];
-	let showValues = true;
+	let showValues = false;
 	let provider = '';
 	let username = '';
 	let noUserFound = false;
