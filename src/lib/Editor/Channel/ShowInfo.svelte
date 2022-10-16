@@ -2,6 +2,7 @@
 	import { rssData, tagHeaders } from '$/editor';
 	import Locked from './Components/Locked/Locked.svelte';
 	import Complete from './Components/Complete/Complete.svelte';
+	import License from './Components/License/License.svelte';
 
 	let mediaTypes = ['podcast', 'music', 'video', 'film', 'audiobook', 'newsletter', 'blog'];
 	let selectedMedia;
@@ -49,6 +50,7 @@
 
 	<Locked />
 	<Complete />
+	<License />
 {/if}
 
 <!-- <label class="locked">

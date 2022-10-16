@@ -93,3 +93,5 @@ export const webhookSecret = writable('');
 
 export const currentPage = writable('feeds');
 export const digitalOceanEnabled = writable(false);
+
+export const licenses = writable({});

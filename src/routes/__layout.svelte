@@ -6,14 +6,7 @@
 	import Login from '$lib/Modals/Login/Login.svelte';
 	import NewFeedEditor from '$lib/Modals/FeedEditorModal/NewEditorModal.svelte';
 
-	import {
-		validatedFeeds,
-		user,
-		showNewEditor,
-		showBuildingRSS,
-		webhookLink,
-		webhookSecret
-	} from '$/editor';
+	import { user, showNewEditor, showBuildingRSS, licenses } from '$/editor';
 	import { showLogin, showMobile } from '$/stores';
 	import BuildingRss from '$lib/Modals/BuildingRSS/BuildingRSS.svelte';
 
@@ -55,6 +48,14 @@
 				console.error(e2);
 			}
 		}
+
+		fetch('https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json')
+			.then((res) => res.json())
+			.then((data) => {
+				$licenses = data.licenses.sort((a, b) => {
+					return a.licenseId > b.licenseId ? 1 : -1;
+				});
+			});
 	});
 
 	async function getUser() {

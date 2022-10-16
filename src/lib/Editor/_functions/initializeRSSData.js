@@ -10,6 +10,7 @@ import initializeCategories from './initialize/categories';
 import initializeComplete from './initialize/complete';
 import initializeLocked from './initialize/locked';
 import initializeBlock from './initialize/block';
+import initializeLicenseTag from './initialize/license';
 
 import { get } from 'svelte/store';
 
@@ -98,6 +99,7 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:complete'] = initializeComplete($rssData['podcast:complete']);
 	$rssData['podcast:locked'] = initializeLocked($rssData['podcast:locked']);
 	$rssData['podcast:block'] = initializeBlock($rssData['podcast:block']);
+	$rssData['podcast:license'] = initializeLicenseTag($rssData['podcast:license']);
 
 	let $editingEpisode = get(editingEpisode);
 
