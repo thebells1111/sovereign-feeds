@@ -130,24 +130,30 @@
 			{#if showProviderInput}
 				<div class="wallet-provider">
 					<input bind:value={username} placeholder={`Enter Your ${provider} User Name`} />
-					<button class="submit-provider" on:click={handleProviderSubmit}>Submit</button>
-					<button class="cancel-provider" on:click={cancelProviderSubmit}>Cancel</button>
+					<div class="wallet-provider-button-container">
+						<button class="submit-provider primary" on:click={handleProviderSubmit}>Submit</button>
+						<button class="cancel-provider primary" on:click={cancelProviderSubmit}>Cancel</button>
+					</div>
+					{#if noUserFound}
+						<p>That username doesn't exist.</p>
+					{/if}
 				</div>
-				{#if noUserFound}
-					<p>That username doesn't exist.</p>
-				{/if}
 			{:else}
 				<div class="person-block">
 					<label>
 						<h4>
 							Value Recipient Name
-							<button class="provider primary " on:click={handleProviderSelect.bind(this, 'Alby')}
-								>Use Alby</button
-							>
+							<button class="provider alby" on:click={handleProviderSelect.bind(this, 'Alby')}>
+								<img src="alby.png" />
+								<span>Use Alby</span>
+							</button>
 							<button
-								class="provider primary"
-								on:click={handleProviderSelect.bind(this, 'Fountain')}>Use Fountain</button
+								class="provider fountain"
+								on:click={handleProviderSelect.bind(this, 'Fountain')}
 							>
+								<img src="fountain.png" />
+								<span>Use Fountain</span>
+							</button>
 						</h4>
 						<input
 							type="text"
@@ -240,7 +246,8 @@
 		overflow: auto;
 	}
 	.value-input-container {
-		height: 415px;
+		height: 450px;
+		width: 60%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -249,12 +256,12 @@
 		border-radius: 4px;
 		box-shadow: 0px 3px 10px 0px rgb(50 50 50 / 50%);
 		margin: 8px;
-		width: calc(100% - 16px);
 		position: absolute;
 		background-color: white;
 		opacity: 0;
-		bottom: -391px;
-		transition: opacity 0.5s, bottom 0.5s;
+		top: 8px;
+		right: -60%;
+		transition: opacity 0.5s, right 0.5s;
 	}
 
 	.value-blocks-container {
@@ -262,9 +269,9 @@
 	}
 
 	.show {
-		bottom: 8px;
 		opacity: 1;
-		transition: opacity 0s, bottom 0.5s;
+		right: 0;
+		transition: opacity 0s, right 0.5s;
 	}
 
 	.cancel {
@@ -372,14 +379,76 @@
 	}
 
 	button.provider {
+		margin: 0 0 8px 8px;
+		width: 140px;
+		font-weight: 600;
+		border-radius: 20px;
+		padding: 0;
+		display: inline-flex;
+		padding: 0 4px;
+		align-items: center;
+	}
+
+	button.alby {
+		background-color: hsl(41, 92%, 65%);
+	}
+
+	button.fountain {
+		background-color: hsl(225, 7%, 11%);
+		color: white;
+	}
+
+	button > img {
+		height: 30px;
+	}
+
+	button.alby > img {
+		height: 28px;
+		padding-left: 4px;
+	}
+
+	button.alby > span {
+		width: 100%;
+	}
+
+	.wallet-provider {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	.wallet-provider input {
+		width: 400px;
+	}
+
+	.wallet-provider-button-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.wallet-provider-button-container button {
+		margin: 8px;
+		width: 140px;
+		font-weight: 600;
+		border-radius: 20px;
+	}
+
+	.cancel-provider {
 		background-image: linear-gradient(
 			to bottom,
-			hsla(197, 100%, 43.7%, 1),
-			hsla(197, 100%, 26.7%, 1)
+			hsla(352, 100%, 43.7%, 1),
+			hsla(352, 100%, 26.7%, 1)
 		);
-		margin-left: 8px;
-		margin-top: 0;
-		margin-bottom: 8px;
-		width: 140px;
+	}
+
+	.wallet-provider p {
+		position: absolute;
+		bottom: -32px;
+		width: 100%;
+		font-size: 20px;
+		text-align: center;
+		color: red;
+		font-weight: 600;
 	}
 </style>

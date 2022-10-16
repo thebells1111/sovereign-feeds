@@ -108,8 +108,9 @@
 					activeRecipient?.['@_customValue'] === r['@_customValue']}
 				on:click={(e) => selectRecipient(r)}
 			>
-				<p>{r['@_name']}</p>
 				<p>{r['@_split']}%</p>
+				<p>{r['@_name']}</p>
+
 				<button on:click|stopPropagation={handleDelete.bind(this, r)} class="delete"
 					><Delete /></button
 				>
@@ -126,15 +127,16 @@
 					? 'color:red; font-weight:700'
 					: 'color:hsla(292, 100%, 33%, 1); font-weight:700'}
 			>
-				Total Split Percentage
+				{splits}%
 			</p>
 			<p
 				style={splits < 100
 					? 'color:red; font-weight:700'
 					: 'color:hsla(292, 100%, 33%, 1); font-weight:700'}
 			>
-				{splits}%
+				Total Split Percentage
 			</p>
+
 			<p class="spacer" />
 		</div>
 	{/if}
@@ -190,14 +192,18 @@
 		display: flex;
 		cursor: pointer;
 		align-items: center;
-		justify-content: space-between;
 	}
-
 	.splits-recepient p:first-of-type,
 	.splits-list-total p:first-of-type {
+		width: 50px;
+	}
+
+	.splits-recepient p:nth-of-type(2),
+	.splits-list-total p:nth-of-type(2) {
 		font-size: 1.1em;
 		font-weight: 600;
-		width: 60%;
+		text-align: left;
+		width: 100%;
 	}
 
 	.splits-recepient p {
