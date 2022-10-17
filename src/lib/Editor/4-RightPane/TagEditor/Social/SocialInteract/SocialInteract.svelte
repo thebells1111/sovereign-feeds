@@ -7,8 +7,6 @@
 	import IndexScroll from '../../Shared/IndexScroll.svelte';
 
 	let index = 0;
-
-	console.log(data);
 </script>
 
 <div class="container">

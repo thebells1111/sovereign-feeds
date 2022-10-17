@@ -1,38 +1,53 @@
 <script>
 	import Select from 'svelte-select';
-	import { rssData, licenses } from '$/editor';
-	console.log($rssData);
-	console.log($licenses);
-	let selectedLicense;
+	import { rssData, licenses, selectedPodcast } from '$/editor';
+	let licenseType;
 
-	$: initializeBlockType($rssData?.['podcast:license']?.['#text'], $licenses);
+	$: initializeLicense($selectedPodcast);
 
-	$: console.log(selectedLicense);
+	async function initializeLicense() {
+		let foundLicense = $licenses.find((v) => {
+			let text = $rssData['podcast:license']['#text'] || '';
+			return v?.value === text.toLowerCase();
+		});
 
-	function initializeBlockType(data, licenseList) {
-		console.log(data);
-		console.log(licenseList);
+		let value = foundLicense?.value;
 
-		if (data && licenseList && selectedLicense?.licenseId?.toLowerCase() !== data?.toLowerCase()) {
-			selectedLicense = licenseList.find((v) => v.licenseId.toLowerCase() === data.toLowerCase());
-			$rssData['podcast:license']['#text'] = data;
-			$rssData['podcast:license']['@_url'] = selectedLicense.reference;
+		if (!$rssData?.['podcast:license']?.['@_url']) {
+			$rssData['podcast:license']['@_url'] = foundLicense?.url || '';
+		}
+
+		let slug = {
+			value: value,
+			label: value,
+			url: $rssData['podcast:license']['@_url']
+		};
+		setLicense(slug);
+		licenseType = value || '';
+	}
+
+	function setLicense(slug) {
+		$rssData['podcast:license']['#text'] = slug.value;
+
+		if (!slug.url) {
+			let foundLicense = $licenses.find((v) => {
+				return v?.value === $rssData?.['podcast:license']?.['#text']?.toLowerCase();
+			});
+			$rssData['podcast:license']['@_url'] = foundLicense?.url || '';
+		} else {
+			$rssData['podcast:license']['@_url'] = slug?.url;
 		}
 	}
 
 	function handleSelect(event) {
 		let slug = event.detail || [];
+		setLicense(slug);
 	}
 </script>
 
 <label>
 	<h3>License</h3>
-	<Select
-		items={$licenses}
-		labelIdentifier="licenseId"
-		value={selectedLicense}
-		on:select={handleSelect}
-	/>
+	<Select items={$licenses} on:select={handleSelect} value={licenseType} />
 	<input type="text" bind:value={$rssData['podcast:license']['@_url']} />
 </label>
 

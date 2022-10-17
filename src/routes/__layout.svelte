@@ -52,9 +52,17 @@
 		fetch('https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json')
 			.then((res) => res.json())
 			.then((data) => {
-				$licenses = data.licenses.sort((a, b) => {
-					return a.licenseId > b.licenseId ? 1 : -1;
-				});
+				$licenses = data.licenses
+					.sort((a, b) => {
+						return a.licenseId > b.licenseId ? 1 : -1;
+					})
+					.map((v) => {
+						return {
+							value: v.licenseId.toLowerCase(),
+							label: v.licenseId.toLowerCase(),
+							url: v?.reference?.toLowerCase()
+						};
+					});
 			});
 	});
 
