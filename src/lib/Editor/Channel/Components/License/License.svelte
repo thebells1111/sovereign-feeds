@@ -1,41 +1,77 @@
 <script>
 	import Select from 'svelte-select';
-	import { rssData, licenses, selectedPodcast } from '$/editor';
+	import { rssData, licenses, selectedPodcast, editingEpisode } from '$/editor';
 	let licenseType;
+	export let isEpisode = false;
 
-	$: initializeLicense($selectedPodcast);
+	$: initializeLicense($selectedPodcast, $editingEpisode);
 
 	async function initializeLicense() {
-		let foundLicense = $licenses.find((v) => {
-			let text = $rssData['podcast:license']['#text'] || '';
-			return v?.value === text.toLowerCase();
-		});
+		if (isEpisode) {
+			let foundLicense = $licenses.find((v) => {
+				let text = $editingEpisode['podcast:license']['#text'] || '';
+				return v?.value === text.toLowerCase();
+			});
 
-		let value = foundLicense?.value;
+			let value = foundLicense?.value;
 
-		if (!$rssData?.['podcast:license']?.['@_url']) {
-			$rssData['podcast:license']['@_url'] = foundLicense?.url || '';
+			if (!$editingEpisode?.['podcast:license']?.['@_url']) {
+				$editingEpisode['podcast:license']['@_url'] = foundLicense?.url || '';
+			}
+
+			let slug = {
+				value: value,
+				label: value,
+				url: $editingEpisode['podcast:license']['@_url']
+			};
+			setLicense(slug);
+			licenseType = value || '';
+		} else {
+			let foundLicense = $licenses.find((v) => {
+				let text = $rssData['podcast:license']['#text'] || '';
+				return v?.value === text.toLowerCase();
+			});
+
+			let value = foundLicense?.value;
+
+			if (!$rssData?.['podcast:license']?.['@_url']) {
+				$rssData['podcast:license']['@_url'] = foundLicense?.url || '';
+			}
+
+			let slug = {
+				value: value,
+				label: value,
+				url: $rssData['podcast:license']['@_url']
+			};
+			setLicense(slug);
+			licenseType = value || '';
 		}
-
-		let slug = {
-			value: value,
-			label: value,
-			url: $rssData['podcast:license']['@_url']
-		};
-		setLicense(slug);
-		licenseType = value || '';
 	}
 
 	function setLicense(slug) {
-		$rssData['podcast:license']['#text'] = slug.value;
+		if (isEpisode) {
+			$editingEpisode['podcast:license']['#text'] = slug.value;
 
-		if (!slug.url) {
-			let foundLicense = $licenses.find((v) => {
-				return v?.value === $rssData?.['podcast:license']?.['#text']?.toLowerCase();
-			});
-			$rssData['podcast:license']['@_url'] = foundLicense?.url || '';
+			if (!slug.url) {
+				let foundLicense = $licenses.find((v) => {
+					return v?.value === $editingEpisode?.['podcast:license']?.['#text']?.toLowerCase();
+				});
+				$editingEpisode['podcast:license']['@_url'] = foundLicense?.url || '';
+			} else {
+				$editingEpisode['podcast:license']['@_url'] = slug?.url;
+			}
+			console.log($editingEpisode);
 		} else {
-			$rssData['podcast:license']['@_url'] = slug?.url;
+			$rssData['podcast:license']['#text'] = slug.value;
+
+			if (!slug.url) {
+				let foundLicense = $licenses.find((v) => {
+					return v?.value === $rssData?.['podcast:license']?.['#text']?.toLowerCase();
+				});
+				$rssData['podcast:license']['@_url'] = foundLicense?.url || '';
+			} else {
+				$rssData['podcast:license']['@_url'] = slug?.url;
+			}
 		}
 	}
 
@@ -45,7 +81,11 @@
 	}
 
 	function handleClear(event) {
-		$rssData['podcast:license']['#text'] = '';
+		if (isEpisode) {
+			$editingEpisode['podcast:license']['#text'] = '';
+		} else {
+			$rssData['podcast:license']['#text'] = '';
+		}
 	}
 </script>
 
@@ -62,7 +102,11 @@
 	<h4>
 		URL (url that points to the full, legal language of the license, required for custom license)
 	</h4>
-	<input type="text" bind:value={$rssData['podcast:license']['@_url']} />
+	{#if isEpisode}
+		<input type="text" bind:value={$editingEpisode['podcast:license']['@_url']} />
+	{:else}
+		<input type="text" bind:value={$rssData['podcast:license']['@_url']} />
+	{/if}
 </label>
 
 <style>

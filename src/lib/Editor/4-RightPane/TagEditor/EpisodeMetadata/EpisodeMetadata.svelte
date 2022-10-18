@@ -8,6 +8,7 @@
 	import Explicit from './components/Explicit.svelte';
 	import Author from './components/Author.svelte';
 	import Keywords from './components/Keywords.svelte';
+	import License from '$lib/Editor/Channel/Components/License/License.svelte';
 
 	import { editingEpisode, showLiveEpisodes } from '$/editor';
 </script>
@@ -25,6 +26,7 @@
 		<Explicit />
 		<Author />
 		<Keywords />
+		<License isEpisode={true} />
 	{/if}
 </div>
 
