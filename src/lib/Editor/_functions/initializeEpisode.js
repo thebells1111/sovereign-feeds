@@ -8,8 +8,7 @@ import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/i
 import initializeContentLink from './initialize/contentLink';
 import initializeLiveTime from './initialize/liveItemTime';
 import initializeEpisodeGuid from './initialize/episodeGuid';
-
-import { get } from 'svelte/store';
+import initializeLicenseTag from './initialize/license';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
 
@@ -34,6 +33,7 @@ export default async function initializeEpisode(episode, type) {
 	});
 
 	episode['podcast:value'] = initializeValueTag(episode['podcast:value']);
+	// episode['podcast:license'] = initializeLicenseTag(episode['podcast:license']);
 
 	if (type === 'live') {
 		episode['podcast:contentLink'] = initializeContentLink(episode['podcast:contentLink']);

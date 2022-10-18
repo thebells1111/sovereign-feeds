@@ -1,5 +1,4 @@
 export default function initializeBlockTag(data) {
-	console.log(data);
 	if (data) {
 		data = [].concat(data);
 	} else {
@@ -31,6 +30,5 @@ export default function initializeBlockTag(data) {
 			delete v['@_id'];
 		}
 	});
-	console.log(data);
 	return data;
 }

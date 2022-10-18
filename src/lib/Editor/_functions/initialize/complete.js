@@ -3,6 +3,5 @@ export default function initializeCompleteTag(data) {
 		'#text': 'no',
 		'@_archive': ''
 	};
-	console.log(data);
 	return data;
 }

@@ -24,11 +24,9 @@
 					return { value: v['@_id'], label: v['@_id'] };
 				});
 		}
-		console.log(data);
 	}
 
 	function handleSelect(event) {
-		console.log($rssData['podcast:block']);
 		let slugs = event.detail || [];
 		let text = $rssData['podcast:block'][0]['#text'] === 'no' ? 'yes' : 'no';
 		$rssData['podcast:block'] = [

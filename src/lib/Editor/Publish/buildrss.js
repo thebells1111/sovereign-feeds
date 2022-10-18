@@ -9,6 +9,7 @@ import cleanPodcastPerson from '$lib/Editor/_functions/cleanup/podcastPerson';
 import cleanPodcastImages from '$lib/Editor/_functions/cleanup/images';
 import cleanComplete from '$lib/Editor/_functions/cleanup/complete';
 import cleanLocked from '$lib/Editor/_functions/cleanup/locked';
+import cleanLicense from '$lib/Editor/_functions/cleanup/license';
 
 import { rssData, maxEpisodes, xmlJson, regularEpisodes, liveEpisodes } from '$/editor';
 
@@ -65,6 +66,7 @@ export default async function buildRSS() {
 	cleanChannelImage();
 	cleanComplete(rssDataProxy);
 	cleanLocked(rssDataProxy);
+	cleanLicense(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
 	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
