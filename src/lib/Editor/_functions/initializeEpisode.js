@@ -33,7 +33,7 @@ export default async function initializeEpisode(episode, type) {
 	});
 
 	episode['podcast:value'] = initializeValueTag(episode['podcast:value']);
-	// episode['podcast:license'] = initializeLicenseTag(episode['podcast:license']);
+	episode['podcast:license'] = initializeLicenseTag(episode['podcast:license']);
 
 	if (type === 'live') {
 		episode['podcast:contentLink'] = initializeContentLink(episode['podcast:contentLink']);

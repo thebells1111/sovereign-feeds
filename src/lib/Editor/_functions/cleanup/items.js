@@ -1,6 +1,7 @@
 import cleanPodcastImages from './images';
 import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
+import cleanLicense from './license';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -45,6 +46,7 @@ async function cleanItem(item) {
 	cleanEpisodeValue(item);
 	cleanEpisodeTranscript(item);
 	cleanPodcastImages(item);
+	cleanLicense(item);
 	// console.log(item.description);
 	// item.description = '<![CDATA[' + item.description + ']]>';
 	// console.log(item.description);
