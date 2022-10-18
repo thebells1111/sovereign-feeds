@@ -43,11 +43,25 @@
 		let slug = event.detail || [];
 		setLicense(slug);
 	}
+
+	function handleClear(event) {
+		$rssData['podcast:license']['#text'] = '';
+	}
 </script>
 
+<h3>License</h3>
+<h4>License Type</h4>
+<Select
+	items={$licenses}
+	on:select={handleSelect}
+	on:clear={handleClear}
+	value={licenseType}
+	isCreatable={true}
+/>
 <label>
-	<h3>License</h3>
-	<Select items={$licenses} on:select={handleSelect} value={licenseType} />
+	<h4>
+		URL (url that points to the full, legal language of the license, required for custom license)
+	</h4>
 	<input type="text" bind:value={$rssData['podcast:license']['@_url']} />
 </label>
 
@@ -63,9 +77,13 @@
 		padding: 8px;
 	}
 
-	h3 {
+	h3,
+	h4 {
 		margin: 0;
 		padding: 0;
 		color: hsla(352, 100%, 33%, 1);
+	}
+	h4 {
+		margin-left: 8px;
 	}
 </style>

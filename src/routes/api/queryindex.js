@@ -1,11 +1,14 @@
 import dotenv from 'dotenv';
 import crypto from 'crypto-browserify';
+import c from 'config';
 
 if (!process.env.API_KEY) {
 	dotenv.config();
 }
 
 const { API_KEY, API_SECRET } = process.env;
+
+console.log('keys: ', API_KEY, API_SECRET);
 
 export const get = async (request) => {
 	try {
