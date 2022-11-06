@@ -1,12 +1,42 @@
 <script>
+	import { parse } from 'fast-xml-parser';
+	import { decode } from 'html-entities';
 	import {
 		selectedPodcast,
 		currentPage,
 		editorDB,
 		podcastList,
 		showSaved,
-		rssData
+		rssData,
+		feedText,
+		xmlJson
 	} from '$/editor';
+
+	import buildRSS from '../Publish/buildrss';
+	import initializeRSSData from '$lib/Editor/_functions/initializeRSSData';
+
+	async function saveManualChanges() {
+		const parserOptions = {
+			attributeNamePrefix: '@_',
+			//attrNodeName: false,
+			//textNodeName : "#text",
+			ignoreAttributes: false,
+			ignoreNameSpace: false,
+			attrValueProcessor: (val, attrName) => decode(val), //default is a=>a
+			tagValueProcessor: (val, tagName) => decode(val) //default is a=>a
+		};
+
+		let xml2Json = parse($feedText, parserOptions);
+
+		$xmlJson = xml2Json;
+
+		$selectedPodcast.xml = $xmlJson;
+		$selectedPodcast.rss = $xmlJson.rss.channel;
+		// $rssData = $xmlJson.rss.channel;
+		await initializeRSSData($selectedPodcast.rss);
+
+		/* add error handling */
+	}
 </script>
 
 <div class="podcast-list">
@@ -14,7 +44,7 @@
 		src={$rssData?.['itunes:image']?.['@_href'] || './SF192.png'}
 		style={`height: 100x; width: 100px; margin: 0 auto`}
 	/>
-	<h3>{$selectedPodcast.title || 'Sovereign Feeds'}</h3>
+	<h3>{$rssData?.title || 'Sovereign Feeds'}</h3>
 	<ul>
 		<li
 			class:active={$currentPage === 'feeds'}
@@ -49,7 +79,18 @@
 			>
 				<span>Episode Info</span>
 			</li>
-
+			<li
+				class:active={$currentPage === 'manual'}
+				class="edit"
+				on:click={() => {
+					$currentPage = 'manual';
+					buildRSS().then(({ title, xmlFile }) => {
+						$feedText = xmlFile;
+					});
+				}}
+			>
+				<span>Manually Edit Feed</span>
+			</li>
 			<li
 				class:active={$currentPage === 'publish'}
 				class="publish"
@@ -90,7 +131,11 @@
 	{#if $selectedPodcast.title}
 		<button
 			class="primary save-state"
-			on:click={() => {
+			on:click={async () => {
+				if ($currentPage === 'manual') {
+					await saveManualChanges();
+				}
+
 				editorDB.setItem('favorites', $podcastList);
 				$showSaved = true;
 			}}

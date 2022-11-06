@@ -23,6 +23,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.1",
+    "@codemirror/lang-xml": "^6.0.1",
     "@fontsource/fira-mono": "^4.5.8",
     "@googleapis/run": "^8.0.2",
     "aws-sdk": "^2.1140.0",
@@ -30,6 +32,7 @@
     "bech32": "^2.0.0",
     "bn.js": "^5.2.0",
     "canvas-confetti": "^1.5.1",
+    "codemirror": "^6.0.1",
     "config": "^3.3.7",
     "cookie": "^0.4.2",
     "crypto": "^1.0.1",

@@ -4,6 +4,7 @@
 	import Editor from './4-RightPane/TagEditor/Editor.svelte';
 	import Feeds from './Feeds/Feeds.svelte';
 	import Webhooks from './Webhooks/Webhooks.svelte';
+	import Manual from './Manual/Manual.svelte';
 	import Publish from './Publish/Publish.svelte';
 	import Podping from './Podping/PodPing.svelte';
 	import PodcastMetadata from './Channel/Channel.svelte';
@@ -93,7 +94,9 @@
 		<div class:hide={$currentPage !== 'webHooks'}>
 			<Webhooks />
 		</div>
-
+		<div class:hide={$currentPage !== 'manual'}>
+			<Manual />
+		</div>
 		<div class:hide={$currentPage !== 'publish'}>
 			<Publish />
 		</div>
