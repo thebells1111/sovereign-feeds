@@ -93,6 +93,18 @@
 				info = undefined;
 			}
 			console.log(info);
+		} else if (provider === 'v4v.app') {
+			if (name[0]) {
+				data['podcast:valueRecipient'][index - 1]['@_name'] = username;
+				data['podcast:valueRecipient'][index - 1]['@_address'] =
+					'0266ad2656c7a19a219d37e82b280046660f4d7f3ae0c00b64a1629de4ea567668';
+				data['podcast:valueRecipient'][index - 1]['@_customValue'] = name[0];
+				data['podcast:valueRecipient'][index - 1]['@_customKey'] = 818818;
+
+				cancelProviderSubmit();
+			} else {
+				noUserFound = true;
+			}
 		}
 	}
 
@@ -153,6 +165,10 @@
 							>
 								<img src="fountain.png" />
 								<span>Use Fountain</span>
+							</button>
+							<button class="provider v4vapp" on:click={handleProviderSelect.bind(this, 'v4v.app')}>
+								<img src="v4vapp.webp" />
+								<span>Use v4v.app</span>
 							</button>
 						</h4>
 						<input
@@ -398,8 +414,17 @@
 		color: white;
 	}
 
+	button.v4vapp {
+		background-color: hsl(0, 0%, 0%);
+		color: white;
+	}
+
 	button > img {
 		height: 30px;
+	}
+
+	button.v4vapp > img {
+		padding: 0 6px 0 0;
 	}
 
 	button.alby > img {
