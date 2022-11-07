@@ -3,6 +3,8 @@
 </script>
 
 <script>
+	import { parse } from 'fast-xml-parser';
+	import { decode } from 'html-entities';
 	import { page } from '$app/stores';
 
 	const token = $page.url.searchParams.get('token');
@@ -11,6 +13,7 @@
 	import CreateEpisode from '$lib/Modals/CreateEpisode/CreateEpisode.svelte';
 	import Saved from '$lib/Modals/Saved/Saved.svelte';
 	import ServerSending from '$lib/Modals/ServerSending/ServerSending.svelte';
+	import initializeRSSData from '$lib/Editor/_functions/initializeRSSData';
 
 	import { showCreateEpisode, showMobile, serverUrl, loggedIn } from '$/stores';
 	import {
@@ -20,7 +23,10 @@
 		showServerSending,
 		selectedPodcast,
 		filteredEpisodesList,
-		episodesList
+		episodesList,
+		currentPage,
+		feedText,
+		xmlJson
 	} from '$/editor';
 
 	if (token) {
@@ -48,12 +54,39 @@
 		}
 	}
 
-	function checkSave(event) {
+	async function saveManualChanges() {
+		const parserOptions = {
+			attributeNamePrefix: '@_',
+			//attrNodeName: false,
+			//textNodeName : "#text",
+			ignoreAttributes: false,
+			ignoreNameSpace: false,
+			attrValueProcessor: (val, attrName) => decode(val), //default is a=>a
+			tagValueProcessor: (val, tagName) => decode(val) //default is a=>a
+		};
+
+		let xml2Json = parse($feedText, parserOptions);
+
+		$xmlJson = xml2Json;
+
+		$selectedPodcast.xml = $xmlJson;
+		$selectedPodcast.rss = $xmlJson.rss.channel;
+		// $rssData = $xmlJson.rss.channel;
+		await initializeRSSData($selectedPodcast.rss);
+
+		/* add error handling */
+	}
+
+	async function checkSave(event) {
 		if (event.ctrlKey || event.metaKey) {
 			switch (String.fromCharCode(event.which).toLowerCase()) {
 				case 's':
 					event.preventDefault();
 					console.log($selectedPodcast);
+					if ($currentPage === 'manual') {
+						await saveManualChanges();
+					}
+
 					$showSaved = true;
 					editorDB.setItem('favorites', $podcastList);
 					break;

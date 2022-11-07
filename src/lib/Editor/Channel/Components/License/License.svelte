@@ -60,7 +60,6 @@
 			} else {
 				$editingEpisode['podcast:license']['@_url'] = slug?.url;
 			}
-			console.log($editingEpisode);
 		} else {
 			$rssData['podcast:license']['#text'] = slug.value;
 

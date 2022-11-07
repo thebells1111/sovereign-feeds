@@ -2,7 +2,6 @@ import { licenses } from '$/editor';
 import { get } from 'svelte/store';
 
 export default function cleanLicense(data) {
-	console.log(data['podcast:license']);
 	if (data['podcast:license']) {
 		if (!data?.['podcast:license']?.['#text']) {
 			delete data['podcast:license'];
@@ -15,6 +14,5 @@ export default function cleanLicense(data) {
 				delete data['podcast:license'];
 			}
 		}
-		console.log(data['podcast:license']);
 	}
 }

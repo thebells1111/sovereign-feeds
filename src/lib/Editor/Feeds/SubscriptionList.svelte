@@ -64,6 +64,7 @@
 	}
 
 	async function getPodcast(podcast) {
+		console.log(podcast);
 		fetchDOEnabled(podcast);
 		console.log($episodesList);
 		$currentPage = 'episodes';
@@ -198,15 +199,18 @@
 				on:click={getPodcast.bind(null, podcast)}
 			>
 				<ImageLoader
-					url={podcast?.artwork || podcast?.image}
-					alt={`${podcast?.title} Logo`}
-					title={podcast?.title}
+					url={podcast?.rss?.['itunes:image']?.['@_href'] ||
+						podcast?.artwork ||
+						podcast?.image ||
+						'./SF192.png'}
+					alt={`${podcast?.rss?.title || podcast?.title} Logo`}
+					title={podcast?.rss?.title || podcast?.title}
 					imageSize="50"
 					styling="border-radius: 2px; 
     margin-right: 6px; min-width: 50px"
 				/>
 				<div class="title" class:selected={podcast.id === $selectedPodcast?.id}>
-					{podcast?.title}
+					{podcast?.rss?.title || podcast?.title}
 				</div>
 				{#if podcast.id != 'new' && !fromChapters}
 					<button
