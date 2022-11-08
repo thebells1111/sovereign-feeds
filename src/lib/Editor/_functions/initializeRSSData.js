@@ -11,6 +11,7 @@ import initializeComplete from './initialize/complete';
 import initializeLocked from './initialize/locked';
 import initializeBlock from './initialize/block';
 import initializeLicenseTag from './initialize/license';
+import initializeTrailerTag from './initialize/trailer';
 
 import { get } from 'svelte/store';
 
@@ -100,6 +101,7 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:locked'] = initializeLocked($rssData['podcast:locked']);
 	$rssData['podcast:block'] = initializeBlock($rssData['podcast:block']);
 	$rssData['podcast:license'] = initializeLicenseTag($rssData['podcast:license']);
+	$rssData['podcast:trailer'] = initializeTrailerTag($rssData['podcast:trailer']);
 
 	let $editingEpisode = get(editingEpisode);
 
