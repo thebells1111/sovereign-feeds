@@ -7,9 +7,10 @@
 	$: initializeLicense($selectedPodcast, $editingEpisode);
 
 	async function initializeLicense() {
+		console.log('licenses: ', $editingEpisode?.['podcast:license']);
 		if (isEpisode) {
 			let foundLicense = $licenses.find((v) => {
-				let text = $editingEpisode['podcast:license']['#text'] || '';
+				let text = $editingEpisode?.['podcast:license']?.['#text'] || '';
 				return v?.value === text.toLowerCase();
 			});
 
