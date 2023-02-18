@@ -1,6 +1,6 @@
 <script>
 	import clone from '$functions/clone';
-	import ImageLoader from '$lib/loaders/ImageLoader.svelte';
+	import ImageLoader from '$lib/Loaders/ImageLoader.svelte';
 	import SubscriptionContextMenu from './SubscriptionContextMenu.svelte';
 	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
 	import Cancel from '$lib/icons/CancelFilled.svelte';

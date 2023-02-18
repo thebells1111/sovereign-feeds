@@ -12,9 +12,11 @@
 	async function podPingServer() {
 		waitMessage = 'Sending PodPing...';
 
-		let url = `https://curiohoster.com/api/podping?url=${encodeURIComponent(
-			$selectedPodcast.url
-		)}&reason=${reason}`;
+		// let url = `https://curiohoster.com/api/podping?url=${encodeURIComponent(
+		// 	$selectedPodcast.url
+		// )}&reason=${reason}`;
+
+		let url = `api/podping?url=${encodeURIComponent($selectedPodcast.url)}&reason=${reason}`;
 
 		console.log(url);
 

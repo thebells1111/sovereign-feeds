@@ -63,7 +63,8 @@
 						'@_fee': ''
 					}
 				]
-			}
+			},
+			'podcast:license': { '@_url': '', '#text': '' }
 		};
 
 		let newEp;
