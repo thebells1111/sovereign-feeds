@@ -67,6 +67,8 @@ export default async function buildRSS() {
 	cleanComplete(rssDataProxy);
 	cleanLocked(rssDataProxy);
 	cleanLicense(rssDataProxy);
+	changeGenerator(rssDataProxy);
+	replaceGuid(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
 	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
@@ -112,8 +114,10 @@ function cleanPodcastValue() {
 			if (!v['@_address'] || !v['@_split']) {
 				return false;
 			}
-			if (v['@_address'] === '033868c219bdb51a33560d854d500fe7d3898a1ad9e05dd89d0007e11313588500') {
-				v['@_address'] = '02a128c92baf0ede00ed0fc3720a92ba2c6392e0b58aa4decab1d787a666d94cb7';
+			if (v['@_name'] === 'Sovereign Feeds') {
+				v['@_address'] = '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3';
+				v['@_customKey'] = '696969';
+				v['@_customValue'] = 'eChoVKtO1KujpAA5HCoB';
 			}
 			return v;
 		});
@@ -149,4 +153,14 @@ function cleanChannelImage() {
 	}
 
 	console.log('channelImage: ', rssDataProxy.image);
+}
+
+function changeGenerator(data) {
+	data.generator = 'Sovereign Feeds';
+}
+
+function replaceGuid(data) {
+	if (data.title === 'Curry and The Keeper') {
+		data['podcast:guid'] = '991c5078-9383-5e2f-9845-05cbce8ac4dd';
+	}
 }

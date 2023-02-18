@@ -14,7 +14,7 @@
 
 	$: noSF =
 		data?.['podcast:valueRecipient']?.findIndex(
-			(v) => v?.['@_customValue'] === 'wal_MB9T45QHGyW'
+			(v) => v?.['@_customValue'] === 'eChoVKtO1KujpAA5HCoB'
 		) === -1;
 
 	$: if (index > data?.['podcast:valueRecipient']?.length) {
@@ -24,10 +24,10 @@
 	function addSovereignFeeds() {
 		data['podcast:valueRecipient'].push({
 			'@_name': 'Sovereign Feeds',
-			'@_address': '02a128c92baf0ede00ed0fc3720a92ba2c6392e0b58aa4decab1d787a666d94cb7',
+			'@_address': '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3',
 			'@_type': 'node',
-			'@_customKey': '112111100',
-			'@_customValue': 'wal_MB9T45QHGyW',
+			'@_customKey': '696969',
+			'@_customValue': 'eChoVKtO1KujpAA5HCoB',
 			'@_fee': true,
 			'@_split': 5
 		});
