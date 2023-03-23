@@ -1,36 +1,3 @@
-// export const get = async (request) => {
-// 	try {
-// 		let feed = request.url.searchParams.get('url');
-// 		let reason = request.url.searchParams.get('reason');
-// 		let medium = request.url.searchParams.get('medium');
-// 		if (feed) {
-// 			// let url = `https://curiohoster.com/api/podping?url=${encodeURIComponent(feed)}&reason=${reason}`;
-
-// 			let url = `https://podping.cloud/?url=${encodeURIComponent(feed)}&reason=${reason}`;
-
-// 			console.log(url);
-
-// 			const res = await fetch(url);
-// 			const data = await res.text();
-// 			return { body: data };
-// 		} else {
-// 			response = {
-// 				status: 500,
-// 				body: 'No Podcast Selected'
-// 			};
-// 		}
-
-// 		return response;
-// 	} catch (err) {
-// 		console.error('podping err: ', err);
-// 		return {
-// 			status: 500,
-// 			body: { message: err }
-// 		};
-// 	}
-// };
-
-// use this code in a clutch for updating feeds
 import dotenv from 'dotenv';
 
 if (!process.env.API_KEY) {
