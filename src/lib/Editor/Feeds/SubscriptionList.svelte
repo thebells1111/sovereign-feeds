@@ -65,7 +65,7 @@
 
 	async function getPodcast(podcast) {
 		console.log(podcast);
-		fetchDOEnabled(podcast);
+		// fetchDOEnabled(podcast);
 		console.log($episodesList);
 		$currentPage = 'episodes';
 

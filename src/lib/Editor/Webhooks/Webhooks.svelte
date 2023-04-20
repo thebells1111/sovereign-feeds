@@ -4,10 +4,8 @@
 
 	import Explainer from './Explainer.svelte';
 	import ServerHooks from './ServerHooks.svelte';
-	import DigitalOceanHooks from './DigitalOceanHooks.svelte';
 
 	let showSaved = false;
-	let showDO = false;
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -16,8 +14,6 @@
 	{#if $loggedIn}
 		{#if $selectedPodcast.title}
 			<ServerHooks bind:showSaved />
-
-			<DigitalOceanHooks bind:showSaved />
 			<Explainer />
 		{:else}
 			<p>Please Select a Feed</p>

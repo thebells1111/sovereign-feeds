@@ -48,16 +48,10 @@
 		);
 	}
 
-	let expand = false;
+	let expand = true;
 </script>
 
-<h2
-	on:click={() => {
-		expand = !expand;
-	}}
->
-	Webhooks <div class="arrow" class:up={expand}>▼</div>
-</h2>
+<h2>Webhooks</h2>
 <div class="input-container" class:expand>
 	<label>Webhook Link <input type="text" bind:value={webhookLink} /></label>
 	<label>Webhook Secret <input type="text" bind:value={webhookSecret} /></label>
