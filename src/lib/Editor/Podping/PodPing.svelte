@@ -12,10 +12,6 @@
 	async function podPingServer() {
 		waitMessage = 'Sending PodPing...';
 
-		// let url = `https://curiohoster.com/api/podping?url=${encodeURIComponent(
-		// 	$selectedPodcast.url
-		// )}&reason=${reason}`;
-
 		let url = `api/podping?url=${encodeURIComponent($selectedPodcast.url)}&reason=${reason}`;
 
 		console.log(url);
@@ -99,12 +95,6 @@
 	<br />So remember to update and upload the live status of your feed on your server first, then
 	send a live podping update.
 </p>
-
-<!-- <p class="reminder">
-	🏃✂️ Sorry for the inconvenience, but live notifications are broken right now. I'm working to get
-	them fixed as soon as I can. Your live episodes will still show up in CurioCaster, but a
-	notification won't be sent out at this time. 🏃✂️
-</p> -->
 
 <p style="font-size: 1.1em; font-weight: 600">
 	After uploading your feed to your server, solve the problem below, then press Enter
