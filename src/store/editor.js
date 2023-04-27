@@ -96,3 +96,7 @@ export const digitalOceanEnabled = writable(false);
 
 export const licenses = writable({});
 export const feedText = writable('');
+export const rssEditor = writable(true);
+
+export const valueAlbumList = writable([]);
+export const valueAudioItem = writable([]);

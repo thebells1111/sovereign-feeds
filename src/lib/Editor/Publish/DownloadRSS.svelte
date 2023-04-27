@@ -18,6 +18,7 @@
 		// );
 		// let content = await zip.generateAsync({ type: 'blob' });
 
+		// console.log(xmlFile);
 		var blob = new Blob([xmlFile], { type: 'text/plain;charset=utf-8' });
 
 		saveAs(blob, `${title} - ${d.replace(/\//g, '-').replace(',', '').replace(/:/g, '.')}.xml`);

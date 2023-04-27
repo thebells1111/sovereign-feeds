@@ -53,6 +53,7 @@ export default async function initializeRSSData(data) {
 			return v;
 		})
 	);
+	console.log($rssData.item);
 	if ($rssData['podcast:liveItem']) {
 		$rssData['podcast:liveItem'] = [].concat($rssData['podcast:liveItem']);
 	} else {

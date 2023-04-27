@@ -12,13 +12,15 @@
 	let noUserFound = false;
 	let showProviderInput = false;
 
-	$: noSF =
-		data?.['podcast:valueRecipient']?.findIndex(
-			(v) => v?.['@_customValue'] === 'eChoVKtO1KujpAA5HCoB'
-		) === -1;
+	// Check if Sovereign Feeds is not added
+	$: noSF = Array.isArray(data['podcast:valueRecipient'])
+		? data['podcast:valueRecipient'].findIndex(
+				(v) => v?.['@_customValue'] === 'eChoVKtO1KujpAA5HCoB'
+		  ) === -1
+		: true;
 
-	$: if (index > data?.['podcast:valueRecipient']?.length) {
-		index = data['podcast:valueRecipient'].length || 1;
+	$: if (index > data['podcast:valueRecipient']?.length) {
+		index = data['podcast:valueRecipient']?.length || 1;
 	}
 
 	function addSovereignFeeds() {
@@ -46,69 +48,91 @@
 		if (!name[0]) {
 			name.shift();
 		}
-		console.log(name);
-		if (provider === 'Alby') {
-			let res = await fetch(`https://getalby.com/.well-known/keysend/${name[0]}`);
-			let info;
-			try {
-				info = await res.json();
-				if (info.status === 'OK') {
-					data['podcast:valueRecipient'][index - 1]['@_name'] = name[0] + '@getalby.com';
-					data['podcast:valueRecipient'][index - 1]['@_address'] = info.pubkey;
-					data['podcast:valueRecipient'][index - 1]['@_customValue'] =
-						info.customData[0].customValue;
-					data['podcast:valueRecipient'][index - 1]['@_customKey'] = info.customData[0].customKey;
-				} else {
-					throw new Error();
-				}
+
+		const providers = {
+			Alby: handleAlbySubmit,
+			Fountain: handleFountainSubmit,
+			'v4v.app': handleV4vAppSubmit
+		};
+
+		if (providers.hasOwnProperty(provider)) {
+			await providers[provider](name[0]);
+		}
+	}
+
+	async function handleAlbySubmit(name) {
+		try {
+			let res = await fetch(`https://getalby.com/.well-known/keysend/${name}`);
+			let info = await res.json();
+
+			if (info.status === 'OK') {
+				updateRecipientData(
+					info.pubkey,
+					name + '@getalby.com',
+					info.customData[0].customValue,
+					info.customData[0].customKey
+				);
 				cancelProviderSubmit();
-			} catch (error) {
-				noUserFound = true;
-				info = undefined;
+			} else {
+				throw new Error();
 			}
-		} else if (provider === 'Fountain') {
+		} catch (error) {
+			noUserFound = true;
+		}
+	}
+
+	async function handleFountainSubmit(name) {
+		try {
 			let res = await fetch('https://api.fountain.fm/v1/content/lookup', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ username: name[0] })
+				body: JSON.stringify({ username: name })
 			});
-			let info;
+			let info = await res.json();
 
-			try {
-				info = await res.json();
-				if (!info?.keysend?.customValue) {
-					throw new Error();
-				}
-				if (info?.username) {
-					data['podcast:valueRecipient'][index - 1]['@_name'] = info.keysend.name;
-					data['podcast:valueRecipient'][index - 1]['@_address'] = info.keysend.address;
-					data['podcast:valueRecipient'][index - 1]['@_customValue'] = info.keysend.customValue;
-					data['podcast:valueRecipient'][index - 1]['@_customKey'] = info.keysend.customKey;
-				}
-				cancelProviderSubmit();
-			} catch (error) {
-				noUserFound = true;
-				info = undefined;
+			if (!info?.keysend?.customValue) {
+				throw new Error();
 			}
-			console.log(info);
-		} else if (provider === 'v4v.app') {
-			if (name[0]) {
-				data['podcast:valueRecipient'][index - 1]['@_name'] = username;
-				data['podcast:valueRecipient'][index - 1]['@_address'] =
-					'0266ad2656c7a19a219d37e82b280046660f4d7f3ae0c00b64a1629de4ea567668';
-				data['podcast:valueRecipient'][index - 1]['@_customValue'] = name[0];
-				data['podcast:valueRecipient'][index - 1]['@_customKey'] = 818818;
 
+			if (info?.username) {
+				updateRecipientData(
+					info.keysend.address,
+					info.keysend.name,
+					info.keysend.customValue,
+					info.keysend.customKey
+				);
 				cancelProviderSubmit();
-			} else {
-				noUserFound = true;
 			}
+		} catch (error) {
+			noUserFound = true;
 		}
 	}
 
-	async function cancelProviderSubmit() {
+	async function handleV4vAppSubmit(name) {
+		if (name) {
+			updateRecipientData(
+				'0266ad2656c7a19a219d37e82b280046660f4d7f3ae0c00b64a1629de4ea567668',
+				name,
+				name,
+				818818
+			);
+			cancelProviderSubmit();
+		} else {
+			noUserFound = true;
+		}
+	}
+
+	function updateRecipientData(address, name, customValue, customKey) {
+		let recipient = data['podcast:valueRecipient'][index - 1];
+		recipient['@_address'] = address;
+		recipient['@_name'] = name;
+		recipient['@_customValue'] = customValue;
+		recipient['@_customKey'] = customKey;
+	}
+
+	function cancelProviderSubmit() {
 		showProviderInput = false;
 		provider = '';
 		username = '';

@@ -1,12 +1,13 @@
 <script>
 	import stripHtml from 'striptags';
-	import prettyDate from '$functions/prettyDate';
 
 	import initializeEpisode from '../../_functions/initializeEpisode';
-	import cleanEpisode from '../../_functions/cleanup/items';
 
 	import initTinyMCE from '../../4-RightPane/TagEditor/ShowNotes/initTinyMCE';
 	import Delete from '$lib/icons/Delete.svelte';
+
+	import liveItem from '$lib/Editor/_functions/blanks/liveItem';
+	import newItem from '$lib/Editor/_functions/blanks/item';
 
 	import {
 		editingEpisode,
@@ -81,10 +82,25 @@
 
 	async function deleteEpisode() {
 		$episodesList.splice(episodeIndex, 1);
+		console.log($episodesList);
+		if (!$episodesList.length) {
+			if ($showLiveEpisodes) {
+				$episodesList = [liveItem];
+			} else {
+				$episodesList = [newItem];
+			}
+		}
 
 		$episodesList = $episodesList;
-		$selectedPodcast.episodes = $episodesList;
-		$selectedPodcast.rss.item = $episodesList;
+
+		if ($showLiveEpisodes) {
+			$selectedPodcast.rss['podcast:liveItem'] = $episodesList;
+			$liveEpisodes = $episodesList;
+		} else {
+			$selectedPodcast.episodes = $episodesList;
+			$selectedPodcast.rss.item = $episodesList;
+			$regularEpisodes = $episodesList;
+		}
 
 		$filteredEpisodesList = $episodesList.slice(0, $maxEpisodes);
 		console.log($selectedPodcast.rss);

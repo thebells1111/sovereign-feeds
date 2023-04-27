@@ -237,7 +237,7 @@
 			on:click={() => {
 				addNewFeed();
 				$showNewEditor = true;
-				$newEditorScreen = $loggedIn ? 'digitalOceanSelect' : 'typeSelect';
+				$newEditorScreen = 'typeSelect';
 				$expandPodcastList = false;
 			}}
 		>

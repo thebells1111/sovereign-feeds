@@ -144,24 +144,6 @@ export const episodeSelector = writable({
 	completeStatus: true
 });
 
-//modals
-export const showCC = writable(true);
-export const showDisclaimer = writable(false);
-export const showVideo = writable(false);
-export const showBoost = writable(false);
-export const showShareClip = writable(false);
 export const showLogin = writable(false);
-export const showInvoice = writable(false);
-export const showOPML = writable(false);
-export const showPreferences = writable(false);
-export const showFF = writable(false);
-export const showFFCreator = writable(false);
+
 export const showCreateEpisode = writable(false);
-
-//clip share
-export const srcStartTime = writable(null);
-export const srcStopTime = writable(null);
-
-//hosting
-export const rssEditor = writable(true);
-export const togglePreview = writable(true);

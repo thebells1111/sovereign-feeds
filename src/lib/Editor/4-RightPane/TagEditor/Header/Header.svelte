@@ -92,6 +92,15 @@
 	>
 		{$selectorList.images}
 	</li>
+
+	<li
+		class:active={$rightPane === 'valueSplits'}
+		on:click={() => {
+			$rightPane = 'valueSplits';
+		}}
+	>
+		Value Splits
+	</li>
 </ul>
 
 <style>

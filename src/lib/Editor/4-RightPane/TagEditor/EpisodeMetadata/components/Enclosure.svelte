@@ -107,32 +107,34 @@
 	}
 </script>
 
-<div class="episode-enclosure">
-	<label>
-		<div class="heading">
-			<h3>{$tagHeaders.episodes.enclosureUrl}</h3>
-			{#if $digitalOceanEnabled}
-				<button
-					on:click={() => {
-						showUpload = true;
-					}}
-				>
-					Upload
-				</button>{/if}
-			<p>{warningFlag > -1 ? '(duplicate Enclosure)' : ''}</p>
-			<p>{badUrl ? "URL doesn't return file" : ''}</p>
-		</div>
-		<input
-			type="text"
-			bind:value={$editingEpisode.enclosure['@_url']}
-			class:warning={warningFlag > -1}
-			use:selectTextOnFocus
-			on:input={handleInput}
-		/>
-	</label>
-</div>
-{#if showUpload}
-	<Upload path={`${$editingEpisode.title}/enclosure`} bind:fileName bind:showUpload />
+{#if $editingEpisode}
+	<div class="episode-enclosure">
+		<label>
+			<div class="heading">
+				<h3>{$tagHeaders.episodes.enclosureUrl}</h3>
+				{#if $digitalOceanEnabled}
+					<button
+						on:click={() => {
+							showUpload = true;
+						}}
+					>
+						Upload
+					</button>{/if}
+				<p>{warningFlag > -1 ? '(duplicate Enclosure)' : ''}</p>
+				<p>{badUrl ? "URL doesn't return file" : ''}</p>
+			</div>
+			<input
+				type="text"
+				bind:value={$editingEpisode.enclosure['@_url']}
+				class:warning={warningFlag > -1}
+				use:selectTextOnFocus
+				on:input={handleInput}
+			/>
+		</label>
+	</div>
+	{#if showUpload}
+		<Upload path={`${$editingEpisode.title}/enclosure`} bind:fileName bind:showUpload />
+	{/if}
 {/if}
 
 <style>

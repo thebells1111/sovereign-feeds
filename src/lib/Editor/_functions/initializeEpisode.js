@@ -9,10 +9,12 @@ import initializeContentLink from './initialize/contentLink';
 import initializeLiveTime from './initialize/liveItemTime';
 import initializeEpisodeGuid from './initialize/episodeGuid';
 import initializeLicenseTag from './initialize/license';
+import initializeValueTimeSplit from './initialize/valueTimeSplit';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
 
 export default async function initializeEpisode(episode, type) {
+	console.log(episode);
 	episode['itunes:image'] = initializeItunesImageTag(episode);
 	episode['podcast:person'] = initializePersonTag(episode?.['podcast:person']);
 	episode['podcast:socialInteract'] = initializeSocialInteractTag(
@@ -22,6 +24,7 @@ export default async function initializeEpisode(episode, type) {
 	episode['podcast:chapters'] = episode['podcast:chapters'] || { '@_url': '' };
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
+	episode.valueAudioItem = await initializeValueTimeSplit(episode);
 
 	selectedEpisodePersonRoles.set([]);
 	selectedEpisodePersonGroups.set([]);

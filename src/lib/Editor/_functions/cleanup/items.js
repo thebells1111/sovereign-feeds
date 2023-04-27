@@ -2,10 +2,11 @@ import cleanPodcastImages from './images';
 import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
+import cleanValueAudioItem from './splitValueBlock';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
-let adamFeeds = [41504, 920666, 4533035, 207356];
+
 let alerted = false;
 let confirmed = false;
 let trackers;
@@ -14,7 +15,7 @@ export default async function cleanItems(data) {
 	trackers = (await trackerDB.getItem(`${get(selectedPodcast).url}`)) || { active: [] };
 	if (data.item) {
 		for (let item of data.item) {
-			await cleanItem(item);
+			await cleanItem(item, data);
 		}
 	}
 
@@ -37,7 +38,7 @@ export default async function cleanItems(data) {
 	confirmed = false;
 }
 
-async function cleanItem(item) {
+async function cleanItem(item, data) {
 	delete item.sfID;
 
 	handleTrackers(item);
@@ -47,6 +48,7 @@ async function cleanItem(item) {
 	cleanEpisodeTranscript(item);
 	cleanPodcastImages(item);
 	cleanLicense(item);
+	cleanValueAudioItem(item, data);
 	// console.log(item.description);
 	// item.description = '<![CDATA[' + item.description + ']]>';
 	// console.log(item.description);

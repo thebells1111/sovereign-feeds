@@ -10,6 +10,7 @@
 	import EditShowNotes from './ShowNotes/EditShowNotes.svelte';
 	import Social from './Social/Social.svelte';
 	import Images from './Images/Images.svelte';
+	import ValueSplits from './ValueSplits/ValueSplits.svelte';
 	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
 
 	import { rightPane, showNotesPane } from '$/editor';
@@ -48,6 +49,9 @@
 	</div>
 	<div class:hide={$rightPane != 'images'}>
 		<Images />
+	</div>
+	<div class:hide={$rightPane != 'valueSplits'}>
+		<ValueSplits />
 	</div>
 </div>
 
