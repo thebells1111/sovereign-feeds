@@ -2,12 +2,10 @@
 	import {
 		player,
 		playingEpisodeChapters,
-		playingEpisode,
 		playerTime,
 		chapterIndex,
 		playerDuration,
 		posterUrl,
-		showVideo,
 		playerIsPaused
 	} from '$/stores';
 
@@ -79,7 +77,6 @@
 	src={enclosure}
 	bind:this={$player}
 	poster={$posterUrl}
-	class:hide={!$showVideo}
 />
 
 <style>
