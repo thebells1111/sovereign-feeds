@@ -75,7 +75,8 @@
 			value: song.value,
 			url: song.enclosureUrl,
 			duration: null,
-			startTime: 0
+			startTime: 0,
+			added: 0
 		};
 		$valueAudioItem = $valueAudioItem.concat(item);
 		getMediaDuration(song.enclosureUrl).then((data) => {
