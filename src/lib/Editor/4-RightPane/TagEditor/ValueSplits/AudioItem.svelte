@@ -6,9 +6,11 @@
 	export let postproduction = false;
 
 	function formatTime(timeInSeconds) {
+		let totalMilliseconds = timeInSeconds * 1000;
 		let hours = Math.floor(timeInSeconds / 3600);
 		let minutes = Math.floor((timeInSeconds % 3600) / 60);
 		let seconds = Math.floor(timeInSeconds % 60);
+		let milliseconds = Math.floor(totalMilliseconds % 1000);
 
 		let formattedTime = '';
 
@@ -28,6 +30,9 @@
 			formattedTime += `${seconds}`;
 		}
 
+		// Include milliseconds as a three-digit decimal
+		formattedTime += `.${milliseconds.toString().padStart(3, '0')}`;
+
 		return formattedTime;
 	}
 
@@ -38,6 +43,31 @@
 			$valueAudioItem = $valueAudioItem;
 		}
 	}
+
+	const getHours = (t) => Math.floor(t / 3600) || 0;
+	const getMinutes = (t) => Math.floor((t % 3600) / 60) || 0;
+	const getSeconds = (t) => Math.floor(t) % 60 || 0;
+	const getMilliseconds = (t) => Math.round((t % 1) * 1000) || 0;
+
+	const updateAdded = (type, value, item) => {
+		let h = getHours(item);
+		let m = getMinutes(item.added);
+		let s = getSeconds(item.added);
+		let ms = getMilliseconds(item.added);
+
+		if (type === 'hours') {
+			h = parseInt(value);
+		} else if (type === 'minutes') {
+			m = parseInt(value);
+		} else if (type === 'seconds') {
+			s = parseInt(value);
+		} else if (type === 'milliseconds') {
+			ms = parseInt(value);
+		}
+
+		item.added = h * 3600 + m * 60 + s + ms / 1000;
+		$valueAudioItem = $valueAudioItem;
+	};
 </script>
 
 {#each $valueAudioItem as item, index}
@@ -50,13 +80,51 @@
 		</song-info>
 		<time-container>
 			<p><strong>Song Duration:</strong> <span>{formatTime(item.duration)}</span></p>
+			<p><strong>Synced Time:</strong> <span>{formatTime(item.added)}</span></p>
 
 			{#if item.added || item.added === 0}
 				{#if postproduction}
-					Synced Time (in seconds):
-					<input bind:value={item.added} />
-				{:else}
-					<p><strong>Synced Time:</strong> <span>{formatTime(item.added)}</span></p>
+					<time-inputs>
+						<label>
+							Hours:
+							<input
+								type="number"
+								value={getHours(item?.added)}
+								on:input={(e) => updateAdded('hours', e.target.value, item)}
+								min="0"
+							/>
+						</label>
+						<label>
+							Minutes:
+							<input
+								type="number"
+								value={getMinutes(item?.added)}
+								on:input={(e) => updateAdded('minutes', e.target.value, item)}
+								min="0"
+								max="59"
+							/>
+						</label>
+						<label>
+							Seconds:
+							<input
+								type="number"
+								value={getSeconds(item?.added)}
+								on:input={(e) => updateAdded('seconds', e.target.value, item)}
+								min="0"
+								max="59"
+							/>
+						</label>
+						<label>
+							Milliseconds:
+							<input
+								type="number"
+								value={getMilliseconds(item?.added)}
+								on:input={(e) => updateAdded('milliseconds', e.target.value, item)}
+								min="0"
+								max="999"
+							/>
+						</label>
+					</time-inputs>
 				{/if}
 			{/if}
 		</time-container>
@@ -121,5 +189,24 @@
 		position: absolute;
 		bottom: -2px;
 		color: green;
+	}
+
+	time-inputs {
+		display: flex;
+	}
+
+	time-inputs label {
+		display: flex;
+		flex-direction: column;
+		font-weight: bold;
+		width: 100px;
+		margin: 0 8px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	time-inputs label input {
+		width: 60%;
+		text-align: center;
 	}
 </style>

@@ -13,14 +13,33 @@
 	let showProviderInput = false;
 
 	// Check if Sovereign Feeds is not added
-	$: noSF = Array.isArray(data['podcast:valueRecipient'])
-		? data['podcast:valueRecipient'].findIndex(
-				(v) => v?.['@_customValue'] === 'eChoVKtO1KujpAA5HCoB'
-		  ) === -1
-		: true;
+	$: noSF = (() => {
+		try {
+			const valueRecipient = data?.['podcast:valueRecipient'];
 
-	$: if (index > data['podcast:valueRecipient']?.length) {
-		index = data['podcast:valueRecipient']?.length || 1;
+			if (Array.isArray(valueRecipient)) {
+				return (
+					valueRecipient.findIndex((v) => v?.['@_customValue'] === 'eChoVKtO1KujpAA5HCoB') === -1
+				);
+			}
+			return true;
+		} catch (error) {
+			console.error('Error:', error);
+			return false;
+		}
+	})();
+
+	$: {
+		try {
+			const valueRecipient = data?.['podcast:valueRecipient'];
+			const valueRecipientLength = valueRecipient?.length;
+
+			if (index > valueRecipientLength) {
+				index = valueRecipientLength || 1;
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
 	}
 
 	function addSovereignFeeds() {

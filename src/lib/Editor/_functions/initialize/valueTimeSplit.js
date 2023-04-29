@@ -29,8 +29,6 @@ export default async function initializeValueTimeSplit(episode) {
 			let feed = feedData?.feed;
 			let song = items.find((v) => (v.guid = songGuid));
 
-			console.log(feed);
-
 			let _id = await generateHashedId(song.enclosureUrl);
 			episodes[i] = {
 				_id,

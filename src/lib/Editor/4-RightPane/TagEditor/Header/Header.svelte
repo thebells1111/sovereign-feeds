@@ -1,17 +1,5 @@
 <script>
-	import initializeEpisode from '$lib/Editor/_functions/initializeEpisode';
-	import {
-		rightPane,
-		showLiveEpisodes,
-		rssData,
-		episodesList,
-		editingEpisode,
-		podcastList,
-		editorDB,
-		selectorList,
-		showSaved,
-		selectedEpisode
-	} from '$/editor';
+	import { rightPane, rssData, editingEpisode, selectorList } from '$/editor';
 	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
 
 	$rightPane = 'episodeMetadata';
@@ -99,7 +87,7 @@
 			$rightPane = 'valueSplits';
 		}}
 	>
-		Value Splits
+		Value Time Splits
 	</li>
 </ul>
 

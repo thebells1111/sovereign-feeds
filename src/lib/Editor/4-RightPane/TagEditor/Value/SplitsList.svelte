@@ -20,13 +20,18 @@
 	$: splits = getSplitValue(data?.['podcast:valueRecipient']);
 
 	function getSplitValue(recipient) {
-		return recipient
-			? recipient.reduce((acc, v) => (v?.['@_fee'] ? acc : acc + Number(v?.['@_split'])), 0)
-			: 0;
+		if (Array.isArray(recipient)) {
+			return recipient.reduce((acc, v) => (v?.['@_fee'] ? acc : acc + Number(v?.['@_split'])), 0);
+		} else {
+			return 0;
+		}
 	}
-
 	function getSplitRecipients(recipients) {
-		return recipients?.filter((v) => !v['@_fee']) || [];
+		if (Array.isArray(recipients)) {
+			return recipients.filter((v) => !v['@_fee']);
+		} else {
+			return [];
+		}
 	}
 
 	function getRecipientIndex(recipient) {

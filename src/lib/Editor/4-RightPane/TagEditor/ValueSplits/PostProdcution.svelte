@@ -40,14 +40,29 @@
 	}
 </script>
 
-<AudioItem postproduction={true} {syncSong} />
-
-<player>
-	<Enclosure />
-	<audio bind:this={player} src={$editingEpisode?.enclosure?.['@_url']} controls />
-</player>
+<post-production>
+	<audio-items>
+		<AudioItem postproduction={true} {syncSong} />
+	</audio-items>
+	<player>
+		<Enclosure />
+		<audio bind:this={player} src={$editingEpisode?.enclosure?.['@_url']} controls />
+	</player>
+</post-production>
 
 <style>
+	post-production {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		height: 100%;
+	}
+
+	audio-items {
+		overflow-x: hidden;
+		overflow-y: auto;
+		flex: 1;
+	}
 	player {
 		width: 100%;
 		display: flex;

@@ -11,7 +11,7 @@ import initializeEpisodeGuid from './initialize/episodeGuid';
 import initializeLicenseTag from './initialize/license';
 import initializeValueTimeSplit from './initialize/valueTimeSplit';
 
-import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
+import { selectedEpisodePersonRoles, selectedEpisodePersonGroups, valueAudioItem } from '$/editor';
 
 export default async function initializeEpisode(episode, type) {
 	console.log(episode);
@@ -25,7 +25,7 @@ export default async function initializeEpisode(episode, type) {
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
 	episode.valueAudioItem = await initializeValueTimeSplit(episode);
-
+	valueAudioItem.set(episode.valueAudioItem);
 	selectedEpisodePersonRoles.set([]);
 	selectedEpisodePersonGroups.set([]);
 	episode.guid = initializeEpisodeGuid(episode);
@@ -43,6 +43,6 @@ export default async function initializeEpisode(episode, type) {
 		episode['@_status'] = episode['@_status'] || 'pending';
 		episode['@_status'] = episode['@_status'].toLowerCase();
 		episode['@_start'] = initializeLiveTime(episode);
-		console.log(episode);
 	}
+	console.log(episode);
 }

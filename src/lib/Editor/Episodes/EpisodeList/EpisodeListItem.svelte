@@ -19,7 +19,8 @@
 		maxEpisodes,
 		currentPage,
 		liveEpisodes,
-		regularEpisodes
+		regularEpisodes,
+		valueAudioItem
 	} from '$/editor';
 
 	import { showMobile } from '$/stores';

@@ -18,13 +18,19 @@
 	$: fees = getFeeValue(data?.['podcast:valueRecipient']);
 
 	function getFeeValue(recipient) {
-		return recipient
-			? recipient?.reduce((acc, v) => (v?.['@_fee'] ? acc + Number(v?.['@_split']) : acc), 0)
-			: 0;
+		if (Array.isArray(recipient)) {
+			return recipient.reduce((acc, v) => (v?.['@_fee'] ? acc + Number(v?.['@_split']) : acc), 0);
+		} else {
+			return 0;
+		}
 	}
 
 	function getFeeRecipients(recipients) {
-		return recipients?.filter((v) => v['@_fee']) || [];
+		if (Array.isArray(recipients)) {
+			return recipients.filter((v) => v['@_fee']);
+		} else {
+			return [];
+		}
 	}
 
 	function getRecipientIndex(recipient) {
