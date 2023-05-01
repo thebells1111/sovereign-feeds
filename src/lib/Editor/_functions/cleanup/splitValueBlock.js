@@ -17,12 +17,16 @@ export default function cleanValueAudioItem(item, data) {
 		console.log(clone(item?.['podcast:value']));
 		valueBlock['podcast:valueTimeSplit'] = item.valueAudioItem.map((v) => {
 			let block = {
-				'@_startTime': v.startTime,
+				'@_startTime': v.startTime || '0',
 				'@_duration': v.duration,
-				'podcast:remoteItem': { '@_itemGuid': v.songGuid, '@_feedGuid': v.albumGuid }
+				'podcast:remoteItem': {
+					'@_itemGuid': v.songGuid,
+					'@_feedGuid': v.albumGuid,
+					'@_medium': 'music'
+				}
 			};
-			if (v.remoteSplit) {
-				block.remoteSplit = v.remoteSplit;
+			if (v.split) {
+				block['@_remoteSplit'] = v.split;
 			}
 			return block;
 		});

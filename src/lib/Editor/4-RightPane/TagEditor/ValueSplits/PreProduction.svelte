@@ -12,6 +12,7 @@
 
 	let formattedTime = '00:00:00:00';
 	let syncedTime = 0;
+	let basePercent = 95;
 
 	function handleTimeUpdate(value) {
 		syncedTime = value;
@@ -88,12 +89,13 @@
 
 <container>
 	<album-list>
+		<input bind:value={basePercent} type="number" />
 		<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
 		<list-container>
 			<ul>
 				{#each filteredAlbumsList as album}
 					<li>
-						<AlbumCard {album} bind:selectedAlbum />
+						<AlbumCard {album} {basePercent} bind:selectedAlbum />
 					</li>
 				{/each}
 			</ul>
@@ -101,6 +103,15 @@
 	</album-list>
 
 	<playlist>
+		<label>
+			Add new blocks at <input
+				class="base-remote-split"
+				bind:value={basePercent}
+				type="number"
+				min="0"
+				max="100"
+			/>% split
+		</label>
 		{#if $valueAudioItem?.length}
 			<AudioItem {syncSong} />
 		{/if}
@@ -156,6 +167,19 @@
 		grid-area: playlist;
 		overflow-y: auto;
 		overflow-x: hidden;
+	}
+
+	playlist label {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin-right: 24px;
+	}
+
+	playlist label input {
+		width: 55px;
+		text-align: center;
+		margin: 0 0 0 6px;
 	}
 
 	sync {

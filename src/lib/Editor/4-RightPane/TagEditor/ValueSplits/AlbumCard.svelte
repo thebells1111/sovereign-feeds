@@ -2,6 +2,7 @@
 	import Add from '$lib/icons/Add.svelte';
 	export let album = {};
 	export let selectedAlbum = {};
+	export let basePercent;
 
 	import { valueAudioItem } from '$/editor';
 
@@ -76,7 +77,8 @@
 			url: song.enclosureUrl,
 			duration: null,
 			startTime: 0,
-			added: 0
+			added: 0,
+			split: basePercent
 		};
 		$valueAudioItem = $valueAudioItem.concat(item);
 		getMediaDuration(song.enclosureUrl).then((data) => {

@@ -72,12 +72,24 @@
 
 {#each $valueAudioItem as item, index}
 	<song-card>
-		<song-info>
-			<h4>{index + 1}</h4>
-			<p><strong>Song: </strong>{item.song}</p>
-			<p><strong>Artist: </strong>{item.author}</p>
-			<p><strong>Album: </strong>{item.album}</p>
-		</song-info>
+		<top-container>
+			<song-info>
+				<p><strong>Song: </strong>{item.song}</p>
+				<p><strong>Artist: </strong>{item.author}</p>
+				<p><strong>Album: </strong>{item.album}</p>
+			</song-info>
+			<split>
+				<p>
+					Give
+					{#if postproduction}
+						<input type="number" bind:value={item.split} min="0" max="100" />
+					{:else}
+						{item.split}
+					{/if}
+					% to this block
+				</p>
+			</split>
+		</top-container>
 		<time-container>
 			<p><strong>Song Duration:</strong> <span>{formatTime(item.duration)}</span></p>
 			<p><strong>Synced Time:</strong> <span>{formatTime(item.added)}</span></p>
@@ -133,7 +145,7 @@
 				<Refresh size="30" />
 				<p>Sync</p>
 			</button>
-
+			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
 				<Delete size="30" />
 			</button>
@@ -142,6 +154,16 @@
 {/each}
 
 <style>
+	top-container {
+		display: flex;
+		position: relative;
+		justify-content: space-between;
+	}
+
+	top-container split {
+		display: block;
+	}
+
 	song-card {
 		display: flex;
 		flex-direction: column;
@@ -167,6 +189,7 @@
 	h4 {
 		margin: 0;
 		text-align: right;
+		align-self: flex-end;
 	}
 
 	button {
@@ -208,5 +231,11 @@
 	time-inputs label input {
 		width: 60%;
 		text-align: center;
+	}
+
+	split p input {
+		width: 55px;
+		text-align: center;
+		margin: 0 0 0 6px;
 	}
 </style>

@@ -36,7 +36,7 @@ export default async function initializeValueTimeSplit(episode) {
 				value: song?.value || feed?.value,
 				albumGuid,
 				songGuid,
-				split: v?.['@_remoteSplit'],
+				split: v?.['@_remoteSplit'] || 100,
 				added: Number(v?.['@_startTime']),
 				duration: Number(v?.['@_duration']),
 				album: feed?.title,
