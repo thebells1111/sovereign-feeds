@@ -4,6 +4,7 @@
 
 	import Explainer from './Explainer.svelte';
 	import ServerHooks from './ServerHooks.svelte';
+	import DigitalOceanHooks from './DigitalOceanHooks.svelte';
 
 	let showSaved = false;
 </script>
@@ -13,6 +14,9 @@
 <div class="webhook-container">
 	{#if $loggedIn}
 		{#if $selectedPodcast.title}
+			{#if $selectedPodcast.title !== 'New Podcast'}
+				<DigitalOceanHooks />
+			{/if}
 			<ServerHooks bind:showSaved />
 			<Explainer />
 		{:else}

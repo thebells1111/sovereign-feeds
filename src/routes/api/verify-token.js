@@ -10,14 +10,15 @@ export const get = async (request) => {
 
 		const token = request.url.searchParams.get('token');
 		let decode;
+		// decode = { email: 'dev.thebells1111@gmail.com' };
 		try {
 			decode = jwt.verify(token, JWT);
 		} catch (error) {
 			return {
 				status: 401,
-				body: `<html>			
+				body: `<html>
 				<body>
-					<p>Invalid Token. Your token may have expired. Please enter try entering your email again.</p>      
+					<p>Invalid Token. Your token may have expired. Please enter try entering your email again.</p>
 				</body>
 				</html>
 				`
