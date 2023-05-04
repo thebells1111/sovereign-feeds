@@ -4,31 +4,34 @@
 
 	function handleHourInput() {}
 	function handleMinuteInput() {}
+	$: console.log($editingEpisode);
 </script>
 
-<div class="duration">
-	<h3>Estimated duration of live episode:</h3>
-	<div class="time-select">
-		<NumberInput
-			max={99}
-			min={0}
-			bind:value={$editingEpisode['@_start'].duration.hour}
-			blurDefault={0}
-			handleInput={handleHourInput}
-			disableScroll={true}
-		/>
-		<span>hours</span>
-		<NumberInput
-			max={59}
-			min={0}
-			bind:value={$editingEpisode['@_start'].duration.minute}
-			blurDefault={0}
-			handleInput={handleMinuteInput}
-			disableScroll={true}
-		/>
-		<span>minutes</span>
+{#if $editingEpisode?.['@_start']?.duration?.hour}
+	<div class="duration">
+		<h3>Estimated duration of live episode:</h3>
+		<div class="time-select">
+			<NumberInput
+				max={99}
+				min={0}
+				bind:value={$editingEpisode['@_start'].duration.hour}
+				blurDefault={0}
+				handleInput={handleHourInput}
+				disableScroll={true}
+			/>
+			<span>hours</span>
+			<NumberInput
+				max={59}
+				min={0}
+				bind:value={$editingEpisode['@_start'].duration.minute}
+				blurDefault={0}
+				handleInput={handleMinuteInput}
+				disableScroll={true}
+			/>
+			<span>minutes</span>
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	.duration {

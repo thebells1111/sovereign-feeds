@@ -20,21 +20,23 @@
 	}
 </script>
 
-<div class="live-start">
-	<div class="header">
-		<h3>Start Time:</h3>
-		<button on:click={setTime}>Set Time To Now</button>
+{#if $editingEpisode?.['@_start']?.dateTime}
+	<div class="live-start">
+		<div class="header">
+			<h3>Start Time:</h3>
+			<button on:click={setTime}>Set Time To Now</button>
+		</div>
+		<div class="time-select">
+			<DateInput
+				format="yyyy/MM/dd"
+				bind:value={$editingEpisode['@_start'].dateTime}
+				locale={{ weekStartsOn: 0 }}
+			/>
+			<span class="spacer" />
+			<Time type="start" bind:date={$editingEpisode['@_start']} />
+		</div>
 	</div>
-	<div class="time-select">
-		<DateInput
-			format="yyyy/MM/dd"
-			bind:value={$editingEpisode['@_start'].dateTime}
-			locale={{ weekStartsOn: 0 }}
-		/>
-		<span class="spacer" />
-		<Time type="start" bind:date={$editingEpisode['@_start']} />
-	</div>
-</div>
+{/if}
 
 <style>
 	.live-start {
