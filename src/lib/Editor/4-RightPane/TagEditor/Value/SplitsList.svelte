@@ -87,7 +87,7 @@
 	$: handleIndexChange(index);
 
 	function handleIndexChange(index) {
-		activeRecipient = data['podcast:valueRecipient'][index - 1];
+		activeRecipient = data?.['podcast:valueRecipient']?.[index - 1];
 	}
 </script>
 
