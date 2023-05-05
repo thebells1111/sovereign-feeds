@@ -20,6 +20,7 @@
 	}
 </script>
 
+{#if $editingEpisode?.['@_start']?.dateTime}
 <div class="live-start">
 	<div class="header">
 		<h3>Start Time:</h3>
@@ -35,6 +36,7 @@
 		<Time type="start" bind:date={$editingEpisode['@_start']} />
 	</div>
 </div>
+{/if}
 
 <style>
 	.live-start {

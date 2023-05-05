@@ -3,6 +3,7 @@
 	import { selectTextOnFocus } from '$functions/inputActions';
 </script>
 
+{#if $editingEpisode?.['podcast:contentLink']?.['#text']}
 <div class="content-link">
 	<h3>Content Link:</h3>
 	<p>alternate site to listen live if player doesn't support Live</p>
@@ -26,6 +27,7 @@
 		</label>
 	</div>
 </div>
+{/if}
 
 <style>
 	.content-link {
