@@ -26,7 +26,7 @@ export default function cleanValueAudioItem(item, data) {
 				}
 			};
 			if (v.split) {
-				block['@_remoteSplit'] = v.split;
+				block['@_remotePercentage'] = v.split;
 			}
 			return block;
 		});
