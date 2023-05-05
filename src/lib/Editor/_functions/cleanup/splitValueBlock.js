@@ -16,8 +16,9 @@ export default function cleanValueAudioItem(item, data) {
 		console.log(valueBlock);
 		console.log(clone(item?.['podcast:value']));
 		valueBlock['podcast:valueTimeSplit'] = item.valueAudioItem.map((v) => {
+			console.log(v);
 			let block = {
-				'@_startTime': v.startTime || '0',
+				'@_startTime': v.added || '0',
 				'@_duration': v.duration,
 				'podcast:remoteItem': {
 					'@_itemGuid': v.songGuid,
