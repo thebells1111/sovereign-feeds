@@ -171,7 +171,7 @@
 	</div>
 
 	<div class="value-input-container" class:show={showValues}>
-		{#if data && data['podcast:valueRecipient'].length > 0}
+		{#if data && data?.['podcast:valueRecipient']?.length > 0}
 			<button
 				class="cancel"
 				on:click={() => {
