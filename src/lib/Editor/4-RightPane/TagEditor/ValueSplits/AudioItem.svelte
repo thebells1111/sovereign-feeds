@@ -1,9 +1,12 @@
 <script>
+	import { getContext } from 'svelte';
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
 	import { valueAudioItem } from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
+
+	const { updateValue } = getContext('newValueBlock');
 
 	function formatTime(timeInSeconds) {
 		let totalMilliseconds = timeInSeconds * 1000;
@@ -145,6 +148,8 @@
 				<Refresh size="30" />
 				<p>Sync</p>
 			</button>
+			<button on:click={updateValue.bind(this, item)}>Send data</button>
+
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
 				<Delete size="30" />

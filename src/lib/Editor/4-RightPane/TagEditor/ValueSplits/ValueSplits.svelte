@@ -1,9 +1,34 @@
 <script>
-	import { afterUpdate } from 'svelte';
 	import { valueAudioItem, editingEpisode } from '$/editor';
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
 	let viewer = 'pre';
+	import { onMount, onDestroy, afterUpdate, setContext } from 'svelte';
+	import { io } from 'socket.io-client';
+
+	let socket;
+
+	onMount(() => {
+		socket = io('http://localhost:8000'); // Connect to the server with default options
+		socket.on('disconnect', (reason) => {
+			console.log('Disconnected, reason:', reason);
+		});
+	});
+
+	onDestroy(() => {
+		socket?.disconnect();
+	});
+
+	setContext('newValueBlock', {
+		updateValue: (block) => {
+			console.log(block);
+			socket.emit('valueBlock', block);
+		}
+	});
+
+	// async function sendData(block) {
+	// 	socket.emit('valueBlock', JSON.stringify(block));
+	// }
 
 	afterUpdate(initializeAudioItem);
 
