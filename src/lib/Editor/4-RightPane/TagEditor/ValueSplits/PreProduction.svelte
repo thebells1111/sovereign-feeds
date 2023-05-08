@@ -7,23 +7,10 @@
 	let filteredAlbumsList = [];
 	let selectedAlbum = {};
 	import AlbumCard from './AlbumCard.svelte';
-	import TimerButton from './TimerButton.svelte';
 	import AudioItem from './AudioItem.svelte';
 
-	let formattedTime = '00:00:00:00';
-	let syncedTime = 0;
+	export let syncedTime = 0;
 	let basePercent = 95;
-
-	function handleTimeUpdate(value) {
-		syncedTime = value;
-		let hours = Math.floor(value / 3600);
-		let minutes = Math.floor((value % 3600) / 60);
-		let seconds = Math.floor(value % 60);
-		let ms = Math.floor((value % 1) * 100);
-		formattedTime = `${hours.toString().padStart(2, '0')}:${minutes
-			.toString()
-			.padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${ms.toString().padStart(2, '0')}`;
-	}
 
 	afterNavigate(({ from }) => {
 		setTimeout(() => searchInput.select(), 100);
@@ -116,24 +103,17 @@
 			<AudioItem {syncSong} />
 		{/if}
 	</playlist>
-
-	<sync>
-		<TimerButton onTimeUpdate={handleTimeUpdate} />
-		<p>Elapsed time: {formattedTime}</p>
-	</sync>
 </container>
 
 <style>
 	container {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr 100px;
+		grid-template-rows: 1fr;
 		gap: 0px 0px;
-		grid-template-areas:
-			'albums playlist'
-			'sync sync';
+		grid-template-areas: 'albums playlist';
 		overflow: hidden;
-		height: 100%;
+		flex: 1;
 	}
 
 	ul {
