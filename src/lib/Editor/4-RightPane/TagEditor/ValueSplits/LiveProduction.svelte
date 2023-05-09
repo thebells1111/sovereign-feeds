@@ -2,6 +2,9 @@
 	import { editingEpisode, valueAudioItem } from '$/editor';
 	import AudioItem from './AudioItem.svelte';
 	let player;
+	let activeValueBlock = {};
+
+	$: console.log($editingEpisode?.['podcast:value']);
 
 	function syncSong(song, index) {
 		let originalAdded = parseFloat(song.added);
@@ -32,10 +35,12 @@
 </script>
 
 <container>
-	<active-value> Value </active-value>
+	<active-value>
+		{activeValueBlock.song}
+	</active-value>
 
 	<audio-items>
-		<AudioItem postproduction={true} {syncSong} />
+		<AudioItem liveproduction={true} {syncSong} bind:activeValueBlock />
 	</audio-items>
 </container>
 

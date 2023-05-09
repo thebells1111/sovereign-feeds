@@ -1,4 +1,5 @@
 <script>
+	import clone from 'just-clone';
 	import Add from '$lib/icons/Add.svelte';
 	export let album = {};
 	export let selectedAlbum = {};
@@ -65,6 +66,7 @@
 	}
 
 	async function addItem(song) {
+		console.log(clone(song));
 		let _id = await generateHashedId(song.enclosureUrl);
 		let item = {
 			_id,
@@ -73,13 +75,14 @@
 			album: album.title,
 			albumGuid: album.podcastGuid,
 			songGuid: song.guid,
-			value: song.value,
+			value: song?.value,
 			url: song.enclosureUrl,
 			duration: null,
 			startTime: 0,
 			added: 0,
 			split: basePercent
 		};
+		console.log(item);
 		$valueAudioItem = $valueAudioItem.concat(item);
 		getMediaDuration(song.enclosureUrl).then((data) => {
 			let itemIndex = $valueAudioItem.findIndex((obj) => obj._id === _id);

@@ -1,9 +1,11 @@
 <script>
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
-	import { valueAudioItem } from '$/editor';
+	import { valueAudioItem, editingEpisode, selectedPodcast, rssData } from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
+	export let liveproduction = false;
+	export let activeValueBlock = {};
 
 	function formatTime(timeInSeconds) {
 		let totalMilliseconds = timeInSeconds * 1000;
@@ -68,6 +70,31 @@
 		item.added = h * 3600 + m * 60 + s + ms / 1000;
 		$valueAudioItem = $valueAudioItem;
 	};
+
+	function updateValueBlock(item) {
+		console.log(item);
+		activeValueBlock = item;
+		console.log($rssData?.['podcast:value']?.['podcast:valueRecipient']);
+		console.log($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']);
+		console.log(item?.value);
+
+		function filterItemsWithAddress(array) {
+			return array.filter((item) => item['@_address'] !== '');
+		}
+		function convertArray(inputArray) {
+			return inputArray.map((item) => {
+				return {
+					name: item['@_name'],
+					type: item['@_type'],
+					address: item['@_address'],
+					split: parseInt(item['@_split'], 10) || 0,
+					customKey: item['@_customKey'] || '',
+					customValue: item['@_customValue'] || '',
+					fee: item['@_fee'] === 'true'
+				};
+			});
+		}
+	}
 </script>
 
 {#each $valueAudioItem as item, index}
@@ -81,7 +108,7 @@
 			<split>
 				<p>
 					Give
-					{#if postproduction}
+					{#if postproduction || liveproduction}
 						<input type="number" bind:value={item.split} min="0" max="100" />
 					{:else}
 						{item.split}
@@ -141,10 +168,14 @@
 			{/if}
 		</time-container>
 		<button-container>
-			<button class="sync" on:click={syncSong.bind(this, item, index)}>
-				<Refresh size="30" />
-				<p>Sync</p>
-			</button>
+			{#if !liveproduction}
+				<button class="sync" on:click={syncSong.bind(this, item, index)}>
+					<Refresh size="30" />
+					<p>Sync</p>
+				</button>
+			{:else}
+				<button on:click={updateValueBlock.bind(this, item, index)}>Use this value block</button>
+			{/if}
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
 				<Delete size="30" />
