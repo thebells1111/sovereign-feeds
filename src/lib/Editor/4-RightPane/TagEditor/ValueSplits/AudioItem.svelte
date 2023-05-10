@@ -1,11 +1,14 @@
 <script>
+	import clone from 'just-clone';
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
-	import { valueAudioItem, editingEpisode, selectedPodcast, rssData } from '$/editor';
+	import { valueAudioItem, editingEpisode, rssData } from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
 	export let liveproduction = false;
 	export let activeValueBlock = {};
+
+	let sovereignSplit = 5;
 
 	function formatTime(timeInSeconds) {
 		let totalMilliseconds = timeInSeconds * 1000;
@@ -72,28 +75,105 @@
 	};
 
 	function updateValueBlock(item) {
-		console.log(item);
-		activeValueBlock = item;
-		console.log($rssData?.['podcast:value']?.['podcast:valueRecipient']);
-		console.log($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']);
-		console.log(item?.value);
+		let baseBlock = updateSplits(
+			convertArray(
+				filterItemsWithAddress($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) ||
+					filterItemsWithAddress($rssData?.['podcast:value']?.['podcast:valueRecipient'])
+			),
+			(100 - sovereignSplit) * (100 - item.split)
+		);
+
+		let remoteBlock = updateSplits(
+			item?.value?.destinations || [],
+			(100 - sovereignSplit) * item.split
+		);
 
 		function filterItemsWithAddress(array) {
-			return array.filter((item) => item['@_address'] !== '');
+			let filtered = [].concat(array).filter((item) => {
+				return item['@_address'] !== '';
+			});
+			if (filtered.length < 1) {
+				return null;
+			}
+			return filtered;
 		}
 		function convertArray(inputArray) {
+			if (!inputArray) {
+				return null;
+			}
+
 			return inputArray.map((item) => {
-				return {
-					name: item['@_name'],
-					type: item['@_type'],
-					address: item['@_address'],
-					split: parseInt(item['@_split'], 10) || 0,
-					customKey: item['@_customKey'] || '',
-					customValue: item['@_customValue'] || '',
-					fee: item['@_fee'] === 'true'
-				};
+				let newItem = {};
+
+				if (item['@_name'] !== undefined) newItem.name = item['@_name'];
+				if (item['@_type'] !== undefined) newItem.type = item['@_type'];
+				else newItem.type = 'node';
+				if (item['@_address'] !== undefined) newItem.address = item['@_address'];
+				if (item['@_split'] !== undefined) newItem.split = parseInt(item['@_split'], 10) || 0;
+				if (item['@_customKey'] !== undefined) newItem.customKey = item['@_customKey'];
+				if (item['@_customValue'] !== undefined) newItem.customValue = item['@_customValue'];
+				if (item['@_fee'] !== undefined) newItem.fee = item['@_fee'];
+
+				return newItem;
 			});
 		}
+
+		let sovereignBlock = {
+			name: 'SF Live',
+			type: 'node',
+			address: '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3',
+			split: sovereignSplit,
+			customKey: '696969',
+			customValue: 'eChoVKtO1KujpAA5HCoB'
+		};
+
+		let newBlock = {
+			meta: item,
+			base: baseBlock || [],
+			remote: remoteBlock || [],
+			sf: sovereignBlock
+		};
+
+		activeValueBlock = newBlock;
+
+		let serverValueBlock = {
+			model: {
+				type: 'lightning',
+				method: 'keysend'
+			},
+			destinations: baseBlock.concat(remoteBlock).concat(sovereignBlock)
+		};
+		console.log(item);
+		let serverData = {
+			feedTitle: item.album,
+			feedGuid: item.albumGuid,
+			artwork: item.artwork,
+			author: item.author,
+			itemTitle: item.song,
+			itemGuid: item.songGuid,
+			value: serverValueBlock
+		};
+
+		console.log(serverData);
+	}
+
+	function updateSplits(array, remotePercentage) {
+		const newArray = [].concat(array);
+		let totalSplit = 0;
+		newArray.forEach((item) => {
+			if (item?.fee !== true && item?.fee !== 'true') {
+				totalSplit += item?.split;
+			}
+		});
+
+		let percentagedArray = clone(newArray).map((item) => {
+			if (item?.fee !== true && item?.fee !== 'true') {
+				item.split = ((item?.split / totalSplit) * remotePercentage) / 100;
+			}
+			return item;
+		});
+
+		return percentagedArray;
 	}
 </script>
 

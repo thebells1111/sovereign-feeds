@@ -75,6 +75,7 @@
 			album: album.title,
 			albumGuid: album.podcastGuid,
 			songGuid: song.guid,
+			artwork: song.artwork || song.image || album.artwork || album.image,
 			value: song?.value,
 			url: song.enclosureUrl,
 			duration: null,

@@ -36,7 +36,36 @@
 
 <container>
 	<active-value>
-		{activeValueBlock.song}
+		<h2>Active Value Block</h2>
+		{#if activeValueBlock.meta}
+			<active-meta>
+				<img src={activeValueBlock.meta.artwork} width="100" height="100" />
+				<info>
+					<p><b>Song: </b>{activeValueBlock.meta.song}</p>
+					<p><b>Artist: </b>{activeValueBlock.meta.author}</p>
+					<p><b>Album: </b>{activeValueBlock.meta.album}</p>
+				</info>
+			</active-meta>
+
+			<h3>Remote Value Block</h3>
+			<ul>
+				{#each activeValueBlock.remote || [] as item}
+					<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+				{/each}
+			</ul>
+
+			<h3>Podcaster's Value Block</h3>
+			<ul>
+				{#each activeValueBlock.base || [] as item}
+					<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+				{/each}
+			</ul>
+
+			<h3>SF Live</h3>
+			<ul>
+				<li>({activeValueBlock.sf.split}%) SF Live</li>
+			</ul>
+		{/if}
 	</active-value>
 
 	<audio-items>
@@ -74,5 +103,13 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		border-right: 1px solid var(--border-color);
+	}
+
+	active-meta {
+		display: flex;
+	}
+
+	info p {
+		padding: 4px 8px;
 	}
 </style>
