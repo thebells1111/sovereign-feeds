@@ -2,7 +2,7 @@
 	import { editingEpisode, valueAudioItem } from '$/editor';
 	import AudioItem from './AudioItem.svelte';
 	let player;
-	let activeValueBlock = {};
+	export let activeValueBlock = {};
 
 	$: console.log($editingEpisode?.['podcast:value']);
 

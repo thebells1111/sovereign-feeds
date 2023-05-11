@@ -9,7 +9,8 @@
 		showSaved,
 		rssData,
 		feedText,
-		xmlJson
+		xmlJson,
+		editingEpisode
 	} from '$/editor';
 
 	import buildRSS from '../Publish/buildrss';
@@ -136,6 +137,8 @@
 					await saveManualChanges();
 				}
 
+				console.log($podcastList);
+				console.log($editingEpisode);
 				editorDB.setItem('favorites', $podcastList);
 				$showSaved = true;
 			}}

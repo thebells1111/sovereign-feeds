@@ -47,7 +47,7 @@
 </button>
 
 <style>
-	button {
+	button.primary {
 		background-image: linear-gradient(to bottom, hsla(140, 100%, 33%, 1), hsla(140, 100%, 16%, 1));
 	}
 </style>

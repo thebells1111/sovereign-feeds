@@ -1,5 +1,8 @@
 export default async function initializeValueTimeSplit(episode) {
 	console.log(episode);
+	if(episode.valueAudioItem){
+	return episode.valueAudioItem
+}
 	if (episode?.['podcast:value']?.['podcast:valueTimeSplit']) {
 		console.log(episode?.['podcast:value']?.['podcast:valueTimeSplit']);
 

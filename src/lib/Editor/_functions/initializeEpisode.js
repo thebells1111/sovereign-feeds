@@ -45,4 +45,9 @@ export default async function initializeEpisode(episode, type) {
 		episode['@_start'] = initializeLiveTime(episode);
 	}
 	console.log(episode);
+
+	function initializeAudioItem() {
+		console.log($editingEpisode);
+		$valueAudioItem = $editingEpisode?.valueAudioItem || [];
+	}
 }

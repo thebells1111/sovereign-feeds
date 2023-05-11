@@ -1,12 +1,33 @@
 <script>
+	import { onMount, onDestroy } from 'svelte';
+	import io from 'socket.io-client';
 	import clone from 'just-clone';
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
-	import { valueAudioItem, editingEpisode, rssData } from '$/editor';
+	import { valueAudioItem, editingEpisode, rssData, showLiveEpisodes } from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
 	export let liveproduction = false;
 	export let activeValueBlock = {};
+	export let activateOnSync = true;
+
+	$: console.log(activeValueBlock);
+
+	let socket;
+
+	onMount(() => {
+		socket = io('http://localhost:8000');
+		socket.on('connect', () => {
+			console.log(`Connected with ID: ${socket.id}`);
+		});
+	});
+
+	onDestroy(() => {
+		if (socket) {
+			socket.disconnect();
+			console.log('Socket disconnected');
+		}
+	});
 
 	let sovereignSplit = 5;
 
@@ -75,6 +96,7 @@
 	};
 
 	function updateValueBlock(item) {
+		console.log(item);
 		let baseBlock = updateSplits(
 			convertArray(
 				filterItemsWithAddress($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) ||
@@ -154,7 +176,7 @@
 			value: serverValueBlock
 		};
 
-		console.log(serverData);
+		socket.emit('valueBlock', serverData);
 	}
 
 	function updateSplits(array, remotePercentage) {
@@ -178,24 +200,41 @@
 </script>
 
 {#each $valueAudioItem as item, index}
-	<song-card>
+	<song-card
+		class:active={$showLiveEpisodes &&
+			activeValueBlock &&
+			activeValueBlock?.meta?._id === item?._id}
+	>
 		<top-container>
 			<song-info>
 				<p><strong>Song: </strong>{item.song}</p>
 				<p><strong>Artist: </strong>{item.author}</p>
 				<p><strong>Album: </strong>{item.album}</p>
 			</song-info>
-			<split>
-				<p>
-					Give
-					{#if postproduction || liveproduction}
-						<input type="number" bind:value={item.split} min="0" max="100" />
+			<right-pane>
+				{#if $showLiveEpisodes}
+					{#if activeValueBlock && activeValueBlock?.meta?._id === item?._id}
+						<active>Active</active>
 					{:else}
-						{item.split}
+						<inactive>
+							<button on:click={updateValueBlock.bind(this, item)}>Activate Value Block</button>
+						</inactive>
 					{/if}
-					% to this block
-				</p>
-			</split>
+				{/if}
+				<split>
+					<p>
+						Give
+						{#if postproduction || liveproduction}
+							<input type="number" bind:value={item.split} min="0" max="100" />
+						{:else}
+							{item.split}
+						{/if}
+						%
+						<br />
+						to this block
+					</p>
+				</split>
+			</right-pane>
 		</top-container>
 		<time-container>
 			<p><strong>Song Duration:</strong> <span>{formatTime(item.duration)}</span></p>
@@ -249,12 +288,20 @@
 		</time-container>
 		<button-container>
 			{#if !liveproduction}
-				<button class="sync" on:click={syncSong.bind(this, item, index)}>
+				<button
+					class="sync"
+					on:click={() => {
+						syncSong(item, index);
+						if (!postproduction && $showLiveEpisodes && activateOnSync) {
+							updateValueBlock(item);
+						}
+					}}
+				>
 					<Refresh size="30" />
 					<p>Sync</p>
 				</button>
 			{:else}
-				<button on:click={updateValueBlock.bind(this, item, index)}>Use this value block</button>
+				<button on:click={updateValueBlock.bind(this, item)}>Activate Value Block</button>
 			{/if}
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
@@ -348,5 +395,27 @@
 		width: 55px;
 		text-align: center;
 		margin: 0 0 0 6px;
+	}
+
+	song-card.active {
+		background-color: rgba(233, 248, 255, 0.75);
+		box-shadow: 0px 0px 5px 0px rgba(0, 113, 166, 0.75);
+	}
+
+	active,
+	inactive {
+		display: flex;
+		height: 36px;
+		color: hsla(352, 100%, 33%, 1);
+		font-weight: bold;
+		align-items: center;
+	}
+
+	right-pane {
+		margin-left: 8px;
+		min-width: 160px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
 	}
 </style>

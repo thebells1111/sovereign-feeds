@@ -8,9 +8,11 @@
 	let selectedAlbum = {};
 	import AlbumCard from './AlbumCard.svelte';
 	import AudioItem from './AudioItem.svelte';
-
+	export let activeValueBlock = {};
 	export let syncedTime = 0;
+
 	let basePercent = 95;
+	let activateOnSync = true;
 
 	afterNavigate(({ from }) => {
 		setTimeout(() => searchInput.select(), 100);
@@ -67,8 +69,6 @@
 	}
 
 	function syncSong(song) {
-		console.log(song);
-
 		song.added = syncedTime;
 		$valueAudioItem = $valueAudioItem;
 	}
@@ -99,9 +99,14 @@
 				max="100"
 			/>% split
 		</label>
-		{#if $valueAudioItem?.length}
-			<AudioItem {syncSong} />
-		{/if}
+		<audio-items>
+			{#if $valueAudioItem?.length}
+				<AudioItem {syncSong} bind:activeValueBlock {activateOnSync} />
+			{/if}
+		</audio-items>
+		<label
+			><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
+		>
 	</playlist>
 </container>
 
@@ -143,10 +148,10 @@
 	}
 
 	playlist {
-		display: block;
+		display: flex;
 		grid-area: playlist;
-		overflow-y: auto;
-		overflow-x: hidden;
+		overflow: hidden;
+		flex-direction: column;
 	}
 
 	playlist label {
@@ -174,5 +179,12 @@
 
 	sync p {
 		margin: 8px;
+	}
+
+	audio-items {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		overflow: auto;
 	}
 </style>

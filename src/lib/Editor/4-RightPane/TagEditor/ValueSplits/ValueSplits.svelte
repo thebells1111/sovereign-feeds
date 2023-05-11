@@ -4,15 +4,16 @@
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
 	import LiveProduction from './LiveProduction.svelte';
-
 	import TimerButton from './TimerButton.svelte';
 	let viewer = 'pre';
+	let activeValueBlock = {};
 
-	afterUpdate(initializeAudioItem);
+	// afterUpdate(initializeAudioItem);
 
-	function initializeAudioItem() {
-		$valueAudioItem = $editingEpisode?.valueAudioItem || [];
-	}
+	// function initializeAudioItem() {
+	// 	console.log($editingEpisode);
+	// 	$valueAudioItem = $editingEpisode?.valueAudioItem || [];
+	// }
 
 	$: updateEditingEpisode($valueAudioItem);
 
@@ -44,27 +45,26 @@
 			viewer = 'pre';
 		}}>Pre Production</button
 	>
+	{#if $showLiveEpisodes}
+		<button class="primary live" on:click={() => (viewer = 'live')}>Live Production</button>
+	{/if}
 	<button
 		class="primary"
 		on:click={() => {
-			if ($showLiveEpisodes) {
-				viewer = 'live';
-			} else {
-				viewer = 'post';
-			}
-		}}>{$showLiveEpisodes ? 'Live' : 'Post'} Production</button
+			viewer = 'post';
+		}}>Post Production</button
 	>
 </button-container>
 <div>
 	{#if viewer === 'pre'}
-		<PreProduction bind:syncedTime />
+		<PreProduction bind:syncedTime bind:activeValueBlock />
 	{:else if viewer === 'post'}
 		<PostProdcution />
 	{:else if viewer === 'live'}
-		<LiveProduction bind:syncedTime />
+		<LiveProduction bind:syncedTime bind:activeValueBlock />
 	{/if}
 
-	<sync class:hidden={viewer === 'post'}>
+	<sync class:hidden={!$showLiveEpisodes && viewer === 'post'}>
 		<TimerButton onTimeUpdate={handleTimeUpdate} />
 		<p>Elapsed time: {formattedTime}</p>
 	</sync>
@@ -94,6 +94,19 @@
 			hsla(197, 100%, 43.7%, 1),
 			hsla(197, 100%, 26.7%, 1)
 		);
+	}
+
+	.live {
+		background-image: linear-gradient(to bottom, hsla(277, 100%, 33%, 1), hsla(277, 100%, 16%, 1));
+	}
+
+	sync {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding-top: 16px;
+		border-top: 1px solid var(--border-color);
 	}
 
 	.hidden {
