@@ -76,7 +76,6 @@
 
 <container>
 	<album-list>
-		<input bind:value={basePercent} type="number" />
 		<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
 		<list-container>
 			<ul>
@@ -104,9 +103,6 @@
 				<AudioItem {syncSong} bind:activeValueBlock {activateOnSync} />
 			{/if}
 		</audio-items>
-		<label
-			><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
-		>
 	</playlist>
 </container>
 

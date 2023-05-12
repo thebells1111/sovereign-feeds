@@ -1,6 +1,4 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
-	import io from 'socket.io-client';
 	import clone from 'just-clone';
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
@@ -10,24 +8,10 @@
 	export let liveproduction = false;
 	export let activeValueBlock = {};
 	export let activateOnSync = true;
+	export let isPCValue = true;
+	export let socket = undefined;
 
 	$: console.log(activeValueBlock);
-
-	let socket;
-
-	onMount(() => {
-		socket = io('http://localhost:8000');
-		socket.on('connect', () => {
-			console.log(`Connected with ID: ${socket.id}`);
-		});
-	});
-
-	onDestroy(() => {
-		if (socket) {
-			socket.disconnect();
-			console.log('Socket disconnected');
-		}
-	});
 
 	let sovereignSplit = 5;
 
@@ -96,7 +80,7 @@
 	};
 
 	function updateValueBlock(item) {
-		console.log(item);
+		isPCValue = false;
 		let baseBlock = updateSplits(
 			convertArray(
 				filterItemsWithAddress($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) ||
@@ -287,22 +271,19 @@
 			{/if}
 		</time-container>
 		<button-container>
-			{#if !liveproduction}
-				<button
-					class="sync"
-					on:click={() => {
-						syncSong(item, index);
-						if (!postproduction && $showLiveEpisodes && activateOnSync) {
-							updateValueBlock(item);
-						}
-					}}
-				>
-					<Refresh size="30" />
-					<p>Sync</p>
-				</button>
-			{:else}
-				<button on:click={updateValueBlock.bind(this, item)}>Activate Value Block</button>
-			{/if}
+			<button
+				class="sync"
+				on:click={() => {
+					syncSong(item, index);
+					if (!postproduction && $showLiveEpisodes && activateOnSync) {
+						updateValueBlock(item);
+					}
+				}}
+			>
+				<Refresh size="30" />
+				<p>Sync</p>
+			</button>
+
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
 				<Delete size="30" />

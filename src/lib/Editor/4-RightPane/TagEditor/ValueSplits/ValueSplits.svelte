@@ -1,19 +1,33 @@
 <script>
-	import { afterUpdate } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
+	import io from 'socket.io-client';
 	import { valueAudioItem, editingEpisode, showLiveEpisodes } from '$/editor';
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
 	import LiveProduction from './LiveProduction.svelte';
 	import TimerButton from './TimerButton.svelte';
-	let viewer = 'pre';
+	let viewer = $showLiveEpisodes ? 'live' : 'pre';
 	let activeValueBlock = {};
+	let liveView = 'albums';
+	let isPCValue = true;
+	let socket;
 
-	// afterUpdate(initializeAudioItem);
+	onMount(() => {
+		if ($showLiveEpisodes) {
+			socket = io('http://localhost:8000');
+			socket.on('connect', () => {
+				console.log(`Connected with ID: ${socket.id}`);
+			});
+		}
+		console.log(socket);
+	});
 
-	// function initializeAudioItem() {
-	// 	console.log($editingEpisode);
-	// 	$valueAudioItem = $editingEpisode?.valueAudioItem || [];
-	// }
+	onDestroy(() => {
+		if (socket) {
+			socket.disconnect();
+			console.log('Socket disconnected');
+		}
+	});
 
 	$: updateEditingEpisode($valueAudioItem);
 
@@ -36,17 +50,25 @@
 			.toString()
 			.padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${ms.toString().padStart(2, '0')}`;
 	}
+
+	function handlePCValue() {
+		liveView = 'valueBlock';
+		activeValueBlock = {};
+		isPCValue = true;
+		socket.emit('valueBlock', { useFeedValue: true });
+	}
 </script>
 
 <button-container>
-	<button
-		class="primary pre"
-		on:click={() => {
-			viewer = 'pre';
-		}}>Pre Production</button
-	>
 	{#if $showLiveEpisodes}
 		<button class="primary live" on:click={() => (viewer = 'live')}>Live Production</button>
+	{:else}
+		<button
+			class="primary pre"
+			on:click={() => {
+				viewer = 'pre';
+			}}>Pre Production</button
+		>
 	{/if}
 	<button
 		class="primary"
@@ -57,17 +79,28 @@
 </button-container>
 <div>
 	{#if viewer === 'pre'}
-		<PreProduction bind:syncedTime bind:activeValueBlock />
+		<PreProduction bind:syncedTime />
 	{:else if viewer === 'post'}
 		<PostProdcution />
 	{:else if viewer === 'live'}
-		<LiveProduction bind:syncedTime bind:activeValueBlock />
+		<LiveProduction
+			bind:syncedTime
+			bind:activeValueBlock
+			activeView={liveView}
+			bind:isPCValue
+			{socket}
+		/>
 	{/if}
 
-	<sync class:hidden={!$showLiveEpisodes && viewer === 'post'}>
-		<TimerButton onTimeUpdate={handleTimeUpdate} />
-		<p>Elapsed time: {formattedTime}</p>
-	</sync>
+	<bottom class:hidden={viewer === 'post'}>
+		<button class="primary pc-value" on:click={handlePCValue}
+			>Activate Podcaster's <br /> Value Block</button
+		>
+		<sync>
+			<TimerButton onTimeUpdate={handleTimeUpdate} />
+			<p>Elapsed time: {formattedTime}</p>
+		</sync>
+	</bottom>
 </div>
 
 <style>
@@ -100,16 +133,31 @@
 		background-image: linear-gradient(to bottom, hsla(277, 100%, 33%, 1), hsla(277, 100%, 16%, 1));
 	}
 
+	bottom {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 16px;
+		border-top: 1px solid var(--border-color);
+	}
 	sync {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		padding-top: 16px;
-		border-top: 1px solid var(--border-color);
+		margin-right: 8px;
+	}
+
+	bottom p {
+		padding: 0;
 	}
 
 	.hidden {
 		display: none;
+	}
+
+	.pc-value {
+		width: 200px;
+		height: 56px;
+		background-image: linear-gradient(to bottom, hsl(9, 100%, 44%), hsla(9, 100%, 26.7%, 1));
+		margin-left: 8px;
 	}
 </style>
