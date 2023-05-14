@@ -10,6 +10,9 @@
 	import AudioItem from './AudioItem.svelte';
 	export let activeValueBlock = {};
 	export let syncedTime = 0;
+	export let socket;
+	export let activeView = 'albums';
+	export let isPCValue = true;
 
 	let basePercent = 95;
 	let activateOnSync = true;
@@ -75,18 +78,63 @@
 </script>
 
 <container>
-	<album-list>
-		<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
-		<list-container>
-			<ul>
-				{#each filteredAlbumsList as album}
-					<li>
-						<AlbumCard {album} {basePercent} bind:selectedAlbum />
-					</li>
-				{/each}
-			</ul>
-		</list-container>
-	</album-list>
+	<left-pane>
+		<left-select>
+			<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button>
+			<button class="primary value" on:click={() => (activeView = 'valueBlock')}
+				>Show Value Block</button
+			>
+		</left-select>
+
+		<album-list class:hidden={activeView != 'albums'}>
+			<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
+			<list-container>
+				<ul>
+					{#each filteredAlbumsList as album}
+						<li>
+							<AlbumCard {album} {basePercent} bind:selectedAlbum />
+						</li>
+					{/each}
+				</ul>
+			</list-container>
+		</album-list>
+
+		<active-value class:hidden={activeView != 'valueBlock'}>
+			<h2>Active Value Block</h2>
+
+			{#if isPCValue}
+				Using Podcaster's Value Block
+			{:else if activeValueBlock.meta}
+				<active-meta>
+					<img src={activeValueBlock.meta.artwork} width="100" height="100" />
+					<info>
+						<p><b>Song: </b>{activeValueBlock.meta.song}</p>
+						<p><b>Artist: </b>{activeValueBlock.meta.author}</p>
+						<p><b>Album: </b>{activeValueBlock.meta.album}</p>
+					</info>
+				</active-meta>
+
+				<h3>Remote Value Block</h3>
+				<ul>
+					{#each activeValueBlock.remote || [] as item}
+						<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+					{/each}
+				</ul>
+
+				<h3>Podcaster's Value Block</h3>
+				<ul>
+					{#each activeValueBlock.base || [] as item}
+						<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+					{/each}
+				</ul>
+
+				<h3>SF Live</h3>
+				<ul>
+					<li>({activeValueBlock.sf.split}%) SF Live</li>
+				</ul>
+			{/if}
+		</active-value>
+	</left-pane>
 
 	<playlist>
 		<label>
@@ -100,9 +148,19 @@
 		</label>
 		<audio-items>
 			{#if $valueAudioItem?.length}
-				<AudioItem {syncSong} bind:activeValueBlock {activateOnSync} />
+				<AudioItem
+					{syncSong}
+					bind:activeValueBlock
+					{activateOnSync}
+					liveproduction="true"
+					bind:isPCValue
+					{socket}
+				/>
 			{/if}
 		</audio-items>
+		<label
+			><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
+		>
 	</playlist>
 </container>
 
@@ -112,7 +170,7 @@
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr;
 		gap: 0px 0px;
-		grid-template-areas: 'albums playlist';
+		grid-template-areas: 'left-pane playlist';
 		overflow: hidden;
 		flex: 1;
 	}
@@ -126,12 +184,17 @@
 		cursor: pointer;
 	}
 
+	left-pane {
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		grid-area: left-pane;
+		border-right: 1px solid var(--border-color);
+	}
 	album-list {
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		grid-area: albums;
-		border-right: 1px solid var(--border-color);
 	}
 
 	album-list input {
@@ -182,5 +245,32 @@
 		flex-direction: column;
 		flex: 1;
 		overflow: auto;
+	}
+
+	left-select {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	left-select button {
+		margin: 0 16px;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.album {
+		background-image: linear-gradient(
+			to bottom,
+			hsla(197, 100%, 43.7%, 1),
+			hsla(197, 100%, 26.7%, 1)
+		);
+	}
+
+	.value {
+		background-image: linear-gradient(to bottom, hsl(253, 100%, 44%), hsl(253, 100%, 26.7%));
 	}
 </style>

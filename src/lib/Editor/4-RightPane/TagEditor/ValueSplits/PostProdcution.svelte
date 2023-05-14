@@ -1,5 +1,5 @@
 <script>
-	import { editingEpisode, valueAudioItem } from '$/editor';
+	import { editingEpisode, valueAudioItem, showLiveEpisodes } from '$/editor';
 	import AudioItem from './AudioItem.svelte';
 	import Enclosure from '../EpisodeMetadata/components/Enclosure.svelte';
 	console.log($editingEpisode);
@@ -44,10 +44,12 @@
 	<audio-items>
 		<AudioItem postproduction={true} {syncSong} />
 	</audio-items>
-	<player>
-		<Enclosure />
-		<audio bind:this={player} src={$editingEpisode?.enclosure?.['@_url']} controls />
-	</player>
+	{#if !$showLiveEpisodes}
+		<player>
+			<Enclosure />
+			<audio bind:this={player} src={$editingEpisode?.enclosure?.['@_url']} controls />
+		</player>
+	{/if}
 </post-production>
 
 <style>

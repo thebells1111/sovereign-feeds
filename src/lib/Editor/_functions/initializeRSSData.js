@@ -103,6 +103,7 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:license'] = initializeLicenseTag($rssData['podcast:license']);
 
 	let $editingEpisode = get(editingEpisode);
+	console.log(JSON.parse(JSON.stringify($editingEpisode)))
 
 	//Episode
 	initializeEpisode($editingEpisode);

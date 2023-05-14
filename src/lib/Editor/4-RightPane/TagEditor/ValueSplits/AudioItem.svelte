@@ -1,12 +1,21 @@
 <script>
-	import { getContext } from 'svelte';
+	import clone from 'just-clone';
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
-	import { valueAudioItem } from '$/editor';
+	import { valueAudioItem, editingEpisode, rssData, showLiveEpisodes } from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
+	export let liveproduction = false;
+	export let activeValueBlock = {};
+	export let activateOnSync = true;
+	export let isPCValue = true;
+	export let socket = undefined;
 
-	const { updateValue } = getContext('newValueBlock');
+	$: console.log(activeValueBlock);
+
+	let sovereignSplit = 5;
+
+	
 
 	function formatTime(timeInSeconds) {
 		let totalMilliseconds = timeInSeconds * 1000;
@@ -71,27 +80,147 @@
 		item.added = h * 3600 + m * 60 + s + ms / 1000;
 		$valueAudioItem = $valueAudioItem;
 	};
+
+	function updateValueBlock(item) {
+		isPCValue = false;
+		let baseBlock = updateSplits(
+			convertArray(
+				filterItemsWithAddress($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) ||
+					filterItemsWithAddress($rssData?.['podcast:value']?.['podcast:valueRecipient'])
+			),
+			(100 - sovereignSplit) * (100 - item.split)
+		);
+
+		let remoteBlock = updateSplits(
+			item?.value?.destinations || [],
+			(100 - sovereignSplit) * item.split
+		);
+
+		function filterItemsWithAddress(array) {
+			let filtered = [].concat(array).filter((item) => {
+				return item['@_address'] !== '';
+			});
+			if (filtered.length < 1) {
+				return null;
+			}
+			return filtered;
+		}
+		function convertArray(inputArray) {
+			if (!inputArray) {
+				return null;
+			}
+
+			return inputArray.map((item) => {
+				let newItem = {};
+
+				if (item['@_name'] !== undefined) newItem.name = item['@_name'];
+				if (item['@_type'] !== undefined) newItem.type = item['@_type'];
+				else newItem.type = 'node';
+				if (item['@_address'] !== undefined) newItem.address = item['@_address'];
+				if (item['@_split'] !== undefined) newItem.split = parseInt(item['@_split'], 10) || 0;
+				if (item['@_customKey'] !== undefined) newItem.customKey = item['@_customKey'];
+				if (item['@_customValue'] !== undefined) newItem.customValue = item['@_customValue'];
+				if (item['@_fee'] !== undefined) newItem.fee = item['@_fee'];
+
+				return newItem;
+			});
+		}
+
+		let sovereignBlock = {
+			name: 'SF Live',
+			type: 'node',
+			address: '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3',
+			split: sovereignSplit,
+			customKey: '696969',
+			customValue: 'eChoVKtO1KujpAA5HCoB'
+		};
+
+		let newBlock = {
+			meta: item,
+			base: baseBlock || [],
+			remote: remoteBlock || [],
+			sf: sovereignBlock
+		};
+
+		activeValueBlock = newBlock;
+
+		let serverValueBlock = {
+			model: {
+				type: 'lightning',
+				method: 'keysend'
+			},
+			destinations: baseBlock.concat(remoteBlock).concat(sovereignBlock)
+		};
+		console.log(item);
+		let serverData = {
+			feedTitle: item.album,
+			feedGuid: item.albumGuid,
+			artwork: item.artwork,
+			author: item.author,
+			itemTitle: item.song,
+			itemGuid: item.songGuid,
+			value: serverValueBlock
+		};
+
+		socket.emit('valueBlock', serverData);
+	}
+
+	function updateSplits(array, remotePercentage) {
+		const newArray = [].concat(array);
+		let totalSplit = 0;
+		newArray.forEach((item) => {
+			if (item?.fee !== true && item?.fee !== 'true') {
+				totalSplit += item?.split;
+			}
+		});
+
+		let percentagedArray = clone(newArray).map((item) => {
+			if (item?.fee !== true && item?.fee !== 'true') {
+				item.split = ((item?.split / totalSplit) * remotePercentage) / 100;
+			}
+			return item;
+		});
+
+		return percentagedArray;
+	}
 </script>
 
 {#each $valueAudioItem as item, index}
-	<song-card>
+	<song-card
+		class:active={$showLiveEpisodes &&
+			activeValueBlock &&
+			activeValueBlock?.meta?._id === item?._id}
+	>
 		<top-container>
 			<song-info>
 				<p><strong>Song: </strong>{item.song}</p>
 				<p><strong>Artist: </strong>{item.author}</p>
 				<p><strong>Album: </strong>{item.album}</p>
 			</song-info>
-			<split>
-				<p>
-					Give
-					{#if postproduction}
-						<input type="number" bind:value={item.split} min="0" max="100" />
+			<right-pane>
+				{#if $showLiveEpisodes}
+					{#if activeValueBlock && activeValueBlock?.meta?._id === item?._id}
+						<active>Active</active>
 					{:else}
-						{item.split}
+						<inactive>
+							<button on:click={updateValueBlock.bind(this, item)}>Activate Value Block</button>
+						</inactive>
 					{/if}
-					% to this block
-				</p>
-			</split>
+				{/if}
+				<split>
+					<p>
+						Give
+						{#if postproduction || liveproduction}
+							<input type="number" bind:value={item.split} min="0" max="100" />
+						{:else}
+							{item.split}
+						{/if}
+						%
+						<br />
+						to this block
+					</p>
+				</split>
+			</right-pane>
 		</top-container>
 		<time-container>
 			<p><strong>Song Duration:</strong> <span>{formatTime(item.duration)}</span></p>
@@ -144,11 +273,22 @@
 			{/if}
 		</time-container>
 		<button-container>
-			<button class="sync" on:click={syncSong.bind(this, item, index)}>
+			<button
+				class="sync"
+				on:click={() => {
+					syncSong(item, index);
+					if (!postproduction && $showLiveEpisodes && activateOnSync) {
+						updateValueBlock(item);
+					}
+				}}
+			>
 				<Refresh size="30" />
 				<p>Sync</p>
 			</button>
+<<<<<<< HEAD
 			<button on:click={updateValue.bind(this, item)}>Send data</button>
+=======
+>>>>>>> aca2f118ddbae104e968bffbfcd966f5da9b4837
 
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
@@ -242,5 +382,27 @@
 		width: 55px;
 		text-align: center;
 		margin: 0 0 0 6px;
+	}
+
+	song-card.active {
+		background-color: rgba(233, 248, 255, 0.75);
+		box-shadow: 0px 0px 5px 0px rgba(0, 113, 166, 0.75);
+	}
+
+	active,
+	inactive {
+		display: flex;
+		height: 36px;
+		color: hsla(352, 100%, 33%, 1);
+		font-weight: bold;
+		align-items: center;
+	}
+
+	right-pane {
+		margin-left: 8px;
+		min-width: 160px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
 	}
 </style>

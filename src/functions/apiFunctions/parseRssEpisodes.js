@@ -5,7 +5,7 @@ import { decode } from 'html-entities';
 export async function getEpisodesFromURL(data) {
 	try {
 		const res = await fetch(data.feedUrl, {
-			headers: { 'User-Agent': 'CurioCaster/0.1' }
+			headers: { 'User-Agent': 'SovereignFeeds/0.1' }
 		});
 		const feed = await res.text();
 		if (!feed.includes('<rss')) throw new Error('Not XML');
