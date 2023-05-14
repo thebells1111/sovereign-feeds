@@ -60,12 +60,10 @@ export default async function initializeRSSData(data) {
 		$rssData['podcast:liveItem'] = [clone(blankLiveItem)];
 	}
 	liveEpisodes.set(
-		clone(
 			$rssData['podcast:liveItem'].map((v) => {
 				v.sfID = uid();
 				return v;
-			})
-		)
+			})		
 	);
 	let episodes = get(regularEpisodes);
 	let maxEps = savedData?.maxEpisodes || 1000;

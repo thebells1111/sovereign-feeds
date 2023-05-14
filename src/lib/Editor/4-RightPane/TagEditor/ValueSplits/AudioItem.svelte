@@ -15,8 +15,6 @@
 
 	let sovereignSplit = 5;
 
-	
-
 	function formatTime(timeInSeconds) {
 		let totalMilliseconds = timeInSeconds * 1000;
 		let hours = Math.floor(timeInSeconds / 3600);
@@ -285,10 +283,6 @@
 				<Refresh size="30" />
 				<p>Sync</p>
 			</button>
-<<<<<<< HEAD
-			<button on:click={updateValue.bind(this, item)}>Send data</button>
-=======
->>>>>>> aca2f118ddbae104e968bffbfcd966f5da9b4837
 
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>

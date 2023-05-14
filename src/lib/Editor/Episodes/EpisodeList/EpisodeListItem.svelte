@@ -54,7 +54,6 @@
 		$editingEpisode = $showLiveEpisodes
 			? $liveEpisodes.find((v) => v.sfID === episode.sfID)
 			: $regularEpisodes.find((v) => v.sfID === episode.sfID);
-		console.log($editingEpisode);
 		$editingIndex = episodeIndex;
 		initializeEpisode($editingEpisode, $showLiveEpisodes ? 'live' : null);
 

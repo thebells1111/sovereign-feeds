@@ -14,7 +14,6 @@ import initializeValueTimeSplit from './initialize/valueTimeSplit';
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups, valueAudioItem } from '$/editor';
 
 export default async function initializeEpisode(episode, type) {
-	console.log(episode);
 	episode['itunes:image'] = initializeItunesImageTag(episode);
 	episode['podcast:person'] = initializePersonTag(episode?.['podcast:person']);
 	episode['podcast:socialInteract'] = initializeSocialInteractTag(
@@ -43,11 +42,5 @@ export default async function initializeEpisode(episode, type) {
 		episode['@_status'] = episode['@_status'] || 'pending';
 		episode['@_status'] = episode['@_status'].toLowerCase();
 		episode['@_start'] = initializeLiveTime(episode);
-	}
-	console.log(episode);
-
-	function initializeAudioItem() {
-		console.log($editingEpisode);
-		$valueAudioItem = $editingEpisode?.valueAudioItem || [];
-	}
+	}	
 }

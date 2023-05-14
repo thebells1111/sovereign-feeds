@@ -84,8 +84,10 @@
 
 		$rightPane = 'episodeMetadata';
 		if (podcast.rss) {
+			console.log(podcast);
 			$xmlJson = podcast.xml;
 			await initializeRSSData(podcast.rss);
+			console.log(podcast.rss);
 			$selectedPodcast.rss = $rssData;
 		} else if (!fromChapters) {
 			syncWithFeed(podcast);

@@ -4,7 +4,6 @@
 
 	function handleHourInput() {}
 	function handleMinuteInput() {}
-	$: console.log($editingEpisode);
 </script>
 
 {#if $editingEpisode?.['@_start']?.duration?.hour}

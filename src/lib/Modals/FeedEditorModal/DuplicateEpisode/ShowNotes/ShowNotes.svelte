@@ -19,8 +19,6 @@
 
 	onMount(setupMCE);
 	onDestroy(destroyMCE);
-
-	$: console.log($editingEpisode);
 </script>
 
 {#if $rssData}

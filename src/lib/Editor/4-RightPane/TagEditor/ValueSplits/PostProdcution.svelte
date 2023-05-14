@@ -2,7 +2,6 @@
 	import { editingEpisode, valueAudioItem, showLiveEpisodes } from '$/editor';
 	import AudioItem from './AudioItem.svelte';
 	import Enclosure from '../EpisodeMetadata/components/Enclosure.svelte';
-	console.log($editingEpisode);
 	let player;
 
 	// function syncSong(song, index) {

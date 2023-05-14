@@ -6,28 +6,28 @@
 	import PostProdcution from './PostProdcution.svelte';
 	import LiveProduction from './LiveProduction.svelte';
 	import TimerButton from './TimerButton.svelte';
-	let viewer = $showLiveEpisodes ? 'live' : 'pre';
 	let activeValueBlock = {};
 	let liveView = 'albums';
 	let isPCValue = true;
 	let socket;
 
-	onMount(() => {
-		if ($showLiveEpisodes) {
-			socket = io('http://localhost:8000');
-			socket.on('connect', () => {
-				console.log(`Connected with ID: ${socket.id}`);
-			});
-		}
-		console.log(socket);
-	});
+	$: viewer = $showLiveEpisodes ? 'live' : 'pre';
 
-	onDestroy(() => {
-		if (socket) {
-			socket.disconnect();
-			console.log('Socket disconnected');
+	$: socketConnect($showLiveEpisodes);
+
+	function socketConnect($showLiveEpisodes) {
+		if ($showLiveEpisodes) {
+			socket = io('https://curiohoster.com', { withCredentials: true });
+			socket.on('connect', () => {
+				console.log(`Socket connected with ID: ${socket.id}`);
+			});
+		} else {
+			if (socket) {
+				socket.disconnect();
+				console.log('Socket disconnected');
+			}
 		}
-	});
+	}
 
 	$: updateEditingEpisode($valueAudioItem);
 

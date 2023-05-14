@@ -9,7 +9,6 @@
 	let podcastValueBlock = $rssData?.['podcast:value']?.['podcast:valueRecipient'];
 
 	function addRecipient() {
-		console.log($editingEpisode?.['podcast:value']);
 		let block = $editingEpisode?.['podcast:value'] || clone(blankValue);
 		if (!block['podcast:valueRecipient'][0]) {
 			block['podcast:valueRecipient'][0] = {

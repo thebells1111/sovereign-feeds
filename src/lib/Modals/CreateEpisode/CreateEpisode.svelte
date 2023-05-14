@@ -111,7 +111,6 @@
 		$editingEpisode = descendingTypes.includes($rssData?.['podcast:medium'])
 			? $episodesList[$episodesList.length - 1]
 			: $episodesList[0];
-		console.log($editingEpisode);
 
 		if (type === 'clean' || $showLiveEpisodes) {
 			$showNewEditor = true;
