@@ -1,6 +1,7 @@
 <script>
 	import { selectedPodcast } from '$/editor';
 	import { loggedIn } from '$/stores';
+	import DigitalOceanHooks from './DigitalOceanHooks.svelte';
 
 	import Explainer from './Explainer.svelte';
 	import ServerHooks from './ServerHooks.svelte';
@@ -12,6 +13,7 @@
 
 <div class="webhook-container">
 	{#if $loggedIn}
+		<DigitalOceanHooks bind:showSaved />
 		{#if $selectedPodcast.title}
 			<ServerHooks bind:showSaved />
 			<Explainer />

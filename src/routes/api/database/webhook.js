@@ -38,6 +38,7 @@ export const post = async (req) => {
 		if (token && title) {
 			const collection = await getCollection('users');
 			decode = jwt.verify(token, JWT);
+			console.log(decode)
 			let update = {
 				webhookLink: webhookLink,
 				webhookSecret: webhookSecret,

@@ -1,5 +1,4 @@
 <script>
-	import clone from '$functions/clone';
 	import ImageLoader from '$lib/Loaders/ImageLoader.svelte';
 	import SubscriptionContextMenu from './SubscriptionContextMenu.svelte';
 	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
@@ -14,7 +13,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 
-	import { devMode, serverUrl, showMobile, loggedIn } from '$/stores';
+	import { devMode, serverUrl, showMobile } from '$/stores';
 
 	import {
 		podcastList,
@@ -31,8 +30,6 @@
 		newEditorScreen,
 		expandPodcastList,
 		currentPage,
-		webhookLink,
-		webhookSecret,
 		digitalOceanEnabled
 	} from '$/editor';
 
@@ -45,9 +42,6 @@
 
 	onMount(async () => {
 		$podcastList = (await editorDB.getItem('favorites')) || [];
-		if (devMode) {
-			$podcastList = $podcastList.concat(testFeed);
-		}
 	});
 
 	function fetchDOEnabled(podcast) {
@@ -65,7 +59,7 @@
 
 	async function getPodcast(podcast) {
 		console.log(podcast);
-		// fetchDOEnabled(podcast);
+		fetchDOEnabled(podcast);
 		console.log($episodesList);
 		$currentPage = 'episodes';
 

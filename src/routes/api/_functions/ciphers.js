@@ -10,9 +10,12 @@ if (!process.env.JWT) {
 
 const { JWT } = process.env;
 
+console.log('JWT: ', JWT)
+
 export async function encrypt(text) {
 	console.log(text);
 	let key = JWT;
+	console.log('key: ', key)
 	if (!text) return;
 	try {
 		let iv = crypto.randomBytes(IV_LENGTH);
