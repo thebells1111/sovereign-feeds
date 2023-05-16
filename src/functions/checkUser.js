@@ -6,6 +6,11 @@ export default async function checkUser() {
 		let response = await fetch(serverUrl + `verify-token`, {
 			credentials: 'include'
 		});
+		let res = await fetch(`https://curiohoster.com/api/verify-token`, {
+			credentials: 'include'
+		});
+		let d = await res.json();
+		console.log(d);
 		console.log(response);
 		if (response.status === 200) {
 			let data = await response.json();

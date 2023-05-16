@@ -25,7 +25,6 @@
 	async function sendEmail() {
 		try {
 			successMsg = "E-mail is on it's way!!!";
-			listenForSignin();
 			if (validateEmail(email)) {
 				let data = { type: 'signin', email: email };
 				let response = await fetch(window.location.origin + `/api/sendemail`, {
