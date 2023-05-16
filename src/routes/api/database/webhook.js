@@ -38,7 +38,7 @@ export const post = async (req) => {
 		if (token && title) {
 			const collection = await getCollection('users');
 			decode = jwt.verify(token, JWT);
-			console.log(decode)
+			console.log(decode);
 			let update = {
 				webhookLink: webhookLink,
 				webhookSecret: webhookSecret,
@@ -66,27 +66,8 @@ export const post = async (req) => {
 				{ upsert: true }
 			);
 
-			const newToken = jwt.sign(
-				{
-					email: decode.email
-					// webhookLink: webhookLink,
-					// webhookSecret: webhookSecret
-				},
-				JWT,
-				{
-					expiresIn: '10d'
-				}
-			);
-
 			return {
 				status: 200,
-				headers: {
-					'set-cookie': [
-						`ss=${newToken}; Max-Age=${10 * 24 * 60 * 60}; httpOnly; path=/; sameSite=Strict;  ${
-							process.env.NODE_ENV === 'development' ? '' : 'secure'
-						}`
-					]
-				},
 				body: {
 					status: 'success',
 					user: {
@@ -100,13 +81,6 @@ export const post = async (req) => {
 		console.log(error);
 		return {
 			status: 200,
-			// headers: {
-			// 	'set-cookie': [
-			// 		`ss=""; Max-Age=0; httpOnly; path=/; sameSite=Strict;  ${
-			// 			process.env.NODE_ENV === 'development' ? '' : 'secure'
-			// 		}`
-			// 	]
-			// },
 			body: {
 				status: 'fail',
 				memo: 'user not found'

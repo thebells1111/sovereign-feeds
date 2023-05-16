@@ -10,12 +10,12 @@ if (!process.env.JWT) {
 
 const { JWT } = process.env;
 
-console.log('JWT: ', JWT)
+console.log('JWT: ', JWT);
 
 export async function encrypt(text) {
 	console.log(text);
 	let key = JWT;
-	console.log('key: ', key)
+	console.log('key: ', key);
 	if (!text) return;
 	try {
 		let iv = crypto.randomBytes(IV_LENGTH);
@@ -34,18 +34,19 @@ export async function encrypt(text) {
 
 export async function decrypt(text) {
 	let key = JWT;
+	if (text) {
+		try {
+			let iv = Buffer.from(text.slice(0, 32), 'hex');
+			let encryptedText = Buffer.from(text.slice(32), 'hex');
+			let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key), iv);
+			let decrypted = decipher.update(encryptedText);
 
-	try {
-		let iv = Buffer.from(text.slice(0, 32), 'hex');
-		let encryptedText = Buffer.from(text.slice(32), 'hex');
-		let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key), iv);
-		let decrypted = decipher.update(encryptedText);
+			decrypted = Buffer.concat([decrypted, decipher.final()]);
 
-		decrypted = Buffer.concat([decrypted, decipher.final()]);
-
-		return decrypted.toString();
-	} catch (err) {
-		console.log(err);
-		return;
+			return decrypted.toString();
+		} catch (err) {
+			console.log(err);
+			return;
+		}
 	}
 }

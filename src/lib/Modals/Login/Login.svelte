@@ -1,12 +1,10 @@
 <script>
-	import checkUser from '$functions/checkUser';
 	import { fade } from 'svelte/transition';
 	let card;
 	let errorMsg = '';
 	let successMsg = '';
 
-	import { showLogin, loggedIn } from '$/stores';
-	import { user } from '$/editor';
+	import { showLogin } from '$/stores';
 
 	let email = '';
 
@@ -46,17 +44,6 @@
 		} catch (err) {
 			console.log(err);
 		}
-	}
-
-	function listenForSignin() {
-		window.addEventListener('storage', async (event) => {
-			if (event.key === 'validated') {
-				window.localStorage.removeItem('validated');
-				$loggedIn = true;
-				$showLogin = false;
-				$user = (await checkUser()) || {};
-			}
-		});
 	}
 
 	function handleKeypress(e) {

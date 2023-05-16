@@ -26,7 +26,7 @@ export const post = async (req) => {
 			from: from, // sender address
 			to: email,
 			subject: 'Sovereign Feeds Sign In Request', // Subject line
-			html: `<a href="${MAIL_LINK}api/verify-token?token=${token}">Click here to sign in to your Sovereign Feeds account.</a>` // plain text body
+			html: `<a href="${MAIL_LINK}verify-token?token=${token}">Click here to sign in to your Sovereign Feeds account.</a>` // plain text body
 		};
 
 		let info = await transporter.sendMail(mailOptions);

@@ -42,5 +42,6 @@ export default async function initializeEpisode(episode, type) {
 		episode['@_status'] = episode['@_status'] || 'pending';
 		episode['@_status'] = episode['@_status'].toLowerCase();
 		episode['@_start'] = initializeLiveTime(episode);
-	}	
+		episode['@_liveValueLink'] = episode['@_liveValueLink'] || '';
+	}
 }

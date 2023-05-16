@@ -3,7 +3,7 @@ import { loggedIn, serverUrl } from '$/stores';
 //this is to get the senderID and store it as a cookie
 export default async function checkUser() {
 	try {
-		let response = await fetch(serverUrl + `database/checkuser?app=sf&&${new Date().getTime()}`, {
+		let response = await fetch(serverUrl + `verify-token`, {
 			credentials: 'include'
 		});
 		console.log(response);

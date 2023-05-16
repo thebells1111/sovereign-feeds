@@ -1,69 +1,65 @@
+import { getCollection } from './database/_db/connect';
+import cookie from 'cookie';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const { JWT } = process.env;
 
+const MAX_AGE = 10 * 24 * 60 * 60;
+
+const createCookie = (name, value, maxAge) =>
+	`${name}=${value}; Max-Age=${maxAge}; httpOnly; path=/; sameSite=Strict;  ${
+		process.env.NODE_ENV === 'development' ? '' : 'secure'
+	}`;
+
 export const get = async (request) => {
 	try {
-		let response;
+		const cookies = cookie.parse(request.headers.cookie || '');
+		let token = request.url.searchParams.get('token') || cookies.ss;
+		const collection = await getCollection('users');
 
-		const token = request.url.searchParams.get('token');
-		let decode;
-		try {
-			decode = jwt.verify(token, JWT);
-		} catch (error) {
+		if (!token) {
 			return {
 				status: 401,
-				body: `<html>			
-				<body>
-					<p>Invalid Token. Your token may have expired. Please enter try entering your email again.</p>      
-				</body>
-				</html>
-				`
+				headers: {
+					'set-cookie': [createCookie('ss', newToken, 0)]
+				},
+				body: { status: 'fail', message: 'invalid token' }
 			};
 		}
 
-		if (decode) {
-			console.log(decode);
-
-			if (decode.email) {
-				const newToken = jwt.sign({ email: decode.email }, JWT, { expiresIn: '10d' });
-				response = `<html>
-			<head>
-				<script>  
-					window.localStorage.setItem('validated', 'validated');
-				</script>
-			</head>
-			<body>
-				<p>Your email has been validated. You can close this tab.</p>      
-			</body>
-			</html>
-			`;
-
-				return {
-					status: 200,
-					headers: {
-						'set-cookie': [
-							`ss=${newToken}; Max-Age=${
-								10 * 24 * 60 * 60 * 1000
-							}; httpOnly; path=/; sameSite=Strict;  ${
-								process.env.NODE_ENV === 'development' ? '' : 'secure'
-							}`
-						]
-					},
-					body: response
-				};
-			} else {
-				return {
-					status: 401,
-					body: 'Invalid Email'
-				};
+		try {
+			const decode = jwt.verify(token, JWT);
+			const { email, valueGuid } = decode;
+			let user = await collection.findOne({ email });
+			if (!user) {
+				user = { email, validatedFeeds: [] };
+				await collection.insertOne(user);
 			}
-		} else {
+			const newToken = jwt.sign({ email, valueGuid }, JWT, { expiresIn: '10d' });
+			return {
+				status: 200,
+				headers: {
+					'set-cookie': [createCookie('ss', newToken, MAX_AGE)]
+				},
+				body: {
+					status: 'success',
+					user: {
+						email: user.email,
+						validatedFeeds: user.validatedFeeds
+					}
+				}
+			};
+		} catch (error) {
+			console.log(error);
 			return {
 				status: 401,
-				body: 'Unauthorized Access'
+				headers: {
+					'set-cookie': [createCookie('ss', newToken, 0)]
+				},
+				body: { status: 'fail', message: 'invalid token' }
 			};
 		}
 	} catch (err) {

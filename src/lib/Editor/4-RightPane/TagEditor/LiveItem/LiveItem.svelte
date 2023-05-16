@@ -7,6 +7,7 @@
 	import ContentLink from './ContentLink.svelte';
 	import Chat from './Chat.svelte';
 	import { rssData, editingEpisode, rightPane } from '$/editor';
+	import LiveValueLink from './LiveValueLink.svelte';
 </script>
 
 <div>
@@ -17,6 +18,7 @@
 		<LiveStart />
 		<Duration />
 		<Chat />
+		<LiveValueLink />
 		<ContentLink />
 
 		<p>

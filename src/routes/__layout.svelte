@@ -9,6 +9,9 @@
 	import { user, showNewEditor, showBuildingRSS, licenses } from '$/editor';
 	import { showLogin, showMobile } from '$/stores';
 	import BuildingRss from '$lib/Modals/BuildingRSS/BuildingRSS.svelte';
+	import { page } from '$app/stores';
+
+	const token = $page.url.searchParams.get('token');
 
 	onMount(async () => {
 		getUser();
@@ -67,7 +70,7 @@
 	});
 
 	async function getUser() {
-		$user = (await checkUser()) || {};
+		$user = token ? {} : (await checkUser()) || {};
 	}
 </script>
 

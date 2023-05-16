@@ -3,30 +3,30 @@
 	import { selectTextOnFocus } from '$functions/inputActions';
 </script>
 
-{#if $editingEpisode?.['podcast:contentLink']?.['#text']}
-<div class="content-link">
-	<h3>Content Link:</h3>
-	<p>alternate site to listen live if player doesn't support Live</p>
-	<div class="input-container">
-		<label>
-			<h4>User Message:</h4>
-			<input
-				type="text"
-				bind:value={$editingEpisode['podcast:contentLink']['#text']}
-				use:selectTextOnFocus
-				placeholder="Listen Live Here"
-			/>
-		</label>
-		<h4>URL:</h4>
-		<label>
-			<input
-				type="text"
-				bind:value={$editingEpisode['podcast:contentLink']['@_href']}
-				use:selectTextOnFocus
-			/>
-		</label>
+{#if $editingEpisode?.['podcast:contentLink'].hasOwnProperty('#text')}
+	<div class="content-link">
+		<h3>Content Link:</h3>
+		<p>alternate site to listen live if player doesn't support Live</p>
+		<div class="input-container">
+			<label>
+				<h4>User Message:</h4>
+				<input
+					type="text"
+					bind:value={$editingEpisode['podcast:contentLink']['#text']}
+					use:selectTextOnFocus
+					placeholder="Listen Live Here"
+				/>
+			</label>
+			<h4>URL:</h4>
+			<label>
+				<input
+					type="text"
+					bind:value={$editingEpisode['podcast:contentLink']['@_href']}
+					use:selectTextOnFocus
+				/>
+			</label>
+		</div>
 	</div>
-</div>
 {/if}
 
 <style>
