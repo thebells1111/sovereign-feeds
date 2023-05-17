@@ -1,7 +1,6 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
 	import io from 'socket.io-client';
-	import { valueAudioItem, editingEpisode, showLiveEpisodes } from '$/editor';
+	import { valueAudioItem, editingEpisode, showLiveEpisodes, remoteServerUrl } from '$/editor';
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
 	import LiveProduction from './LiveProduction.svelte';
@@ -17,7 +16,7 @@
 
 	function socketConnect($showLiveEpisodes) {
 		if ($showLiveEpisodes) {
-			socket = io('https://curiohoster.com', { withCredentials: true });
+			socket = io(remoteServerUrl, { withCredentials: true });
 			socket.on('connect', () => {
 				console.log(`Socket connected with ID: ${socket.id}`);
 			});
