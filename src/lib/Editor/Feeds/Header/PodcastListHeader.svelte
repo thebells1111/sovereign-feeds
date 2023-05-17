@@ -1,6 +1,5 @@
 <script>
-	import { podcastSearchResults } from '$/editor';
-	import { serverUrl } from '$/stores';
+	import { podcastSearchResults, remoteServerUrl } from '$/editor';
 
 	let filterText = '';
 	let alignTextLeft = false;
@@ -16,7 +15,8 @@
 				title: ''
 			});
 
-			let url = serverUrl + `queryindex?q=${encodeURIComponent(`search/byterm?q=${text}`)}`;
+			let url =
+				remoteServerUrl + `/api/queryindex?q=${encodeURIComponent(`search/byterm?q=${text}`)}`;
 
 			console.log(url);
 

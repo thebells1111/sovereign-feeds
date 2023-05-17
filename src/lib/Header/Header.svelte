@@ -1,6 +1,8 @@
 <script>
 	import { showLogin, loggedIn, serverUrl, showMobile } from '$/stores';
 
+	import { remoteServerUrl } from '$/editor';
+
 	import { goto } from '$app/navigation';
 
 	import { user } from '$/editor';
@@ -8,11 +10,9 @@
 	let showMenu = false;
 
 	async function signout() {
-		let response = await fetch(serverUrl + `signout?` + new Date().getTime());
+		let response = await fetch(remoteServerUrl + `/api/sf/signout?` + new Date().getTime());
 		if (response.status === 200) {
-			if (!$showMobile) {
-				goto('/');
-			}
+			goto('/');
 			$user = null;
 			$loggedIn = false;
 		}

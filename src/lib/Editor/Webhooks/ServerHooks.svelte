@@ -1,30 +1,16 @@
 <script>
-	import { podcastList, selectedPodcast } from '$/editor';
-
-	import { onMount } from 'svelte';
-	console.log($podcastList);
-
-	let chapterLink;
-	let chapterSecret;
-	let webhookLink;
-	let webhookSecret;
+	import { selectedPodcast } from '$/editor';
 	export let showSaved = false;
+	export let webHooks = {};
 
 	async function save() {
-		let data = {
-			webhookLink: webhookLink,
-			webhookSecret: webhookSecret,
-			title: $selectedPodcast.title,
-			chapterLink: chapterLink,
-			chapterSecret: chapterSecret
-		};
-		let res = await fetch('/api/database/webhook', {
+		let res = await fetch('/api/database/webhook?title=' + $selectedPodcast.title, {
 			credentials: 'include',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(data)
+			body: JSON.stringify(webHooks)
 		});
 		let webhookData = await res.json();
 		showSaved = true;
@@ -32,31 +18,16 @@
 			showSaved = false;
 		}, 500);
 	}
-	onMount(async () => {
-		handleSelect($selectedPodcast);
-	});
-
-	function handleSelect() {
-		fetch(`/api/database/webhook?title=${$selectedPodcast.title}`).then((res) =>
-			res.json().then((data) => {
-				console.log(data);
-				webhookLink = data?.webhooks?.webhookLink;
-				webhookSecret = data?.webhooks?.webhookSecret;
-				chapterLink = data?.webhooks?.chapterLink;
-				chapterSecret = data?.webhooks?.chapterSecret;
-			})
-		);
-	}
 
 	let expand = true;
 </script>
 
 <h2>Webhooks</h2>
 <div class="input-container" class:expand>
-	<label>Webhook Link <input type="text" bind:value={webhookLink} /></label>
-	<label>Webhook Secret <input type="text" bind:value={webhookSecret} /></label>
-	<label>Chapter Link <input type="text" bind:value={chapterLink} /></label>
-	<label>Chapter Secret <input type="text" bind:value={chapterSecret} /></label>
+	<label>Webhook Link <input type="text" bind:value={webHooks.webhookLink} /></label>
+	<label>Webhook Secret <input type="text" bind:value={webHooks.webhookSecret} /></label>
+	<label>Chapter Link <input type="text" bind:value={webHooks.chapterLink} /></label>
+	<label>Chapter Secret <input type="text" bind:value={webHooks.chapterSecret} /></label>
 	<button class="primary" on:click={save}>Save</button>
 </div>
 

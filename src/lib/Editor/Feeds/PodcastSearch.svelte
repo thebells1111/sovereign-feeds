@@ -13,10 +13,11 @@
 		xmlJson,
 		editingEpisode,
 		currentPage,
-		digitalOceanEnabled
+		digitalOceanEnabled,
+		remoteServerUrl
 	} from '$/editor';
 
-	import { serverUrl, showMobile } from '$/stores';
+	import { showMobile } from '$/stores';
 	import { goto } from '$app/navigation';
 	export let fromChapters;
 
@@ -39,9 +40,9 @@
 		fetchDOEnabled(podcast);
 		$currentPage = 'episodes';
 		let urls = [
-			serverUrl + `queryindex?q=podcasts/byfeedid?id=` + podcast.id,
-			serverUrl +
-				`queryindex?q=episodes/byfeedid?` +
+			remoteServerUrl + `/api/queryindex?q=podcasts/byfeedid?id=` + podcast.id,
+			remoteServerUrl +
+				`/api/queryindex?q=episodes/byfeedid?` +
 				encodeURIComponent(`id=${podcast.id}&max=1000&fulltext`)
 		];
 		Promise.all(urls.map((url) => fetch(url).then((response) => response.json()))).then((data) => {

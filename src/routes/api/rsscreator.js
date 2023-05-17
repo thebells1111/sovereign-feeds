@@ -7,7 +7,7 @@ export const get = async (request) => {
 		let url = request.url.searchParams.get('url');
 		console.log(url);
 		const response = await fetch(url, {
-			'User-Agent': 'CurioCaster'
+			'User-Agent': 'SovereignFeeds'
 		});
 		const feed = (await response.text()) || {};
 

@@ -5,7 +5,7 @@
 	export let errorImg;
 	let img;
 
-	import { proxy } from '$/stores';
+	import { proxy } from '$/editor';
 
 	$: if (src && img) {
 		styleImage();

@@ -1,61 +1,31 @@
 <script>
-	import { podcastList, selectedPodcast, newEditorScreen, digitalOceanEnabled } from '$/editor';
-
-	import { onMount } from 'svelte';
+	import { selectedPodcast, newEditorScreen, digitalOceanEnabled } from '$/editor';
 
 	export let showArrow = true;
 	export let showSaved = false;
-
-	let DO_BUCKET;
-	let DO_ENDPOINT;
-	let DO_ACCESS_KEY;
-	let DO_SECRET_KEY;
-	let DO_ENABLED = !showArrow;
+	export let webHooks;
 
 	async function save() {
-		let data = {
-			DO_BUCKET: DO_BUCKET,
-			DO_ENDPOINT: DO_ENDPOINT,
-			title: $selectedPodcast.title,
-			DO_ACCESS_KEY: DO_ACCESS_KEY,
-			DO_SECRET_KEY: DO_SECRET_KEY,
-			DO_ENABLED: DO_ENABLED
-		};
-		let res = await fetch('/api/database/webhook', {
+		let res = await fetch('/api/database/webhook?title=' + $selectedPodcast.title, {
 			credentials: 'include',
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(data)
+			body: JSON.stringify(webHooks)
 		});
-		let webhookData = await res.json();
-		$digitalOceanEnabled = DO_ENABLED && DO_BUCKET && DO_ENDPOINT && DO_ACCESS_KEY && DO_SECRET_KEY;
+		let webhooks = await res.json();
+		$digitalOceanEnabled =
+			webHooks.DO_ENABLED &&
+			webHooks.DO_BUCKET &&
+			webHooks.DO_ENDPOINT &&
+			webHooks.DO_ACCESS_KEY &&
+			webHooks.DO_SECRET_KEY;
 		$newEditorScreen = 'typeSelect';
 		showSaved = true;
 		setTimeout(() => {
 			showSaved = false;
 		}, 500);
-	}
-	onMount(async () => {
-		if (showArrow) {
-			handleSelect($selectedPodcast);
-		}
-	});
-
-	function handleSelect() {
-		if ($selectedPodcast.title) {
-			fetch(`/api/database/webhook?title=${$selectedPodcast.title}`).then((res) =>
-				res.json().then((data) => {
-					console.log(data);
-					DO_BUCKET = data?.webhooks?.DO_BUCKET;
-					DO_ENDPOINT = data?.webhooks?.DO_ENDPOINT;
-					DO_ACCESS_KEY = data?.webhooks?.DO_ACCESS_KEY;
-					DO_SECRET_KEY = data?.webhooks?.DO_SECRET_KEY;
-					DO_ENABLED = data?.webhooks?.DO_ENABLED;
-				})
-			);
-		}
 	}
 
 	let expand = !showArrow;
@@ -76,14 +46,19 @@
 	<label class="enable">
 		<input
 			type="checkbox"
-			checked={DO_ENABLED}
-			on:change={(e) => (DO_ENABLED = e.target.checked)}
+			checked={webHooks.DO_ENABLED}
+			on:change={(e) => (webHooks.DO_ENABLED = e.target.checked)}
 		/>Enable Digital Ocean
 	</label>
-	<label>Digital Ocean Spaces Bucket <input type="text" bind:value={DO_BUCKET} /></label>
-	<label>Digital Ocean Spaces Endpoint<input type="text" bind:value={DO_ENDPOINT} /></label>
-	<label>Digital Ocean Spaces Access Key<input type="text" bind:value={DO_ACCESS_KEY} /></label>
-	<label>Digital Ocean Spaces Secret Key<input type="text" bind:value={DO_SECRET_KEY} /></label>
+	<label>Digital Ocean Spaces Bucket <input type="text" bind:value={webHooks.DO_BUCKET} /></label>
+	<label>Digital Ocean Spaces Endpoint<input type="text" bind:value={webHooks.DO_ENDPOINT} /></label
+	>
+	<label
+		>Digital Ocean Spaces Access Key<input type="text" bind:value={webHooks.DO_ACCESS_KEY} /></label
+	>
+	<label
+		>Digital Ocean Spaces Secret Key<input type="text" bind:value={webHooks.DO_SECRET_KEY} /></label
+	>
 	<button class="primary" on:click={save}>Save</button>
 </div>
 

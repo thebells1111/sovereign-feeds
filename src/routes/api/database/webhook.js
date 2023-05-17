@@ -10,6 +10,7 @@ const { JWT } = process.env;
 export const post = async (req) => {
 	try {
 		const body = typeof req.body === 'object' ? req.body : JSON.parse(req.body);
+		let title = req.url.searchParams.get('title').split('.').join('ENCODE_DOT');
 		let webhookLink = body.webhookLink;
 		let webhookSecret = body.webhookSecret;
 		let chapterLink = body.chapterLink;
@@ -29,7 +30,6 @@ export const post = async (req) => {
 		DO_ACCESS_KEY = await encrypt(DO_ACCESS_KEY);
 		DO_SECRET_KEY = await encrypt(DO_SECRET_KEY);
 
-		let title = body.title.split('.').join('ENCODE_DOT');
 		let decode;
 
 		const cookies = cookie.parse(req.headers.cookie || '');

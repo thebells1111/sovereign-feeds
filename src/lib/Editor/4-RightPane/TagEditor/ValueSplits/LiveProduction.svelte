@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
-	import { valueAlbumList, valueAudioItem } from '$/editor';
+	import { valueAlbumList, valueAudioItem, remoteServerUrl } from '$/editor';
 	let searchQuery = '';
 	let searchInput;
 	let filteredAlbumsList = [];
@@ -52,9 +52,10 @@
 	onMount(async () => {
 		if (!$valueAlbumList.length) {
 			const res = await fetch(
-				`/api/queryindex?q=${encodeURIComponent(
-					'podcasts/bymedium?medium=music&max=1000&val=lightning'
-				)}`
+				remoteServerUrl +
+					`/api/queryindex?q=${encodeURIComponent(
+						'podcasts/bymedium?medium=music&max=1000&val=lightning'
+					)}`
 			);
 			let data = await res.json();
 			$valueAlbumList = data.feeds || data.feed || [];

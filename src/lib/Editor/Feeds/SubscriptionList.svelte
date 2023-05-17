@@ -30,7 +30,8 @@
 		newEditorScreen,
 		expandPodcastList,
 		currentPage,
-		digitalOceanEnabled
+		digitalOceanEnabled,
+		remoteServerUrl
 	} from '$/editor';
 
 	export let fromChapters = false;
@@ -64,7 +65,7 @@
 		$currentPage = 'episodes';
 
 		// $expandPodcastList = false;
-		let url = serverUrl + `queryindex?q=podcasts/byfeedid?id=` + podcast.id;
+		let url = remoteServerUrl + `/api/queryindex?q=podcasts/byfeedid?id=` + podcast.id;
 		fetch(url).then((res) =>
 			res.json().then((data) => {
 				if (podcast.lastUpdateTime < data?.feed?.lastUpdateTime) {
@@ -108,9 +109,9 @@
 		if (podcast.id) {
 			isSyncing = true;
 			let urls = [
-				serverUrl + `queryindex?q=podcasts/byfeedid?id=` + podcast.id,
-				serverUrl +
-					`queryindex?q=episodes/byfeedid?` +
+				remoteServerUrl + `/api/queryindex?q=podcasts/byfeedid?id=` + podcast.id,
+				remoteServerUrl +
+					`/api/queryindex?q=episodes/byfeedid?` +
 					encodeURIComponent(`id=${podcast.id}&max=1000&fulltext`)
 			];
 			Promise.all(urls.map((url) => fetch(url).then((response) => response.json()))).then(

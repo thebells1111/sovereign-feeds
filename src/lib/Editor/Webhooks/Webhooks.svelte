@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import { selectedPodcast } from '$/editor';
 	import { loggedIn } from '$/stores';
 	import DigitalOceanHooks from './DigitalOceanHooks.svelte';
@@ -7,15 +8,34 @@
 	import ServerHooks from './ServerHooks.svelte';
 
 	let showSaved = false;
+
+	let webHooks = {};
+
+	function handleSelect() {
+		if ($selectedPodcast.title) {
+			fetch(`/api/database/webhook?title=${$selectedPodcast.title}`).then((res) =>
+				res.json().then((data) => {
+					Object.keys(data?.webhooks).forEach((v) => {
+						webHooks[v] = data?.webhooks[v];
+					});
+					console.log(webHooks);
+				})
+			);
+		}
+	}
+
+	onMount(async () => {
+		handleSelect($selectedPodcast);
+	});
 </script>
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 
 <div class="webhook-container">
 	{#if $loggedIn}
-		<DigitalOceanHooks bind:showSaved />
+		<DigitalOceanHooks bind:showSaved bind:webHooks />
 		{#if $selectedPodcast.title}
-			<ServerHooks bind:showSaved />
+			<ServerHooks bind:showSaved bind:webHooks />
 			<Explainer />
 		{:else}
 			<p>Please Select a Feed</p>

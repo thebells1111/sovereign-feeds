@@ -1,4 +1,5 @@
 import { playingEpisode, player, trackSrc } from '$/stores';
+import { remoteServerUrl } from '$/editor';
 import { get } from 'svelte/store';
 
 import srt2webvtt from '$functions/srt2webvtt';
@@ -11,7 +12,7 @@ export default async function setVTT() {
 		get(player).addRemoteTextTrack({ src: transcriptVTT.url, label: 'Caption' }, false);
 	} else if (transcriptSRT?.url) {
 		console.log(transcriptSRT.url);
-		let res = await fetch(`/api/httpsproxy?url=` + transcriptSRT.url);
+		let res = await fetch(remoteServerUrl + `/api/proxy?url=` + transcriptSRT.url);
 
 		if (res.status === 200) {
 			let text = await res.text();

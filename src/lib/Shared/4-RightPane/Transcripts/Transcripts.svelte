@@ -16,13 +16,15 @@
 		showNotesVerticalSwiper
 	} from '$/stores';
 
+	import { remoteServerUrl } from '$/editor';
+
 	let transcriptOffset = 0;
 
 	// $rightPane = 'transcripts';
 
 	async function getTranscript(transcriptSRT) {
 		console.log(transcriptSRT.url);
-		let res = await fetch(`/api/httpsproxy?url=` + transcriptSRT.url);
+		let res = await fetch(remoteServerUrl + `/api/proxy?url=` + transcriptSRT.url);
 		if (res.status === 200) {
 			let text = await res.text();
 			let transcript = parseSRT(text);

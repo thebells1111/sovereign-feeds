@@ -1,5 +1,4 @@
 <script context="module">
-	import getRSSFeed from '$lib/Editor/_functions/getRSSFeed';
 	export async function load({ params, fetch }) {
 		let podcasturl = params.podcasturl;
 		let episodeurl = params.episodeurl;
@@ -36,7 +35,9 @@
 					try {
 						let chaptersUrl = selectedEpisode?.['podcast:chapters']?.['@_url'];
 						if (chaptersUrl) {
-							let res2 = await fetch(`/api/httpsproxy?url=` + encodeURIComponent(chaptersUrl));
+							let res2 = await fetch(
+								remoteServerUrl + `/api/proxy?url=` + encodeURIComponent(chaptersUrl)
+							);
 							let json = await res2.json();
 							chapters = json.chapters;
 						}
@@ -68,13 +69,12 @@
 	import { onMount, tick, onDestroy } from 'svelte';
 	import { beforeNavigate } from '$app/navigation';
 	import {
-		selectedEpisode,
 		chaptersDB,
 		showSaved,
 		showServerSending,
 		showServerSendingErrorMsg,
-		selectedPodcast,
-		podpingMessage
+		podpingMessage,
+		remoteServerUrl
 	} from '$/editor';
 	import { player, playingEpisodeChapters, chapterIndex, loggedIn } from '$/stores';
 	import PlayerDisplay from '$lib/Editor/5-Player/PlayerDisplay.svelte';
@@ -237,9 +237,13 @@
 		$showServerSending = true;
 		try {
 			if (title) {
-				let res = await fetch('/api/database/serverpush', {
+				let res = await fetch(remoteServerUrl + '/api/sf/serverpush', {
 					method: 'POST',
-					body: JSON.stringify({ chapters: $playingEpisodeChapters, title: title })
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ chapters: $playingEpisodeChapters, title: title }),
+					credentials: 'include'
 				});
 				if (res.status !== 200) {
 					throw `Server Response Code ${res.status}`;

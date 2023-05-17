@@ -6,9 +6,9 @@
 		showServerSending,
 		showServerSendingErrorMsg,
 		selectedPodcast,
-		podpingMessage
+		podpingMessage,
+		remoteServerUrl
 	} from '$/editor';
-
 	async function handleWebhook() {
 		$podpingMessage = '';
 		$showServerSending = true;
@@ -16,9 +16,13 @@
 			let { title, xmlFile } = await buildRSS();
 
 			if (title) {
-				let res = await fetch('api/database/serverpush', {
+				let res = await fetch(remoteServerUrl + '/api/sf/serverpush', {
 					method: 'POST',
-					body: JSON.stringify({ xml: xmlFile, title: $selectedPodcast.title })
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ xml: xmlFile, title: $selectedPodcast.title }),
+					credentials: 'include'
 				});
 				if (res.status !== 200) {
 					throw `Server Response Code ${res.status}`;

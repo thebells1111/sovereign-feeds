@@ -1,8 +1,10 @@
+import { remoteServerUrl } from '$/editor';
+
 export default async function initializeValueTimeSplit(episode) {
 	console.log(episode);
-	if(episode.valueAudioItem){
-	return episode.valueAudioItem
-}
+	if (episode.valueAudioItem) {
+		return episode.valueAudioItem;
+	}
 	if (episode?.['podcast:value']?.['podcast:valueTimeSplit']) {
 		console.log(episode?.['podcast:value']?.['podcast:valueTimeSplit']);
 
@@ -14,12 +16,12 @@ export default async function initializeValueTimeSplit(episode) {
 			const albumGuid = v?.['podcast:remoteItem']?.['@_feedGuid'];
 			const songGuid = v?.['podcast:remoteItem']?.['@_itemGuid'];
 
-			const feedGuidUrl = `/api/queryindex?q=${encodeURIComponent(
-				`/podcasts/byguid?guid=${albumGuid}`
-			)}`;
-			const itemsUrl = `/api/queryindex?q=${encodeURIComponent(
-				`/episodes/bypodcastguid?guid=${albumGuid}`
-			)}`;
+			const feedGuidUrl =
+				remoteServerUrl +
+				`/api/queryindex?q=${encodeURIComponent(`/podcasts/byguid?guid=${albumGuid}`)}`;
+			const itemsUrl =
+				remoteServerUrl +
+				`/api/queryindex?q=${encodeURIComponent(`/episodes/bypodcastguid?guid=${albumGuid}`)}`;
 
 			const [feedData, itemsData] = await Promise.all([
 				fetch(feedGuidUrl).then((res) => res.json()),

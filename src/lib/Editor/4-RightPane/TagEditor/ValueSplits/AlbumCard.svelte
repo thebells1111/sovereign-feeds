@@ -5,18 +5,20 @@
 	export let selectedAlbum = {};
 	export let basePercent;
 
-	import { valueAudioItem } from '$/editor';
+	import { valueAudioItem, remoteServerUrl } from '$/editor';
 
 	export async function fetchEpisodes(alb) {
 		if (selectedAlbum.podcastGuid === alb.podcastGuid) {
 			selectedAlbum = {};
 		} else if (!alb.songs) {
-			let feedUrl = `/api/queryindex?q=${encodeURIComponent(
-				`/podcasts/byguid?guid=${alb.podcastGuid}`
-			)}`;
-			let songsUrl = `/api/queryindex?q=${encodeURIComponent(
-				`/episodes/bypodcastguid?guid=${alb.podcastGuid}`
-			)}`;
+			let feedUrl =
+				remoteServerUrl +
+				`/api/queryindex?q=${encodeURIComponent(`/podcasts/byguid?guid=${alb.podcastGuid}`)}`;
+			let songsUrl =
+				remoteServerUrl +
+				`/api/queryindex?q=${encodeURIComponent(
+					`/episodes/bypodcastguid?guid=${alb.podcastGuid}`
+				)}`;
 
 			try {
 				let feedRes = await fetch(feedUrl);

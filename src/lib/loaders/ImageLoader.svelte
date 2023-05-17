@@ -13,7 +13,7 @@
 	let image;
 	let loaded = false;
 	let showBlankImage;
-	import { proxy } from '$/stores';
+	import { proxy } from '$/editor';
 
 	onMount(() => {
 		loadImage();

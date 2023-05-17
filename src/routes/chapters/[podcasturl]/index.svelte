@@ -1,9 +1,10 @@
 <script context="module">
+	import { remoteServerUrl } from '$/editor';
 	export async function load({ params, fetch }) {
 		let podcasturl = params.podcasturl;
 		let urls = [
-			`/api/queryindex?q=podcasts/byfeedurl?url=${podcasturl}`,
-			`/api/queryindex?q=episodes/byfeedurl?url=${podcasturl}`
+			remoteServerUrl + `/api/queryindex?q=podcasts/byfeedurl?url=${podcasturl}`,
+			remoteServerUrl + `/api/queryindex?q=episodes/byfeedurl?url=${podcasturl}`
 		];
 		let data = await Promise.all(urls.map((url) => fetch(url).then((data) => data.json())));
 

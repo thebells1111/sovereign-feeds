@@ -3,7 +3,7 @@
 	import { selectTextOnFocus } from '$functions/inputActions';
 </script>
 
-{#if $editingEpisode?.['podcast:contentLink'].hasOwnProperty('#text')}
+{#if $editingEpisode?.['podcast:contentLink']?.hasOwnProperty('#text')}
 	<div class="content-link">
 		<h3>Content Link:</h3>
 		<p>alternate site to listen live if player doesn't support Live</p>

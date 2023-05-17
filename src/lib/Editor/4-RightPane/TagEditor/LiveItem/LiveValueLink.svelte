@@ -4,7 +4,7 @@
 	import { selectTextOnFocus } from '$functions/inputActions';
 
 	async function generateLink() {
-		let res = await fetch('/api/database/generateguid');
+		let res = await fetch(remoteServerUrl + '/api/sf/generateguid', { credentials: 'include' });
 		let data = await res.json();
 		console.log(data.guid);
 		if (data.guid) {

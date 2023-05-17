@@ -1,27 +1,14 @@
 <script>
-	import { io } from 'socket.io-client';
 	import FileChoice from './FileChoice.svelte';
-	import { onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { remoteServerUrl, socketUrl } from '$/editor';
 	import buildRSS from '$lib/Editor/Publish/buildrss';
 
-	const socket = io(socketUrl);
-	socket.on('connect', (data) => {
-		console.log('Connected to Socket');
-	});
-
-	socket.on('id', async (socket_id) => {
-		id = socket_id;
-		console.log(id);
-		await fetch(`api/sendjwt?id=${id}`, { credentials: 'include' });
+	onMount(() => {
 		handleUpload();
 	});
 
-	onDestroy(() => {
-		socket.disconnect();
-	});
-
-	import { editingEpisode, selectedPodcast } from '$/editor';
+	import { selectedPodcast } from '$/editor';
 
 	export let showUpload = false;
 	export let fileName = '';
@@ -46,10 +33,11 @@
 		const upload = fetch(
 			`${remoteServerUrl}/api/sf/upload?folder=${encodeURIComponent(fullPath)}&&podcast=${
 				$selectedPodcast.title
-			}&&id=${id}`,
+			}`,
 			{
 				method: 'POST',
-				body: formData
+				body: formData,
+				credentials: 'include'
 			}
 		)
 			.then((response) => response.text())

@@ -35,6 +35,7 @@ let socketUrls = {
 
 export const remoteServerUrl = remoteServerUrls[mode];
 export const socketUrl = socketUrls[mode];
+export const proxy = remoteServerUrl + `/api/proxy?url=`;
 
 export const xmlJson = writable(null);
 export const selectedChannelPersonGroups = writable([]);

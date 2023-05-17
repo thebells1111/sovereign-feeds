@@ -16,6 +16,8 @@
 		showNotesVerticalSwiper
 	} from '$/stores';
 
+	import { remoteServerUrl } from '$/editor';
+
 	export let showChapters = false;
 	let imageSizer = '&w=480&h=480';
 
@@ -34,7 +36,7 @@
 	async function getChapters(url, selector) {
 		let y;
 		if (url) {
-			let res = await fetch(`/api/httpsproxy?url=` + encodeURIComponent(url));
+			let res = await fetch(remoteServerUrl + `/api/proxy?url=` + encodeURIComponent(url));
 			y = await res.json();
 		}
 		if (selector === 'selected') {
@@ -47,7 +49,7 @@
 
 	async function updatePlayingChapters() {
 		let response = await fetch(
-			`/api/httpsproxy?url=` + encodeURIComponent($playingEpisode.chaptersUrl)
+			remoteServerUrl + `/api/proxy?url=` + encodeURIComponent($playingEpisode.chaptersUrl)
 		);
 		let data = await response.json();
 

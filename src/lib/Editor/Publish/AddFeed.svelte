@@ -1,11 +1,11 @@
 <script>
-	import { selectedPodcast, podcastList, showSaved, editorDB } from '$/editor';
-	import { serverUrl } from '$/stores';
+	import { selectedPodcast, podcastList, showSaved, editorDB, remoteServerUrl } from '$/editor';
 
 	let message = '';
 
 	async function addFeed() {
-		let feed = serverUrl + `queryindex?q=add/byfeedurl?url=${encodeURIComponent(feedUrl)}`;
+		let feed =
+			remoteServerUrl + `/api/queryindex?q=add/byfeedurl?url=${encodeURIComponent(feedUrl)}`;
 
 		console.log(feed);
 
