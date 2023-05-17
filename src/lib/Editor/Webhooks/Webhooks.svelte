@@ -13,7 +13,9 @@
 
 	function handleSelect() {
 		if ($selectedPodcast.title) {
-			fetch(remoteServerUrl + `/api/sf/webhook?title=${$selectedPodcast.title}`).then((res) =>
+			fetch(remoteServerUrl + `/api/sf/webhook?title=${$selectedPodcast.title}`, {
+				credentials: 'include'
+			}).then((res) =>
 				res.json().then((data) => {
 					Object.keys(data?.webhooks).forEach((v) => {
 						webHooks[v] = data?.webhooks[v];

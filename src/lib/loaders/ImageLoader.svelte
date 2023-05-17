@@ -26,7 +26,10 @@
 		showBlankImage = false;
 		if (image) {
 			image.style.cssText = `display: none;`;
-			if (url && url !== 'waiting') {
+			console.log(url);
+			if (url && url === 'none') {
+				imageError();
+			} else if (url && url !== 'waiting') {
 				if (url.includes('https')) {
 					image.src = url;
 				} else {

@@ -95,7 +95,9 @@
 	async function fetchChapters() {
 		if (browser) {
 			let res = await fetch(
-				'/api/database/savechapters?link=' + encodeURIComponent(`${podcast}||${enclosure}`),
+				remoteServerUrl +
+					'/api/sf/savechapters?link=' +
+					encodeURIComponent(`${podcast}||${enclosure}`),
 				{
 					credentials: 'include'
 				}
@@ -160,7 +162,7 @@
 				chapterLink: `${podcast}||${enclosure}`,
 				chapterContent: $playingEpisodeChapters
 			};
-			let res = await fetch('/api/database/savechapters', {
+			let res = await fetch(remoteServerUrl + '/api/sf/savechapters', {
 				credentials: 'include',
 				method: 'POST',
 				headers: {
