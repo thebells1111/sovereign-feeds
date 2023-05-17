@@ -46,7 +46,7 @@
 	});
 
 	function fetchDOEnabled(podcast) {
-		fetch(`/api/database/webhook?title=${podcast.title}`).then((res) =>
+		fetch(remoteServerUrl + `/api/sf/webhook?title=${podcast.title}`).then((res) =>
 			res.json().then((data) => {
 				$digitalOceanEnabled =
 					data?.webhooks?.DO_ENABLED &&

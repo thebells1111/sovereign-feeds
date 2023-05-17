@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedPodcast } from '$/editor';
+	import { selectedPodcast, remoteServerUrl } from '$/editor';
 	import { loggedIn } from '$/stores';
 	import DigitalOceanHooks from './DigitalOceanHooks.svelte';
 
@@ -13,7 +13,7 @@
 
 	function handleSelect() {
 		if ($selectedPodcast.title) {
-			fetch(`/api/database/webhook?title=${$selectedPodcast.title}`).then((res) =>
+			fetch(remoteServerUrl + `/api/sf/webhook?title=${$selectedPodcast.title}`).then((res) =>
 				res.json().then((data) => {
 					Object.keys(data?.webhooks).forEach((v) => {
 						webHooks[v] = data?.webhooks[v];

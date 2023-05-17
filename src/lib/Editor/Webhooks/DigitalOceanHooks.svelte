@@ -1,12 +1,12 @@
 <script>
-	import { selectedPodcast, newEditorScreen, digitalOceanEnabled } from '$/editor';
+	import { selectedPodcast, newEditorScreen, digitalOceanEnabled, remoteServerUrl } from '$/editor';
 
 	export let showArrow = true;
 	export let showSaved = false;
 	export let webHooks;
 
 	async function save() {
-		let res = await fetch('/api/database/webhook?title=' + $selectedPodcast.title, {
+		let res = await fetch(remoteServerUrl + '/api/sf/webhook?title=' + $selectedPodcast.title, {
 			credentials: 'include',
 			method: 'POST',
 			headers: {
