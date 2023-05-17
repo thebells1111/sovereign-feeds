@@ -3,8 +3,6 @@
 
 	import { onMount } from 'svelte';
 
-	console.log($podcastList);
-
 	export let showArrow = true;
 	export let showSaved = false;
 
@@ -46,20 +44,21 @@
 	});
 
 	function handleSelect() {
-		fetch(`/api/database/webhook?title=${$selectedPodcast.title}`).then((res) =>
-			res.json().then((data) => {
-				console.log(data);
-				DO_BUCKET = data?.webhooks?.DO_BUCKET;
-				DO_ENDPOINT = data?.webhooks?.DO_ENDPOINT;
-				DO_ACCESS_KEY = data?.webhooks?.DO_ACCESS_KEY;
-				DO_SECRET_KEY = data?.webhooks?.DO_SECRET_KEY;
-				DO_ENABLED = data?.webhooks?.DO_ENABLED;
-			})
-		);
+		if ($selectedPodcast.title) {
+			fetch(`/api/database/webhook?title=${$selectedPodcast.title}`).then((res) =>
+				res.json().then((data) => {
+					console.log(data);
+					DO_BUCKET = data?.webhooks?.DO_BUCKET;
+					DO_ENDPOINT = data?.webhooks?.DO_ENDPOINT;
+					DO_ACCESS_KEY = data?.webhooks?.DO_ACCESS_KEY;
+					DO_SECRET_KEY = data?.webhooks?.DO_SECRET_KEY;
+					DO_ENABLED = data?.webhooks?.DO_ENABLED;
+				})
+			);
+		}
 	}
 
 	let expand = !showArrow;
-	$: console.log(DO_ENABLED);
 </script>
 
 <h2

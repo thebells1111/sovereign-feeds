@@ -1,5 +1,5 @@
 <script>
-	import { editingEpisode } from '$/editor';
+	import { editingEpisode, remoteServerUrl } from '$/editor';
 	import { loggedIn } from '$/stores';
 	import { selectTextOnFocus } from '$functions/inputActions';
 
@@ -8,7 +8,7 @@
 		let data = await res.json();
 		console.log(data.guid);
 		if (data.guid) {
-			$editingEpisode['@_liveValueLink'] = 'https://curiohoster.com/event/' + data.guid;
+			$editingEpisode['@_liveValueLink'] = remoteServerUrl + '/event/' + data.guid;
 		}
 	}
 </script>

@@ -60,7 +60,7 @@
 		let fullPath = `${$selectedPodcast.title}/` + path;
 		console.log(fullPath);
 		const upload = fetch(
-			`${remoteServerUrl}/upload?folder=${encodeURIComponent(fullPath)}&&podcast=${
+			`${remoteServerUrl}/api/sf/upload?folder=${encodeURIComponent(fullPath)}&&podcast=${
 				$selectedPodcast.title
 			}&&id=${id}`,
 			{

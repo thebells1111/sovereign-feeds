@@ -1,4 +1,4 @@
-const mode = 'prod';
+const mode = 'dev';
 
 import { writable } from 'svelte/store';
 import { browser } from '$app/env';
@@ -24,12 +24,12 @@ export const trackerDB =
 	});
 
 let remoteServerUrls = {
-	dev: 'http://127.0.0.1:8000',
+	dev: 'http://localhost:8000',
 	prod: 'https://curiohoster.com'
 };
 
 let socketUrls = {
-	dev: 'ws://localhost:8000',
+	dev: 'http://localhost:8000',
 	prod: 'https://curiohoster.com'
 };
 

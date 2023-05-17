@@ -51,6 +51,8 @@ export const post = async (req) => {
 				DO_ENABLED: DO_ENABLED
 			};
 
+			console.log(update);
+
 			//removes undefined object keys
 			Object.keys(update).forEach((key) => update[key] === undefined && delete update[key]);
 

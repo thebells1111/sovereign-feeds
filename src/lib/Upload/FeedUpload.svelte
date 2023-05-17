@@ -44,7 +44,7 @@
 		formData.append('file', file, 'feed.xml');
 		let fullPath = `${$selectedPodcast.title}`;
 		const upload = fetch(
-			`${remoteServerUrl}/upload?folder=${encodeURIComponent(fullPath)}&&podcast=${
+			`${remoteServerUrl}/api/sf/upload?folder=${encodeURIComponent(fullPath)}&&podcast=${
 				$selectedPodcast.title
 			}&&id=${id}`,
 			{

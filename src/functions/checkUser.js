@@ -1,17 +1,13 @@
 import { loggedIn, serverUrl } from '$/stores';
+import { remoteServerUrl } from '$/editor';
 
 //this is to get the senderID and store it as a cookie
 export default async function checkUser() {
 	try {
-		let response = await fetch(serverUrl + `verify-token`, {
+		let response = await fetch(remoteServerUrl + `/api/sf/verify-token`, {
 			credentials: 'include'
 		});
-		let res = await fetch(`https://curiohoster.com/api/verify-token`, {
-			credentials: 'include'
-		});
-		let d = await res.json();
-		console.log(d);
-		console.log(response);
+
 		if (response.status === 200) {
 			let data = await response.json();
 			console.log(data);
