@@ -10,7 +10,9 @@
 	let showMenu = false;
 
 	async function signout() {
-		let response = await fetch(remoteServerUrl + `/api/sf/signout?` + new Date().getTime());
+		let response = await fetch(remoteServerUrl + `/api/sf/signout?` + new Date().getTime(), {
+			credentials: 'include'
+		});
 		if (response.status === 200) {
 			goto('/');
 			$user = null;

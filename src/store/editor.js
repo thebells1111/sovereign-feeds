@@ -1,10 +1,11 @@
-const mode = 'prod';
-
 import { writable } from 'svelte/store';
-import { browser } from '$app/env';
+import { browser, dev } from '$app/env';
 import podcastSelectorList from '$lib/Editor/4-RightPane/TagEditor/SideSelector/podcast';
 import tagHeadersList from '$lib/Editor/4-RightPane/TagEditor/TagHeaderList/podcast';
 import newEpisodeHeadersList from '$lib/Editor/4-RightPane/TagEditor/NewEpisodeHeaders/podcast';
+
+const mode = dev ? 'dev' : 'prod';
+
 export const editorDB =
 	browser &&
 	localforage.createInstance({

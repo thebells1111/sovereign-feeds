@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { browser } from '$app/env';
+import { browser, dev } from '$app/env';
 
 export let devMode = false;
 export let useSentry = false;
