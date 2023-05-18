@@ -1,15 +1,15 @@
 <script>
-	import Title from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Title.svelte';
+	import Title from '$lib/Editor/Tags/EpisodeMetadata/components/Title.svelte';
 
-	import Image from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Image.svelte';
+	import Image from '$lib/Editor/Tags/EpisodeMetadata/components/Image.svelte';
 
-	import Enclosure from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Enclosure.svelte';
-	import GUID from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/GUID.svelte';
-	import Link from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Link.svelte';
-	import PubDate from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/PubDate.svelte';
-	import Explicit from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Explicit.svelte';
-	import Author from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Author.svelte';
-	import Keywords from '$lib/Editor/4-RightPane/TagEditor/EpisodeMetadata/components/Keywords.svelte';
+	import Enclosure from '$lib/Editor/Tags/EpisodeMetadata/components/Enclosure.svelte';
+	import GUID from '$lib/Editor/Tags/EpisodeMetadata/components/GUID.svelte';
+	import Link from '$lib/Editor/Tags/EpisodeMetadata/components/Link.svelte';
+	import PubDate from '$lib/Editor/Tags/EpisodeMetadata/components/PubDate.svelte';
+	import Explicit from '$lib/Editor/Tags/EpisodeMetadata/components/Explicit.svelte';
+	import Author from '$lib/Editor/Tags/EpisodeMetadata/components/Author.svelte';
+	import Keywords from '$lib/Editor/Tags/EpisodeMetadata/components/Keywords.svelte';
 
 	import { rssData, showLiveEpisodes, duplicateEditorScreen, newEpisodeHeaders } from '$/editor';
 </script>

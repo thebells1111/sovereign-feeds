@@ -1,8 +1,8 @@
 <script>
 	import Header from './Header.svelte';
 	import RequiredInfo from './RequiredInfo.svelte';
-	import Person from '$lib/Editor/4-RightPane/TagEditor/Person/Person.svelte';
-	import Value from '$lib/Editor/4-RightPane/TagEditor/Value/Value.svelte';
+	import Person from '$lib/Editor/Tags/Person/Person.svelte';
+	import Value from '$lib/Editor/Tags/Value/Value.svelte';
 	import ShowArt from './ShowArt.svelte';
 	import ShowInfo from './ShowInfo.svelte';
 	import OwnerInfo from './OwnerInfo.svelte';

@@ -1,6 +1,6 @@
 <script>
 	import { rightPane, rssData, editingEpisode, selectorList } from '$/editor';
-	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
 
 	$rightPane = 'episodeMetadata';
 </script>

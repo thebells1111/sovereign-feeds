@@ -146,6 +146,10 @@ async function cleanLiveItem(item) {
 		delete item['podcast:contentLink'];
 	}
 
+	if (!item['@_liveValueLink']) {
+		delete item['@_liveValueLink'];
+	}
+
 	if (!item['@_chat']) {
 		delete item['@_chat'];
 	}

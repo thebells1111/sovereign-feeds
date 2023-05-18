@@ -2,7 +2,7 @@
 	import ImageLoader from '$lib/Loaders/ImageLoader.svelte';
 	import getRSSEditorFeed from '../_functions/getRSSFeed';
 	import initializeRSSData from '../_functions/initializeRSSData';
-	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
 
 	import {
 		podcastSearchResults,

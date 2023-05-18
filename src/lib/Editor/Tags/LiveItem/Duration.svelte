@@ -6,7 +6,7 @@
 	function handleMinuteInput() {}
 </script>
 
-{#if $editingEpisode?.['@_start']?.duration?.hour}
+{#if $editingEpisode?.['@_start']?.duration?.hasOwnProperty('hour')}
 	<div class="duration">
 		<h3>Estimated duration of live episode:</h3>
 		<div class="time-select">

@@ -11,7 +11,7 @@
 	import Social from './Social/Social.svelte';
 	import Images from './Images/Images.svelte';
 	import ValueSplits from './ValueSplits/ValueSplits.svelte';
-	import initTinyMCE from '$lib/Editor/4-RightPane/TagEditor/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
 
 	import { rightPane, showNotesPane } from '$/editor';
 </script>

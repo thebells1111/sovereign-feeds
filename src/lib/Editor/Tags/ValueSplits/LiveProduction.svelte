@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
-	import { valueAlbumList, valueAudioItem, remoteServerUrl } from '$/editor';
+	import { valueAlbumList, valueAudioItem, remoteServerUrl, editingEpisode } from '$/editor';
 	let searchQuery = '';
 	let searchInput;
 	let filteredAlbumsList = [];
@@ -62,6 +62,7 @@
 			//this removes 100% Retro Live Feed
 			$valueAlbumList = sortArrayAlphabetically($valueAlbumList.filter(({ id }) => id !== 5718023));
 		}
+		console.log($editingEpisode);
 	});
 
 	$: {
@@ -79,90 +80,97 @@
 </script>
 
 <container>
-	<left-pane>
-		<left-select>
-			<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button>
-			<button class="primary value" on:click={() => (activeView = 'valueBlock')}
-				>Show Value Block</button
+	{#if $editingEpisode?.['@_liveValueLink']?.includes('https://curiohoster.com/event/')}
+		<left-pane>
+			<left-select>
+				<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button>
+				<button class="primary value" on:click={() => (activeView = 'valueBlock')}
+					>Show Value Block</button
+				>
+			</left-select>
+
+			<album-list class:hidden={activeView != 'albums'}>
+				<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
+				<list-container>
+					<ul>
+						{#each filteredAlbumsList as album}
+							<li>
+								<AlbumCard {album} {basePercent} bind:selectedAlbum />
+							</li>
+						{/each}
+					</ul>
+				</list-container>
+			</album-list>
+
+			<active-value class:hidden={activeView != 'valueBlock'}>
+				<h2>Active Value Block</h2>
+
+				{#if isPCValue}
+					Using Podcaster's Value Block
+				{:else if activeValueBlock.meta}
+					<active-meta>
+						<img src={activeValueBlock.meta.artwork} width="100" height="100" />
+						<info>
+							<p><b>Song: </b>{activeValueBlock.meta.song}</p>
+							<p><b>Artist: </b>{activeValueBlock.meta.author}</p>
+							<p><b>Album: </b>{activeValueBlock.meta.album}</p>
+						</info>
+					</active-meta>
+
+					<h3>Remote Value Block</h3>
+					<ul>
+						{#each activeValueBlock.remote || [] as item}
+							<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+						{/each}
+					</ul>
+
+					<h3>Podcaster's Value Block</h3>
+					<ul>
+						{#each activeValueBlock.base || [] as item}
+							<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+						{/each}
+					</ul>
+
+					<h3>SF Live</h3>
+					<ul>
+						<li>({activeValueBlock.sf.split}%) SF Live</li>
+					</ul>
+				{/if}
+			</active-value>
+		</left-pane>
+
+		<playlist>
+			<label>
+				Add new blocks at <input
+					class="base-remote-split"
+					bind:value={basePercent}
+					type="number"
+					min="0"
+					max="100"
+				/>% split
+			</label>
+			<audio-items>
+				{#if $valueAudioItem?.length}
+					<AudioItem
+						{syncSong}
+						bind:activeValueBlock
+						{activateOnSync}
+						liveproduction="true"
+						bind:isPCValue
+						{socket}
+					/>
+				{/if}
+			</audio-items>
+			<label
+				><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
 			>
-		</left-select>
-
-		<album-list class:hidden={activeView != 'albums'}>
-			<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
-			<list-container>
-				<ul>
-					{#each filteredAlbumsList as album}
-						<li>
-							<AlbumCard {album} {basePercent} bind:selectedAlbum />
-						</li>
-					{/each}
-				</ul>
-			</list-container>
-		</album-list>
-
-		<active-value class:hidden={activeView != 'valueBlock'}>
-			<h2>Active Value Block</h2>
-
-			{#if isPCValue}
-				Using Podcaster's Value Block
-			{:else if activeValueBlock.meta}
-				<active-meta>
-					<img src={activeValueBlock.meta.artwork} width="100" height="100" />
-					<info>
-						<p><b>Song: </b>{activeValueBlock.meta.song}</p>
-						<p><b>Artist: </b>{activeValueBlock.meta.author}</p>
-						<p><b>Album: </b>{activeValueBlock.meta.album}</p>
-					</info>
-				</active-meta>
-
-				<h3>Remote Value Block</h3>
-				<ul>
-					{#each activeValueBlock.remote || [] as item}
-						<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
-					{/each}
-				</ul>
-
-				<h3>Podcaster's Value Block</h3>
-				<ul>
-					{#each activeValueBlock.base || [] as item}
-						<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
-					{/each}
-				</ul>
-
-				<h3>SF Live</h3>
-				<ul>
-					<li>({activeValueBlock.sf.split}%) SF Live</li>
-				</ul>
-			{/if}
-		</active-value>
-	</left-pane>
-
-	<playlist>
-		<label>
-			Add new blocks at <input
-				class="base-remote-split"
-				bind:value={basePercent}
-				type="number"
-				min="0"
-				max="100"
-			/>% split
-		</label>
-		<audio-items>
-			{#if $valueAudioItem?.length}
-				<AudioItem
-					{syncSong}
-					bind:activeValueBlock
-					{activateOnSync}
-					liveproduction="true"
-					bind:isPCValue
-					{socket}
-				/>
-			{/if}
-		</audio-items>
-		<label
-			><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
-		>
-	</playlist>
+		</playlist>
+	{:else}
+		<h3>You need a Sovereign Feeds Live Value Link present in your feed to use this feature.</h3>
+		<h3>
+			Go to the Live Info Tab to generate your link, then publish your feed with the new link.
+		</h3>
+	{/if}
 </container>
 
 <style>

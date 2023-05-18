@@ -18,6 +18,7 @@ const liveItem = {
 		}
 	},
 	'@_chat': '',
+	'@_liveValueLink': '',
 	title: 'New Live Episode',
 	author: null,
 	description: '',

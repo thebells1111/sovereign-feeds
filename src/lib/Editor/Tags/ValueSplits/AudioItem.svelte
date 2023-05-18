@@ -150,6 +150,7 @@
 			destinations: baseBlock.concat(remoteBlock).concat(sovereignBlock)
 		};
 		console.log(item);
+		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event/')[1];
 		let serverData = {
 			feedTitle: item.album,
 			feedGuid: item.albumGuid,
@@ -160,7 +161,7 @@
 			value: serverValueBlock
 		};
 
-		socket.emit('valueBlock', serverData);
+		socket.emit('valueBlock', { valueGuid, serverData });
 	}
 
 	function updateSplits(array, remotePercentage) {

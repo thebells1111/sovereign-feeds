@@ -3,7 +3,7 @@
 
 	import initializeEpisode from '../../_functions/initializeEpisode';
 
-	import initTinyMCE from '../../4-RightPane/TagEditor/ShowNotes/initTinyMCE';
+	import initTinyMCE from '../../Tags/ShowNotes/initTinyMCE';
 	import Delete from '$lib/icons/Delete.svelte';
 
 	import liveItem from '$lib/Editor/_functions/blanks/liveItem';

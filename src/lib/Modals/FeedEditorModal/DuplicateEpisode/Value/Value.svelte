@@ -1,5 +1,5 @@
 <script>
-	import SharedValueComponent from '$lib/Editor/4-RightPane/TagEditor/Value/SharedValueComponent.svelte';
+	import SharedValueComponent from '$lib/Editor/Tags/Value/SharedValueComponent.svelte';
 	import { rssData, editingEpisode, duplicateEditorScreen, newEpisodeHeaders } from '$/editor';
 	import blankValue from '$lib/Editor/_functions/blanks/value';
 	import clone from 'just-clone';

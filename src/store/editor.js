@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store';
 import { browser, dev } from '$app/env';
-import podcastSelectorList from '$lib/Editor/4-RightPane/TagEditor/SideSelector/podcast';
-import tagHeadersList from '$lib/Editor/4-RightPane/TagEditor/TagHeaderList/podcast';
-import newEpisodeHeadersList from '$lib/Editor/4-RightPane/TagEditor/NewEpisodeHeaders/podcast';
+import podcastSelectorList from '$lib/Editor/Tags/SideSelector/podcast';
+import tagHeadersList from '$lib/Editor/Tags/TagHeaderList/podcast';
+import newEpisodeHeadersList from '$lib/Editor/Tags/NewEpisodeHeaders/podcast';
 
 const mode = dev ? 'dev' : 'prod';
 

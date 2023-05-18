@@ -1,6 +1,6 @@
-import getSelectorList from '$lib/Editor/4-RightPane/TagEditor/SideSelector/getSelectorList';
-import getTagHeaders from '$lib/Editor/4-RightPane/TagEditor/TagHeaderList/getTagHeaders';
-import getNewEpisodeHeaders from '$lib/Editor/4-RightPane/TagEditor/NewEpisodeHeaders/getNewEpisodeHeaders';
+import getSelectorList from '$lib/Editor/Tags/SideSelector/getSelectorList';
+import getTagHeaders from '$lib/Editor/Tags/TagHeaderList/getTagHeaders';
+import getNewEpisodeHeaders from '$lib/Editor/Tags/NewEpisodeHeaders/getNewEpisodeHeaders';
 
 import { selectorList, tagHeaders, newEpisodeHeaders } from '$/editor';
 

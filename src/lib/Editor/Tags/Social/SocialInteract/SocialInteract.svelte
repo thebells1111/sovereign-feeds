@@ -1,8 +1,8 @@
 <script>
 	import { socialInteractProtocolOptions } from '$/editor';
 	import blankSocialInteract from '$lib/Editor/_functions/blanks/socialInteract';
-	import TextBlock from '$lib/Editor/4-RightPane/TagEditor/Shared/TextBlock.svelte';
-	import NumberBlock from '$lib/Editor/4-RightPane/TagEditor/Shared/NumberBlock.svelte';
+	import TextBlock from '$lib/Editor/Tags/Shared/TextBlock.svelte';
+	import NumberBlock from '$lib/Editor/Tags/Shared/NumberBlock.svelte';
 	export let data;
 	import IndexScroll from '../../Shared/IndexScroll.svelte';
 

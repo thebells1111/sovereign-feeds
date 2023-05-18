@@ -54,7 +54,8 @@
 		liveView = 'valueBlock';
 		activeValueBlock = {};
 		isPCValue = true;
-		socket.emit('valueBlock', { useFeedValue: true });
+		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event/')[1];
+		socket.emit('valueBlock', { valueGuid, serverData: {} });
 	}
 </script>
 
