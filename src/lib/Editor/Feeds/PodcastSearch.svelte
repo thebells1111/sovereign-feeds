@@ -24,7 +24,9 @@
 	$: console.log($filteredEpisodesList);
 
 	function fetchDOEnabled(podcast) {
-		fetch(remoteServerUrl + `/api/sf/webhook?title=${podcast.title}`).then((res) =>
+		fetch(remoteServerUrl + `/api/sf/webhook?title=${podcast.title}`, {
+			credentials: 'include'
+		}).then((res) =>
 			res.json().then((data) => {
 				$digitalOceanEnabled =
 					data?.webhooks?.DO_ENABLED &&

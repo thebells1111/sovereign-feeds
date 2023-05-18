@@ -17,6 +17,7 @@
 				credentials: 'include'
 			}).then((res) =>
 				res.json().then((data) => {
+					console.log(data);
 					Object.keys(data?.webhooks).forEach((v) => {
 						webHooks[v] = data?.webhooks[v];
 					});

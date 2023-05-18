@@ -47,7 +47,8 @@
 			}`,
 			{
 				method: 'POST',
-				body: formData
+				body: formData,
+				credentials: 'include'
 			}
 		)
 			.then((response) => response.text())

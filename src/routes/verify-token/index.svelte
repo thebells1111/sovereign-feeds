@@ -19,4 +19,9 @@
 	let text = 'Verifying Log In';
 </script>
 
-{text}
+{#if !loggedIn}
+	{text}
+{:else}
+	<p>Logged In</p>
+	<a href="/">Click Here to Continue</a>
+{/if}
