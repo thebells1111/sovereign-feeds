@@ -202,7 +202,9 @@
 						<active>Active</active>
 					{:else}
 						<inactive>
-							<button on:click={updateValueBlock.bind(this, item)}>Activate Value Block</button>
+							<button class="activate primary" on:click={updateValueBlock.bind(this, item)}
+								>Activate Value Block</button
+							>
 						</inactive>
 					{/if}
 				{/if}
@@ -399,5 +401,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
+	}
+
+	.activate {
+		font-size: 0.8em;
+		color: white;
+		height: 24px;
+		background-image: linear-gradient(to bottom, hsl(120, 100%, 25%), hsl(120, 100%, 15%));
 	}
 </style>
