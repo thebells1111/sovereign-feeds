@@ -131,7 +131,8 @@
 						{/each}
 					</ul>
 
-					<h3>SF Live</h3>
+					<h3 class="disclaimer">SF Live</h3>
+					<p class="disclaimer">5% is added when using this service to cover server costs</p>
 					<ul>
 						<li>({activeValueBlock.sf.split}%) SF Live</li>
 					</ul>
@@ -281,5 +282,13 @@
 
 	.value {
 		background-image: linear-gradient(to bottom, hsl(253, 100%, 44%), hsl(253, 100%, 26.7%));
+	}
+
+	p.disclaimer {
+		padding: 0 0 18px 8px;
+	}
+
+	h3.disclaimer {
+		margin-bottom: 0;
 	}
 </style>

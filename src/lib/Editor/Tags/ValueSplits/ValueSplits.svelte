@@ -15,10 +15,16 @@
 	$: socketConnect($showLiveEpisodes);
 
 	function socketConnect($showLiveEpisodes) {
-		if ($showLiveEpisodes) {
+		if ($showLiveEpisodes && $editingEpisode?.['@_liveValueLink']) {
 			socket = io(remoteServerUrl, { withCredentials: true });
+			let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event/')[1];
 			socket.on('connect', () => {
-				console.log(`Socket connected with ID: ${socket.id}`);
+				if (valueGuid) {
+					// Send a message with the valueGuid
+					socket.emit('connected', valueGuid);
+				} else {
+					console.log('ValueGuid is not defined');
+				}
 			});
 		} else {
 			if (socket) {
