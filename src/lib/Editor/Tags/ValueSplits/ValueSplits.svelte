@@ -16,8 +16,11 @@
 
 	function socketConnect($showLiveEpisodes) {
 		if ($showLiveEpisodes && $editingEpisode?.['@_liveValueLink']) {
-			socket = io(remoteServerUrl, { withCredentials: true });
-			let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event/')[1];
+			$editingEpisode['@_liveValueLink'] =
+				'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
+			let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
+			socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
+
 			socket.on('connect', () => {
 				if (valueGuid) {
 					// Send a message with the valueGuid

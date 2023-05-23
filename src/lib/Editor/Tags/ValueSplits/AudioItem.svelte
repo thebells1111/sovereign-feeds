@@ -150,7 +150,7 @@
 			destinations: baseBlock.concat(remoteBlock).concat(sovereignBlock)
 		};
 		console.log(item);
-		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event/')[1];
+		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event_id=')[1];
 		let serverData = {
 			feedTitle: item.album,
 			feedGuid: item.albumGuid,

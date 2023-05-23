@@ -80,7 +80,7 @@
 </script>
 
 <container>
-	{#if $editingEpisode?.['@_liveValueLink']?.includes('https://curiohoster.com/event/')}
+	{#if $editingEpisode?.['@_liveValueLink']?.includes('http://localhost:8000/event')}
 		<left-pane>
 			<left-select>
 				<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button>
@@ -167,10 +167,12 @@
 			>
 		</playlist>
 	{:else}
-		<h3>You need a Sovereign Feeds Live Value Link present in your feed to use this feature.</h3>
-		<h3>
-			Go to the Live Info Tab to generate your link, then publish your feed with the new link.
-		</h3>
+		<div>
+			<h3>You need a Sovereign Feeds Live Value Link present in your feed to use this feature.</h3>
+			<h3>
+				Go to the Live Info Tab to generate your link, then publish your feed with the new link.
+			</h3>
+		</div>
 	{/if}
 </container>
 
