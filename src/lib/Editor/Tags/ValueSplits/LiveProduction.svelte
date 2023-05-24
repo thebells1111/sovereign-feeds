@@ -80,7 +80,7 @@
 </script>
 
 <container>
-	{#if $editingEpisode?.['@_liveValueLink']?.includes('http://localhost:8000/event')}
+	{#if $editingEpisode?.['@_liveValueLink']?.includes('https://curiohoster.com/event')}
 		<left-pane>
 			<left-select>
 				<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button>
