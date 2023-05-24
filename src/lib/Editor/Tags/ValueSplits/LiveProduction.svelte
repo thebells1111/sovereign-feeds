@@ -1,5 +1,4 @@
 <script>
-	import io from 'socket.io-client';
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { valueAlbumList, valueAudioItem, remoteServerUrl, editingEpisode } from '$/editor';
@@ -16,6 +15,7 @@
 	export let isPCValue = true;
 	export let showSocketConnect = false;
 	export let handleNewEpisode = () => {};
+	export let socketConnect = () => {};
 	export let showMismatchedFeeds = false;
 
 	let basePercent = 95;
@@ -79,23 +79,7 @@
 
 	function syncSong(song) {
 		song.added = syncedTime;
-		$valueAudioItem = $valueAudioItem;
-	}
-
-	function socketConnect() {
-		// $editingEpisode['@_liveValueLink'] =
-		// 	'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
-		let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
-		socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
-
-		socket.on('connect', () => {
-			if (valueGuid) {
-				// Send a message with the valueGuid
-				socket.emit('connected', valueGuid);
-			} else {
-				console.log('ValueGuid is not defined');
-			}
-		});
+		// $valueAudioItem = $valueAudioItem;
 	}
 </script>
 

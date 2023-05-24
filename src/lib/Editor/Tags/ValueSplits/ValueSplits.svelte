@@ -1,4 +1,5 @@
 <script>
+	import io from 'socket.io-client';
 	import { valueAudioItem, editingEpisode, showLiveEpisodes, selectedPodcast } from '$/editor';
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import PreProduction from './PreProduction.svelte';
@@ -30,10 +31,11 @@
 	}
 
 	// Reactive statement to handle $showLiveEpisode changes
-	$: if ($showLiveEpisodes)
-		handleNewEpisode($showLiveEpisodes, $editingEpisode?.['@_liveValueLink']);
+	$: if ($showLiveEpisodes) {
+		handleNewEpisode($editingEpisode?.['@_liveValueLink']);
+	}
 
-	async function handleNewEpisode($showLiveEpisodes, editingEpisodeLink) {
+	async function handleNewEpisode(editingEpisodeLink) {
 		showSocketConnect = false;
 		showMismatchedFeeds = false;
 		if ($showLiveEpisodes && $selectedPodcast?.url) {
@@ -82,6 +84,22 @@
 		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('?event_id=')[1];
 		socket.emit('valueBlock', { valueGuid, serverData: {} });
 	}
+
+	function socketConnect() {
+		// $editingEpisode['@_liveValueLink'] =
+		// 	'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
+		let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
+		socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
+
+		socket.on('connect', () => {
+			if (valueGuid) {
+				// Send a message with the valueGuid
+				socket.emit('connected', valueGuid);
+			} else {
+				console.log('ValueGuid is not defined');
+			}
+		});
+	}
 </script>
 
 <button-container>
@@ -114,7 +132,8 @@
 			activeView={liveView}
 			bind:isPCValue
 			{showSocketConnect}
-			bind:socket
+			{socketConnect}
+			{socket}
 			{handleNewEpisode}
 			{showMismatchedFeeds}
 		/>
