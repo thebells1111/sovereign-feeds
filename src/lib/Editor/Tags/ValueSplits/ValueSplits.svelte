@@ -16,8 +16,8 @@
 
 	function socketConnect($showLiveEpisodes) {
 		if ($showLiveEpisodes && $editingEpisode?.['@_liveValueLink']) {
-			$editingEpisode['@_liveValueLink'] =
-				'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
+			// $editingEpisode['@_liveValueLink'] =
+			// 	'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
 			let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
 			socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
 
@@ -28,11 +28,6 @@
 				} else {
 					console.log('ValueGuid is not defined');
 				}
-			});
-			socket.on('remoteValue', function (data) {
-				// You will need to adjust this part based on the actual format of the data sent by the server
-				console.log(data);
-				console.log('remoteValue');
 			});
 		} else {
 			if (socket) {
