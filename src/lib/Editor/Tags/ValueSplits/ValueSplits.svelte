@@ -10,21 +10,41 @@
 	let isPCValue = true;
 	let socket;
 	let showSocketConnect = false;
+	let showMismatchedFeeds = false;
 
 	$: viewer = $showLiveEpisodes ? 'live' : 'pre';
 
-	$: handleNewEpisode($showLiveEpisodes);
+	let previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
+	let timeoutId;
+	let timeoutTime = 10000; // 10 seconds
 
-	async function handleNewEpisode($showLiveEpisodes) {
+	$: {
+		if ($editingEpisode?.['@_liveValueLink'] !== previousEditingEpisodeLink) {
+			// Clear any existing timer
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(() => {
+				handleNewEpisode($showLiveEpisodes, $editingEpisode?.['@_liveValueLink']);
+			}, timeoutTime);
+			previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
+		}
+	}
+
+	// Reactive statement to handle $showLiveEpisode changes
+	$: if ($showLiveEpisodes)
+		handleNewEpisode($showLiveEpisodes, $editingEpisode?.['@_liveValueLink']);
+
+	async function handleNewEpisode($showLiveEpisodes, editingEpisodeLink) {
 		showSocketConnect = false;
+		showMismatchedFeeds = false;
 		if ($showLiveEpisodes && $selectedPodcast?.url) {
 			let xml = await getRSSEditorFeed($selectedPodcast.url);
 			let activeItem = [].concat(xml?.rss?.channel?.['podcast:liveItem']).find((v) => {
-				return v?.['@_liveValueLink'] === $editingEpisode?.['@_liveValueLink'];
+				return v?.['@_liveValueLink'] === editingEpisodeLink;
 			});
 			showSocketConnect = activeItem?.['@_liveValueLink']?.includes(
 				'https://curiohoster.com/event'
 			);
+			showMismatchedFeeds = !showSocketConnect;
 		}
 		if (socket) {
 			socket.disconnect();
@@ -95,6 +115,8 @@
 			bind:isPCValue
 			{showSocketConnect}
 			bind:socket
+			{handleNewEpisode}
+			{showMismatchedFeeds}
 		/>
 	{/if}
 

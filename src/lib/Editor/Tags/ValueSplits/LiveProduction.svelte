@@ -15,6 +15,8 @@
 	export let activeView = 'albums';
 	export let isPCValue = true;
 	export let showSocketConnect = false;
+	export let handleNewEpisode = () => {};
+	export let showMismatchedFeeds = false;
 
 	let basePercent = 95;
 	let activateOnSync = true;
@@ -197,7 +199,15 @@
 			<h3>
 				Go to the Live Info Tab to generate your link, then publish your feed with the new link.
 			</h3>
-			<h3>After your feed has been published with your new link, restart Sovereign Feeds.</h3>
+			<h3>
+				After your feed has been published with your new link, click the button below to use the
+				Live Value Tool.
+			</h3>
+
+			<button class="primary live-check" on:click={handleNewEpisode}>Use Live Value Tool</button>
+			{#if showMismatchedFeeds}
+				<p class="mismatch">Ensure that your published feed matches your Live Value Link.</p>
+			{/if}
 		</div>
 	{/if}
 </container>
@@ -336,5 +346,14 @@
 		top: 50px;
 		left: 50%;
 		transform: translate(-50%, -50%);
+	}
+
+	.live-check {
+		width: 250px;
+		background-image: linear-gradient(to bottom, hsl(326, 100%, 44%), hsl(326, 100%, 26.7%));
+	}
+
+	.mismatch {
+		color: red;
 	}
 </style>
