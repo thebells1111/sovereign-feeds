@@ -8,7 +8,7 @@
 		let data = await res.json();
 		console.log(data.guid);
 		if (data.guid) {
-			$editingEpisode['@_liveValueLink'] = remoteServerUrl + '/event/' + data.guid;
+			$editingEpisode['@_liveValueLink'] = remoteServerUrl + '/event?event_id=' + data.guid;
 		}
 	}
 </script>
