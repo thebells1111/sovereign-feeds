@@ -1,4 +1,5 @@
 <script>
+	import io from 'socket.io-client';
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { valueAlbumList, valueAudioItem, remoteServerUrl, editingEpisode } from '$/editor';
@@ -13,6 +14,7 @@
 	export let socket;
 	export let activeView = 'albums';
 	export let isPCValue = true;
+	export let showSocketConnect = false;
 
 	let basePercent = 95;
 	let activateOnSync = true;
@@ -77,101 +79,125 @@
 		song.added = syncedTime;
 		$valueAudioItem = $valueAudioItem;
 	}
+
+	function socketConnect() {
+		// $editingEpisode['@_liveValueLink'] =
+		// 	'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
+		let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
+		socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
+
+		socket.on('connect', () => {
+			if (valueGuid) {
+				// Send a message with the valueGuid
+				socket.emit('connected', valueGuid);
+			} else {
+				console.log('ValueGuid is not defined');
+			}
+		});
+	}
 </script>
 
 <container>
-	{#if $editingEpisode?.['@_liveValueLink']?.includes('https://curiohoster.com/event')}
-		<left-pane>
-			<left-select>
-				<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button>
-				<button class="primary value" on:click={() => (activeView = 'valueBlock')}
-					>Show Value Block</button
+	{#if showSocketConnect}
+		{#if socket}
+			<left-pane>
+				<left-select>
+					<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button
+					>
+					<button class="primary value" on:click={() => (activeView = 'valueBlock')}
+						>Show Value Block</button
+					>
+				</left-select>
+
+				<album-list class:hidden={activeView != 'albums'}>
+					<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
+					<list-container>
+						<ul>
+							{#each filteredAlbumsList as album}
+								<li>
+									<AlbumCard {album} {basePercent} bind:selectedAlbum />
+								</li>
+							{/each}
+						</ul>
+					</list-container>
+				</album-list>
+
+				<active-value class:hidden={activeView != 'valueBlock'}>
+					<h2>Active Value Block</h2>
+
+					{#if isPCValue}
+						Using Podcaster's Value Block
+					{:else if activeValueBlock.meta}
+						<active-meta>
+							<img src={activeValueBlock.meta.artwork} width="100" height="100" />
+							<info>
+								<p><b>Song: </b>{activeValueBlock.meta.song}</p>
+								<p><b>Artist: </b>{activeValueBlock.meta.author}</p>
+								<p><b>Album: </b>{activeValueBlock.meta.album}</p>
+							</info>
+						</active-meta>
+
+						<h3>Remote Value Block</h3>
+						<ul>
+							{#each activeValueBlock.remote || [] as item}
+								<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+							{/each}
+						</ul>
+
+						<h3>Podcaster's Value Block</h3>
+						<ul>
+							{#each activeValueBlock.base || [] as item}
+								<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
+							{/each}
+						</ul>
+
+						<h3 class="disclaimer">SF Live</h3>
+						<p class="disclaimer">5% is added when using this service to cover server costs</p>
+						<ul>
+							<li>({activeValueBlock.sf.split}%) SF Live</li>
+						</ul>
+					{/if}
+				</active-value>
+			</left-pane>
+
+			<playlist>
+				<label>
+					Add new blocks at <input
+						class="base-remote-split"
+						bind:value={basePercent}
+						type="number"
+						min="0"
+						max="100"
+					/>% split
+				</label>
+				<audio-items>
+					{#if $valueAudioItem?.length}
+						<AudioItem
+							{syncSong}
+							bind:activeValueBlock
+							{activateOnSync}
+							liveproduction="true"
+							bind:isPCValue
+							{socket}
+						/>
+					{/if}
+				</audio-items>
+				<label
+					><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
 				>
-			</left-select>
-
-			<album-list class:hidden={activeView != 'albums'}>
-				<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
-				<list-container>
-					<ul>
-						{#each filteredAlbumsList as album}
-							<li>
-								<AlbumCard {album} {basePercent} bind:selectedAlbum />
-							</li>
-						{/each}
-					</ul>
-				</list-container>
-			</album-list>
-
-			<active-value class:hidden={activeView != 'valueBlock'}>
-				<h2>Active Value Block</h2>
-
-				{#if isPCValue}
-					Using Podcaster's Value Block
-				{:else if activeValueBlock.meta}
-					<active-meta>
-						<img src={activeValueBlock.meta.artwork} width="100" height="100" />
-						<info>
-							<p><b>Song: </b>{activeValueBlock.meta.song}</p>
-							<p><b>Artist: </b>{activeValueBlock.meta.author}</p>
-							<p><b>Album: </b>{activeValueBlock.meta.album}</p>
-						</info>
-					</active-meta>
-
-					<h3>Remote Value Block</h3>
-					<ul>
-						{#each activeValueBlock.remote || [] as item}
-							<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
-						{/each}
-					</ul>
-
-					<h3>Podcaster's Value Block</h3>
-					<ul>
-						{#each activeValueBlock.base || [] as item}
-							<li>({item.split}% {item.fee ? 'fee' : ''}) {item.name}</li>
-						{/each}
-					</ul>
-
-					<h3 class="disclaimer">SF Live</h3>
-					<p class="disclaimer">5% is added when using this service to cover server costs</p>
-					<ul>
-						<li>({activeValueBlock.sf.split}%) SF Live</li>
-					</ul>
-				{/if}
-			</active-value>
-		</left-pane>
-
-		<playlist>
-			<label>
-				Add new blocks at <input
-					class="base-remote-split"
-					bind:value={basePercent}
-					type="number"
-					min="0"
-					max="100"
-				/>% split
-			</label>
-			<audio-items>
-				{#if $valueAudioItem?.length}
-					<AudioItem
-						{syncSong}
-						bind:activeValueBlock
-						{activateOnSync}
-						liveproduction="true"
-						bind:isPCValue
-						{socket}
-					/>
-				{/if}
-			</audio-items>
-			<label
-				><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
+			</playlist>
+		{:else}
+			<button class="primary socket-connect" on:click={socketConnect}
+				>Connect to Live Value Server</button
 			>
-		</playlist>
+		{/if}
 	{:else}
-		<div>
+		<div class="warning">
 			<h3>You need a Sovereign Feeds Live Value Link present in your feed to use this feature.</h3>
 			<h3>
 				Go to the Live Info Tab to generate your link, then publish your feed with the new link.
 			</h3>
+			<h3>After your feed has been published with your new link, restart Sovereign Feeds.</h3>
 		</div>
 	{/if}
 </container>
@@ -185,6 +211,7 @@
 		grid-template-areas: 'left-pane playlist';
 		overflow: hidden;
 		flex: 1;
+		position: relative;
 	}
 
 	ul {
@@ -292,5 +319,22 @@
 
 	h3.disclaimer {
 		margin-bottom: 0;
+	}
+
+	.warning {
+		position: absolute;
+		margin: 0 auto;
+		text-align: center;
+		width: 100%;
+	}
+
+	.socket-connect {
+		margin: 40px auto;
+		width: 250px;
+		background-image: linear-gradient(to bottom, hsl(277, 100%, 44%), hsl(277, 100%, 26.7%));
+		position: absolute;
+		top: 50px;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 </style>

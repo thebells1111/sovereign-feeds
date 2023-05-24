@@ -1,6 +1,5 @@
 <script>
-	import io from 'socket.io-client';
-	import { valueAudioItem, editingEpisode, showLiveEpisodes, remoteServerUrl } from '$/editor';
+	import { valueAudioItem, editingEpisode, showLiveEpisodes } from '$/editor';
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
 	import LiveProduction from './LiveProduction.svelte';
@@ -9,31 +8,20 @@
 	let liveView = 'albums';
 	let isPCValue = true;
 	let socket;
+	let showSocketConnect = false;
 
 	$: viewer = $showLiveEpisodes ? 'live' : 'pre';
 
-	$: socketConnect($showLiveEpisodes);
+	$: handleNewEpisode($showLiveEpisodes);
 
-	function socketConnect($showLiveEpisodes) {
-		if ($showLiveEpisodes && $editingEpisode?.['@_liveValueLink']) {
-			// $editingEpisode['@_liveValueLink'] =
-			// 	'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
-			let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
-			socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
-
-			socket.on('connect', () => {
-				if (valueGuid) {
-					// Send a message with the valueGuid
-					socket.emit('connected', valueGuid);
-				} else {
-					console.log('ValueGuid is not defined');
-				}
-			});
-		} else {
-			if (socket) {
-				socket.disconnect();
-				console.log('Socket disconnected');
-			}
+	function handleNewEpisode($showLiveEpisodes) {
+		showSocketConnect =
+			$showLiveEpisodes &&
+			$editingEpisode?.['@_liveValueLink']?.includes('https://curiohoster.com/event');
+		if (socket) {
+			socket.disconnect();
+			socket = undefined;
+			console.log('Socket disconnected');
 		}
 	}
 
@@ -63,7 +51,7 @@
 		liveView = 'valueBlock';
 		activeValueBlock = {};
 		isPCValue = true;
-		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event/')[1];
+		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('?event_id=')[1];
 		socket.emit('valueBlock', { valueGuid, serverData: {} });
 	}
 </script>
@@ -97,7 +85,8 @@
 			bind:activeValueBlock
 			activeView={liveView}
 			bind:isPCValue
-			{socket}
+			{showSocketConnect}
+			bind:socket
 		/>
 	{/if}
 
