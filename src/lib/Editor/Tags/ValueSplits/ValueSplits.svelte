@@ -1,5 +1,6 @@
 <script>
-	import { valueAudioItem, editingEpisode, showLiveEpisodes } from '$/editor';
+	import { valueAudioItem, editingEpisode, showLiveEpisodes, selectedPodcast } from '$/editor';
+	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
 	import LiveProduction from './LiveProduction.svelte';
@@ -14,10 +15,17 @@
 
 	$: handleNewEpisode($showLiveEpisodes);
 
-	function handleNewEpisode($showLiveEpisodes) {
-		showSocketConnect =
-			$showLiveEpisodes &&
-			$editingEpisode?.['@_liveValueLink']?.includes('https://curiohoster.com/event');
+	async function handleNewEpisode($showLiveEpisodes) {
+		showSocketConnect = false;
+		if ($showLiveEpisodes && $selectedPodcast?.url) {
+			let xml = await getRSSEditorFeed($selectedPodcast.url);
+			let activeItem = [].concat(xml?.rss?.channel?.['podcast:liveItem']).find((v) => {
+				return v?.['@_liveValueLink'] === $editingEpisode?.['@_liveValueLink'];
+			});
+			showSocketConnect = activeItem?.['@_liveValueLink']?.includes(
+				'https://curiohoster.com/event'
+			);
+		}
 		if (socket) {
 			socket.disconnect();
 			socket = undefined;
