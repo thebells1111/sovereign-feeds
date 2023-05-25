@@ -79,7 +79,7 @@
 
 	function syncSong(song) {
 		song.added = syncedTime;
-		// $valueAudioItem = $valueAudioItem;
+		$valueAudioItem = $valueAudioItem;
 	}
 </script>
 

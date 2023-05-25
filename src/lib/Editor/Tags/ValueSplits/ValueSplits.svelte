@@ -1,6 +1,12 @@
 <script>
 	import io from 'socket.io-client';
-	import { valueAudioItem, editingEpisode, showLiveEpisodes, selectedPodcast } from '$/editor';
+	import {
+		valueAudioItem,
+		editingEpisode,
+		showLiveEpisodes,
+		remoteServerUrl,
+		selectedPodcast
+	} from '$/editor';
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import PreProduction from './PreProduction.svelte';
 	import PostProdcution from './PostProdcution.svelte';
@@ -17,25 +23,25 @@
 
 	let previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
 	let timeoutId;
-	let timeoutTime = 10000; // 10 seconds
+	let timeoutTime = 1000; // 10 seconds
 
-	$: {
-		if ($editingEpisode?.['@_liveValueLink'] !== previousEditingEpisodeLink) {
-			// Clear any existing timer
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(() => {
-				handleNewEpisode($showLiveEpisodes, $editingEpisode?.['@_liveValueLink']);
-			}, timeoutTime);
-			previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
-		}
-	}
+	// $: {
+	// 	if ($editingEpisode?.['@_liveValueLink'] !== previousEditingEpisodeLink) {
+	// 		// Clear any existing timer
+	// 		clearTimeout(timeoutId);
+	// 		timeoutId = setTimeout(() => {
+	// 			handleNewEpisode($showLiveEpisodes, $editingEpisode?.['@_liveValueLink']);
+	// 		}, timeoutTime);
+	// 		previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
+	// 	}
+	// }
 
 	// Reactive statement to handle $showLiveEpisode changes
-	$: if ($showLiveEpisodes) {
-		handleNewEpisode($editingEpisode?.['@_liveValueLink']);
-	}
+	$: handleNewEpisode($showLiveEpisodes);
 
-	async function handleNewEpisode(editingEpisodeLink) {
+	async function handleNewEpisode() {
+		let editingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
+
 		showSocketConnect = false;
 		showMismatchedFeeds = false;
 		if ($showLiveEpisodes && $selectedPodcast?.url) {
