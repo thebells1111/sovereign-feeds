@@ -168,9 +168,10 @@
 						/>
 					{/if}
 				</audio-items>
-				<label
-					><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
-				>
+				<label>
+					<input type="checkbox" bind:checked={activateOnSync} />
+					Activate Value Block on Sync
+				</label>
 			</playlist>
 		{:else}
 			<button class="primary socket-connect" on:click={socketConnect}
