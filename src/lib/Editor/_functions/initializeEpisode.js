@@ -10,6 +10,7 @@ import initializeLiveTime from './initialize/liveItemTime';
 import initializeEpisodeGuid from './initialize/episodeGuid';
 import initializeLicenseTag from './initialize/license';
 import initializeValueTimeSplit from './initialize/valueTimeSplit';
+import initializeChat from '$lib/Editor/Tags/Chat/initializeChat';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups, valueAudioItem } from '$/editor';
 
@@ -36,6 +37,7 @@ export default async function initializeEpisode(episode, type) {
 
 	episode['podcast:value'] = initializeValueTag(episode['podcast:value']);
 	episode['podcast:license'] = initializeLicenseTag(episode['podcast:license']);
+	episode['podcast:chat'] = initializeChat(episode['podcast:chat']);
 
 	if (type === 'live') {
 		episode['podcast:contentLink'] = initializeContentLink(episode['podcast:contentLink']);
