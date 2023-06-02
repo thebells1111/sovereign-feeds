@@ -1,6 +1,6 @@
 const blankChat = {
 	'@_server': '',
-	'@_protocol': 'irc',
+	'@_protocol': 'nostr',
 	'@_accountId': '',
 	'@_space': ''
 };

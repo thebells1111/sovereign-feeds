@@ -2,6 +2,21 @@
 	export let data;
 	import { selectTextOnFocus } from '$functions/inputActions';
 	import ToolTip from '$lib/Shared/ToolTip.svelte';
+	import Select from 'svelte-select';
+
+	const protocols = ['irc', 'xmpp', 'nostr', 'matrix'];
+	let selectedProtocol = 'irc';
+	let isProtocolSet = false;
+
+	function handleSelect(e) {
+		let slug = e.detail;
+		data['podcast:chat']['@_protocol'] = slug.value;
+	}
+
+	$: if (!isProtocolSet && data?.['podcast:chat']?.['@_protocol']) {
+		selectedProtocol = data['podcast:chat']['@_protocol'];
+		isProtocolSet = true;
+	}
 </script>
 
 {#if data?.['podcast:chat']}
@@ -21,11 +36,18 @@
 		<label>
 			<title>
 				<h4>Protocol</h4>
+				{data['podcast:chat']['@_protocol']}
 				<ToolTip>
 					<p.tooltip> (required) The protocol in use on the server. </p.tooltip>
 				</ToolTip>
 			</title>
-			<input type="text" bind:value={data['podcast:chat']['@_protocol']} use:selectTextOnFocus />
+			<Select
+				items={protocols}
+				value={selectedProtocol}
+				on:select={handleSelect}
+				isClearable={false}
+				--margin="0 0 8px 8px"
+			/>
 		</label>
 		<label>
 			<title>
