@@ -14,6 +14,7 @@
 	}
 
 	$: if (!isProtocolSet && data?.['podcast:chat']?.['@_protocol']) {
+		console.log(data);
 		selectedProtocol = data['podcast:chat']['@_protocol'];
 		isProtocolSet = true;
 	}
