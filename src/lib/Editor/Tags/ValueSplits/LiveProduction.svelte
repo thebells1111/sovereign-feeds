@@ -20,6 +20,24 @@
 
 	let basePercent = 95;
 	let activateOnSync = true;
+	let playSongOnSync = true;
+	let playAllSongs = true;
+	let defaultValueSwitch = false;
+	let player;
+
+	$: togglePlayer(playSongOnSync);
+
+	function togglePlayer() {
+		if (playSongOnSync) {
+			player = new Audio();
+		} else {
+			if (player) {
+				player.pause();
+				player.currentTime = 0;
+			}
+			player = null;
+		}
+	}
 
 	afterNavigate(({ from }) => {
 		setTimeout(() => searchInput.select(), 100);
@@ -161,16 +179,32 @@
 						<AudioItem
 							{syncSong}
 							bind:activeValueBlock
-							{activateOnSync}
 							liveproduction="true"
 							bind:isPCValue
 							{socket}
+							{player}
+							{activateOnSync}
+							{playSongOnSync}
+							{playAllSongs}
+							{defaultValueSwitch}
 						/>
 					{/if}
 				</audio-items>
-				<label
-					><input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync</label
-				>
+				<settings>
+					<label>
+						<input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync/Play
+					</label>
+					<label>
+						<input type="checkbox" bind:checked={playSongOnSync} />Play Songs
+					</label>
+					<label>
+						<input type="checkbox" bind:checked={playAllSongs} />Play Next Song Automatically
+					</label>
+					<label>
+						<input type="checkbox" bind:checked={defaultValueSwitch} />Auto Switch to Podcaster's
+						Wallet
+					</label>
+				</settings>
 			</playlist>
 		{:else}
 			<button class="primary socket-connect" on:click={socketConnect}

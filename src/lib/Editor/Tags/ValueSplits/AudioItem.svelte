@@ -2,14 +2,21 @@
 	import clone from 'just-clone';
 	import Delete from '$lib/icons/Delete.svelte';
 	import Refresh from '$lib/icons/Refresh.svelte';
+	import Play from '$lib/icons/PlayArrow.svelte';
+	import Pause from '$lib/icons/Pause.svelte';
 	import { valueAudioItem, editingEpisode, rssData, showLiveEpisodes } from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
 	export let liveproduction = false;
 	export let activeValueBlock = {};
 	export let activateOnSync = true;
+	export let playSongOnSync = false;
+	export let defaultValueSwitch = false;
+	export let playAllSongs = false;
 	export let isPCValue = true;
 	export let socket = undefined;
+	export let player;
+	let timeRemaining = 0;
 
 	$: console.log(activeValueBlock);
 
@@ -182,6 +189,62 @@
 
 		return percentagedArray;
 	}
+
+	async function handleSyncClick(item, index) {
+		if (!postproduction && $showLiveEpisodes && activateOnSync) {
+			updateValueBlock(item);
+		}
+		if (player) {
+			player.src = item.url;
+			player.play();
+
+			player.onended = () => {
+				console.log('ended');
+				console.log($valueAudioItem);
+				if (playAllSongs) {
+					if (index < $valueAudioItem.length - 1) {
+						console.log(index);
+						let newIndex = index + 1;
+						console.log('newIndex: ', newIndex);
+						handleSyncClick($valueAudioItem[newIndex], newIndex);
+					} else {
+						handleAutoSwitch();
+					}
+				} else {
+					handleAutoSwitch();
+				}
+			};
+		} else if (defaultValueSwitch) {
+			let startTime = new Date().getTime();
+			timeRemaining = timeRemaining = item.duration * 1000;
+			console.log(formatTime(timeRemaining / 1000));
+			setTimeout(handleTimer.bind(this, startTime, item), 1000);
+
+			function handleTimer(startTime, item) {
+				if (activeValueBlock?.meta?._id === item?._id) {
+					timeRemaining = startTime + item.duration * 1000 - new Date().getTime();
+
+					if (timeRemaining > 0) {
+						setTimeout(handleTimer.bind(this, startTime, item), 1000);
+					} else {
+						timeRemaining = 0;
+						handleAutoSwitch();
+					}
+					console.log(formatTime(timeRemaining / 1000));
+				}
+			}
+		}
+		syncSong(item, index);
+
+		function handleAutoSwitch() {
+			if (defaultValueSwitch) {
+				activeValueBlock = {};
+				isPCValue = true;
+				let valueGuid = $editingEpisode?.['@_liveValueLink'].split('?event_id=')[1];
+				socket.emit('valueBlock', { valueGuid, serverData: {} });
+			}
+		}
+	}
 </script>
 
 {#each $valueAudioItem as item, index}
@@ -274,17 +337,23 @@
 			{/if}
 		</time-container>
 		<button-container>
-			<button
-				class="sync"
-				on:click={() => {
-					syncSong(item, index);
-					if (!postproduction && $showLiveEpisodes && activateOnSync) {
-						updateValueBlock(item);
-					}
-				}}
-			>
-				<Refresh size="30" />
-				<p>Sync</p>
+			<button class="sync" on:click={handleSyncClick.bind(this, item, index)}>
+				{#if playSongOnSync}
+					{#if activeValueBlock && activeValueBlock?.meta?._id === item?._id}
+						{#if player.paused}<Play size="30" />
+							<p>Play</p>
+						{:else}
+							<Pause size="30" />
+							<p>Pause</p>
+						{/if}
+					{:else}
+						<Play size="30" />
+						<p>Play</p>
+					{/if}
+				{:else}
+					<Refresh size="30" />
+					<p>Sync</p>
+				{/if}
 			</button>
 
 			<h4>{index + 1}</h4>
