@@ -17,6 +17,7 @@
 	export let socket = undefined;
 	export let player;
 	let timeRemaining = 0;
+	let timerInterval;
 
 	$: console.log(activeValueBlock);
 
@@ -198,14 +199,14 @@
 			player.src = item.url;
 			player.play();
 
+			player.ontimeupdate = () => {
+				timeRemaining = (player.duration - player.currentTime) * 1000;
+			};
+
 			player.onended = () => {
-				console.log('ended');
-				console.log($valueAudioItem);
 				if (playAllSongs) {
 					if (index < $valueAudioItem.length - 1) {
-						console.log(index);
 						let newIndex = index + 1;
-						console.log('newIndex: ', newIndex);
 						handleSyncClick($valueAudioItem[newIndex], newIndex);
 					} else {
 						handleAutoSwitch();
@@ -214,26 +215,29 @@
 					handleAutoSwitch();
 				}
 			};
-		} else if (defaultValueSwitch) {
+		} else {
 			let startTime = new Date().getTime();
 			timeRemaining = timeRemaining = item.duration * 1000;
-			console.log(formatTime(timeRemaining / 1000));
-			setTimeout(handleTimer.bind(this, startTime, item), 1000);
+
+			if (timerInterval) {
+				clearInterval(timerInterval);
+			}
+
+			timerInterval = setInterval(handleTimer.bind(this, startTime, item), 100);
 
 			function handleTimer(startTime, item) {
-				if (activeValueBlock?.meta?._id === item?._id) {
-					timeRemaining = startTime + item.duration * 1000 - new Date().getTime();
+				timeRemaining = startTime + item.duration * 1000 - new Date().getTime();
 
-					if (timeRemaining > 0) {
-						setTimeout(handleTimer.bind(this, startTime, item), 1000);
-					} else {
-						timeRemaining = 0;
+				if (timeRemaining <= 0) {
+					clearInterval(timerInterval);
+					timeRemaining = 0;
+					if (defaultValueSwitch) {
 						handleAutoSwitch();
 					}
-					console.log(formatTime(timeRemaining / 1000));
 				}
 			}
 		}
+
 		syncSong(item, index);
 
 		function handleAutoSwitch() {
@@ -289,6 +293,14 @@
 		<time-container>
 			<p><strong>Song Duration:</strong> <span>{formatTime(item.duration)}</span></p>
 			<p><strong>Synced Time:</strong> <span>{formatTime(item.added)}</span></p>
+			{#if activeValueBlock && activeValueBlock?.meta?._id === item?._id}
+				<p>
+					<strong>Time Remaining:</strong>
+					<span>{timeRemaining ? formatTime(timeRemaining / 1000) : ''}</span>
+				</p>
+			{:else}
+				<vertical-spacer />
+			{/if}
 
 			{#if item.added || item.added === 0}
 				{#if postproduction}
@@ -355,7 +367,6 @@
 					<p>Sync</p>
 				{/if}
 			</button>
-
 			<h4>{index + 1}</h4>
 			<button on:click|stopPropagation={deleteSong.bind(this, index)}>
 				<Delete size="30" />
@@ -477,5 +488,10 @@
 		color: white;
 		height: 24px;
 		background-image: linear-gradient(to bottom, hsl(120, 100%, 25%), hsl(120, 100%, 15%));
+	}
+
+	vertical-spacer {
+		display: block;
+		height: 21px;
 	}
 </style>

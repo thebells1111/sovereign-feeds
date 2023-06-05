@@ -22,7 +22,7 @@
 	let activateOnSync = true;
 	let playSongOnSync = true;
 	let playAllSongs = true;
-	let defaultValueSwitch = false;
+	let defaultValueSwitch = true;
 	let player;
 
 	$: togglePlayer(playSongOnSync);
