@@ -13,7 +13,6 @@
 	import LiveProduction from './LiveProduction.svelte';
 	import TimerButton from './TimerButton.svelte';
 	let activeValueBlock = {};
-	let liveView = 'albums';
 	let isPCValue = true;
 	let socket;
 	let showSocketConnect = false;
@@ -22,22 +21,6 @@
 
 	$: viewer = $showLiveEpisodes ? 'live' : 'pre';
 
-	let previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
-	let timeoutId;
-	let timeoutTime = 1000; // 10 seconds
-
-	// $: {
-	// 	if ($editingEpisode?.['@_liveValueLink'] !== previousEditingEpisodeLink) {
-	// 		// Clear any existing timer
-	// 		clearTimeout(timeoutId);
-	// 		timeoutId = setTimeout(() => {
-	// 			handleNewEpisode($showLiveEpisodes, $editingEpisode?.['@_liveValueLink']);
-	// 		}, timeoutTime);
-	// 		previousEditingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
-	// 	}
-	// }
-
-	// Reactive statement to handle $showLiveEpisode changes
 	$: handleNewEpisode($showLiveEpisodes);
 
 	$: showSocketConnect =
@@ -87,7 +70,6 @@
 	}
 
 	function handlePCValue() {
-		liveView = 'valueBlock';
 		activeValueBlock = {};
 		isPCValue = true;
 		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('?event_id=')[1];
@@ -138,7 +120,6 @@
 		<LiveProduction
 			bind:syncedTime
 			bind:activeValueBlock
-			activeView={liveView}
 			bind:isPCValue
 			{showSocketConnect}
 			{socketConnect}

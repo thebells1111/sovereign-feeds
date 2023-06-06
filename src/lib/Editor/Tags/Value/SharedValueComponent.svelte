@@ -11,6 +11,7 @@
 	let username = '';
 	let noUserFound = false;
 	let showProviderInput = false;
+	export let support = true;
 
 	// Check if Sovereign Feeds is not added
 	$: noSF = (() => {
@@ -161,7 +162,7 @@
 
 <div class="persons-container">
 	<div class="splits-container">
-		{#if noSF}
+		{#if noSF && support}
 			<button class="primary support" on:click={addSovereignFeeds}>
 				Support Sovereign Feeds! Add us to your Value Block!
 			</button>

@@ -12,7 +12,6 @@
 	export let syncedTime = 0;
 
 	let basePercent = 95;
-	let activateOnSync = true;
 
 	afterNavigate(({ from }) => {
 		setTimeout(() => searchInput.select(), 100);
@@ -101,7 +100,7 @@
 		</label>
 		<audio-items>
 			{#if $valueAudioItem?.length}
-				<AudioItem {syncSong} bind:activeValueBlock {activateOnSync} />
+				<AudioItem {syncSong} bind:activeValueBlock />
 			{/if}
 		</audio-items>
 	</playlist>

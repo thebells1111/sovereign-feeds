@@ -9,7 +9,6 @@
 	export let postproduction = false;
 	export let liveproduction = false;
 	export let activeValueBlock = {};
-	export let activateOnSync = true;
 	export let playSongOnSync = false;
 	export let defaultValueSwitch = false;
 	export let playAllSongs = false;
@@ -192,7 +191,7 @@
 	}
 
 	async function handleSyncClick(item, index) {
-		if (!postproduction && $showLiveEpisodes && activateOnSync) {
+		if (!postproduction && $showLiveEpisodes) {
 			updateValueBlock(item);
 		}
 		if (player) {
@@ -268,11 +267,7 @@
 					{#if activeValueBlock && activeValueBlock?.meta?._id === item?._id}
 						<active>Active</active>
 					{:else}
-						<inactive>
-							<button class="activate primary" on:click={updateValueBlock.bind(this, item)}
-								>Activate Value Block</button
-							>
-						</inactive>
+						<inactive />
 					{/if}
 				{/if}
 				<split>

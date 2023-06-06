@@ -1,17 +1,11 @@
 <script>
-	import { onMount } from 'svelte';
-	import { afterNavigate } from '$app/navigation';
 	import { valueAlbumList, valueAudioItem, remoteServerUrl, editingEpisode } from '$/editor';
-	let searchQuery = '';
-	let searchInput;
-	let filteredAlbumsList = [];
-	let selectedAlbum = {};
-	import AlbumCard from './AlbumCard.svelte';
+
 	import AudioItem from './AudioItem.svelte';
+	import CreateValueBlock from './CreateValueBlock.svelte';
 	export let activeValueBlock = {};
 	export let syncedTime = 0;
 	export let socket;
-	export let activeView = 'albums';
 	export let isPCValue = true;
 	export let showSocketConnect = false;
 	export let handleNewEpisode = () => {};
@@ -19,11 +13,11 @@
 	export let showMismatchedFeeds = false;
 
 	let basePercent = 95;
-	let activateOnSync = true;
 	let playSongOnSync = true;
 	let playAllSongs = true;
 	let defaultValueSwitch = true;
 	let player;
+	let activeView = 'create';
 
 	$: togglePlayer(playSongOnSync);
 
@@ -39,62 +33,6 @@
 		}
 	}
 
-	afterNavigate(({ from }) => {
-		setTimeout(() => searchInput.select(), 100);
-	});
-
-	function sortArrayAlphabetically(arr) {
-		const articles = ['a', 'an', 'the'];
-
-		arr.sort((a, b) => {
-			const titleA = a.title.toLowerCase();
-			const titleB = b.title.toLowerCase();
-			const wordA = titleA.split(' ')[0];
-			const wordB = titleB.split(' ')[0];
-
-			// If either word is an article, ignore it
-			const indexA = articles.includes(wordA) ? 1 : 0;
-			const indexB = articles.includes(wordB) ? 1 : 0;
-
-			// Compare the remaining words
-			const remainingA = titleA.split(' ').slice(indexA).join(' ');
-			const remainingB = titleB.split(' ').slice(indexB).join(' ');
-
-			if (remainingA < remainingB) {
-				return -1;
-			}
-			if (remainingA > remainingB) {
-				return 1;
-			}
-			return 0;
-		});
-		return arr;
-	}
-
-	onMount(async () => {
-		if (!$valueAlbumList.length) {
-			const res = await fetch(
-				remoteServerUrl +
-					`/api/queryindex?q=${encodeURIComponent(
-						'podcasts/bymedium?medium=music&max=1000&val=lightning'
-					)}`
-			);
-			let data = await res.json();
-			$valueAlbumList = data.feeds || data.feed || [];
-			//this removes 100% Retro Live Feed
-			$valueAlbumList = sortArrayAlphabetically($valueAlbumList.filter(({ id }) => id !== 5718023));
-		}
-		console.log($editingEpisode);
-	});
-
-	$: {
-		filteredAlbumsList = $valueAlbumList.filter(
-			(obj) =>
-				obj.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				obj.author.toLowerCase().includes(searchQuery.toLowerCase())
-		);
-	}
-
 	function syncSong(song) {
 		song.added = syncedTime;
 		$valueAudioItem = $valueAudioItem;
@@ -106,25 +44,17 @@
 		{#if socket}
 			<left-pane>
 				<left-select>
-					<button class="primary album" on:click={() => (activeView = 'albums')}>Show Albums</button
+					<button class="primary album" on:click={() => (activeView = 'create')}
+						>Create Value Block</button
 					>
 					<button class="primary value" on:click={() => (activeView = 'valueBlock')}
-						>Show Value Block</button
+						>Show Active Value Block</button
 					>
 				</left-select>
 
-				<album-list class:hidden={activeView != 'albums'}>
-					<input bind:this={searchInput} bind:value={searchQuery} placeholder="filter albums" />
-					<list-container>
-						<ul>
-							{#each filteredAlbumsList as album}
-								<li>
-									<AlbumCard {album} {basePercent} bind:selectedAlbum />
-								</li>
-							{/each}
-						</ul>
-					</list-container>
-				</album-list>
+				<active-create class:hidden={activeView != 'create'}>
+					<CreateValueBlock {basePercent} />
+				</active-create>
 
 				<active-value class:hidden={activeView != 'valueBlock'}>
 					<h2>Active Value Block</h2>
@@ -183,7 +113,6 @@
 							bind:isPCValue
 							{socket}
 							{player}
-							{activateOnSync}
 							{playSongOnSync}
 							{playAllSongs}
 							{defaultValueSwitch}
@@ -191,9 +120,6 @@
 					{/if}
 				</audio-items>
 				<settings>
-					<label>
-						<input type="checkbox" bind:checked={activateOnSync} />Activate Value Block on Sync/Play
-					</label>
 					<label>
 						<input type="checkbox" bind:checked={playSongOnSync} />Play Songs
 					</label>
@@ -257,15 +183,6 @@
 		flex-direction: column;
 		grid-area: left-pane;
 		border-right: 1px solid var(--border-color);
-	}
-	album-list {
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-	}
-
-	album-list input {
-		width: calc(100% - 8px);
 	}
 
 	list-container {
@@ -373,5 +290,9 @@
 
 	.mismatch {
 		color: red;
+	}
+
+	.primary {
+		width: 200px;
 	}
 </style>
