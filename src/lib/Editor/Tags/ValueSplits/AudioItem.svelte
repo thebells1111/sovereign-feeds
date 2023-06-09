@@ -4,7 +4,13 @@
 	import Refresh from '$lib/icons/Refresh.svelte';
 	import Play from '$lib/icons/PlayArrow.svelte';
 	import Pause from '$lib/icons/Pause.svelte';
-	import { valueAudioItem, editingEpisode, rssData, showLiveEpisodes } from '$/editor';
+	import {
+		valueAudioItem,
+		editingEpisode,
+		rssData,
+		showLiveEpisodes,
+		editingAudioItem
+	} from '$/editor';
 	export let syncSong = () => {};
 	export let postproduction = false;
 	export let liveproduction = false;
@@ -88,18 +94,18 @@
 
 	function updateValueBlock(item) {
 		isPCValue = false;
+
+		let split = item.split || 0;
+		split = item?.value?.destinations ? split : 0;
 		let baseBlock = updateSplits(
 			convertArray(
 				filterItemsWithAddress($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) ||
 					filterItemsWithAddress($rssData?.['podcast:value']?.['podcast:valueRecipient'])
 			),
-			(100 - sovereignSplit) * (100 - item.split)
+			(100 - sovereignSplit) * (100 - split)
 		);
 
-		let remoteBlock = updateSplits(
-			item?.value?.destinations || [],
-			(100 - sovereignSplit) * item.split
-		);
+		let remoteBlock = updateSplits(item?.value?.destinations || [], (100 - sovereignSplit) * split);
 
 		function filterItemsWithAddress(array) {
 			let filtered = [].concat(array).filter((item) => {
@@ -165,8 +171,11 @@
 			author: item.author,
 			itemTitle: item.song,
 			itemGuid: item.songGuid,
+			medium: item.medium,
 			value: serverValueBlock
 		};
+
+		console.log(serverData);
 
 		socket.emit('valueBlock', { valueGuid, serverData });
 	}
@@ -248,6 +257,10 @@
 			}
 		}
 	}
+
+	function handleEdit(item) {
+		$editingAudioItem = item;
+	}
 </script>
 
 {#each $valueAudioItem as item, index}
@@ -258,6 +271,9 @@
 	>
 		<top-container>
 			<song-info>
+				{#if $showLiveEpisodes}
+					<button class="edit" on:click={handleEdit.bind(this, item)}>Edit</button>
+				{/if}
 				<p><strong>Song: </strong>{item.song}</p>
 				<p><strong>Artist: </strong>{item.author}</p>
 				<p><strong>Album: </strong>{item.album}</p>
@@ -488,5 +504,9 @@
 	vertical-spacer {
 		display: block;
 		height: 21px;
+	}
+
+	button.edit {
+		font-weight: bold;
 	}
 </style>

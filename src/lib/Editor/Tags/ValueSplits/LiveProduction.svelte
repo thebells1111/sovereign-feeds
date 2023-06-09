@@ -1,5 +1,5 @@
 <script>
-	import { valueAlbumList, valueAudioItem, remoteServerUrl, editingEpisode } from '$/editor';
+	import { valueAudioItem, editingAudioItem } from '$/editor';
 
 	import AudioItem from './AudioItem.svelte';
 	import CreateValueBlock from './CreateValueBlock.svelte';
@@ -13,7 +13,7 @@
 	export let showMismatchedFeeds = false;
 
 	let basePercent = 95;
-	let playSongOnSync = true;
+	let playSongOnSync = false;
 	let playAllSongs = true;
 	let defaultValueSwitch = true;
 	let player;
@@ -37,6 +37,10 @@
 		song.added = syncedTime;
 		$valueAudioItem = $valueAudioItem;
 	}
+
+	$: if ($editingAudioItem) {
+		activeView = 'create';
+	}
 </script>
 
 <container>
@@ -44,10 +48,10 @@
 		{#if socket}
 			<left-pane>
 				<left-select>
-					<button class="primary album" on:click={() => (activeView = 'create')}
+					<button class="primary create-value" on:click={() => (activeView = 'create')}
 						>Create Value Block</button
 					>
-					<button class="primary value" on:click={() => (activeView = 'valueBlock')}
+					<button class="primary show-value" on:click={() => (activeView = 'valueBlock')}
 						>Show Active Value Block</button
 					>
 				</left-select>
@@ -123,9 +127,11 @@
 					<label>
 						<input type="checkbox" bind:checked={playSongOnSync} />Play Songs
 					</label>
-					<label>
-						<input type="checkbox" bind:checked={playAllSongs} />Play Next Song Automatically
-					</label>
+					{#if playSongOnSync}
+						<label>
+							<input type="checkbox" bind:checked={playAllSongs} />Play Next Song Automatically
+						</label>
+					{/if}
 					<label>
 						<input type="checkbox" bind:checked={defaultValueSwitch} />Auto Switch to Podcaster's
 						Wallet
@@ -183,6 +189,7 @@
 		flex-direction: column;
 		grid-area: left-pane;
 		border-right: 1px solid var(--border-color);
+		height: 100%;
 	}
 
 	list-container {
@@ -246,7 +253,7 @@
 		display: none;
 	}
 
-	.album {
+	.show-value {
 		background-image: linear-gradient(
 			to bottom,
 			hsla(197, 100%, 43.7%, 1),
@@ -254,7 +261,7 @@
 		);
 	}
 
-	.value {
+	.create-value {
 		background-image: linear-gradient(to bottom, hsl(253, 100%, 44%), hsl(253, 100%, 26.7%));
 	}
 
@@ -273,16 +280,6 @@
 		width: 100%;
 	}
 
-	.socket-connect {
-		margin: 40px auto;
-		width: 250px;
-		background-image: linear-gradient(to bottom, hsl(277, 100%, 44%), hsl(277, 100%, 26.7%));
-		position: absolute;
-		top: 50px;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-
 	.live-check {
 		width: 250px;
 		background-image: linear-gradient(to bottom, hsl(326, 100%, 44%), hsl(326, 100%, 26.7%));
@@ -294,5 +291,21 @@
 
 	.primary {
 		width: 200px;
+	}
+
+	active-create {
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.socket-connect {
+		margin: 40px auto;
+		width: 250px;
+		background-image: linear-gradient(to bottom, hsl(277, 100%, 44%), hsl(277, 100%, 26.7%));
+		position: absolute;
+		top: 50px;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 </style>

@@ -103,3 +103,4 @@ export const rssEditor = writable(true);
 export const valueAlbumList = writable([]);
 export const valueAudioItem = writable([]);
 export const copiedValueAudioItem = writable();
+export const editingAudioItem = writable();
