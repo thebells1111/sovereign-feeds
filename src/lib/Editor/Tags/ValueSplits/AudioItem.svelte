@@ -96,7 +96,7 @@
 		isPCValue = false;
 
 		let split = item.split || 0;
-		split = item?.value?.destinations ? split : 0;
+		split = item?.value?.destinations.length ? split : 0;
 		let baseBlock = updateSplits(
 			convertArray(
 				filterItemsWithAddress($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) ||
