@@ -50,22 +50,6 @@
 
 	async function saveItem() {
 		try {
-			let urlPattern = new RegExp(
-				'^(https?:\\/\\/)?' + // protocol
-					'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-					'((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-					'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-					'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-					'(\\#[-a-z\\d_]*)?$',
-				'i'
-			); // fragment locator
-
-			if (enclosureUrl && !urlPattern.test(enclosureUrl)) {
-				throw new Error('enclosureUrl is not a valid URL!');
-			}
-			if (artwork && !urlPattern.test(artwork)) {
-				throw new Error('artwork is not a valid URL!');
-			}
 			let _id = await generateHashedId(enclosureUrl);
 
 			let item = {
