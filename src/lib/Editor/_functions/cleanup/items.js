@@ -3,6 +3,7 @@ import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
 import cleanValueAudioItem from './splitValueBlock';
+import cleanChat from '$lib/Editor/Tags/Chat/cleanChat';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -49,6 +50,7 @@ async function cleanItem(item, data) {
 	cleanPodcastImages(item);
 	cleanLicense(item);
 	cleanValueAudioItem(item, data);
+	cleanChat(item);
 	// console.log(item.description);
 	// item.description = '<![CDATA[' + item.description + ']]>';
 	// console.log(item.description);

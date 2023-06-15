@@ -5,7 +5,7 @@
 	import Enclosure from '../EpisodeMetadata/components/Enclosure.svelte';
 	import GUID from '../EpisodeMetadata/components/GUID.svelte';
 	import ContentLink from './ContentLink.svelte';
-	import Chat from './Chat.svelte';
+	import Chat from '../Chat/Chat.svelte';
 	import { rssData, editingEpisode, rightPane } from '$/editor';
 	import LiveValueLink from './LiveValueLink.svelte';
 </script>
@@ -17,7 +17,7 @@
 		<GUID />
 		<LiveStart />
 		<Duration />
-		<Chat />
+		<Chat bind:data={$editingEpisode} />
 		<LiveValueLink />
 		<ContentLink />
 
