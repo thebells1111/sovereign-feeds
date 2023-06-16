@@ -1,8 +1,9 @@
 const blankChat = {
 	'@_server': '',
-	'@_protocol': 'nostr',
+	'@_protocol': 'irc',
 	'@_accountId': '',
-	'@_space': ''
+	'@_space': '',
+	'@_embedUrl': ''
 };
 
 export default blankChat;
