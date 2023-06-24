@@ -14,6 +14,9 @@ export default function cleanChat(data) {
 			if (!data['podcast:chat']['@_space']) {
 				delete data['podcast:chat']['@_space'];
 			}
+			if (!data['podcast:chat']['@_embedUrl']) {
+				delete data['podcast:chat']['@_embedUrl'];
+			}
 		}
 	}
 }

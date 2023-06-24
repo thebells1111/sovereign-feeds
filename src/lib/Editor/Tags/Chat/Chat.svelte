@@ -37,7 +37,6 @@
 		<label>
 			<title>
 				<h4>Protocol</h4>
-				{data['podcast:chat']['@_protocol']}
 				<ToolTip>
 					<p.tooltip> (required) The protocol in use on the server. </p.tooltip>
 				</ToolTip>
@@ -73,6 +72,18 @@
 				</ToolTip>
 			</title>
 			<input type="text" bind:value={data['podcast:chat']['@_space']} use:selectTextOnFocus />
+		</label>
+		<label>
+			<title>
+				<h4>Embed Link</h4>
+				<ToolTip>
+					<p.tooltip>
+						(optional) A link to an html rendered version of the chat for loading in a web page or
+						web view.
+					</p.tooltip>
+				</ToolTip>
+			</title>
+			<input type="text" bind:value={data['podcast:chat']['@_embedUrl']} use:selectTextOnFocus />
 		</label>
 	</div>
 {/if}
