@@ -165,13 +165,12 @@
 		console.log(item);
 		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event_id=')[1];
 		let serverData = {
-			feedTitle: item.album,
-			feedGuid: item.albumGuid,
-			artwork: item.artwork,
-			author: item.author,
-			itemTitle: item.song,
+			title: item.song,
+			image: item.artwork,
+			line: [item.album, item.author],
 			itemGuid: item.songGuid,
-			medium: item.medium,
+			type: item.medium,
+			feedGuid: item.albumGuid,
 			value: serverValueBlock
 		};
 

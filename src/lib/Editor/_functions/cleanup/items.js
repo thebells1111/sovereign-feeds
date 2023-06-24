@@ -26,8 +26,8 @@ export default async function cleanItems(data) {
 		});
 		if (data['podcast:liveItem'].length > 0) {
 			for (let item of data['podcast:liveItem']) {
-				await cleanItem(item);
 				await cleanLiveItem(item);
+				await cleanItem(item);
 
 				//add cleaners for liveItem
 			}
@@ -167,6 +167,9 @@ async function cleanLiveItem(item) {
 	) {
 		item['@_status'] = 'pending';
 	}
+
+	console.log(item);
+	delete item?.['podcast:value']?.['podcast:valueTimeSplit'];
 }
 
 function processLiveItemTimes(item) {

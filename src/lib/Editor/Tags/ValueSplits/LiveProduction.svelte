@@ -1,5 +1,6 @@
 <script>
 	import { valueAudioItem, editingAudioItem } from '$/editor';
+	import { dev } from '$app/env';
 
 	import AudioItem from './AudioItem.svelte';
 	import CreateValueBlock from './CreateValueBlock.svelte';
@@ -44,7 +45,7 @@
 </script>
 
 <container>
-	{#if showSocketConnect}
+	{#if showSocketConnect || dev}
 		{#if socket}
 			<left-pane>
 				<left-select>
