@@ -1,8 +1,5 @@
 export default function cleanChat(data) {
 	if (data['podcast:chat']) {
-		if (data.hasOwnProperty(['@_chat']) && data?.['podcast:chat']?.['@_server']) {
-			data['@_chat'] = data['podcast:chat']['@_server'];
-		}
 		if (!data['podcast:chat']['@_server']) {
 			delete data['podcast:chat'];
 		} else if (!data['podcast:chat']['@_protocol']) {

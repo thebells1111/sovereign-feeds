@@ -4,6 +4,7 @@ import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
 import cleanValueAudioItem from './splitValueBlock';
 import cleanChat from '$lib/Editor/Tags/Chat/cleanChat';
+import cleanLiveValue from '$lib/Editor/Tags/LiveValue/cleanLiveValue';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -51,6 +52,7 @@ async function cleanItem(item, data) {
 	cleanLicense(item);
 	cleanValueAudioItem(item, data);
 	cleanChat(item);
+	cleanLiveValue(item);
 	// console.log(item.description);
 	// item.description = '<![CDATA[' + item.description + ']]>';
 	// console.log(item.description);
@@ -148,9 +150,7 @@ async function cleanLiveItem(item) {
 		delete item['podcast:contentLink'];
 	}
 
-	if (!item['@_liveValueLink']) {
-		delete item['@_liveValueLink'];
-	}
+	delete item['@_liveValueLink'];
 
 	if (!item['@_chat']) {
 		delete item['@_chat'];

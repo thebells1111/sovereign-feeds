@@ -11,6 +11,7 @@ import initializeEpisodeGuid from './initialize/episodeGuid';
 import initializeLicenseTag from './initialize/license';
 import initializeValueTimeSplit from './initialize/valueTimeSplit';
 import initializeChat from '$lib/Editor/Tags/Chat/initializeChat';
+import initializeLiveValue from '$lib/Editor/Tags/LiveValue/initializeLiveValue';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups, valueAudioItem } from '$/editor';
 
@@ -44,6 +45,13 @@ export default async function initializeEpisode(episode, type) {
 		episode['@_status'] = episode['@_status'] || 'pending';
 		episode['@_status'] = episode['@_status'].toLowerCase();
 		episode['@_start'] = initializeLiveTime(episode);
-		episode['@_liveValueLink'] = episode['@_liveValueLink'] || '';
+		episode['podcast:liveValue'] = initializeLiveValue(episode['podcast:liveValue']);
+		console.log(episode);
+
+		if (episode['@_liveValueLink']) {
+			console.log(episode['@_liveValueLink']);
+			episode['podcast:liveValue']['@_uri'] = episode['@_liveValueLink'];
+			delete episode['@_liveValueLink'];
+		}
 	}
 }

@@ -21,6 +21,8 @@
 
 		$valueAudioItem = $valueAudioItem;
 
+		console.log(song.added);
+
 		if (offsetSyncEnabled) {
 			setTimeout(conf, 10);
 		}
