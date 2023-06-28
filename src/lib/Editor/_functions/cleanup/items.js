@@ -135,17 +135,15 @@ async function handleTrackers(item) {
 		let specialPrefix = '';
 
 		trackers.active.forEach((v) => {
-			if (!url?.includes(v)) {
-				if (v.slice(-1) !== '/') {
-					v = v + '/';
-				}
-				console.log(v);
-				// If the string is 'ipfspodcasting.net/e', it goes in specialPrefix, else in prefix
-				if (v === 'ipfspodcasting.net/e/') {
-					specialPrefix = v;
-				} else {
-					prefix = prefix + v;
-				}
+			url = url.split(v).join('');
+			if (v.slice(-1) !== '/') {
+				v = v + '/';
+			}
+			// If the string is 'ipfspodcasting.net/e', it goes in specialPrefix, else in prefix
+			if (v === 'ipfspodcasting.net/e/') {
+				specialPrefix = v;
+			} else {
+				prefix = prefix + v;
 			}
 		});
 

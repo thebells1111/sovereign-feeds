@@ -83,7 +83,6 @@
 		function removeTracker(v) {
 			if (v?.enclosure?.['@_url']) {
 				v.enclosure['@_url'] = v.enclosure['@_url'].split(tracker).join('');
-				console.log(v.enclosure['@_url']);
 			}
 		}
 	}
