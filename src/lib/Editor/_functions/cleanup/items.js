@@ -15,6 +15,7 @@ let trackers;
 
 export default async function cleanItems(data) {
 	trackers = (await trackerDB.getItem(`${get(selectedPodcast).url}`)) || { active: [] };
+	console.log('trackers: ', trackers);
 	if (data.item) {
 		for (let item of data.item) {
 			await cleanItem(item, data);
@@ -131,14 +132,25 @@ async function handleTrackers(item) {
 		}
 
 		let prefix = '';
+		let specialPrefix = '';
+
 		trackers.active.forEach((v) => {
 			if (!url?.includes(v)) {
 				if (v.slice(-1) !== '/') {
 					v = v + '/';
 				}
-				prefix = prefix + v;
+				console.log(v);
+				// If the string is 'ipfspodcasting.net/e', it goes in specialPrefix, else in prefix
+				if (v === 'ipfspodcasting.net/e/') {
+					specialPrefix = v;
+				} else {
+					prefix = prefix + v;
+				}
 			}
 		});
+
+		// Add specialPrefix to the end
+		prefix = prefix + specialPrefix;
 
 		let newEnclosure = 'https://' + prefix + url;
 		item.enclosure['@_url'] = newEnclosure;

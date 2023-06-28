@@ -1,5 +1,5 @@
 <script>
-	import { trackerDB, selectedPodcast } from '$/editor';
+	import { trackerDB, selectedPodcast, regularEpisodes, liveEpisodes } from '$/editor';
 
 	let customInput;
 
@@ -35,6 +35,7 @@
 		let activeSet = new Set(trackers.active);
 		if (activeSet.has(tracker)) {
 			activeSet.delete(tracker);
+			removeTrackerFromUrls(tracker);
 		} else {
 			activeSet.add(tracker);
 		}
@@ -62,12 +63,28 @@
 		trackers.active = [...activeSet];
 
 		await trackerDB.setItem(`${$selectedPodcast.url}`, trackers);
+		removeTrackerFromUrls(tracker);
 	}
 
 	function handleKeypress(e) {
-		console.log(e.key);
 		if (e.key === 'Enter') {
 			addTracker();
+		}
+	}
+
+	function removeTrackerFromUrls(tracker) {
+		$regularEpisodes.forEach((v) => {
+			removeTracker(v);
+		});
+		$liveEpisodes.forEach((v) => {
+			removeTracker(v);
+		});
+
+		function removeTracker(v) {
+			if (v?.enclosure?.['@_url']) {
+				v.enclosure['@_url'] = v.enclosure['@_url'].split(tracker).join('');
+				console.log(v.enclosure['@_url']);
+			}
 		}
 	}
 </script>
