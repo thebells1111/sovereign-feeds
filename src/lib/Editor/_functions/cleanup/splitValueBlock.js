@@ -13,24 +13,34 @@ export default function cleanValueAudioItem(item, data) {
 	}
 
 	if (item.valueAudioItem?.length && valueBlock) {
-		console.log(valueBlock);
-		console.log(clone(item?.['podcast:value']));
+		console.log(item.valueAudioItem);
+
 		valueBlock['podcast:valueTimeSplit'] = item.valueAudioItem.map((v) => {
 			console.log(v);
-			let block = {
-				'@_startTime': v.added || '0',
-				'@_duration': v.duration,
-				'podcast:remoteItem': {
-					'@_itemGuid': v.songGuid,
-					'@_feedGuid': v.albumGuid,
-					'@_medium': 'music'
+			if (v.albumGuid || v.value) {
+				let block = {
+					'@_startTime': v.added || '0',
+					'@_duration': v.duration
+				};
+
+				if (v.albumGuid) {
+					block['podcast:remoteItem'] = {
+						'@_feedGuid': v.albumGuid,
+						'@_medium': 'music'
+					};
+					if (v.songGuid) {
+						block['podcast:remoteItem']['@_itemGuid'] = v.songGuid;
+					}
+				} else if (v.value) {
 				}
-			};
-			if (v.split) {
-				block['@_remotePercentage'] = v.split;
+
+				if (v.split) {
+					block['@_remotePercentage'] = v.split;
+				}
+				return block;
 			}
-			return block;
 		});
+
 		item['podcast:value'] = valueBlock;
 	}
 

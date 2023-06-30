@@ -28,8 +28,9 @@ export default async function cleanItems(data) {
 		});
 		if (data['podcast:liveItem'].length > 0) {
 			for (let item of data['podcast:liveItem']) {
-				await cleanLiveItem(item);
 				await cleanItem(item);
+				await cleanLiveItem(item);
+				console.log(item);
 
 				//add cleaners for liveItem
 			}
@@ -179,7 +180,10 @@ async function cleanLiveItem(item) {
 	}
 
 	console.log(item);
+	console.log(item?.['podcast:value']?.['podcast:valueTimeSplit']);
 	delete item?.['podcast:value']?.['podcast:valueTimeSplit'];
+	console.log(item);
+	console.log(item?.['podcast:value']?.['podcast:valueTimeSplit']);
 }
 
 function processLiveItemTimes(item) {

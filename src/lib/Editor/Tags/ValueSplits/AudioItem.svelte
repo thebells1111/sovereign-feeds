@@ -95,6 +95,7 @@
 	function updateValueBlock(item) {
 		isPCValue = false;
 
+		console.log(item);
 		let split = item.split || 0;
 		split = item?.value?.destinations.length ? split : 0;
 		let baseBlock = updateSplits(
@@ -163,7 +164,7 @@
 			destinations: baseBlock.concat(remoteBlock).concat(sovereignBlock)
 		};
 		console.log(item);
-		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('event_id=')[1];
+		let valueGuid = $editingEpisode?.['podcast:liveValue']?.['@_uri']?.split('event_id=')[1];
 		let serverData = {
 			title: item.song,
 			image: item.artwork,
@@ -251,7 +252,7 @@
 			if (defaultValueSwitch) {
 				activeValueBlock = {};
 				isPCValue = true;
-				let valueGuid = $editingEpisode?.['@_liveValueLink'].split('?event_id=')[1];
+				let valueGuid = $editingEpisode?.['podcast:liveValue']?.['@_uri']?.split('?event_id=')[1];
 				socket.emit('valueBlock', { valueGuid, serverData: {} });
 			}
 		}

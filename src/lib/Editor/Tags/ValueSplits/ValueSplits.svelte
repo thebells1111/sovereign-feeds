@@ -72,14 +72,14 @@
 	function handlePCValue() {
 		activeValueBlock = {};
 		isPCValue = true;
-		let valueGuid = $editingEpisode?.['@_liveValueLink'].split('?event_id=')[1];
+		let valueGuid = $editingEpisode?.['podcast:liveValue']?.['@_uri']?.split('?event_id=')[1];
 		socket.emit('valueBlock', { valueGuid, serverData: {} });
 	}
 
 	function socketConnect() {
-		// $editingEpisode['@_liveValueLink'] =
+		// $editingEpisode['podcast:liveValue']['@_uri'] =
 		// 	'http://localhost:8000/event?event_id=b1ddabe6-cb0d-4906-a25e-c3bc4afb0ba9';
-		let valueGuid = $editingEpisode?.['@_liveValueLink']?.split('event_id=')[1];
+		let valueGuid = $editingEpisode?.['podcast:liveValue']?.['@_uri']?.split('event_id=')[1];
 		socket = io(remoteServerUrl + '/event?event_id=' + valueGuid, { withCredentials: true });
 
 		socket.on('connect', () => {

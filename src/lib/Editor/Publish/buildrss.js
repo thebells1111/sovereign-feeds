@@ -71,10 +71,12 @@ export default async function buildRSS() {
 	replaceGuid(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
+	console.log($liveEpisodes);
 	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
 	rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
 
 	await cleanItems(rssDataProxy);
+	console.log(rssDataProxy);
 
 	if (!$xmlJson) {
 		$xmlJson = await getRSSEditorFeed(`${window.location.origin}/blankfeed.xml`);

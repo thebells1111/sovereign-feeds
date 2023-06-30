@@ -18,8 +18,8 @@ const liveItem = {
 		}
 	},
 	'@_chat': '',
-	'@_liveValueLink': '',
 	title: 'New Live Episode',
+	'podcast:liveValue': { '@_uri': '', '@_protocol': 'socket.io' },
 	author: null,
 	description: '',
 	duration: null,
