@@ -24,21 +24,21 @@
 	$: handleNewEpisode($showLiveEpisodes);
 
 	$: showSocketConnect =
-		feedLiveValueLink === $editingEpisode?.['@_liveValueLink'] &&
+		feedLiveValueLink === $editingEpisode?.['podcast:liveValue']?.['@_uri'] &&
 		feedLiveValueLink?.includes('https://curiohoster.com/event');
 
 	$: showMismatchedFeeds = !showSocketConnect;
 
 	async function handleNewEpisode() {
-		let editingEpisodeLink = $editingEpisode?.['@_liveValueLink'];
+		let editingEpisodeLink = $editingEpisode?.['podcast:liveValue']?.['@_uri'];
 
 		if ($showLiveEpisodes && $selectedPodcast?.url) {
 			let xml = await getRSSEditorFeed($selectedPodcast.url);
-
 			//checks editingEpisode vs feedEpisode and returns the liveValueLink if they match
-			feedLiveValueLink = [].concat(xml?.rss?.channel?.['podcast:liveItem']).find((v) => {
-				return v?.['@_liveValueLink'] === editingEpisodeLink;
-			})?.['@_liveValueLink'];
+			const feedLiveValueItem = [].concat(xml?.rss?.channel?.['podcast:liveItem']).find((v) => {
+				return v?.['podcast:liveValue']?.['@_uri'] === editingEpisodeLink;
+			});
+			feedLiveValueLink = feedLiveValueItem?.['podcast:liveValue']?.['@_uri'];
 		}
 		if (socket) {
 			socket.disconnect();

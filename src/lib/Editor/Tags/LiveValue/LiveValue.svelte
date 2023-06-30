@@ -9,8 +9,8 @@
 		let res = await fetch(remoteServerUrl + '/api/sf/generateguid', { credentials: 'include' });
 		let data = await res.json();
 		if (data.guid) {
-			editingEpisode['podcast:liveValue']['@_uri'] =
-				remoteServerUrl + '/event?event_id=' + data.guid;
+			valueUri = remoteServerUrl + '/event?event_id=' + data.guid;
+			$editingEpisode['podcast:liveValue']['@_uri'] = valueUri;
 		}
 	}
 
@@ -52,7 +52,7 @@
 				type="text"
 				bind:value={valueUri}
 				on:input={(e) => {
-					$editingEpisode['podcast:liveValue']['@_uri'] = e.target.data;
+					$editingEpisode['podcast:liveValue']['@_uri'] = e.target.value;
 				}}
 				use:selectTextOnFocus
 			/>
