@@ -34,11 +34,7 @@
 <div class="content-link">
 	<div class="header">
 		<h3>Live Value Link:</h3>
-		{#if $loggedIn}
-			<button on:click={generateLink}>Generate Link</button>
-		{:else}
-			<p>Log In to Create</p>
-		{/if}
+		(use<a href="https://www.thesplitkit.com/">The Split Kit</a> to create your own live events)
 	</div>
 	<div class="input-container">
 		<title>
@@ -182,5 +178,10 @@
 	p {
 		padding: 0%;
 		color: hsla(352, 100%, 33%, 1);
+	}
+
+	a {
+		padding: 0 8px;
+		color: blue;
 	}
 </style>

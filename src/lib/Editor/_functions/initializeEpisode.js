@@ -13,7 +13,7 @@ import initializeValueTimeSplit from './initialize/valueTimeSplit';
 import initializeChat from '$lib/Editor/Tags/Chat/initializeChat';
 import initializeLiveValue from '$lib/Editor/Tags/LiveValue/initializeLiveValue';
 
-import { selectedEpisodePersonRoles, selectedEpisodePersonGroups, valueAudioItem } from '$/editor';
+import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
 
 export default async function initializeEpisode(episode, type) {
 	episode['itunes:image'] = initializeItunesImageTag(episode);
@@ -25,8 +25,7 @@ export default async function initializeEpisode(episode, type) {
 	episode['podcast:chapters'] = episode['podcast:chapters'] || { '@_url': '' };
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
-	episode.valueAudioItem = await initializeValueTimeSplit(episode);
-	valueAudioItem.set(episode.valueAudioItem);
+	episode.valueTimeSplit = await initializeValueTimeSplit(episode);
 	selectedEpisodePersonRoles.set([]);
 	selectedEpisodePersonGroups.set([]);
 	episode.guid = initializeEpisodeGuid(episode);
@@ -54,4 +53,5 @@ export default async function initializeEpisode(episode, type) {
 			delete episode['@_liveValueLink'];
 		}
 	}
+	console.log(episode);
 }
