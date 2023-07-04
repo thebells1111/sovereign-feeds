@@ -246,6 +246,32 @@
 		username = '';
 		noUserFound = false;
 	}
+
+	function addRecipient(ts) {
+		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
+			'@_name': '',
+			'@_split': '',
+			'@_type': 'node',
+			'@_address': '',
+			'@_customValue': '',
+			'@_customKey': ''
+		});
+
+		$editingEpisode = $editingEpisode;
+	}
+
+	function deleteAddress(ts, index) {
+		let confirmation = confirm('Are you sure you want to delete this recipient?');
+
+		if (confirmation) {
+			ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].filter((v, i) => i !== index);
+			if (ts['podcast:valueRecipient']?.length === 0) {
+				addRecipient(ts);
+			} else {
+				$editingEpisode = $editingEpisode;
+			}
+		}
+	}
 </script>
 
 {#if isImporting}
@@ -299,8 +325,13 @@
 					</label>
 				</misc>
 
-				<h3>Value Addresses</h3>
-				{#each ts['podcast:valueRecipient'] as vr}
+				<value-header>
+					<h3>Value Addresses</h3>
+					<button class="primary add-rec" on:click={addRecipient.bind(this, ts)}
+						>Add Recipient</button
+					>
+				</value-header>
+				{#each ts['podcast:valueRecipient'] as vr, index}
 					<value-top>
 						<label>
 							<h4>Name</h4>
@@ -344,6 +375,9 @@
 						>
 							<img src="v4vapp.webp" />
 							<span>Use v4v.app</span>
+						</button>
+						<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
+							<span>Delete</span>
 						</button>
 					</providers>
 				{/each}
@@ -393,6 +427,15 @@
 
 	guids {
 		display: flex;
+	}
+
+	value-header {
+		display: flex;
+		margin: 8px 0 0 0;
+	}
+
+	value-header h3 {
+		width: 200px;
 	}
 
 	label {
@@ -474,6 +517,14 @@
 		color: white;
 	}
 
+	button.delete {
+		align-items: center;
+		justify-content: center;
+		height: 32px;
+		color: white;
+		background-color: hsla(352, 100%, 26.7%, 1);
+	}
+
 	button > img {
 		height: 30px;
 	}
@@ -489,6 +540,14 @@
 
 	button.alby > span {
 		width: 100%;
+	}
+
+	button.add-rec {
+		background-image: linear-gradient(
+			to bottom,
+			hsla(197, 100%, 43.7%, 1),
+			hsla(197, 100%, 26.7%, 1)
+		);
 	}
 
 	button.cancel-provider {
