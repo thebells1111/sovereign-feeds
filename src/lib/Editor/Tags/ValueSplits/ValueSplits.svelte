@@ -18,8 +18,9 @@
 	let noUserFound = false;
 	let showProviderInput = false;
 	let activeRecipient;
+	let activeTS;
+	let activeIndex;
 
-	$: console.log($editingEpisode);
 	$: getGuids($liveEpisodes);
 
 	function getGuids() {
@@ -128,9 +129,6 @@
 		}
 	}
 
-	$: console.log($editingEpisode?.valueTimeSplit);
-	$: console.log(guidOptions);
-
 	function handleSelect(event) {
 		let slug = event.detail || [];
 		console.log(slug);
@@ -141,11 +139,13 @@
 		selectedGuid = '';
 	}
 
-	async function handleProviderSelect(providerName, recipient) {
+	async function handleProviderSelect(providerName, tsindex, index) {
 		showProviderInput = true;
 		provider = providerName;
 		username = '';
-		activeRecipient = recipient;
+		activeRecipient = $editingEpisode.valueTimeSplit[tsindex]['podcast:valueRecipient'][index];
+
+		$editingEpisode = $editingEpisode;
 	}
 
 	async function handleProviderSubmit() {
@@ -231,13 +231,27 @@
 		}
 	}
 
-	function updateRecipientData(address, name, customValue, customKey) {
+	async function updateRecipientData(address, name, customValue, customKey) {
+		console.log($editingEpisode.valueTimeSplit);
 		console.log(activeRecipient);
 		activeRecipient['@_address'] = address;
 		activeRecipient['@_name'] = name;
 		activeRecipient['@_customValue'] = customValue;
 		activeRecipient['@_customKey'] = customKey;
+		console.log(activeRecipient);
+		activeRecipient = activeRecipient;
+		$editingEpisode = $editingEpisode;
+		console.log($editingEpisode);
+		await delay(10000);
 		$editingEpisode.valueTimeSplit = $editingEpisode.valueTimeSplit;
+		$editingEpisode = $editingEpisode;
+
+		await delay(5000);
+		console.log('delayed');
+
+		function delay(ms) {
+			return new Promise((resolve) => setTimeout(resolve, ms));
+		}
 	}
 
 	function cancelProviderSubmit() {
@@ -294,7 +308,7 @@
 {/if}
 <container>
 	{#if $editingEpisode?.valueTimeSplit?.length > 0}
-		{#each $editingEpisode.valueTimeSplit as ts, index}
+		{#each $editingEpisode.valueTimeSplit as ts, tsindex}
 			<remote-block>
 				<h3>
 					{ts.feed || 'Custom Value'}
@@ -358,7 +372,10 @@
 						</label>
 					</value-bottom>
 					<providers>
-						<button class="provider alby" on:click={handleProviderSelect.bind(this, 'Alby', vr)}>
+						<button
+							class="provider alby"
+							on:click={handleProviderSelect.bind(this, 'Alby', tsindex, index)}
+						>
 							<img src="alby.png" />
 							<span>Use Alby</span>
 						</button>
