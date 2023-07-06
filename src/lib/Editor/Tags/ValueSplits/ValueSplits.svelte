@@ -262,16 +262,18 @@
 	}
 
 	function addRecipient(ts) {
-		ts['podcast:valueRecipient'] =
-			ts['podcast:valueRecipient'] ||
-			[].concat({
-				'@_name': '',
-				'@_split': '',
-				'@_type': 'node',
-				'@_address': '',
-				'@_customValue': '',
-				'@_customKey': ''
-			});
+		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'] || [];
+
+		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
+			'@_name': '',
+			'@_split': '',
+			'@_type': 'node',
+			'@_address': '',
+			'@_customValue': '',
+			'@_customKey': ''
+		});
+
+		console.log(ts['podcast:valueRecipient']);
 
 		$editingEpisode = $editingEpisode;
 	}
