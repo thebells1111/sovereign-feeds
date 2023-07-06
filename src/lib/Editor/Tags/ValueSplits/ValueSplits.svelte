@@ -262,14 +262,16 @@
 	}
 
 	function addRecipient(ts) {
-		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
-			'@_name': '',
-			'@_split': '',
-			'@_type': 'node',
-			'@_address': '',
-			'@_customValue': '',
-			'@_customKey': ''
-		});
+		ts['podcast:valueRecipient'] =
+			ts['podcast:valueRecipient'] ||
+			[].concat({
+				'@_name': '',
+				'@_split': '',
+				'@_type': 'node',
+				'@_address': '',
+				'@_customValue': '',
+				'@_customKey': ''
+			});
 
 		$editingEpisode = $editingEpisode;
 	}
@@ -345,59 +347,61 @@
 						>Add Recipient</button
 					>
 				</value-header>
-				{#each ts['podcast:valueRecipient'] as vr, index}
-					<value-top>
+				{#if ts['podcast:valueRecipient']?.length > 0}
+					{#each ts['podcast:valueRecipient'] as vr, index}
+						<value-top>
+							<label>
+								<h4>Name</h4>
+								<input bind:value={vr['@_name']} />
+							</label>
+							<label>
+								<h4>Split</h4>
+								<input bind:value={vr['@_split']} />
+							</label>
+						</value-top>
 						<label>
-							<h4>Name</h4>
-							<input bind:value={vr['@_name']} />
+							<h4>Lightning Address</h4>
+							<input bind:value={vr['@_address']} />
 						</label>
-						<label>
-							<h4>Split</h4>
-							<input bind:value={vr['@_split']} />
-						</label>
-					</value-top>
-					<label>
-						<h4>Lightning Address</h4>
-						<input bind:value={vr['@_address']} />
-					</label>
 
-					<value-bottom>
-						<label>
-							<h4>Custom Value</h4>
-							<input bind:value={vr['@_customValue']} />
-						</label>
-						<label>
-							<h4>Custom Key</h4>
-							<input bind:value={vr['@_customKey']} />
-						</label>
-					</value-bottom>
-					<providers>
-						<button
-							class="provider alby"
-							on:click={handleProviderSelect.bind(this, 'Alby', tsindex, index)}
-						>
-							<img src="alby.png" />
-							<span>Use Alby</span>
-						</button>
-						<button
-							class="provider fountain"
-							on:click={handleProviderSelect.bind(this, 'Fountain', vr)}
-						>
-							<img src="fountain.png" />
-							<span>Use Fountain</span>
-						</button>
-						<button
-							class="provider v4vapp"
-							on:click={handleProviderSelect.bind(this, 'v4v.app', vr)}
-						>
-							<img src="v4vapp.webp" />
-							<span>Use v4v.app</span>
-						</button>
-						<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
-							<span>Delete</span>
-						</button>
-					</providers>
-				{/each}
+						<value-bottom>
+							<label>
+								<h4>Custom Value</h4>
+								<input bind:value={vr['@_customValue']} />
+							</label>
+							<label>
+								<h4>Custom Key</h4>
+								<input bind:value={vr['@_customKey']} />
+							</label>
+						</value-bottom>
+						<providers>
+							<button
+								class="provider alby"
+								on:click={handleProviderSelect.bind(this, 'Alby', tsindex, index)}
+							>
+								<img src="alby.png" />
+								<span>Use Alby</span>
+							</button>
+							<button
+								class="provider fountain"
+								on:click={handleProviderSelect.bind(this, 'Fountain', vr)}
+							>
+								<img src="fountain.png" />
+								<span>Use Fountain</span>
+							</button>
+							<button
+								class="provider v4vapp"
+								on:click={handleProviderSelect.bind(this, 'v4v.app', vr)}
+							>
+								<img src="v4vapp.webp" />
+								<span>Use v4v.app</span>
+							</button>
+							<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
+								<span>Delete</span>
+							</button>
+						</providers>
+					{/each}
+				{/if}
 			</remote-block>
 		{/each}
 	{/if}

@@ -25,6 +25,7 @@ export default async function initializeEpisode(episode, type) {
 	episode['podcast:chapters'] = episode['podcast:chapters'] || { '@_url': '' };
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
+
 	if (!episode.valueTimeSplit) {
 		episode.valueTimeSplit = await initializeValueTimeSplit(episode);
 	}
