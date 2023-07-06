@@ -81,14 +81,14 @@
 		{$selectorList.images}
 	</li>
 
-	<li
+	<!-- <li
 		class:active={$rightPane === 'valueSplits'}
 		on:click={() => {
 			$rightPane = 'valueSplits';
 		}}
 	>
 		Value Time Splits
-	</li>
+	</li> -->
 </ul>
 
 <style>
