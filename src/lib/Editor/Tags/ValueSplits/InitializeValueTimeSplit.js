@@ -24,11 +24,11 @@ export default async function initializeValueTimeSplit(episode) {
 				console.error('Error:', error);
 			});
 
-			let items = [].concat(itemsData?.items);
+			let items = []
+				.concat(itemsData?.liveItems)
+				.concat(itemsData?.items)
+				.filter((v) => v);
 			let feed = feedData?.feed;
-
-			console.log(items);
-
 			let item = items.find((v) => v?.guid === itemGuid);
 			let vts = {
 				feed: feed?.title,

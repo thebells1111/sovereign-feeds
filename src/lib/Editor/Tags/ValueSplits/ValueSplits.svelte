@@ -30,7 +30,7 @@
 			}
 		});
 		guidOptions = guidOptions;
-		selectedGuid = guidOptions?.[0];
+		selectedGuid = guidOptions?.[0]?.value;
 		console.log(guidOptions);
 		console.log(selectedGuid);
 	}
