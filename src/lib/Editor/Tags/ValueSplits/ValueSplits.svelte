@@ -26,7 +26,9 @@
 			let tempGuid = v?.['podcast:liveValue']?.['@_uri'];
 
 			if (tempGuid) {
-				guidOptions.push({ label: v.title, value: tempGuid });
+				if (!guidOptions.find((w) => w.value === tempGuid)) {
+					guidOptions.push({ label: v.title, value: tempGuid });
+				}
 			}
 		});
 		guidOptions = guidOptions;
@@ -108,7 +110,7 @@
 				});
 
 				let episode = { 'podcast:value': { 'podcast:valueTimeSplit': timeSplits } };
-				// $editingEpisode.valueTimeSplit = await initializeValueTimeSplit(episode);
+				$editingEpisode.valueTimeSplit = await initializeValueTimeSplit(episode);
 			} else {
 				let episode = {
 					'podcast:value': {
@@ -324,6 +326,32 @@
 	</select-container>
 {/if}
 <container>
+	{#if badStartBlocks?.length}
+		<h4>The following blocks don't have a start time. Fix this in The Split Kit.</h4>
+		<ul>
+			{#each badStartBlocks as block}
+				<li>{block.title}</li>
+			{/each}
+		</ul>
+	{/if}
+	{#if badValueBlocks?.length}
+		<h4>The following blocks don't have a value block. Fix this in The Split Kit.</h4>
+		<ul>
+			{#each badValueBlocks as block}
+				<li>{block.title}</li>
+			{/each}
+		</ul>
+	{/if}
+
+	{#if badDurationBlocks?.length}
+		<h4>The following blocks don't have a duration. Fix this in The Split Kit.</h4>
+		<ul>
+			{#each badDurationBlocks as block}
+				<li>{block.title}</li>
+			{/each}
+		</ul>
+	{/if}
+
 	{#if $editingEpisode?.valueTimeSplit?.length > 0}
 		{#each $editingEpisode.valueTimeSplit as ts, tsindex}
 			<remote-block>
