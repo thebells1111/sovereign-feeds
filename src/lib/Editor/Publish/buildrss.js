@@ -71,7 +71,6 @@ export default async function buildRSS() {
 	replaceGuid(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
-	console.log($liveEpisodes);
 	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
 	rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
 
@@ -153,8 +152,6 @@ function cleanChannelImage() {
 	} else {
 		delete rssDataProxy.image;
 	}
-
-	console.log('channelImage: ', rssDataProxy.image);
 }
 
 function changeGenerator(data) {

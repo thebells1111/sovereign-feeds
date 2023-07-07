@@ -27,12 +27,14 @@ export default async function initializeValueTimeSplit(episode) {
 			let items = [].concat(itemsData?.items);
 			let feed = feedData?.feed;
 
+			console.log(items);
+
 			let item = items.find((v) => v?.guid === itemGuid);
 			let vts = {
 				feed: feed?.title,
 				item: item?.title,
 				'@_feedGuid': feed?.podcastGuid,
-				'@_itemGuid': item?.guid,
+				'@_itemGuid': item?.guid || itemGuid,
 				'@_startTime': v?.['@_startTime'],
 				'@_duration': v?.['@_duration'],
 				'@_remotePercentage': v?.['@_remotePercentage'],
@@ -47,8 +49,6 @@ export default async function initializeValueTimeSplit(episode) {
 					}
 				]
 			};
-
-			console.log(vts);
 
 			timeSplits.push(vts);
 		}

@@ -1,7 +1,7 @@
 <script>
 	import Select from 'svelte-select';
 	import Modal from '$lib/Modals/Modal/Modal.svelte';
-	import initializeValueTimeSplit from '$lib/Editor/_functions/initialize/valueTimeSplit';
+	import initializeValueTimeSplit from './initializeValueTimeSplit';
 	import { remoteServerUrl, editingEpisode, liveEpisodes } from '$/editor';
 
 	let guidOptions = [];
@@ -11,15 +11,13 @@
 
 	let badStartBlocks = [];
 	let badValueBlocks = [];
+	let badDurationBlocks = [];
 
-	let showValues = false;
 	let provider = '';
 	let username = '';
 	let noUserFound = false;
 	let showProviderInput = false;
 	let activeRecipient;
-	let activeTS;
-	let activeIndex;
 
 	$: getGuids($liveEpisodes);
 
@@ -30,8 +28,11 @@
 			if (tempGuid) {
 				guidOptions.push({ label: v.title, value: tempGuid });
 			}
-			console.log(guidOptions);
 		});
+		guidOptions = guidOptions;
+		selectedGuid = guidOptions?.[0];
+		console.log(guidOptions);
+		console.log(selectedGuid);
 	}
 
 	async function loadBlocks() {
@@ -52,16 +53,25 @@
 		if (confirmation) {
 			const res = await fetch(remoteServerUrl + '/api/sk/getblocks?guid=' + guid[1]);
 			const data = await res.json();
-			const blocks = data.blocks || [];
 			console.log(data);
+			const settings = data.settings || {};
+			const blocks = data.blocks || [];
 			let timeSplits = [];
 			isImporting = true;
 			if (blocks?.length) {
 				badStartBlocks = blocks.filter((v) => !v.startTime);
+				badDurationBlocks = blocks.filter((v) => !v.duration);
 				badValueBlocks = blocks.filter((v) => !v?.value?.destinations?.length);
 
 				blocks.forEach(async (v) => {
-					if (v.startTime) {
+					if (v.startTime > -1 && v.duration) {
+						if (
+							!settings.includeDefault &&
+							['podcast', 'edit', 'music'].find((v) => v === settings?.broadcastMode) &&
+							v.settings.default
+						) {
+							return;
+						}
 						let vts = {
 							'@_startTime': v.startTime,
 							'@_remotePercentage': v?.settings?.split || 100,
@@ -91,39 +101,41 @@
 						if (vts) {
 							timeSplits.push(vts);
 						}
-						$editingEpisode['podcast:value']['podcast:valueTimeSplit'] = timeSplits;
-						$editingEpisode.valueTimeSplit = await initializeValueTimeSplit($editingEpisode);
+
+						let episode = { 'podcast:value': { 'podcast:valueTimeSplit': timeSplits } };
+						$editingEpisode.valueTimeSplit = await initializeValueTimeSplit(episode);
 					}
 				});
 
-				$editingEpisode['podcast:value']['podcast:valueTimeSplit'] = timeSplits;
-				console.log($editingEpisode);
-				console.log($liveEpisodes);
-
-				$editingEpisode.valueTimeSplit = await initializeValueTimeSplit($editingEpisode);
+				let episode = { 'podcast:value': { 'podcast:valueTimeSplit': timeSplits } };
+				// $editingEpisode.valueTimeSplit = await initializeValueTimeSplit(episode);
 			} else {
-				$editingEpisode['podcast:value']['podcast:valueTimeSplit'] = [
-					{
-						feed: '',
-						item: '',
-						'@_feedGuid': '',
-						'@_itemGuid': '',
-						'@_startTime': '',
-						'@_duration': '',
-						'@_remotePercentage': '',
-						valueRecipient: [
+				let episode = {
+					'podcast:value': {
+						'podcast:valueTimeSplit': [
 							{
-								'@_name': '',
-								'@_address': '',
-								'@_type': 'node',
-								'@_customKey': '',
-								'@_customValue': '',
-								'@_split': ''
+								feed: '',
+								item: '',
+								'@_feedGuid': '',
+								'@_itemGuid': '',
+								'@_startTime': '',
+								'@_duration': '',
+								'@_remotePercentage': '',
+								valueRecipient: [
+									{
+										'@_name': '',
+										'@_address': '',
+										'@_type': 'node',
+										'@_customKey': '',
+										'@_customValue': '',
+										'@_split': ''
+									}
+								]
 							}
 						]
 					}
-				];
-				$editingEpisode.valueTimeSplit = await initializeValueTimeSplit($editingEpisode);
+				};
+				$editingEpisode.valueTimeSplit = await initializeValueTimeSplit(episode);
 			}
 			isImporting = false;
 		}
@@ -299,6 +311,7 @@
 		<select-component>
 			<Select
 				items={guidOptions}
+				value={selectedGuid}
 				on:select={handleSelect}
 				on:clear={handleClear}
 				isCreatable={true}

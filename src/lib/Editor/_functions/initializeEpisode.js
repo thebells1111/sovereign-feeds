@@ -9,7 +9,7 @@ import initializeContentLink from './initialize/contentLink';
 import initializeLiveTime from './initialize/liveItemTime';
 import initializeEpisodeGuid from './initialize/episodeGuid';
 import initializeLicenseTag from './initialize/license';
-import initializeValueTimeSplit from './initialize/valueTimeSplit';
+import initializeValueTimeSplit from '$lib/Editor/Tags/ValueSplits/initializeValueTimeSplit';
 import initializeChat from '$lib/Editor/Tags/Chat/initializeChat';
 import initializeLiveValue from '$lib/Editor/Tags/LiveValue/initializeLiveValue';
 

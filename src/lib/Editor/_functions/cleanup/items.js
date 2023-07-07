@@ -4,6 +4,7 @@ import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
 import cleanChat from '$lib/Editor/Tags/Chat/cleanChat';
 import cleanLiveValue from '$lib/Editor/Tags/LiveValue/cleanLiveValue';
+import cleanValueTimeSplit from '$lib/Editor/Tags/ValueSplits/cleanValueTimeSplit';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -14,7 +15,7 @@ let trackers;
 
 export default async function cleanItems(data) {
 	trackers = (await trackerDB.getItem(`${get(selectedPodcast).url}`)) || { active: [] };
-	console.log('trackers: ', trackers);
+
 	if (data.item) {
 		for (let item of data.item) {
 			await cleanItem(item, data);
@@ -29,7 +30,6 @@ export default async function cleanItems(data) {
 			for (let item of data['podcast:liveItem']) {
 				await cleanItem(item);
 				await cleanLiveItem(item);
-				console.log(item);
 
 				//add cleaners for liveItem
 			}
@@ -53,21 +53,12 @@ async function cleanItem(item, data) {
 	cleanLicense(item);
 	cleanChat(item);
 	cleanLiveValue(item);
-	// console.log(item.description);
-	// item.description = '<![CDATA[' + item.description + ']]>';
-	// console.log(item.description);
-	// item['itunes:summary'] = item.description;
 
 	if (!item.author) {
 		delete item.author;
 	}
 
-	//item['@_status'] filters out liveItem
 	if (!item['@_status']) {
-		// if (adamFeeds.includes(Number(get(selectedPodcast).id))) {
-		// 	await getDuration(item);
-		// }
-
 		if (!item.enclosure['@_length']) {
 			await getEnclosureLength(item);
 		}
@@ -118,7 +109,7 @@ async function cleanItem(item, data) {
 		}
 	}
 
-	delete item?.valueTimeSplit;
+	cleanValueTimeSplit(item);
 }
 
 async function handleTrackers(item) {
@@ -185,7 +176,6 @@ async function cleanLiveItem(item) {
 
 function processLiveItemTimes(item) {
 	let start = { ...item['@_start'] };
-	console.log('-------------------------------');
 	if (!start.dateTime) {
 		return item;
 	}
@@ -205,12 +195,6 @@ function processLiveItemTimes(item) {
 	let addTime = Number(start.duration.hour) * 3600000 + Number(start.duration.minute) * 60000;
 
 	item['@_end'] = new Date(t + addTime).toISOString();
-
-	console.log(item['@_start']);
-	console.log(item['@_end']);
-
-	console.log('-------------------------------');
-	console.log(' ');
 }
 
 function cleanEpisodeValue(item) {
@@ -285,7 +269,6 @@ async function getDuration(item) {
 
 			a.addEventListener('error', function failed(e) {
 				a.remove();
-				console.log(e);
 				delete item['itunes:duration'];
 				resolve();
 			});
@@ -297,7 +280,6 @@ async function getDuration(item) {
 					let duration = a.duration;
 					item['itunes:duration'] = Math.round(duration);
 
-					console.log('The duration of the song is of: ' + item['itunes:duration'] + ' seconds');
 					a.remove();
 					resolve();
 				},
@@ -326,8 +308,6 @@ async function getEnclosureLength(item) {
 			size = response.headers.get('content-length');
 
 			item.enclosure['@_length'] = size;
-
-			console.log(size);
 		} catch (error) {
 			console.log(error);
 			item.enclosure['@_length'] = 0;
