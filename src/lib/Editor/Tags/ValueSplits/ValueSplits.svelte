@@ -66,6 +66,15 @@
 				badValueBlocks = blocks.filter((v) => !v?.value?.destinations?.length);
 
 				blocks.forEach(async (v) => {
+					if (
+						!settings.includeDefault &&
+						['podcast', 'edit', 'music'].find((v) => v === settings?.broadcastMode) &&
+						v.settings.default
+					) {
+						badStartBlocks = badStartBlocks.filter((w) => w.blockGuid !== v.blockGuid);
+						badDurationBlocks = badDurationBlocks.filter((w) => w.blockGuid !== v.blockGuid);
+						badValueBlocks = badValueBlocks.filter((w) => w.blockGuid !== v.blockGuid);
+					}
 					if (v.startTime > -1 && v.duration) {
 						if (
 							!settings.includeDefault &&
