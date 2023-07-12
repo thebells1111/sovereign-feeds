@@ -259,6 +259,7 @@ function cleanEpisodeTranscript(item) {
 }
 
 async function getDuration(item) {
+	console.log(item);
 	if (item?.enclosure?.['@_url']) {
 		return new Promise((resolve, reject) => {
 			// Create a non-dom allocated Audio element
@@ -277,8 +278,11 @@ async function getDuration(item) {
 			a.addEventListener(
 				'loadedmetadata',
 				function () {
+					console.log(a);
+					console.log(a.duration);
 					let duration = a.duration;
 					item['itunes:duration'] = Math.round(duration);
+					console.log(item['itunes:duration']);
 
 					a.remove();
 					resolve();

@@ -33,6 +33,7 @@
 
 	function makeSnippet(string) {
 		if (typeof string === 'string') {
+			string = stripHtml(string);
 			let s = stripTags(decode(string)).substring(0, 105);
 			return `${s.substr(0, s.lastIndexOf(' '))} ...`;
 		}
@@ -116,7 +117,7 @@
 			{/if}
 		</div>
 		<div>
-			<p>{makeSnippet(stripHtml(episode?.description))}</p>
+			<p>{makeSnippet(episode?.description || '')}</p>
 		</div>
 	</div>
 </div>
