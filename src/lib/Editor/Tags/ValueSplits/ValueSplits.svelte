@@ -313,12 +313,53 @@
 			}
 		}
 	}
+
+	async function addSplit() {
+		let episode = {
+			'podcast:value': {
+				'podcast:valueTimeSplit': [
+					{
+						feed: '',
+						item: '',
+						'@_feedGuid': '',
+						'@_itemGuid': '',
+						'@_startTime': '',
+						'@_duration': '',
+						'@_remotePercentage': '',
+						valueRecipient: [
+							{
+								'@_name': '',
+								'@_address': '',
+								'@_type': 'node',
+								'@_customKey': '',
+								'@_customValue': '',
+								'@_split': ''
+							}
+						]
+					}
+				]
+			}
+		};
+
+		$editingEpisode.valueTimeSplit = $editingEpisode.valueTimeSplit.concat(
+			await initializeValueTimeSplit(episode)
+		);
+	}
+
+	function deleteSplit(index) {
+		console.log(index);
+		let confirmation = confirm('Are you sure you want to delete this split?');
+		if (confirmation) {
+			$editingEpisode.valueTimeSplit = $editingEpisode.valueTimeSplit.filter((v, i) => i !== index);
+		}
+	}
 </script>
 
 {#if isImporting}
 	<h2 class="importing">Importing Splits</h2>
 {:else}
 	<select-container>
+		<button class="primary add" on:click={addSplit}>Add New Split</button>
 		<select-component>
 			<Select
 				items={guidOptions}
@@ -364,10 +405,15 @@
 	{#if $editingEpisode?.valueTimeSplit?.length > 0}
 		{#each $editingEpisode.valueTimeSplit as ts, tsindex}
 			<remote-block>
-				<h3>
-					{ts.feed || 'Custom Value'}
-					{ts.item ? ` - ${ts.item}` : ''}
-				</h3>
+				<title>
+					<h3>
+						{ts.feed || 'Custom Value'}
+						{ts.item ? ` - ${ts.item}` : ''}
+					</h3>
+					<button class="primary delete" on:click={deleteSplit.bind(this, tsindex)}
+						><span>Delete Split</span></button
+					>
+				</title>
 				<guids>
 					<label>
 						<h4>Feed Guid</h4>
@@ -449,7 +495,7 @@
 								<span>Use v4v.app</span>
 							</button>
 							<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
-								<span>Delete</span>
+								<span>Delete <br /> Recpient</span>
 							</button>
 						</providers>
 					{/each}
@@ -489,11 +535,18 @@
 		border: 1px solid transparent;
 	}
 
+	title {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+
 	h3 {
 		color: red;
 		margin: 0;
 		width: 100%;
 	}
+
 	h4 {
 		margin: 0;
 	}
@@ -546,7 +599,19 @@
 		width: initial;
 		padding: 4px 8px;
 		margin: 0 8px;
-		height: initial;
+		height: 44px;
+	}
+
+	select-container button:nth-of-type(1) {
+		background-image: linear-gradient(
+			to bottom,
+			hsla(197, 100%, 43.7%, 1),
+			hsla(197, 100%, 26.7%, 1)
+		);
+	}
+
+	select-container button:nth-of-type(2) {
+		min-width: 165px;
 	}
 
 	h2.importing {
@@ -596,6 +661,14 @@
 		height: 32px;
 		color: white;
 		background-color: hsla(352, 100%, 26.7%, 1);
+		font-size: 0.75em;
+	}
+	title > button.primary.delete {
+		background-image: linear-gradient(
+			to bottom,
+			hsla(352, 100%, 43.7%, 1),
+			hsla(352, 100%, 26.7%, 1)
+		);
 	}
 
 	button > img {
