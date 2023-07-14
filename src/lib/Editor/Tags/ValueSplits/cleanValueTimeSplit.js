@@ -56,7 +56,6 @@ export default async function cleanValueTimeSplit(item) {
 		delete item?.valueTimeSplit;
 	}
 
-	console.log(Object.keys(item['podcast:value']));
 	if (Object.keys(item['podcast:value']).length === 0) {
 		delete item['podcast:value'];
 	}
