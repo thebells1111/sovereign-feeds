@@ -75,7 +75,7 @@
 	}
 
 	function addRecipient() {
-		data['podcast:valueRecipient'] = data['podcast:valueRecipient'] || [];
+		data['podcast:valueRecipient'] = data?.['podcast:valueRecipient'] || [];
 
 		data['podcast:valueRecipient'].push(clone(blankRecipient));
 		index = data['podcast:valueRecipient'].length;

@@ -285,7 +285,7 @@
 	}
 
 	function addRecipient(ts) {
-		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'] || [];
+		ts['podcast:valueRecipient'] = ts?.['podcast:valueRecipient'] || [];
 
 		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
 			'@_name': '',

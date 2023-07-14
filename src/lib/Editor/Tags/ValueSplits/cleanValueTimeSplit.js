@@ -1,5 +1,5 @@
 export default async function cleanValueTimeSplit(item) {
-	item['podcast:value'] = item['podcast:value'] || {};
+	item['podcast:value'] = item?.['podcast:value'] || {};
 
 	if (item?.valueTimeSplit) {
 		let vts = item?.valueTimeSplit;
@@ -54,5 +54,10 @@ export default async function cleanValueTimeSplit(item) {
 		console.log(item['podcast:value']);
 
 		delete item?.valueTimeSplit;
+	}
+
+	console.log(Object.keys(item['podcast:value']));
+	if (Object.keys(item['podcast:value']).length === 0) {
+		delete item['podcast:value'];
 	}
 }
