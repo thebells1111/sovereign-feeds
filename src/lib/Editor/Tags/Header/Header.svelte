@@ -1,5 +1,5 @@
 <script>
-	import { rightPane, rssData, editingEpisode, selectorList } from '$/editor';
+	import { rightPane, rssData, editingEpisode, selectorList, showLiveEpisodes } from '$/editor';
 	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
 
 	$rightPane = 'episodeMetadata';
@@ -81,14 +81,16 @@
 		{$selectorList.images}
 	</li>
 
-	<li
-		class:active={$rightPane === 'valueSplits'}
-		on:click={() => {
-			$rightPane = 'valueSplits';
-		}}
-	>
-		Value Time Splits
-	</li>
+	{#if !$showLiveEpisodes}
+		<li
+			class:active={$rightPane === 'valueSplits'}
+			on:click={() => {
+				$rightPane = 'valueSplits';
+			}}
+		>
+			Value Time Splits
+		</li>
+	{/if}
 </ul>
 
 <style>
