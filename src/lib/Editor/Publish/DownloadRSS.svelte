@@ -8,6 +8,11 @@
 	async function parseRSS() {
 		$showBuildingRSS = true;
 		let { title, xmlFile } = await buildRSS();
+		console.log(xmlFile);
+		if (!xmlFile) {
+			$showBuildingRSS = false;
+			return;
+		}
 		let date = new Date();
 		let d = date.toLocaleString('en-US', { hour12: false });
 

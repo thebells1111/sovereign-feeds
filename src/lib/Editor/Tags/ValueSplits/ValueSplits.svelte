@@ -296,8 +296,6 @@
 			'@_customKey': ''
 		});
 
-		console.log(ts['podcast:valueRecipient']);
-
 		$editingEpisode = $editingEpisode;
 	}
 
@@ -326,16 +324,7 @@
 						'@_startTime': '',
 						'@_duration': '',
 						'@_remotePercentage': '',
-						valueRecipient: [
-							{
-								'@_name': '',
-								'@_address': '',
-								'@_type': 'node',
-								'@_customKey': '',
-								'@_customValue': '',
-								'@_split': ''
-							}
-						]
+						valueRecipient: []
 					}
 				]
 			}

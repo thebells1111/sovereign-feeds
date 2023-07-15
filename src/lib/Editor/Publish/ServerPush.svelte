@@ -14,6 +14,10 @@
 		$showServerSending = true;
 		try {
 			let { title, xmlFile } = await buildRSS();
+			if (!xmlFile) {
+				$showServerSending = false;
+				return;
+			}
 
 			if (title) {
 				let res = await fetch(remoteServerUrl + '/api/sf/serverpush', {

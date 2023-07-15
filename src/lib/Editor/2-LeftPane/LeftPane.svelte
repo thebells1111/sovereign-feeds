@@ -86,6 +86,9 @@
 				on:click={() => {
 					$currentPage = 'manual';
 					buildRSS().then(({ title, xmlFile }) => {
+						if (!xmlFile) {
+							return;
+						}
 						$feedText = xmlFile;
 					});
 				}}

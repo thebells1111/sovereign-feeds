@@ -21,6 +21,9 @@
 		isUploading = true;
 		console.log(id);
 		let { title, xmlFile } = await buildRSS();
+		if (!xmlFile) {
+			return;
+		}
 		console.log(title);
 		// console.log(xmlFile);
 

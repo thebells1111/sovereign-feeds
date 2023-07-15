@@ -38,16 +38,7 @@ export default async function initializeValueTimeSplit(episode) {
 				'@_startTime': v?.['@_startTime'],
 				'@_duration': v?.['@_duration'],
 				'@_remotePercentage': v?.['@_remotePercentage'],
-				'podcast:valueRecipient': v?.['podcast:valueRecipient'] || [
-					{
-						'@_name': '',
-						'@_address': '',
-						'@_type': 'node',
-						'@_customKey': '',
-						'@_customValue': '',
-						'@_split': ''
-					}
-				]
+				'podcast:valueRecipient': v?.['podcast:valueRecipient'] || []
 			};
 
 			timeSplits.push(vts);

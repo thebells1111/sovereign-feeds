@@ -51,6 +51,19 @@ let rssDataProxy;
 export default async function buildRSS() {
 	let $regularEpisodes = get(regularEpisodes);
 	let $liveEpisodes = get(liveEpisodes);
+	let allEpisodes = $regularEpisodes.concat($liveEpisodes);
+
+	let guidDupes = getDuplicateGuids(allEpisodes);
+
+	if (Object.keys(guidDupes).length > 0) {
+		let alertText = 'The following episodes share a guid: ';
+		for (let guid in guidDupes) {
+			alertText += '\n\nGuid:\n    ' + guid + '\nEpisodes\n    ' + guidDupes[guid].join('\n    ');
+		}
+		alert(alertText);
+		return {};
+	}
+
 	let $maxEpisodes = get(maxEpisodes);
 	let $xmlJson = get(xmlJson);
 	let $rssData = get(rssData);
@@ -68,7 +81,6 @@ export default async function buildRSS() {
 	cleanLocked(rssDataProxy);
 	cleanLicense(rssDataProxy);
 	changeGenerator(rssDataProxy);
-	replaceGuid(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
 	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
@@ -158,8 +170,23 @@ function changeGenerator(data) {
 	data.generator = 'Sovereign Feeds';
 }
 
-function replaceGuid(data) {
-	if (data.title === 'Curry and The Keeper') {
-		data['podcast:guid'] = '991c5078-9383-5e2f-9845-05cbce8ac4dd';
+function getDuplicateGuids(episodes) {
+	let guidMap = {};
+	let guidDupes = {};
+
+	episodes.forEach((episode) => {
+		let guid = episode.guid['#text'];
+		if (!guidMap[guid]) {
+			guidMap[guid] = [];
+		}
+		guidMap[guid].push(episode.title);
+	});
+
+	for (let guid in guidMap) {
+		if (guidMap[guid].length > 1) {
+			guidDupes[guid] = guidMap[guid];
+		}
 	}
+
+	return guidDupes;
 }
