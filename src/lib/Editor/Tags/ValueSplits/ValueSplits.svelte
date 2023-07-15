@@ -1,11 +1,7 @@
 <script>
-	import Select from 'svelte-select';
 	import Modal from '$lib/Modals/Modal/Modal.svelte';
 	import initializeValueTimeSplit from './initializeValueTimeSplit';
 	import { remoteServerUrl, editingEpisode, liveEpisodes } from '$/editor';
-
-	let guidOptions = [];
-	let selectedGuid;
 
 	let isImporting = false;
 
@@ -17,29 +13,12 @@
 	let username = '';
 	let noUserFound = false;
 	let showProviderInput = false;
+	let showImportModal = false;
 	let activeRecipient;
-
-	$: getGuids($liveEpisodes);
-
-	function getGuids() {
-		$liveEpisodes.forEach((v) => {
-			let tempGuid = v?.['podcast:liveValue']?.['@_uri'];
-
-			if (tempGuid) {
-				if (!guidOptions.find((w) => w.value === tempGuid)) {
-					guidOptions.push({ label: v.title, value: tempGuid });
-				}
-			}
-		});
-		guidOptions = guidOptions;
-		selectedGuid = guidOptions?.[0]?.value;
-		console.log(guidOptions);
-		console.log(selectedGuid);
-	}
+	let liveValueLink = 'https://curiohoster.com/event?event_id=e3bf9cf3-0dea-4925-8ba2-82e01a527b18';
 
 	async function loadBlocks() {
-		console.log(selectedGuid);
-		let guid = selectedGuid?.split('?event_id=');
+		let guid = liveValueLink?.split('?event_id=');
 		let confirmation = false;
 		if (guid?.[0] !== 'https://curiohoster.com/event') {
 			alert(
@@ -60,6 +39,7 @@
 			const blocks = data.blocks || [];
 			let timeSplits = [];
 			isImporting = true;
+			showImportModal = false;
 			if (blocks?.length) {
 				badStartBlocks = blocks.filter((v) => !v.startTime);
 				badDurationBlocks = blocks.filter((v) => !v.duration);
@@ -132,16 +112,7 @@
 								'@_startTime': '',
 								'@_duration': '',
 								'@_remotePercentage': '',
-								valueRecipient: [
-									{
-										'@_name': '',
-										'@_address': '',
-										'@_type': 'node',
-										'@_customKey': '',
-										'@_customValue': '',
-										'@_split': ''
-									}
-								]
+								valueRecipient: []
 							}
 						]
 					}
@@ -150,16 +121,6 @@
 			}
 			isImporting = false;
 		}
-	}
-
-	function handleSelect(event) {
-		let slug = event.detail || [];
-		console.log(slug);
-		selectedGuid = slug.value;
-	}
-
-	function handleClear(event) {
-		selectedGuid = '';
 	}
 
 	async function handleProviderSelect(providerName, tsindex, index) {
@@ -349,18 +310,12 @@
 {:else}
 	<select-container>
 		<button class="primary add" on:click={addSplit}>Add New Split</button>
-		<select-component>
-			<Select
-				items={guidOptions}
-				value={selectedGuid}
-				on:select={handleSelect}
-				on:clear={handleClear}
-				isCreatable={true}
-			/>
-		</select-component>
 
-		<button class="primary" on:click={loadBlocks} disable={!selectedGuid}
-			>Import Value Time Splits <br />from The Split Kit</button
+		<button
+			class="primary"
+			on:click={() => {
+				showImportModal = true;
+			}}>Import Value Time Splits <br />from The Split Kit</button
 		>
 	</select-container>
 {/if}
@@ -509,6 +464,20 @@
 	</Modal>
 {/if}
 
+{#if showImportModal}
+	<Modal bind:showModal={showImportModal}>
+		<div class="split-kit-import">
+			<label>
+				<h4>Live Value Link</h4>
+				<input
+					bind:value={liveValueLink}
+					placeholder={`Paste your Live Value Link from the Split Kit`}
+				/>
+			</label><button class="submit-provider primary" on:click={loadBlocks}>Submit</button>
+		</div>
+	</Modal>
+{/if}
+
 <style>
 	container {
 		display: block;
@@ -576,6 +545,7 @@
 
 	select-container {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 	}
 
@@ -698,5 +668,19 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.split-kit-import {
+		width: calc(100% - 16px);
+		min-width: 300px;
+		margin: 8px 8px 16px 8px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-end;
+	}
+
+	.split-kit-import label {
+		margin-bottom: 8px;
 	}
 </style>
