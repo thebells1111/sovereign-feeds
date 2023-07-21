@@ -56,7 +56,8 @@
 			? $liveEpisodes.find((v) => v.sfID === episode.sfID)
 			: $regularEpisodes.find((v) => v.sfID === episode.sfID);
 		$editingIndex = episodeIndex;
-		initializeEpisode($editingEpisode, $showLiveEpisodes ? 'live' : null);
+		await initializeEpisode($editingEpisode, $showLiveEpisodes ? 'live' : null);
+		$editingEpisode = $editingEpisode;
 
 		if (!window?.tinymce?.activeEditor && !fromChapters) {
 			initTinyMCE();
