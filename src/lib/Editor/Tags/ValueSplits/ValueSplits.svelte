@@ -15,8 +15,7 @@
 	let showProviderInput = false;
 	let showImportModal = false;
 	let activeRecipient;
-	let liveValueLink = 'https://curiohoster.com/event?event_id=e3bf9cf3-0dea-4925-8ba2-82e01a527b18';
-
+	let liveValueLink;
 	async function loadBlocks() {
 		let guid = liveValueLink?.split('?event_id=');
 		let confirmation = false;
@@ -671,8 +670,7 @@
 	}
 
 	.split-kit-import {
-		width: calc(100% - 16px);
-		min-width: 300px;
+		width: 450px;
 		margin: 8px 8px 16px 8px;
 		display: flex;
 		flex-direction: column;
