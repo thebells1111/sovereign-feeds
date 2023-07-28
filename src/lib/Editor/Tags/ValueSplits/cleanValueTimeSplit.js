@@ -41,12 +41,13 @@ export default async function cleanValueTimeSplit(item) {
 					}
 				})
 				.filter((v) => {
-					console.log(v);
 					return v;
 				});
 
 			if (splits?.length) {
-				item['podcast:value']['podcast:valueTimeSplit'] = splits;
+				item['podcast:value']['podcast:valueTimeSplit'] = splits.sort(
+					(a, b) => a['@_startTime'] - b['@_startTime']
+				);
 			} else {
 				delete item['podcast:value']['podcast:valueTimeSplit'];
 			}

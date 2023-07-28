@@ -92,6 +92,8 @@
 							timeSplits.push(vts);
 						}
 
+						timeSplits = timeSplits.sort((a, b) => a['@_startTime'] - b['@_startTime']);
+
 						let episode = { 'podcast:value': { 'podcast:valueTimeSplit': timeSplits } };
 						$editingEpisode.valueTimeSplit = await initializeValueTimeSplit(episode);
 					}
