@@ -38,16 +38,6 @@
 		</select>
 	</label>
 
-	{#if $rssData['podcast:guid']}
-		<h3>{$tagHeaders.podcast.guid}</h3>
-		<p>{$rssData['podcast:guid']}</p>
-	{:else}
-		<label>
-			<h3>{$tagHeaders.podcast.guid}</h3>
-			<input type="text" bind:value={$rssData['podcast:guid']} />
-		</label>
-	{/if}
-
 	<Locked />
 	<Complete />
 	<License />

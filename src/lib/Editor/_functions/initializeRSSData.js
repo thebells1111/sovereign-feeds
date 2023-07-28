@@ -116,8 +116,6 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:medium'] = $rssData['podcast:medium'] || 'podcast';
 	setHeaderText($rssData);
 
-	$rssData['podcast:guid'] = get(selectedPodcast).podcastGuid;
-
 	$rssData['podcast:images'] = initializeImagesTag($rssData?.['podcast:images']);
 
 	$rssData['itunes:image'] = initializeItunesImageTag($rssData);

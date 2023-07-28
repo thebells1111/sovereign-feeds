@@ -18,7 +18,8 @@ import {
 	xmlJson,
 	regularEpisodes,
 	liveEpisodes,
-	remoteServerUrl
+	remoteServerUrl,
+	selectedPodcast
 } from '$/editor';
 
 let js2xml = new parser.j2xParser({
@@ -203,6 +204,7 @@ async function cleanGuid(rss) {
 	if (!isValidGuid) {
 		let guid = await generateValidGuid();
 		rss['podcast:guid'] = guid;
+		get(selectedPodcast).podcastGuid = guid;
 	}
 }
 
