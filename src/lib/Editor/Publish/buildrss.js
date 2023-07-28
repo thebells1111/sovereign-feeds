@@ -2,6 +2,7 @@ import { get } from 'svelte/store';
 
 import parser from 'fast-xml-parser';
 import clone from 'just-clone';
+import { v4 as uuidv4 } from 'uuid';
 import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 import cleanItems from '$lib/Editor/_functions/cleanup/items';
 
@@ -11,7 +12,14 @@ import cleanComplete from '$lib/Editor/_functions/cleanup/complete';
 import cleanLocked from '$lib/Editor/_functions/cleanup/locked';
 import cleanLicense from '$lib/Editor/_functions/cleanup/license';
 
-import { rssData, maxEpisodes, xmlJson, regularEpisodes, liveEpisodes } from '$/editor';
+import {
+	rssData,
+	maxEpisodes,
+	xmlJson,
+	regularEpisodes,
+	liveEpisodes,
+	remoteServerUrl
+} from '$/editor';
 
 let js2xml = new parser.j2xParser({
 	attributeNamePrefix: '@_',
@@ -68,7 +76,6 @@ export default async function buildRSS() {
 	let $xmlJson = get(xmlJson);
 	let $rssData = get(rssData);
 	let pubDate = new Date().toUTCString().split(' GMT')[0] + ' +0000';
-	console.log($xmlJson);
 	rssDataProxy = clone($rssData);
 	rssDataProxy.pubDate = pubDate;
 	rssDataProxy.lastBuildDate = pubDate;
@@ -81,13 +88,13 @@ export default async function buildRSS() {
 	cleanLocked(rssDataProxy);
 	cleanLicense(rssDataProxy);
 	changeGenerator(rssDataProxy);
+	await cleanGuid(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
 	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
 	rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
 
 	await cleanItems(rssDataProxy);
-	console.log(rssDataProxy);
 
 	if (!$xmlJson) {
 		$xmlJson = await getRSSEditorFeed(`${window.location.origin}/blankfeed.xml`);
@@ -107,7 +114,6 @@ export default async function buildRSS() {
 }
 
 function cleanPodcastValue() {
-	console.log(rssDataProxy['podcast:value']);
 	if (rssDataProxy['podcast:value']) {
 		rssDataProxy['podcast:value']['podcast:valueRecipient'] = rssDataProxy['podcast:value'][
 			'podcast:valueRecipient'
@@ -175,7 +181,7 @@ function getDuplicateGuids(episodes) {
 	let guidDupes = {};
 
 	episodes.forEach((episode) => {
-		let guid = episode.guid['#text'];
+		let guid = episode.guid?.['#text'] || episode.guid;
 		if (!guidMap[guid]) {
 			guidMap[guid] = [];
 		}
@@ -189,4 +195,34 @@ function getDuplicateGuids(episodes) {
 	}
 
 	return guidDupes;
+}
+
+async function cleanGuid(rss) {
+	let isValidGuid = checkValidGuid(rss['podcast:guid']);
+
+	if (!isValidGuid) {
+		let guid = await generateValidGuid();
+		rss['podcast:guid'] = guid;
+	}
+}
+
+function checkValidGuid(input) {
+	const regex = new RegExp(
+		'^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$'
+	);
+	return regex.test(input);
+}
+
+async function generateValidGuid() {
+	let uniqueId = uuidv4();
+	let url =
+		remoteServerUrl + `/api/queryindex?q=${encodeURIComponent(`podcasts/byguid?guid=${uniqueId}`)}`;
+
+	const res = await fetch(url);
+	const data = await res.json();
+	if (data?.feed?.length) {
+		return generateValidGuid();
+	} else {
+		return uniqueId;
+	}
 }
