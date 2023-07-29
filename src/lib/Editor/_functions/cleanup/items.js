@@ -96,6 +96,10 @@ async function cleanItem(item, data) {
 		delete item.link;
 	}
 
+	if (item?.['podcast:chapters'] && !item?.['podcast:chapters']?.['@_type']) {
+		item['podcast:chapters']['@_type'] = 'application/json';
+	}
+
 	if (!item?.['podcast:chapters']?.['@_url']) {
 		delete item['podcast:chapters'];
 	}

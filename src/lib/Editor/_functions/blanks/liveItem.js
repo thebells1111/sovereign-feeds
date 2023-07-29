@@ -31,7 +31,7 @@ const liveItem = {
 	'itunes:summary': null,
 	link: null,
 	'podcast:contentLink': { '#text': null, '@_href': null },
-	'podcast:chapters': { '@_url': null },
+	'podcast:chapters': { '@_url': null, type: 'application/json' },
 	'podcast:person': [
 		{
 			'#text': '',

@@ -2,7 +2,7 @@ import { get } from 'svelte/store';
 
 import parser from 'fast-xml-parser';
 import clone from 'just-clone';
-import { v4 as uuidv4 } from 'uuid';
+import { v5 as uuidv5, v4 as uuidv4 } from 'uuid';
 import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 import cleanItems from '$lib/Editor/_functions/cleanup/items';
 
@@ -199,6 +199,10 @@ function getDuplicateGuids(episodes) {
 }
 
 async function cleanGuid(rss) {
+	if (rss['podcast:guid'] === 'f556dbfe-a100-47ed-85da-7fc9424d99ad') {
+		rss['podcast:guid'] = '6dfbd8e4-f9f3-5ea1-98a1-574134999b3b';
+	}
+
 	let isValidGuid = checkValidGuid(rss['podcast:guid']);
 
 	if (!isValidGuid) {
@@ -216,7 +220,10 @@ function checkValidGuid(input) {
 }
 
 async function generateValidGuid() {
-	let uniqueId = uuidv4();
+	const namespace = 'ead4c236-bf58-58c6-a2c6-a6b28d128cb6';
+	const inputString = uuidv4();
+	const uniqueId = uuid.v5(inputString, namespace);
+
 	let url =
 		remoteServerUrl + `/api/queryindex?q=${encodeURIComponent(`podcasts/byguid?guid=${uniqueId}`)}`;
 
