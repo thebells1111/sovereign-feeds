@@ -222,7 +222,7 @@ function checkValidGuid(input) {
 async function generateValidGuid() {
 	const namespace = 'ead4c236-bf58-58c6-a2c6-a6b28d128cb6';
 	const inputString = uuidv4();
-	const uniqueId = uuid.v5(inputString, namespace);
+	const uniqueId = uuidv5(inputString, namespace);
 
 	let url =
 		remoteServerUrl + `/api/queryindex?q=${encodeURIComponent(`podcasts/byguid?guid=${uniqueId}`)}`;
