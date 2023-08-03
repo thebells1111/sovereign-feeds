@@ -47,7 +47,7 @@ async function cleanItem(item, data) {
 	handleTrackers(item);
 	cleanPodcastSocialInteract(item);
 	cleanEpisodePerson(item);
-	cleanEpisodeValue(item);
+	cleanEpisodeValue(item, data);
 	cleanEpisodeTranscript(item);
 	cleanPodcastImages(item);
 	cleanLicense(item);
@@ -201,31 +201,40 @@ function processLiveItemTimes(item) {
 	item['@_end'] = new Date(t + addTime).toISOString();
 }
 
-function cleanEpisodeValue(item) {
-	if (item['podcast:value']) {
-		item['podcast:value']['podcast:valueRecipient'] = [].concat(
-			item['podcast:value']['podcast:valueRecipient']
-		);
+function cleanEpisodeValue(item, data) {
+	if (item?.['podcast:value']) {
+		if (item?.['podcast:value']?.['podcast:valueRecipient']) {
+			item['podcast:value']['podcast:valueRecipient'] = [].concat(
+				item['podcast:value']['podcast:valueRecipient']
+			);
+		} else if (item['podcast:value']?.['podcast:valueTimeSplit']) {
+			item['podcast:value']['@_method'] = data['podcast:value']['@_method'];
+			item['podcast:value']['@_suggested'] = data['podcast:value']['@_suggested'];
+			item['podcast:value']['@_type'] = data['podcast:value']['@_type'];
+			item['podcast:value']['podcast:valueRecipient'] = [].concat(
+				data['podcast:value']['podcast:valueRecipient']
+			);
+		}
 
 		item['podcast:value']['podcast:valueRecipient'] = item['podcast:value'][
 			'podcast:valueRecipient'
 		].filter((v) => {
-			if (!v['@_name']) {
+			if (!v?.['@_name']) {
 				delete v['@_name'];
 			}
-			if (!v['@_customKey']) {
+			if (!v?.['@_customKey']) {
 				delete v['@_customKey'];
 			}
-			if (!v['@_customValue']) {
+			if (!v?.['@_customValue']) {
 				delete v['@_customValue'];
 			}
-			if (!v['@_fee']) {
+			if (!v?.['@_fee']) {
 				delete v['@_fee'];
 			}
-			if (!v['@_address'] || !v['@_split']) {
+			if (!v?.['@_address'] || !v['@_split']) {
 				return false;
 			}
-			if (v['@_name'] === 'Sovereign Feeds') {
+			if (v?.['@_name'] === 'Sovereign Feeds') {
 				v['@_address'] = '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3';
 				v['@_customKey'] = '696969';
 				v['@_customValue'] = 'eChoVKtO1KujpAA5HCoB';
@@ -233,8 +242,9 @@ function cleanEpisodeValue(item) {
 			return v;
 		});
 		if (
-			!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_address'] ||
-			!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_split']
+			(!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_address'] ||
+				!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_split']) &&
+			!item['podcast:value']?.['podcast:valueTimeSplit']
 		) {
 			delete item['podcast:value'];
 		}

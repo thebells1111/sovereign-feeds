@@ -4,13 +4,9 @@
 	import { rssData, duplicateEditorScreen, editingEpisode, newEpisodeHeaders } from '$/editor';
 
 	async function setupMCE() {
-		console.log('1: ', $editingEpisode.description);
 		await initTinyMCE();
 		tinymce.get('duplicate-editor-description').setContent($editingEpisode.description);
-		console.log('2: ', $editingEpisode.description);
 	}
-
-	$: console.log('new: ', $editingEpisode.description);
 
 	async function destroyMCE() {
 		console.log('destroyed');

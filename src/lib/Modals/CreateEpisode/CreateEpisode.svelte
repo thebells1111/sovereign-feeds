@@ -23,8 +23,6 @@
 		rssData
 	} from '$/editor';
 
-	$: console.log($rssData);
-
 	function createEpisode(type) {
 		let newEpisode = {
 			title: 'New Episode',
@@ -90,6 +88,8 @@
 
 			newEp['podcast:chapters'] = newEp['podcast:chapters'] || { '@_url': null };
 			newEp['itunes:duration'] = 0;
+			delete newEp['podcast:value']['podcast:valueTimeSplit'];
+			delete newEp.valueTimeSplit;
 		} else if ($showLiveEpisodes) {
 			newEp = clone(blankLiveEpisode);
 		} else {
