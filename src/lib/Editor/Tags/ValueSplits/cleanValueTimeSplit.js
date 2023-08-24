@@ -19,6 +19,9 @@ export default async function cleanValueTimeSplit(item) {
 						return;
 					}
 					split['@_remotePercentage'] = v['@_remotePercentage'] || 100;
+					if (v?.['podcast:valueRecipient']) {
+						v['podcast:valueRecipient'] = [].concat(v?.['podcast:valueRecipient']);
+					}
 
 					if (v['@_feedGuid'] || v?.['podcast:valueRecipient']?.some((v) => v['@_address'])) {
 						if (v['@_feedGuid']) {
@@ -52,12 +55,10 @@ export default async function cleanValueTimeSplit(item) {
 				delete item['podcast:value']['podcast:valueTimeSplit'];
 			}
 		}
-		console.log(item['podcast:value']);
-
-		delete item?.valueTimeSplit;
 	}
 
 	if (Object.keys(item['podcast:value']).length === 0) {
 		delete item['podcast:value'];
 	}
+	delete item.valueTimeSplit;
 }

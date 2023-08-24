@@ -8,7 +8,6 @@
 	async function parseRSS() {
 		$showBuildingRSS = true;
 		let { title, xmlFile } = await buildRSS();
-		console.log(xmlFile);
 		if (!xmlFile) {
 			$showBuildingRSS = false;
 			return;
