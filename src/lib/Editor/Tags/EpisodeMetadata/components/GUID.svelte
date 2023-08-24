@@ -53,35 +53,37 @@
 	}
 </script>
 
-<div class="episode-guid">
-	<div class="heading" on:click|stopPropagation>
-		<h3>{$tagHeaders.episodes.guid}</h3>
-		<button on:click={generateGuid}>Generate GUID</button>
-		<p>{warningFlag > -1 ? '(duplicate GUID)' : ''}</p>
-	</div>
+{#if $editingEpisode.guid}
+	<div class="episode-guid">
+		<div class="heading" on:click|stopPropagation>
+			<h3>{$tagHeaders.episodes.guid}</h3>
+			<button on:click={generateGuid}>Generate GUID</button>
+			<p>{warningFlag > -1 ? '(duplicate GUID)' : ''}</p>
+		</div>
 
-	<input
-		type="text"
-		bind:value={$editingEpisode.guid['#text']}
-		on:input={updateLink}
-		class:warning={warningFlag > -1}
-		use:selectTextOnFocus
-	/>
-	<div class="permalink">
-		<h4>isPermaLink:</h4>
-		<div class="permalink-label-container">
-			<label class="permalink-radio">
-				<input type="radio" bind:group={$editingEpisode.guid['@_isPermaLink']} value={false} />
-				No
-			</label>
+		<input
+			type="text"
+			bind:value={$editingEpisode.guid['#text']}
+			on:input={updateLink}
+			class:warning={warningFlag > -1}
+			use:selectTextOnFocus
+		/>
+		<div class="permalink">
+			<h4>isPermaLink:</h4>
+			<div class="permalink-label-container">
+				<label class="permalink-radio">
+					<input type="radio" bind:group={$editingEpisode.guid['@_isPermaLink']} value={false} />
+					No
+				</label>
 
-			<label class="permalink-radio">
-				<input type="radio" bind:group={$editingEpisode.guid['@_isPermaLink']} value={true} />
-				Yes
-			</label>
+				<label class="permalink-radio">
+					<input type="radio" bind:group={$editingEpisode.guid['@_isPermaLink']} value={true} />
+					Yes
+				</label>
+			</div>
 		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	.episode-guid {
