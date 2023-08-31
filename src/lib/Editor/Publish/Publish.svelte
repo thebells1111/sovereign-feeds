@@ -16,7 +16,7 @@
 	<div class="split" />
 {/if}
 
-{#if $selectedPodcast.id === 'new'}
+{#if !$selectedPodcast.url}
 	<AddFeed />
 	<div class="split" />
 {/if}

@@ -12,6 +12,7 @@ import initializeLicenseTag from './initialize/license';
 import initializeValueTimeSplit from '$lib/Editor/Tags/ValueSplits/initializeValueTimeSplit';
 import initializeChat from '$lib/Editor/Tags/Chat/initializeChat';
 import initializeLiveValue from '$lib/Editor/Tags/LiveValue/initializeLiveValue';
+import initializeEnclosure from './initialize/enclosure';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
 
@@ -25,6 +26,7 @@ export default async function initializeEpisode(episode, type) {
 	episode['podcast:chapters'] = episode['podcast:chapters'] || { '@_url': '' };
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
+	episode.enclosure = await initializeEnclosure(episode?.enclosure);
 
 	if (!episode.valueTimeSplit) {
 		episode.valueTimeSplit = await initializeValueTimeSplit(episode);

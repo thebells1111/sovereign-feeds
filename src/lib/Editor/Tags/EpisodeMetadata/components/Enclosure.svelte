@@ -5,7 +5,9 @@
 		editingIndex,
 		showLiveEpisodes,
 		tagHeaders,
-		digitalOceanEnabled
+		digitalOceanEnabled,
+		trackerDB,
+		selectedPodcast
 	} from '$/editor';
 	import clone from 'just-clone';
 	import { selectTextOnFocus } from '$functions/inputActions';

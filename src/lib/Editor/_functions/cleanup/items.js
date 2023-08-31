@@ -117,8 +117,10 @@ async function cleanItem(item, data) {
 }
 
 async function handleTrackers(item) {
+	console.log(trackers);
 	if (trackers?.active?.length) {
 		let url = item?.enclosure?.['@_url'];
+		console.log(url);
 		if (url.indexOf('http://') == 0) {
 			url = url.substring(7);
 		}
@@ -145,9 +147,11 @@ async function handleTrackers(item) {
 
 		// Add specialPrefix to the end
 		prefix = prefix + specialPrefix;
+		console.log(prefix);
 
-		let newEnclosure = 'https://' + prefix + url;
-		item.enclosure['@_url'] = newEnclosure;
+		url = 'https://' + prefix + url;
+		console.log(url);
+		item.enclosure['@_url'] = url;
 	}
 }
 
