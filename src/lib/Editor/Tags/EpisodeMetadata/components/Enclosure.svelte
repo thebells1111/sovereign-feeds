@@ -76,9 +76,7 @@
 		try {
 			let size = '33';
 			if (!$showLiveEpisodes) {
-				const response = await fetch($editingEpisode.enclosure['@_url'], {
-					method: 'HEAD'
-				});
+				const response = await fetch($editingEpisode.enclosure['@_url']);
 				if (!response.ok) {
 					throw Error(`${response.status} ${response.statusText}`);
 				}
