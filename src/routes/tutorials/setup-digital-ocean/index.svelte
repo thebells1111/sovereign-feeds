@@ -20,6 +20,51 @@
 		allowfullscreen="true"
 		sandbox="allow-same-origin allow-scripts allow-popups"
 	/>
+
+	<p style="text-decoration: underline;"><strong>Quick Steps</strong></p>
+	<ul>
+		<li>Log In</li>
+		<li>Create a New Project</li>
+		<li>Name your project</li>
+		<li>Skip the Description</li>
+		<li>Select Other for purpose</li>
+		<li>Give a reason.</li>
+		<li>Go to Spaces</li>
+		<li>Use the default Server</li>
+		<li>Enable the CDN</li>
+		<li>Give a unique name</li>
+		<li>Select your project name</li>
+		<li>Click Create a Spaces Bucket</li>
+		<li>Click the Settings Tab</li>
+		<li>In the CDN, click Change</li>
+		<li>Set the Edge Cache to One Week</li>
+		<li>Click Save</li>
+		<li>In CORS, click ADD</li>
+		<li>Type an asterisk(*) in Origin</li>
+		<li>Click GET</li>
+		<li>Set Access Control Age to 86400</li>
+		<li>Save</li>
+		<li>Click the Files Tab</li>
+		<li>Create new folders if desired</li>
+		<li>Drag and drop your non-changing files to the appropriate folders</li>
+		<li>Set the file permissions to Public</li>
+		<li>Hover over each file to get the link to that file</li>
+		<li>If you have changing files, click the green Create button</li>
+		<li>Click Spaces</li>
+		<li>Do Not Enable the CDN</li>
+		<li>Select your project name</li>
+		<li>Give this bucket a name and click Create a Space</li>
+		<li>Click the Settings Tab</li>
+		<li>Add a CORS policy</li>
+		<li>Add an asterisk (*) for the ORIGIN</li>
+		<li>Click GET</li>
+		<li>Set Access Control Age to 86400</li>
+		<li>Save</li>
+		<li>Click the Files Tab</li>
+		<li>Create any folder you want</li>
+		<li>Drag and drop your changing files to the appropriate folders</li>
+		<li>Set the file permissions to Public</li>
+	</ul>
 </article>
 
 <style>
@@ -34,8 +79,9 @@
 	}
 
 	iframe {
-		width: 56vw;
-		height: 31.5vw;
+		min-width: 56vw;
+		min-height: 31.5vw;
+		flex-grow: 1;
 	}
 
 	h1 {
@@ -51,6 +97,7 @@
 	.referral-link {
 		margin-top: 8px;
 		font-size: 1.5em;
+		color: rgba(0, 98, 255, 1);
 	}
 
 	p {
