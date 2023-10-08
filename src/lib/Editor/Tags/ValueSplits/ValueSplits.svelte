@@ -17,44 +17,39 @@
 	let activeRecipient;
 	let liveValueLink;
 	async function loadBlocks() {
-		let guid = liveValueLink?.split('?event_id=');
+		let guid = stripGUID(liveValueLink);
 		let confirmation = false;
-		if (guid?.[0] !== 'https://curiohoster.com/event') {
-			alert(
-				`This only works with CurioHoster events. 
-\nPlease use the Split Kit to create your own event`
-			);
-		} else {
-			confirmation = confirm(
-				'Are you sure you want to import new value blocks? \nDoing so will overwrite these ones.'
-			);
-		}
+
+		confirmation = confirm(
+			'Are you sure you want to import new value blocks? \nDoing so will overwrite these ones.'
+		);
 
 		if (confirmation) {
-			const res = await fetch(remoteServerUrl + '/api/sk/getblocks?guid=' + guid[1]);
+			const res = await fetch(remoteServerUrl + '/api/sk/getblocks?guid=' + guid);
 			const data = await res.json();
 			console.log(data);
 			const settings = data.settings || {};
-			const blocks = data.blocks || [];
+			const blocks = data.blocks.slice(1) || [];
+			console.log(blocks);
 			let timeSplits = [];
 			isImporting = true;
 			showImportModal = false;
 			if (blocks?.length) {
-				badStartBlocks = blocks.filter((v) => !v.startTime);
-				badDurationBlocks = blocks.filter((v) => !v.duration);
+				badStartBlocks = blocks.filter((v) => !v?.startTime);
+				badDurationBlocks = blocks.filter((v) => !v?.duration);
 				badValueBlocks = blocks.filter((v) => !v?.value?.destinations?.length);
 
 				blocks.forEach(async (v) => {
 					if (
 						!settings.includeDefault &&
 						['podcast', 'edit', 'music'].find((v) => v === settings?.broadcastMode) &&
-						v.settings.default
+						v?.settings?.default
 					) {
 						badStartBlocks = badStartBlocks.filter((w) => w.blockGuid !== v.blockGuid);
 						badDurationBlocks = badDurationBlocks.filter((w) => w.blockGuid !== v.blockGuid);
 						badValueBlocks = badValueBlocks.filter((w) => w.blockGuid !== v.blockGuid);
 					}
-					if (v.startTime > -1 && v.duration) {
+					if (v?.startTime > -1 && v?.duration) {
 						if (
 							!settings.includeDefault &&
 							['podcast', 'edit', 'music'].find((v) => v === settings?.broadcastMode) &&
@@ -123,6 +118,15 @@
 			isImporting = false;
 		}
 	}
+
+	const stripGUID = (str) => {
+		const regex = /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/gi;
+		const match = str.match(regex);
+		if (match) {
+			return match[0];
+		}
+		return null;
+	};
 
 	async function handleProviderSelect(providerName, tsindex, index) {
 		showProviderInput = true;
@@ -325,7 +329,7 @@
 		<h4>The following blocks don't have a start time. Fix this in The Split Kit.</h4>
 		<ul>
 			{#each badStartBlocks as block}
-				<li>{block.title}</li>
+				<li>{block?.title}</li>
 			{/each}
 		</ul>
 	{/if}
@@ -333,7 +337,7 @@
 		<h4>The following blocks don't have a value block. Fix this in The Split Kit.</h4>
 		<ul>
 			{#each badValueBlocks as block}
-				<li>{block.title}</li>
+				<li>{block?.title}</li>
 			{/each}
 		</ul>
 	{/if}
@@ -342,7 +346,7 @@
 		<h4>The following blocks don't have a duration. Fix this in The Split Kit.</h4>
 		<ul>
 			{#each badDurationBlocks as block}
-				<li>{block.title}</li>
+				<li>{block?.title}</li>
 			{/each}
 		</ul>
 	{/if}
