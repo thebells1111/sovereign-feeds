@@ -26,7 +26,6 @@
 		showBlankImage = false;
 		if (image) {
 			image.style.cssText = `display: none;`;
-			console.log(url);
 			if (url && url === 'none') {
 				imageError();
 			} else if (url && url !== 'waiting') {

@@ -81,6 +81,7 @@ export default async function buildRSS() {
 	rssDataProxy.pubDate = pubDate;
 	rssDataProxy.lastBuildDate = pubDate;
 
+	createCategory();
 	cleanPodcastPerson(rssDataProxy);
 	cleanPodcastValue();
 	cleanPodcastImages(rssDataProxy);
@@ -112,6 +113,10 @@ export default async function buildRSS() {
 	console.log('rss: ', rssDataProxy);
 	let xml = js2xml.parse($xmlJson);
 	return { title: rssDataProxy.title, xmlFile: xml };
+}
+
+function createCategory() {
+	rssDataProxy.category = rssDataProxy['itunes:category'].map((item) => item['@_text']);
 }
 
 function cleanPodcastValue() {

@@ -4,7 +4,7 @@
 
 <label>
 	<h3>Category (required)</h3>
-	<select bind:value={$rssData['itunes:category']}>
+	<select bind:value={$rssData['itunes:category'][0]['@_text']}>
 		<option value="" disabled=""> Choose one option... </option>
 		<option value="Arts"> Arts </option>
 		<option value="Books">&nbsp;&nbsp;&nbsp;Books</option>
@@ -65,6 +65,7 @@
 		<option value="Daily News">&nbsp;&nbsp;&nbsp;Daily News</option>
 		<option value="Entertainment News">&nbsp;&nbsp;&nbsp;Entertainment News</option>
 		<option value="News Commentary">&nbsp;&nbsp;&nbsp;News Commentary</option>
+		<option value="News &amp; Politics">&nbsp;&nbsp;&nbsp;News &amp; Politics</option>
 		<option value="Politics">&nbsp;&nbsp;&nbsp;Politics</option>
 		<option value="Sports News">&nbsp;&nbsp;&nbsp;Sports News</option>
 		<option value="Tech News">&nbsp;&nbsp;&nbsp;Tech News</option>
