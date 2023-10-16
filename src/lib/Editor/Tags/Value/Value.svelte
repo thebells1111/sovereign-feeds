@@ -8,7 +8,7 @@
 
 {#if $rssData}
 	{#if type === 'episode'}
-		<SharedValueComponent bind:data={$editingEpisode['podcast:value']} />
+		<SharedValueComponent bind:data={$editingEpisode['podcast:value']} isEpisode={true} />
 	{:else if type === 'podcast'}
 		<SharedValueComponent bind:data={$rssData['podcast:value']} />
 	{/if}

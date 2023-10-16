@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import cleanPodcastImages from './images';
 import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
@@ -54,6 +55,10 @@ async function cleanItem(item, data) {
 	cleanChat(item);
 	cleanLiveValue(item);
 
+	if (!item.guid?.['#text']) {
+		item.guid = { '#text': uuidv4(), '@_isPermaLink': false };
+	}
+
 	if (!item.author) {
 		delete item.author;
 	}
@@ -96,21 +101,45 @@ async function cleanItem(item, data) {
 		delete item.link;
 	}
 
+	let hadBoostagrams;
+
+	if (item?.['podcast:chapters']?.boostagrams) {
+		console.log(item['podcast:chapters']);
+		hadBoostagrams = true;
+	}
+
 	if (item?.['podcast:chapters'] && !item?.['podcast:chapters']?.['@_type']) {
 		item['podcast:chapters']['@_type'] = 'application/json';
 	}
 
+	if (item?.['podcast:chapters']?.boostagrams) {
+		console.log('boostagrams are real');
+
+		let chapterUrl =
+			'https://reflex.livewire.io/chapters/podcast/' +
+			get(selectedPodcast)['podcastGuid'] +
+			'/item/' +
+			item.guid['#text'];
+		if (item?.['podcast:chapters']?.['@_url']) {
+			chapterUrl += '/chapters/' + item?.['podcast:chapters']?.['@_url'];
+		}
+
+		item['podcast:chapters']['@_url'] = chapterUrl;
+	}
+
 	if (!item?.['podcast:chapters']?.['@_url']) {
 		delete item['podcast:chapters'];
+	} else {
+		delete item['podcast:chapters'].boostagrams;
+	}
+
+	if (hadBoostagrams) {
+		console.log(item['podcast:chapters']);
 	}
 
 	//delete when alternateEnclosure is fleshed out
 	if (!item?.alternateEnclosure?.['podcast:source']?.['@_uri']) {
 		delete item.alternateEnclosure;
-
-		if (item.guid) {
-			delete item.guid['@_isPermalink'];
-		}
 	}
 
 	cleanValueTimeSplit(item);

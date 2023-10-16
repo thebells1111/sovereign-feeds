@@ -6,6 +6,7 @@
 	export let index = 1;
 	export let activeRecipient = {};
 	export let showValues = false;
+	export let isEpisode = false;
 
 	let blankRecipient = {
 		'@_name': 'New Split',

@@ -11,7 +11,7 @@ const item = {
 	'itunes:summary': null,
 	link: null,
 	'podcast:contentLink': { '#text': null, '@_href': null },
-	'podcast:chapters': { '@_url': null, '@_type': 'application/json' },
+	'podcast:chapters': { '@_url': null, '@_type': 'application/json', boostagrams: false },
 	'podcast:person': [
 		{
 			'#text': '',

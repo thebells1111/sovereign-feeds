@@ -2,6 +2,8 @@
 	import { goto } from '$app/navigation';
 
 	import { editingEpisode, rssData, tagHeaders, selectedPodcast } from '$/editor';
+	console.log($editingEpisode['podcast:value']['podcast:valueRecipient']);
+	console.log($selectedPodcast.rss['podcast:value']['podcast:valueRecipient']);
 </script>
 
 {#if $rssData}
@@ -24,6 +26,22 @@
 			>
 				View Chapters
 			</button>
+		{/if}
+		<label>
+			<input type="checkbox" bind:checked={$editingEpisode['podcast:chapters'].boostagrams} />
+			Surface Boostagrams in Chapters
+		</label>
+
+		{#if $editingEpisode['podcast:chapters']['@_url'].includes('reflex.livewire.io') && $editingEpisode?.['podcast:chapters']?.boostagrams}
+			<h2>Hold your horse, partner!!!</h2>
+			<h3>No need to include reflex.livewire.io in your link. We'll handle that for you.</h3>
+			<h3>Just include the link to your non-boostagram chapters, if you have one.</h3>
+		{/if}
+
+		{#if $editingEpisode?.['podcast:chapters']?.boostagrams}
+			<h2>
+				Boostagram Chapters brought to you by <a href="https://reflex.livewire.io/">Reflex</a>
+			</h2>
 		{/if}
 	</header>
 {/if}

@@ -23,7 +23,17 @@ export default async function initializeEpisode(episode, type) {
 		episode?.['podcast:socialInteract']
 	);
 	episode['podcast:transcript'] = initializeTranscriptTag(episode?.['podcast:transcript']);
-	episode['podcast:chapters'] = episode['podcast:chapters'] || { '@_url': '' };
+	episode['podcast:chapters'] = episode['podcast:chapters'] || {
+		'@_url': '',
+		'@_type': 'application/json',
+		boostagrams: false
+	};
+	if (episode['podcast:chapters']?.['@_url'].includes('reflex.livewire.io')) {
+		const parts = episode['podcast:chapters']?.['@_url']?.split('/chapters/');
+		let url = parts?.slice(2)?.join('/chapters');
+		episode['podcast:chapters']['@_url'] = url;
+		episode['podcast:chapters'].boostagrams = true;
+	}
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
 	episode.enclosure = await initializeEnclosure(episode?.enclosure);

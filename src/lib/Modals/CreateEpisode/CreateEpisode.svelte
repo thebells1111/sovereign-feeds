@@ -36,7 +36,7 @@
 			'itunes:subtitle': null,
 			'itunes:summary': null,
 			link: null,
-			'podcast:chapters': { '@_url': null },
+			'podcast:chapters': { '@_url': null, '@_type': 'application/json', boostagrams: false },
 			'podcast:person': [
 				{
 					'#text': '',

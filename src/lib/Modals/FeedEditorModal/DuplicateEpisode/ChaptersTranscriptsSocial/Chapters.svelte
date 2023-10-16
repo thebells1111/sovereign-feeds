@@ -24,6 +24,11 @@
 
 		<input type="text" bind:value={chapters['@_url']} />
 	</header>
+
+	<label>
+		<input type="checkbox" />
+		Surface Boostagrams in Chapters
+	</label>
 {/if}
 
 <style>

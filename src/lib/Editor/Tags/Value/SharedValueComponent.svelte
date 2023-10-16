@@ -11,6 +11,7 @@
 	let username = '';
 	let noUserFound = false;
 	let showProviderInput = false;
+	let showChannelImport = true;
 	export let support = true;
 
 	// Check if Sovereign Feeds is not added
@@ -162,6 +163,9 @@
 
 <div class="persons-container">
 	<div class="splits-container">
+		{#if showChannelImport}
+			CHannnel
+		{/if}
 		{#if noSF && support}
 			<button class="primary support" on:click={addSovereignFeeds}>
 				Support Sovereign Feeds! Add us to your Value Block!
