@@ -7,7 +7,7 @@ export default async function initializeEnclosure(data) {
 	data = data || { '@_url': '' };
 	console.log(trackers);
 	trackers.active.forEach((tracker) => {
-		data['@_url'] = data['@_url'].split(tracker).join('');
+		data['@_url'] = data['@_url']?.split(tracker).join('') || data['@_url'];
 	});
 	return data;
 }

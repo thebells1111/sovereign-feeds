@@ -28,7 +28,7 @@ export default async function initializeEpisode(episode, type) {
 		'@_type': 'application/json',
 		boostagrams: false
 	};
-	if (episode['podcast:chapters']?.['@_url'].includes('reflex.livewire.io')) {
+	if (episode?.['podcast:chapters']?.['@_url']?.includes('reflex.livewire.io')) {
 		const parts = episode['podcast:chapters']?.['@_url']?.split('/chapters/');
 		let url = parts?.slice(2)?.join('/chapters');
 		episode['podcast:chapters']['@_url'] = url;

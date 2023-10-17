@@ -50,17 +50,7 @@
 				'@_type': 'lightning',
 				'@_method': 'keysend',
 				'@_suggested': '0.00000005000',
-				'podcast:valueRecipient': [
-					{
-						'@_name': '',
-						'@_type': 'node',
-						'@_address': '',
-						'@_customKey': '',
-						'@_customValue': '',
-						'@_split': '',
-						'@_fee': ''
-					}
-				]
+				'podcast:valueRecipient': []
 			},
 			'podcast:license': { '@_url': '', '#text': '' }
 		};
