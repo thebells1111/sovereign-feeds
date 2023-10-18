@@ -67,9 +67,16 @@
 				Boostagram Chapters brought to you by <a href="https://reflex.livewire.io/">Reflex</a>
 			</h2>
 
-			{#if Array.isArray($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) && $editingEpisode?.['podcast:value']?.['podcast:valueRecipient']?.findIndex((v) => v?.['@_customValue'] === 'x3VXZtbcfIBVLIUqzWKV') === -1}
-				<input type="number" bind:value={reflexSplit} />
+			<p>
+				This works by adding Reflex to your value block. Clicking below will automatically add them
+				at a 5% split.
+			</p>
+			<p>
+				If you wish to edit their split percentage, you can do so in the Value tab. Just keep it
+				about 1% so they get your boosts
+			</p>
 
+			{#if Array.isArray($editingEpisode?.['podcast:value']?.['podcast:valueRecipient']) && $editingEpisode?.['podcast:value']?.['podcast:valueRecipient']?.findIndex((v) => v?.['@_customValue'] === 'x3VXZtbcfIBVLIUqzWKV') === -1}
 				<button on:click={addReflex}>Add Reflex to your value block to process Boostagrams</button>
 			{/if}
 		{/if}
