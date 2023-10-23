@@ -90,7 +90,7 @@ p {
 }
 
 a {
-	color: var(--accent-color-red);
+	color: var(--primary-button-color-light);
 	font-weight: 550;
 }
 

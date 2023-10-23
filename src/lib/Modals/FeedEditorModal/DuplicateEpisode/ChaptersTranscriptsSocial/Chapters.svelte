@@ -1,5 +1,6 @@
 <script>
 	import { editingEpisode, rssData } from '$/editor';
+	import BoostagramChapters from '$lib/Editor/Tags/Chapters/BoostagramChapters.svelte';
 
 	let blankChapters = {
 		'@type': 'application/json',
@@ -25,10 +26,7 @@
 		<input type="text" bind:value={chapters['@_url']} />
 	</header>
 
-	<label>
-		<input type="checkbox" />
-		Surface Boostagrams in Chapters
-	</label>
+	<BoostagramChapters />
 {/if}
 
 <style>
