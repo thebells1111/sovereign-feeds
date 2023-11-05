@@ -44,7 +44,7 @@ export default async function cleanItems(data) {
 async function cleanItem(item, data) {
 	delete item.sfID;
 
-	handleTrackers(item);
+	// handleTrackers(item);
 	cleanPodcastSocialInteract(item);
 	cleanEpisodePerson(item);
 	cleanEpisodeValue(item, data);

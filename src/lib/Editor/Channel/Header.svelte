@@ -68,14 +68,14 @@
 		Block
 	</li>
 
-	<li
+	<!-- <li
 		on:click={() => {
 			podcastInfoPage = 'trackers';
 		}}
 		class:active={podcastInfoPage === 'trackers'}
 	>
 		Trackers
-	</li>
+	</li> -->
 </ul>
 
 <style>

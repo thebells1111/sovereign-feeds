@@ -21,6 +21,7 @@
 	$: getTrackers($selectedPodcast);
 
 	async function getTrackers() {
+		console.log($selectedPodcast);
 		if (trackerDB) {
 			let storedTrackers = (await trackerDB.getItem(`${$selectedPodcast.url}`)) || {
 				active: [],
