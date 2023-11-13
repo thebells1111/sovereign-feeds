@@ -1,14 +1,30 @@
 <script>
 	import { rssData, tagHeaders } from '$/editor';
+	$: console.log($rssData?.['podcast:podroll']);
 </script>
 
-{#each rssData?.['podcast:podroll']?.['podcast:remoteItem'] as item}
-	<label>
-		Feed Guid:
-		<input bing:value={item['feedGuid']} />
-	</label>
-	<label>
-		Item Guid:
-		<input bing:value={item['itemGuid']} />
-	</label>
-{/each}
+{#if $rssData}
+	{#each $rssData?.['podcast:podroll']?.['podcast:remoteItem'] as item}
+		<div>
+			<label>
+				Feed Guid:
+				<input bind:value={item['@_feedGuid']} />
+			</label>
+			<label>
+				Item Guid:
+				<input bind:value={item['@_itemGuid']} />
+			</label>
+		</div>
+	{/each}
+{/if}
+
+<style>
+	div {
+		display: flex;
+	}
+
+	label {
+		display: flex;
+		flex-direction: column;
+	}
+</style>

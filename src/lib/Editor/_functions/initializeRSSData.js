@@ -96,7 +96,6 @@ export default async function initializeRSSData(data) {
 			return v;
 		})
 	);
-	console.log($rssData.item);
 	if ($rssData['podcast:liveItem']) {
 		$rssData['podcast:liveItem'] = [].concat($rssData['podcast:liveItem']);
 	} else {
@@ -140,10 +139,11 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:locked'] = initializeLocked($rssData['podcast:locked']);
 	$rssData['podcast:block'] = initializeBlock($rssData['podcast:block']);
 	$rssData['podcast:license'] = initializeLicenseTag($rssData['podcast:license']);
+	console.log($rssData['podcast:podroll']);
 	$rssData['podcast:podroll'] = initializePodrollTag($rssData['podcast:podroll']);
+	console.log($rssData['podcast:podroll']);
 
 	let $editingEpisode = get(editingEpisode);
-	console.log(JSON.parse(JSON.stringify($editingEpisode)));
 
 	//Episode
 	initializeEpisode($editingEpisode);

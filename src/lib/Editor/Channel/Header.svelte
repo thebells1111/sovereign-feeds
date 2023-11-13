@@ -76,6 +76,15 @@
 	>
 		Trackers
 	</li>
+
+	<li
+		on:click={() => {
+			podcastInfoPage = 'podroll';
+		}}
+		class:active={podcastInfoPage === 'podroll'}
+	>
+		Trackers
+	</li>
 </ul>
 
 <style>

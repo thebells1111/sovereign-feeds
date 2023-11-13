@@ -1,6 +1,6 @@
 export default function cleanPodroll(data) {
 	if (data['podcast:podroll']) {
-		data['podcast:podroll'] = data['podcast:podroll'].filter((v) => {
+		data['podcast:podroll'] = data['podcast:podroll']['podcast:remoteItem'].filter((v) => {
 			if (!v['@_feedGuid']) {
 				return false;
 			}
@@ -10,4 +10,5 @@ export default function cleanPodroll(data) {
 			return v;
 		});
 	}
+	console.log(data?.['podcast:podroll']);
 }

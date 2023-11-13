@@ -9,6 +9,7 @@
 	import Support from './Support.svelte';
 	import Block from './Block.svelte';
 	import Trackers from './Trackers.svelte';
+	import Podroll from './Podroll.svelte';
 
 	let podcastInfoPage = 'required';
 </script>
@@ -46,6 +47,10 @@
 
 <div class:hide={podcastInfoPage !== 'trackers'}>
 	<Trackers />
+</div>
+
+<div class:hide={podcastInfoPage !== 'podroll'}>
+	<Podroll />
 </div>
 
 <style>

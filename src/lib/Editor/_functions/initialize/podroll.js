@@ -2,6 +2,13 @@ import blankPodroll from '../blanks/podroll';
 import clone from 'just-clone';
 
 export default function initializePodrollTag(data) {
-	let tag = data ? clone([].concat(data)) : clone([blankPodroll]);
-	return tag;
+	console.log(data);
+	if (data?.['podcast:remoteItem']) {
+		data['podcast:remoteItem'] = clone([].concat(data['podcast:remoteItem']));
+	} else {
+		data = clone([blankPodroll]);
+	}
+	console.log(data);
+
+	return data;
 }

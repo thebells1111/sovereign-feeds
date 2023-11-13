@@ -85,13 +85,10 @@
 			console.log(podcast);
 			$xmlJson = podcast.xml;
 			await initializeRSSData(podcast.rss);
-			console.log(podcast.rss);
 			$selectedPodcast.rss = $rssData;
 		} else if (!fromChapters) {
 			syncWithFeed(podcast);
 		}
-
-		console.log($episodesList);
 
 		$editingEpisode = $episodesList[0];
 
@@ -103,7 +100,6 @@
 				showNotAvailable = true;
 			} else {
 				goto(`/chapters/${encodeURIComponent(podcast.url)}`);
-				console.log(podcast.url);
 			}
 		}
 	}
