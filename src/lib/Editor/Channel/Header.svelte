@@ -70,20 +70,11 @@
 
 	<li
 		on:click={() => {
-			podcastInfoPage = 'trackers';
-		}}
-		class:active={podcastInfoPage === 'trackers'}
-	>
-		Trackers
-	</li>
-
-	<li
-		on:click={() => {
 			podcastInfoPage = 'podroll';
 		}}
 		class:active={podcastInfoPage === 'podroll'}
 	>
-		Trackers
+		Podroll
 	</li>
 </ul>
 

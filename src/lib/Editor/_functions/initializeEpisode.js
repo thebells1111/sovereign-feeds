@@ -36,7 +36,9 @@ export default async function initializeEpisode(episode, type) {
 	}
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
-	episode.enclosure = await initializeEnclosure(episode?.enclosure);
+
+	// This is for adding trackers
+	// episode.enclosure = await initializeEnclosure(episode?.enclosure);
 
 	if (!episode.valueTimeSplit) {
 		episode.valueTimeSplit = await initializeValueTimeSplit(episode);
