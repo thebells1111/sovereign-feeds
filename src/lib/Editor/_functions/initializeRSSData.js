@@ -76,6 +76,7 @@ function durationToSeconds(input) {
 }
 
 export default async function initializeRSSData(data) {
+	console.log(clone(data));
 	//this is used to store things like max episodes
 	console.log(get(selectedPodcast));
 	let savedData = await editorDB.getItem(`${get(selectedPodcast).id}`);

@@ -1,6 +1,8 @@
 export default function cleanPodroll(data) {
 	if (data['podcast:podroll']) {
-		data['podcast:podroll'] = data['podcast:podroll']['podcast:remoteItem'].filter((v) => {
+		data['podcast:podroll']['podcast:remoteItem'] = data['podcast:podroll'][
+			'podcast:remoteItem'
+		].filter((v) => {
 			if (!v['@_feedGuid']) {
 				return false;
 			}
@@ -9,6 +11,10 @@ export default function cleanPodroll(data) {
 			}
 			return v;
 		});
+	}
+
+	if (!data?.['podcast:podroll']?.['podcast:remoteItem']?.length) {
+		delete data['podcast:podroll'];
 	}
 	console.log(data?.['podcast:podroll']);
 }

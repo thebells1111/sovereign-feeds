@@ -105,7 +105,7 @@
 			<Podping />
 		</div>
 		<div class:hide={$currentPage != 'podcastMetadata'}>
-			<PodcastMetadata />
+			<PodcastMetadata/>
 		</div>
 		{#if $currentPage === 'webhooks'}
 			<div>
