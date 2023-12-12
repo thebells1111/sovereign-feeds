@@ -1,11 +1,15 @@
 const blankAlternateEnclosure = [
 	{
-		'@_bitrate': '',
-		'@_default': 'true',
-		'@_height': '',
+		'@_type': '',
 		'@_length': '',
-		'@_type': 'audio/mp3',
-		'podcast:source': [{ '@_uri': '' }]
+		'@_bitrate': '',
+		'@_height': '',
+		'@_lang': '',
+		'@_rel': '',
+		'@_codecs': '',
+		'@_default': '',
+
+		'podcast:source': [{ '@_uri': '', '@_contentType': '' }]
 	}
 ];
 
