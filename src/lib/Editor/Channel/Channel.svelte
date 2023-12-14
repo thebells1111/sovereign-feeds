@@ -9,7 +9,7 @@
 	import Support from './Support.svelte';
 	import Block from './Block.svelte';
 	import Trackers from './Trackers.svelte';
-	import Podroll from './Podroll.svelte';
+	// import Podroll from './Podroll.svelte';
 
 	import { currentPage } from '$/editor';
 
@@ -56,7 +56,7 @@
 </div>
 
 <div class:hide={podcastInfoPage !== 'podroll'}>
-	<Podroll {podcastInfoPage} />
+	<!-- <Podroll {podcastInfoPage} /> -->
 </div>
 
 <style>

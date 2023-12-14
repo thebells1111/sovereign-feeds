@@ -91,6 +91,14 @@
 			Value Time Splits
 		</li>
 	{/if}
+	<li
+		class:active={$rightPane === 'altEnclosures'}
+		on:click={() => {
+			$rightPane = 'altEnclosures';
+		}}
+	>
+		Alt Enclosures
+	</li>
 </ul>
 
 <style>

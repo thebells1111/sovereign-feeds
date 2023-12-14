@@ -11,6 +11,7 @@
 	import Social from './Social/Social.svelte';
 	import Images from './Images/Images.svelte';
 	import ValueSplits from './ValueSplits/ValueSplits.svelte';
+	import AlternateEnclosure from './AlternateEnclosure/AlternateEnclosure.svelte';
 	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
 
 	import { rightPane, showNotesPane } from '$/editor';
@@ -52,6 +53,9 @@
 	</div>
 	<div class:hide={$rightPane != 'valueSplits'}>
 		<ValueSplits />
+	</div>
+	<div class:hide={$rightPane != 'altEnclosures'}>
+		<AlternateEnclosure />
 	</div>
 </div>
 
