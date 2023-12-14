@@ -11,7 +11,13 @@
 	import Trackers from './Trackers.svelte';
 	import Podroll from './Podroll.svelte';
 
+	import { currentPage } from '$/editor';
+
 	let podcastInfoPage = 'required';
+
+	$: if ($currentPage === 'podcastMetadata') {
+		podcastInfoPage = 'required';
+	}
 </script>
 
 <Header bind:podcastInfoPage />
@@ -50,7 +56,7 @@
 </div>
 
 <div class:hide={podcastInfoPage !== 'podroll'}>
-	<Podroll />
+	<Podroll {podcastInfoPage} />
 </div>
 
 <style>

@@ -1,8 +1,8 @@
 const blankPodroll = {
 	'podcast:remoteItem': [
 		{
-			'@_feedGuid': '',
-			'@_itemGuid': ''
+			'@_feedGuid': ''
+			// '@_itemGuid': ''
 		}
 	]
 };
