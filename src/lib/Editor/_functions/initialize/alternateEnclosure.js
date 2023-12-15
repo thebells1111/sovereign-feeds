@@ -18,6 +18,6 @@ export default function initializeAlternateEnclosure(data) {
 
 		return mergedItem;
 	});
-
+	console.log(tag);
 	return tag;
 }

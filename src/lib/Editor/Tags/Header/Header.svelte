@@ -7,7 +7,7 @@
 
 <h3>{$editingEpisode?.title}</h3>
 <ul>
-	{#if $rssData && $editingEpisode['@_status']}
+	{#if $rssData && $editingEpisode?.['@_status']}
 		<li
 			class:active={$rightPane === 'liveItem'}
 			on:click={() => {

@@ -6,6 +6,7 @@ import cleanLicense from './license';
 import cleanChat from '$lib/Editor/Tags/Chat/cleanChat';
 import cleanLiveValue from '$lib/Editor/Tags/LiveValue/cleanLiveValue';
 import cleanValueTimeSplit from '$lib/Editor/Tags/ValueSplits/cleanValueTimeSplit';
+import cleanAlternateEnclosure from './alternateEnclosure';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -29,6 +30,7 @@ export default async function cleanItems(data) {
 		});
 		if (data['podcast:liveItem'].length > 0) {
 			for (let item of data['podcast:liveItem']) {
+				console.log('liveItem: ', item);
 				await cleanItem(item);
 				await cleanLiveItem(item);
 
@@ -54,6 +56,7 @@ async function cleanItem(item, data) {
 	cleanLicense(item);
 	cleanChat(item);
 	cleanLiveValue(item);
+	cleanAlternateEnclosure(item);
 
 	if (!item.guid?.['#text']) {
 		item.guid = { '#text': uuidv4(), '@_isPermaLink': false };
@@ -104,7 +107,6 @@ async function cleanItem(item, data) {
 	let hadBoostagrams;
 
 	if (item?.['podcast:chapters']?.boostagrams) {
-		console.log(item['podcast:chapters']);
 		hadBoostagrams = true;
 	}
 
@@ -113,8 +115,6 @@ async function cleanItem(item, data) {
 	}
 
 	if (item?.['podcast:chapters']?.boostagrams) {
-		console.log('boostagrams are real');
-
 		let chapterUrl =
 			'https://reflex.livewire.io/chapters/podcast/' +
 			get(selectedPodcast)['podcastGuid'] +
@@ -131,15 +131,6 @@ async function cleanItem(item, data) {
 		delete item['podcast:chapters'];
 	} else {
 		delete item['podcast:chapters'].boostagrams;
-	}
-
-	if (hadBoostagrams) {
-		console.log(item['podcast:chapters']);
-	}
-
-	//delete when alternateEnclosure is fleshed out
-	if (!item?.alternateEnclosure?.['podcast:source']?.['@_uri']) {
-		delete item.alternateEnclosure;
 	}
 
 	cleanValueTimeSplit(item);
