@@ -2,7 +2,8 @@ import blankAlternateEnclosure from '../blanks/alternateEnclosure';
 
 export default function cleanAlternateEnclosure(data) {
 	if (data['podcast:alternateEnclosure']) {
-		data['podcast:alternateEnclosure'] = data['podcast:alternateEnclosure']
+		data['podcast:alternateEnclosure'] = []
+			.concat(data['podcast:alternateEnclosure'])
 			.map((v) => {
 				// Filter podcast:source
 
