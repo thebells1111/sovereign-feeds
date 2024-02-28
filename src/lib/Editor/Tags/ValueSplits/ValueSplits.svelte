@@ -29,7 +29,7 @@
 			const data = await res.json();
 			console.log(data);
 			const settings = data.settings || {};
-			const blocks = data.blocks.slice(1) || [];
+			const blocks = (data.blocks.slice(1) || []).filter((v) => v);
 			console.log(blocks);
 			let timeSplits = [];
 			isImporting = true;
