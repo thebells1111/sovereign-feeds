@@ -104,27 +104,19 @@
 
 	async function handleFountainSubmit(name) {
 		try {
-			let res = await fetch('https://api.fountain.fm/v1/content/lookup', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ username: name })
-			});
+			let res = await fetch(`https://fountain.fm/.well-known/keysend/${name}`);
 			let info = await res.json();
 
-			if (!info?.keysend?.customValue) {
-				throw new Error();
-			}
-
-			if (info?.username) {
+			if (info.status === 'OK') {
 				updateRecipientData(
-					info.keysend.address,
-					info.keysend.name,
-					info.keysend.customValue,
-					info.keysend.customKey
+					info.pubkey,
+					name + '@fountain.fm',
+					info.customData[0].customValue,
+					info.customData[0].customKey
 				);
 				cancelProviderSubmit();
+			} else {
+				throw new Error();
 			}
 		} catch (error) {
 			noUserFound = true;
