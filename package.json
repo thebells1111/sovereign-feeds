@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "concurrently \"cd ../00-curiohoster && npm run dev\" \"svelte-kit dev --host\"",
+		"vite": "svelte-kit dev --host",
 		"build": "svelte-kit build",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
