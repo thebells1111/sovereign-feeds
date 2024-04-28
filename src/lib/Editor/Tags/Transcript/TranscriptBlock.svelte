@@ -35,6 +35,7 @@
 </script>
 
 <div class="container">
+	<IndexScroll bind:data bind:index blank={blankTranscript} title={'Transcripts'} />
 	<div class="blocks-container">
 		{#if data && data?.length > 0 && index < data?.length}
 			<TextBlock
@@ -66,8 +67,6 @@
 			</label>
 		{/if}
 	</div>
-
-	<IndexScroll bind:data bind:index blank={blankTranscript} />
 </div>
 {#if showUpload}
 	<Upload path={`${$editingEpisode.title}/transcripts`} bind:fileName bind:showUpload />
@@ -77,7 +76,6 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		margin-bottom: 8px;
 		width: 100%;
 		height: 100%;

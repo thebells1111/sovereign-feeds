@@ -66,7 +66,7 @@
 	}
 	.notes {
 		width: 100%;
-		height: calc(100% - 85px);
+		height: calc(100% - 110px);
 
 		overflow-x: hidden;
 		display: flex;

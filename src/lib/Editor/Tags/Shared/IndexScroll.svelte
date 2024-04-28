@@ -2,6 +2,7 @@
 	export let data;
 	export let index;
 	export let blank;
+	export let title;
 	import clone from 'just-clone';
 
 	function incIndex() {
@@ -37,37 +38,48 @@
 	}
 </script>
 
-<div class="selector-container">
-	<button
-		class="primary add"
-		on:click={() => {
-			data.push(clone(blank));
-			index = data.length - 1;
-			data = data;
-		}}
-	>
-		Add New
-	</button>
-	{#if data.length}
-		<div class="selector" style={`color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}>
-			<button
-				style={`color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}
-				on:click={decIndex}>◀</button
-			>
-			<h3>
-				Value {index + 1}
-				of {data.length}
-			</h3>
-			<button
-				style={`color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}
-				on:click={incIndex}>▶</button
-			>
-		</div>
-		<button class="primary delete" on:click={handleDelete}> Delete Current </button>
+<index-scroller>
+	{#if title}
+		<h2>{title}</h2>
 	{/if}
-</div>
+	<div class="selector-container">
+		<button
+			class="primary add"
+			on:click={() => {
+				data.push(clone(blank));
+				index = data.length - 1;
+				data = data;
+			}}
+		>
+			Add New
+		</button>
+
+		{#if data.length}
+			<div class="selector" style={`color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}>
+				<button
+					style={`color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}
+					on:click={decIndex}>◀</button
+				>
+				<h3>
+					{index + 1}
+					of {data.length}
+				</h3>
+				<button
+					style={`color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}
+					on:click={incIndex}>▶</button
+				>
+			</div>
+			<button class="primary delete" on:click={handleDelete}> Delete Current </button>
+		{/if}
+	</div>
+</index-scroller>
 
 <style>
+	h2 {
+		text-align: center;
+		margin: 0;
+		color: hsla(197, 100%, 43.7%, 1);
+	}
 	button.add {
 		width: 121px;
 		background-image: linear-gradient(
