@@ -2,8 +2,13 @@
 	import Chapters from './Chapters.svelte';
 	import Transcript from './Transcript.svelte';
 	import SocialInteract from './SocialInteract.svelte';
+	import IndexScroll from '$lib/Editor/Tags/Shared/IndexScroll.svelte';
+
+	import blankTranscript from '$lib/Editor/_functions/blanks/transcript';
 
 	import { rssData, editingEpisode, duplicateEditorScreen, newEpisodeHeaders } from '$/editor';
+
+	let transcriptIndex = 0;
 </script>
 
 <div class="overflow-container">
@@ -16,9 +21,16 @@
 		</div>
 	</div>
 	<div class="card">
-		<h3>{$newEpisodeHeaders.transcriptsTitle}</h3>
+		<div class="header">
+			<h3>{$newEpisodeHeaders.transcriptsTitle}</h3>
+			<IndexScroll
+				blank={blankTranscript}
+				bind:data={$editingEpisode['podcast:transcript']}
+				bind:index={transcriptIndex}
+			/>
+		</div>
 		<div class="indent">
-			<Transcript data={$editingEpisode['podcast:transcript']} />
+			<Transcript data={$editingEpisode['podcast:transcript']} bind:index={transcriptIndex} />
 		</div>
 	</div>
 	<div class="card">
@@ -44,6 +56,11 @@
 		border-radius: 8px;
 		background-color: hsl(0, 0%, 100%);
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	}
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	h3 {

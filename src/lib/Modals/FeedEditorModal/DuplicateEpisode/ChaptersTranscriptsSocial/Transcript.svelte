@@ -9,7 +9,7 @@
 	let fileName;
 	let types = ['application/srt', 'text/vtt', 'application/json', 'text/html', 'text/plain'];
 
-	let index = 0;
+	export let index = 0;
 
 	$: if (fileName) {
 		handleFileNameChange();

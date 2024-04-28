@@ -69,7 +69,8 @@
 				newEp['podcast:socialInteract']
 			);
 			newEp['podcast:chapters'] = newEp['podcast:chapters'] || { '@_url': null };
-			let t = [].concat(newEp['podcast:transcript']).slice(0, 1);
+			let t = [].concat(newEp['podcast:transcript']);
+			console.log(t);
 			newEp['podcast:transcript'] = t.length ? t : clone([blankTranscript]);
 
 			// newEp.guid['#text'] = '';
