@@ -69,6 +69,9 @@ async function cleanItem(item, data) {
 	if (!item['@_status']) {
 		if (!item.enclosure['@_length']) {
 			await getEnclosureLength(item);
+			if (!item.enclosure['@_length']) {
+				item.enclosure['@_length'] = 33;
+			}
 		}
 		if (!item['itunes:duration']) {
 			if (!alerted) {
