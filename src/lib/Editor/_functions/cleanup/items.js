@@ -83,7 +83,11 @@ async function cleanItem(item, data) {
 			}
 			if (confirmed) {
 				if (!item['itunes:duration']) {
-					await getDuration(item);
+					try {
+						await getDuration(item);
+					} catch (e) {
+						console.log(e);
+					}
 				}
 			}
 		} else {
