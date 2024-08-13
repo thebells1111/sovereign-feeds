@@ -21,7 +21,11 @@
 
 			if (Array.isArray(valueRecipient)) {
 				return (
-					valueRecipient.findIndex((v) => v?.['@_customValue'] === 'eChoVKtO1KujpAA5HCoB') === -1
+					valueRecipient.findIndex(
+						(v) =>
+							v?.['@_address'] ===
+							'035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8'
+					) === -1
 				);
 			}
 			return true;
@@ -47,10 +51,8 @@
 	function addSovereignFeeds() {
 		data['podcast:valueRecipient'].push({
 			'@_name': 'Sovereign Feeds',
-			'@_address': '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3',
+			'@_address': '035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8',
 			'@_type': 'node',
-			'@_customKey': '696969',
-			'@_customValue': 'eChoVKtO1KujpAA5HCoB',
 			'@_fee': true,
 			'@_split': 5
 		});
