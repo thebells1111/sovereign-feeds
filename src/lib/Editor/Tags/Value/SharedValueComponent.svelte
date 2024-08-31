@@ -14,6 +14,9 @@
 	let showChannelImport = true;
 	export let support = true;
 
+	$: console.log(data);
+	$: console.log(index);
+	$: console.log(data['podcast:valueRecipient']);
 	// Check if Sovereign Feeds is not added
 	$: noSF = (() => {
 		try {
@@ -157,9 +160,6 @@
 
 <div class="persons-container">
 	<div class="splits-container">
-		{#if showChannelImport}
-			CHannnel
-		{/if}
 		{#if noSF && support}
 			<button class="primary support" on:click={addSovereignFeeds}>
 				Support Sovereign Feeds! Add us to your Value Block!
