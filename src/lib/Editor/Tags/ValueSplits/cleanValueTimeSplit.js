@@ -1,5 +1,9 @@
 export default async function cleanValueTimeSplit(item) {
-	item['podcast:value'] = item?.['podcast:value'] || {};
+	item['podcast:value'] = item?.['podcast:value'] || {
+		'@_type': 'lightning',
+		'@_method': 'keysend',
+		'@_suggested': '0.00000005000'
+	};
 
 	if (item?.valueTimeSplit) {
 		let vts = item?.valueTimeSplit;

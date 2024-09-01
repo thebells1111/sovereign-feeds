@@ -40,6 +40,7 @@ export default async function initializeEpisode(episode, type) {
 	// This is for adding trackers
 	// episode.enclosure = await initializeEnclosure(episode?.enclosure);
 
+	episode['podcast:value'] = initializeValueTag(episode['podcast:value']);
 	if (!episode.valueTimeSplit) {
 		episode.valueTimeSplit = await initializeValueTimeSplit(episode);
 	}
@@ -52,7 +53,6 @@ export default async function initializeEpisode(episode, type) {
 		selectedEpisodePersonGroups.update((r) => r.concat(v['@_group']?.toLowerCase() || 'cast'));
 	});
 
-	episode['podcast:value'] = initializeValueTag(episode['podcast:value']);
 	episode['podcast:license'] = initializeLicenseTag(episode['podcast:license']);
 	episode['podcast:chat'] = initializeChat(episode['podcast:chat']);
 	episode['podcast:alternateEnclosure'] = initializeAlternateEnclosure(
