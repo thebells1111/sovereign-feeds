@@ -65,5 +65,13 @@ export default async function cleanValueTimeSplit(item) {
 	if (Object.keys(item['podcast:value']).length === 0) {
 		delete item['podcast:value'];
 	}
+	if (
+		(!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_address'] ||
+			!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_split']) &&
+		!item['podcast:value']?.['podcast:valueTimeSplit']
+	) {
+		delete item['podcast:value'];
+	}
+
 	delete item.valueTimeSplit;
 }
