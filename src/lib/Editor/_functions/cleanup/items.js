@@ -245,7 +245,7 @@ function cleanEpisodeValue(item, data) {
 
 		item['podcast:value']['podcast:valueRecipient'] = item['podcast:value'][
 			'podcast:valueRecipient'
-		].filter((v) => {
+		]?.filter((v) => {
 			if (!v?.['@_name']) {
 				delete v['@_name'];
 			}
