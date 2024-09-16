@@ -16,14 +16,14 @@ const podcastHeaders = {
 		url: 'Link to Transcripts File',
 		cc: 'Check this box if the transcript file contains time stamps and is suitable for Closed Captions'
 	},
-	podcast: {
-		name: 'Show Name',
-		artwork: 'Show Art',
-		description: 'Show Description',
+	channel: {
+		name: 'Publisher Feed Title',
+		artwork: 'Publisher Feed Art',
+		description: 'Publisher Feed Description',
 		keywords: 'Keywords',
 		mediaType: 'Media Type',
 		guid: 'GUID',
-		link: 'Link to Show Website',
+		link: 'Link to Publisher Website',
 		author: 'Author',
 		complete: 'Podcast Complete',
 		editor: 'Feed Editor',

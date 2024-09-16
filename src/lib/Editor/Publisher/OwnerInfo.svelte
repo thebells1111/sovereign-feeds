@@ -1,9 +1,9 @@
 <script>
-	import Author from './Components/Author/Author.svelte';
+	import Author from '$lib/Editor/Channel/Components/Author/Author.svelte';
 	import { rssData, selectedPodcast, tagHeaders, podcastList } from '$/editor';
 </script>
 
-{#if $rssData}
+{#if $rssData?.['itunes:owner']}
 	<Author />
 	<label>
 		<h3>{$tagHeaders.channel.editor}</h3>

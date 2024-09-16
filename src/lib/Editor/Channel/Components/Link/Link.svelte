@@ -3,7 +3,7 @@
 </script>
 
 <label>
-	<h3>{$tagHeaders.podcast.link} (required)</h3>
+	<h3>{$tagHeaders.channel.link} (required)</h3>
 	<input type="text" bind:value={$rssData.link} />
 </label>
 

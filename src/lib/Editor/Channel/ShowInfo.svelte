@@ -18,12 +18,12 @@
 
 {#if $rssData}
 	<label>
-		<h3>{$tagHeaders.podcast.keywords}</h3>
+		<h3>{$tagHeaders.channel.keywords}</h3>
 		<input type="text" bind:value={$rssData['itunes:keywords']} />
 	</label>
 
 	<label>
-		<h3>{$tagHeaders.podcast.mediaType}</h3>
+		<h3>{$tagHeaders.channel.mediaType}</h3>
 		<select
 			bind:value={selectedMedia}
 			on:change={() => {

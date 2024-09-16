@@ -6,14 +6,14 @@
 
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import initializeRSSData from '$lib/Editor/_functions/initializeRSSData';
-	import initializeEpisode from '$lib/Editor/_functions/initializeEpisode';
+	import initializePublisherRSS from '$lib/Editor/Publisher/Initialize/initializePublisherRSS';
 
 	import Sync from '$lib/icons/Sync.svelte';
 
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 
-	import { devMode, serverUrl, showMobile } from '$/stores';
+	import { showMobile } from '$/stores';
 
 	import {
 		podcastList,
@@ -24,7 +24,6 @@
 		xmlJson,
 		rssData,
 		showLiveEpisodes,
-		regularEpisodes,
 		showNewEditor,
 		episodesList,
 		newEditorScreen,
@@ -65,7 +64,6 @@
 		console.log(podcast);
 		fetchDOEnabled(podcast);
 		console.log($episodesList);
-		$currentPage = 'episodes';
 
 		// $expandPodcastList = false;
 		let url = remoteServerUrl + `/api/queryindex?q=podcasts/byfeedid?id=` + podcast.id;
@@ -84,13 +82,22 @@
 		if (podcast.rss) {
 			console.log(podcast);
 			$xmlJson = podcast.xml;
-			await initializeRSSData(podcast.rss);
+			if (podcast?.rss?.['podcast:medium'] === 'publisher') {
+				await initializePublisherRSS(podcast.rss);
+			} else {
+				await initializeRSSData(podcast.rss);
+			}
 			$selectedPodcast.rss = $rssData;
 		} else if (!fromChapters) {
 			syncWithFeed(podcast);
 		}
-
-		$editingEpisode = $episodesList[0];
+		if (podcast?.rss?.['podcast:medium'] !== 'publisher') {
+			$editingEpisode = $episodesList[0];
+			$currentPage = 'episodes';
+		} else {
+			$editingEpisode = null;
+			$currentPage = 'podcastMetadata';
+		}
 
 		if (fromChapters) {
 			if (
@@ -151,34 +158,6 @@
 	}
 
 	let podcastBindings = [];
-
-	async function addNewFeed() {
-		$selectedPodcast = {
-			title: 'New Podcast',
-			url: `${window.location.origin}/blankfeed.xml`,
-			id: 'new',
-			image: 'none',
-			artwork: 'none',
-			episodes: [
-				{
-					title: 'New Episode',
-					description: ''
-				}
-			]
-		};
-		getRSSEditorFeed(`${window.location.origin}/blankfeed.xml`).then(async (feed) => {
-			$xmlJson = feed;
-			console.log(feed);
-			await initializeRSSData();
-			$episodesList = $regularEpisodes;
-			initializeEpisode($regularEpisodes[0]);
-			$editingEpisode = $regularEpisodes[0];
-			$selectedPodcast.rss = $rssData;
-		});
-
-		$podcastList = $podcastList.concat($selectedPodcast);
-		console.log($podcastList);
-	}
 </script>
 
 {#if $podcastList.length > 0}
@@ -231,7 +210,6 @@
 		<button
 			class="fancy new-podcast"
 			on:click={() => {
-				addNewFeed();
 				$showNewEditor = true;
 				$newEditorScreen = 'typeSelect';
 				$expandPodcastList = false;

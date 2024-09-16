@@ -3,7 +3,7 @@
 </script>
 
 <label>
-	<h3>{$tagHeaders.podcast.description} (required)</h3>
+	<h3>{$tagHeaders.channel.description} (required)</h3>
 	<textarea type="text" bind:value={$rssData.description} />
 </label>
 

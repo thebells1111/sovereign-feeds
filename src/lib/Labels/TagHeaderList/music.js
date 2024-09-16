@@ -16,7 +16,7 @@ const musicHeaders = {
 		url: 'Link to Lyrics File (aka Transcripts)',
 		cc: 'Check this box if the lyrics file contains time stamps and is suitable for Closed Captions'
 	},
-	podcast: {
+	channel: {
 		name: 'Album Name',
 		artwork: 'Album Art',
 		description: 'Album Description',

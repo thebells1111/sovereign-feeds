@@ -6,7 +6,7 @@
 	}
 </script>
 
-<h3>{$tagHeaders.podcast.complete}</h3>
+<h3>{$tagHeaders.channel.complete}</h3>
 <label class="check-box-label">
 	<input
 		type="checkbox"

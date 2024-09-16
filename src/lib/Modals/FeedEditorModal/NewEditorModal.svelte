@@ -6,7 +6,8 @@
 		selectedPodcast,
 		podcastList,
 		editorDB,
-		showSaved
+		showSaved,
+		rssData
 	} from '$/editor';
 	import NewPodcast from './NewPodcast/NewPodcast.svelte';
 	import NewPodcastTypeSelect from './NewPodcast/NewPodcastTypeSelect.svelte';
@@ -14,6 +15,8 @@
 	import DuplicateEpisode from './DuplicateEpisode/DuplicateEpisode.svelte';
 	import DigitalOceanSelector from './NewPodcast/DigitalOceanSelector.svelte';
 	import DigitalOceanSetup from './NewPodcast/DigitalOceanSetup.svelte';
+	import NewPublisher from './NewPublisher/NewPublisher.svelte';
+	import PublisherImages from './NewPublisher/PublisherImages.svelte';
 </script>
 
 <section>
@@ -35,25 +38,39 @@
 			-close-
 		</button>
 	</div>
-	<div class:hide={$newEditorScreen !== 'podcast'}>
-		<NewPodcast />
-	</div>
-	<div class:hide={$newEditorScreen !== 'typeSelect'}>
-		<NewPodcastTypeSelect />
-	</div>
-	<div class:hide={$newEditorScreen !== 'digitalOceanSelect'}>
-		<DigitalOceanSelector />
-	</div>
-	<div class:hide={$newEditorScreen !== 'digitalOceanSetup'}>
-		<DigitalOceanSetup />
-	</div>
-	<div class:hide={$newEditorScreen !== 'newEpisode'}>
-		<NewEpisode />
-	</div>
-	{#if $newEditorScreen === 'duplicateEpisode'}
-		<div>
-			<DuplicateEpisode />
+
+	{#if $rssData?.['podcast:medium'] === 'publisher'}
+		<div class:hide={$newEditorScreen !== 'typeSelect'}>
+			<NewPodcastTypeSelect />
 		</div>
+		<div class:hide={$newEditorScreen !== 'publisher'}>
+			<NewPublisher />
+		</div>
+		<div class:hide={$newEditorScreen !== 'publisherImages'}>
+			<PublisherImages />
+		</div>
+	{:else}
+		<div class:hide={$newEditorScreen !== 'podcast'}>
+			<NewPodcast />
+		</div>
+		<div class:hide={$newEditorScreen !== 'typeSelect'}>
+			<NewPodcastTypeSelect />
+		</div>
+		<div class:hide={$newEditorScreen !== 'digitalOceanSelect'}>
+			<DigitalOceanSelector />
+		</div>
+		<div class:hide={$newEditorScreen !== 'digitalOceanSetup'}>
+			<DigitalOceanSetup />
+		</div>
+		<div class:hide={$newEditorScreen !== 'newEpisode'}>
+			<NewEpisode />
+		</div>
+
+		{#if $newEditorScreen === 'duplicateEpisode'}
+			<div>
+				<DuplicateEpisode />
+			</div>
+		{/if}
 	{/if}
 </section>
 

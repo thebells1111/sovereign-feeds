@@ -6,7 +6,7 @@
 	export let type = 'episode';
 </script>
 
-{#if $rssData && $editingEpisode['podcast:person']}
+{#if $rssData && ($editingEpisode?.['podcast:person'] || $rssData?.['podcast:person'])}
 	<div>
 		{#if type === 'episode'}
 			<PersonEditor bind:data={$editingEpisode['podcast:person']} type={'episode'} />

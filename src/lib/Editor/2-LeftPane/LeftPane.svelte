@@ -56,29 +56,42 @@
 			<span>Favorite Feeds</span>
 		</li>
 		{#if $selectedPodcast.title}
-			<li
-				class:active={$currentPage === 'episodes'}
-				on:click={() => {
-					$currentPage = 'episodes';
-				}}
-			>
-				<span>Episodes</span>
-			</li>
+			{#if $rssData?.['podcast:medium'] === 'publisher'}
+				<li
+					class:active={$currentPage === 'publisherRemoteItems'}
+					on:click={() => {
+						$currentPage = 'publisherRemoteItems';
+					}}
+				>
+					<span>Publisher Items</span>
+				</li>
+			{:else}
+				<li
+					class:active={$currentPage === 'episodes'}
+					on:click={() => {
+						$currentPage = 'episodes';
+					}}
+				>
+					<span>Episodes</span>
+				</li>
+			{/if}
 			<li
 				class:active={$currentPage === 'podcastMetadata'}
 				on:click={() => {
 					$currentPage = 'podcastMetadata';
 				}}
 			>
-				<span>Show Info</span>
+				<span>{$rssData?.['podcast:medium'] === 'publisher' ? 'Publisher Info' : 'Show Info'}</span>
 			</li>
 			<li
 				class:active={$currentPage === 'editor'}
 				on:click={() => {
-					$currentPage = 'editor';
+					if ($rssData?.['podcast:medium'] === 'publisher') {
+						$currentPage = 'editor';
+					}
 				}}
 			>
-				<span>Episode Info</span>
+				<span>{$rssData?.['podcast:medium'] === 'publisher' ? ' ' : 'Episode Info'}</span>
 			</li>
 			<li
 				class:active={$currentPage === 'manual'}

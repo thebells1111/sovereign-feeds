@@ -1,6 +1,6 @@
 <script>
 	import { rssData, newEditorScreen } from '$/editor';
-	import setHeaderText from '$lib/Editor/_functions/setHeaderText';
+	import setHeaderText from '$lib/Labels/setHeaderText';
 </script>
 
 <div class="container">

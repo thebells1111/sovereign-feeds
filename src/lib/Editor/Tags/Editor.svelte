@@ -1,6 +1,6 @@
 <script>
 	import Header from './Header/Header.svelte';
-	import SideSelector from './SideSelector/SideSelector.svelte';
+	import SideSelector from '$lib/Labels/SideSelector/getSelectorList';
 	import LiveItem from './LiveItem/LiveItem.svelte';
 	import EpisodeMetadata from './EpisodeMetadata/EpisodeMetadata.svelte';
 	import Person from './Person/Person.svelte';

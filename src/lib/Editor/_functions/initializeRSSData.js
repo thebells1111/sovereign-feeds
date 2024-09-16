@@ -1,17 +1,19 @@
 import clone from '$functions/clone';
-import initializePersonTag from './initializePersonTag';
-import initializeValueTag from './initializeValueTag';
-import initializeImagesTag from './initialize/images';
-import initializeEpisode from './initializeEpisode';
-import initializeItunesImageTag from './initialize/itunes/itunesImage';
-import blankLiveItem from './blanks/liveItem';
-import setHeaderText from './setHeaderText';
-import initializeCategories from './initialize/categories';
-import initializeComplete from './initialize/complete';
-import initializeLocked from './initialize/locked';
-import initializeBlock from './initialize/block';
-import initializeLicenseTag from './initialize/license';
-import initializePodrollTag from './initialize/podroll';
+import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
+import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
+import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
+import initializeEpisode from '$lib/Editor/_functions/initializeEpisode';
+import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
+import blankLiveItem from '$lib/Editor/_functions/blanks/liveItem';
+import setHeaderText from '$lib/Labels/setHeaderText';
+import initializeCategories from '$lib/Editor/_functions/initialize/categories';
+import initializeComplete from '$lib/Editor/_functions/initialize/complete';
+import initializeLocked from '$lib/Editor/_functions/initialize/locked';
+import initializeBlock from '$lib/Editor/_functions/initialize/block';
+import initializeLicenseTag from '$lib/Editor/_functions/initialize/license';
+import initializePodrollTag from '$lib/Editor/_functions/initialize/podroll';
+import initializeOwnerTag from '$lib/Editor/_functions/initialize/owner';
+import initializeFundingTag from '$lib/Editor/_functions/initialize/funding';
 
 import { get } from 'svelte/store';
 
@@ -133,16 +135,14 @@ export default async function initializeRSSData(data) {
 	});
 
 	$rssData['podcast:value'] = initializeValueTag($rssData['podcast:value']);
-
 	$rssData['itunes:category'] = initializeCategories($rssData['itunes:category']);
-
 	$rssData['podcast:complete'] = initializeComplete($rssData['podcast:complete']);
 	$rssData['podcast:locked'] = initializeLocked($rssData['podcast:locked']);
 	$rssData['podcast:block'] = initializeBlock($rssData['podcast:block']);
 	$rssData['podcast:license'] = initializeLicenseTag($rssData['podcast:license']);
-	console.log($rssData['podcast:podroll']);
 	$rssData['podcast:podroll'] = initializePodrollTag($rssData['podcast:podroll']);
-	console.log($rssData['podcast:podroll']);
+	$rssData['itunes:owner'] = initializeOwnerTag($rssData['itunes:owner']);
+	$rssData['podcast:funding'] = initializeOwnerTag($rssData['podcast:funding']);
 
 	let $editingEpisode = get(editingEpisode);
 

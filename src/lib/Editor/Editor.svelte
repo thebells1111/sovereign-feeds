@@ -8,6 +8,8 @@
 	import Publish from './Publish/Publish.svelte';
 	import Podping from './Podping/PodPing.svelte';
 	import PodcastMetadata from './Channel/Channel.svelte';
+	import PublisherMetadata from './Publisher/PublisherMetadata.svelte';
+	import PublisherRemoteItems from './Publisher/PublisherRemoteItems.svelte';
 	import Sync from '$lib/icons/Sync.svelte';
 
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
@@ -76,6 +78,7 @@
 			isSyncing = false;
 		}
 	}
+	$: console.log($rssData);
 </script>
 
 <div class="container">
@@ -86,12 +89,20 @@
 		<div class:hide={$currentPage !== 'feeds'}>
 			<Feeds bind:showSyncModal bind:syncText bind:isSyncing />
 		</div>
-		<div class:hide={$currentPage !== 'episodes'}>
-			<Episodes />
-		</div>
-		<div class:hide={$currentPage !== 'editor'}>
-			<Editor />
-		</div>
+		{#if $rssData?.['podcast:medium'] !== 'publisher'}
+			<div class:hide={$currentPage !== 'episodes'}>
+				<Episodes />
+			</div>
+		{/if}
+		{#if $rssData?.['podcast:medium'] === 'publisher'}
+			<div class:hide={$currentPage !== 'publisherRemoteItems'}>
+				<PublisherRemoteItems />
+			</div>
+		{:else}
+			<div class:hide={$currentPage !== 'editor'}>
+				<Editor />
+			</div>
+		{/if}
 		<div class:hide={$currentPage !== 'webHooks'}>
 			<Webhooks />
 		</div>
@@ -104,9 +115,15 @@
 		<div class:hide={$currentPage !== 'podping'}>
 			<Podping />
 		</div>
-		<div class:hide={$currentPage != 'podcastMetadata'}>
-			<PodcastMetadata/>
-		</div>
+		{#if $rssData?.['podcast:medium'] === 'publisher'}
+			<div class:hide={$currentPage !== 'podcastMetadata'}>
+				<PublisherMetadata />
+			</div>
+		{:else}
+			<div class:hide={$currentPage !== 'podcastMetadata'}>
+				<PodcastMetadata />
+			</div>
+		{/if}
 		{#if $currentPage === 'webhooks'}
 			<div>
 				<Webhooks />

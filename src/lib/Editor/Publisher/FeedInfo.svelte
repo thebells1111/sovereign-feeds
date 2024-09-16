@@ -1,25 +1,23 @@
 <script>
+	import { rssData, tagHeaders } from '$/editor';
+	import Locked from '$lib/Editor/Channel/Components/Locked/Locked.svelte';
 	import Title from '$lib/Editor/Channel/Components/Title/Title.svelte';
 	import Description from '$lib/Editor/Channel/Components/Description/Description.svelte';
+	import Link from '$lib/Editor/Channel/Components/Link/Link.svelte';
 	import Categories from '$lib/Editor/Channel/Components/Categories/Categories.svelte';
-	import { rssData, tagHeaders } from '$/editor';
 </script>
 
 {#if $rssData}
 	<Title />
-
+	<Link />
 	<Description />
+	<Categories />
 	<label>
-		<h3>{$tagHeaders.channel.link} (required)</h3>
-		<input type="text" bind:value={$rssData.link} />
+		<h3>{$tagHeaders.channel.keywords}</h3>
+		<input type="text" bind:value={$rssData['itunes:keywords']} />
 	</label>
 
-	<Categories />
-
-	<!-- <label class="locked">
-		<input type="checkbox" bind:checked={locked} on:change={handleLock} />
-		Podcast Locked
-	</label> -->
+	<Locked />
 {/if}
 
 <style>

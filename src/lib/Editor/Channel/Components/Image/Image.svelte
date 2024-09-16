@@ -18,7 +18,7 @@
 <div class="podcast-image">
 	<label>
 		<div class="left">
-			<h3>{$tagHeaders.podcast.artwork}</h3>
+			<h3>{$tagHeaders.channel.artwork}</h3>
 			{#if $digitalOceanEnabled}
 				<button
 					on:click={() => {
