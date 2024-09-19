@@ -3,7 +3,7 @@ import initializePersonTag from './initializePersonTag';
 import initializeValueTag from './initializeValueTag';
 import initializeSocialInteractTag from './initialize/socialInteract';
 import initializeTranscriptTag from './initialize/transcript';
-import initializeImagesTag from './initialize/images';
+import initializeImagesTag from '../Tags/Images/initializeImages';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import initializeContentLink from './initialize/contentLink';
 import initializeLiveTime from './initialize/liveItemTime';

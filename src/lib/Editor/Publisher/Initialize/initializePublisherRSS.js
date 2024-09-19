@@ -2,7 +2,7 @@ import clone from '$functions/clone';
 import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
 import initializeCategories from '$lib/Editor/_functions/initialize/categories';
 import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
-import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
+import initializeImagesTag from '$lib/Editor/Tags/Images/initializeImages';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import setHeaderText from '$lib/Labels/setHeaderText';
 import initializeBlock from '$lib/Editor/_functions/initialize/block';
