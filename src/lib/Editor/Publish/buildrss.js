@@ -7,7 +7,7 @@ import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 import cleanItems from '$lib/Editor/_functions/cleanup/items';
 
 import cleanPodcastPerson from '$lib/Editor/_functions/cleanup/podcastPerson';
-import cleanPodcastImages from '$lib/Editor/_functions/cleanup/images';
+import cleanPodcastImages from '$lib/Editor/Tags/Images/cleanImages';
 import cleanComplete from '$lib/Editor/_functions/cleanup/complete';
 import cleanLocked from '$lib/Editor/_functions/cleanup/locked';
 import cleanLicense from '$lib/Editor/_functions/cleanup/license';
