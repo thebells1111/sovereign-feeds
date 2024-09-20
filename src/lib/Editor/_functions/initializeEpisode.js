@@ -3,7 +3,8 @@ import initializePersonTag from './initializePersonTag';
 import initializeValueTag from './initializeValueTag';
 import initializeSocialInteractTag from './initialize/socialInteract';
 import initializeTranscriptTag from './initialize/transcript';
-import initializeImagesTag from './initialize/images2';
+import initializeImagesTag from './initialize/images';
+import initializeExperimentalImagesTag from '$lib/Editor/Tags/Images/initializeImages';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import initializeContentLink from './initialize/contentLink';
 import initializeLiveTime from './initialize/liveItemTime';
@@ -36,7 +37,10 @@ export default async function initializeEpisode(episode, type) {
 	}
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
-
+	episode['experimental:images'] = initializeExperimentalImagesTag(
+		episode?.['experimental:images'],
+		'episode'
+	);
 	// This is for adding trackers
 	// episode.enclosure = await initializeEnclosure(episode?.enclosure);
 

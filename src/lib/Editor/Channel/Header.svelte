@@ -35,13 +35,14 @@
 	>
 		Owner Info
 	</li>
+
 	<li
 		on:click={() => {
-			podcastInfoPage = 'support';
+			podcastInfoPage = 'images';
 		}}
-		class:active={podcastInfoPage === 'support'}
+		class:active={podcastInfoPage === 'person'}
 	>
-		Support Links
+		Cast
 	</li>
 	<li
 		on:click={() => {

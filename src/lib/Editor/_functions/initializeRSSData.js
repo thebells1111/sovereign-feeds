@@ -1,7 +1,8 @@
 import clone from '$functions/clone';
 import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
 import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
-import initializeImagesTag from '$lib/Editor/_functions/initialize/images2';
+import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
+import initializeExperimentalImagesTag from '$lib/Editor/Tags/Images/initializeImages';
 import initializeEpisode from '$lib/Editor/_functions/initializeEpisode';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import blankLiveItem from '$lib/Editor/_functions/blanks/liveItem';
@@ -120,6 +121,9 @@ export default async function initializeRSSData(data) {
 	setHeaderText($rssData);
 
 	$rssData['podcast:images'] = initializeImagesTag($rssData?.['podcast:images']);
+	$rssData['experimental:images'] = initializeExperimentalImagesTag(
+		$rssData?.['experimental:images']
+	);
 
 	$rssData['itunes:image'] = initializeItunesImageTag($rssData);
 

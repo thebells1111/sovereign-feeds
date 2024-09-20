@@ -1,6 +1,7 @@
 <script>
 	import { rssData, tagHeaders, digitalOceanEnabled } from '$/editor';
 	import Upload from '$lib/Upload/Upload.svelte';
+	import Images from '$lib/Editor/Tags/Images/Images.svelte';
 	export let size = '75px';
 	let showUpload = false;
 	let fileName;
@@ -12,6 +13,7 @@
 	function handleInput(e) {
 		$rssData['itunes:image']['@_href'] = e.target.value;
 		$rssData['podcast:images']['@_srcset'][0].url = e.target.value;
+		$rssData = $rssData;
 	}
 </script>
 
@@ -39,6 +41,8 @@
 	</label>
 	<img src={$rssData?.['itunes:image']?.['@_href']} style={`height: ${size}; width: ${size}`} />
 </div>
+
+<Images type="podcast" />
 {#if showUpload}
 	<Upload path={`art`} bind:fileName bind:showUpload />
 {/if}

@@ -32,6 +32,15 @@
 	let showSyncModal = false;
 	let syncText = 'confirm';
 	let isSyncing = false;
+	let rssChangeTimeout;
+
+	$: if ($rssData) {
+		clearTimeout(rssChangeTimeout);
+		rssChangeTimeout = setTimeout(() => {
+			editorDB.setItem('favorites', $podcastList);
+			console.log($rssData);
+		}, 1000);
+	}
 
 	async function syncWithFeed(podcast) {
 		if (podcast.id) {

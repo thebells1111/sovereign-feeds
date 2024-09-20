@@ -3,54 +3,45 @@
 	import ImageBlock from './ImageBlock.svelte';
 
 	export let data = {};
-	export let type;
 
-	function deleteImage(srcsetIndex, index) {
+	function deleteSrcSetImage(srcsetIndex, index) {
 		data[srcsetIndex]['@_srcset'].splice(index, 1);
-		if (data[srcsetIndex]['@_srcset'].length < 1) {
-			data[srcsetIndex]['@_srcset'] = [{ url: '', width: '' }];
-		}
+
 		data = data;
 	}
 
-	function addImage(srcsetIndex) {
+	function addSrcSetImage(srcsetIndex) {
 		data[srcsetIndex]['@_srcset'] = data[srcsetIndex]['@_srcset'].concat({ url: '', width: '' });
 	}
 </script>
 
 <div class="images-container">
 	{#each data as ratio, srcsetIndex}
-		<h3>{ratio['@_aspect-ratio']}</h3>
+		<h3>Aspect Ratio {ratio['@_aspect-ratio']}</h3>
 
-		<h4>Image Url</h4>
-		<input bind:value={ratio['@_src']} />
+		<div class="header">
+			<h4>Image URL</h4>
+		</div>
+		<div class="images-block">
+			<ImageBlock imgSrc={ratio['@_src']} />
+		</div>
 		<div class="srcset-container">
-			{#if ratio['@_srcset']}
-				<h3>Alternative Filesizes (ensure aspect ratio is consistent)</h3>
+			<h3>Alternative Filesizes (ensure aspect ratio is consistent)</h3>
+			{#if ratio['@_srcset'].length}
 				<div class="header">
 					<h4>Image URL</h4>
-					<h4>Image Width</h4>
 				</div>
 				{#each [].concat(ratio['@_srcset']) as srcset, index}
 					<div class="images-block">
-						<ImageBlock {srcset} {index} {srcsetIndex} />
-						{#if index === 0}
-							<div class="delete-spacer" />
-						{:else}
-							<button class="delete" on:click={deleteImage.bind(this, srcsetIndex, index)}>
-								<Cancel color={'red'} size={'24px'} />
-							</button>
-						{/if}
+						<ImageBlock imgSrc={srcset} />
+
+						<button class="delete" on:click={deleteSrcSetImage.bind(this, srcsetIndex, index)}>
+							<Cancel color={'red'} size={'24px'} />
+						</button>
 					</div>
-					{#if index === 0}
-						<p>
-							⇧ Default Image URL, synced with {type[0].toUpperCase() + type.substring(1)}
-							Metadata
-						</p>
-					{/if}
 				{/each}
 			{/if}
-			<button class="add" on:click={addImage.bind(this, srcsetIndex)}>Add</button>
+			<button class="add" on:click={addSrcSetImage.bind(this, srcsetIndex)}>Add</button>
 		</div>
 	{/each}
 </div>

@@ -18,14 +18,12 @@ export default function initializeImagesTag(data, type) {
 		// Check if the current ratio is already in data
 		let imageTag = data.find((img) => img['@_aspect-ratio'] === ratio);
 
-		console.log(data);
-
 		if (!imageTag) {
 			// If the ratio doesn't exist in data, create a new entry
 			data.push({
 				'@_aspect-ratio': ratio,
 				'@_src': ratio === '1/1' ? defaultUrl : '', // DefaultUrl only for 1/1
-				'@_srcset': [{ url: '', width: '' }]
+				'@_srcset': []
 			});
 		}
 	});
@@ -41,5 +39,6 @@ export default function initializeImagesTag(data, type) {
 	});
 
 	// Return the updated data
+	console.log(data);
 	return data;
 }

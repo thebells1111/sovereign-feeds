@@ -3,52 +3,40 @@
 	import { rssData, editingEpisode, selectedPodcast } from '$/editor';
 
 	let image;
-	$: if ($selectedPodcast) {
+	$: if (imgSrc?.url) {
 		setTimeout(() => {
-			srcset.width = image?.naturalWidth;
-		}, 2500);
-	}
-
-	$: if ($editingEpisode) {
-		setTimeout(() => {
-			srcset.width = image?.naturalWidth;
+			imgSrc.width = image?.naturalWidth;
 		}, 250);
 	}
+
 	$: if (image) {
 		image.onload = () => {
-			srcset.width = image.naturalWidth;
+			if (imgSrc.hasOwnProperty('url')) {
+				imgSrc.width = image?.naturalWidth;
+			}
 		};
 		image.onerror = () => {
-			srcset.width = '';
+			if (imgSrc.hasOwnProperty('url')) {
+				imgSrc.width = '';
+			}
 		};
 	}
-	export let srcset;
-	export let index;
+	export let imgSrc;
+	let imageUrl;
 
 	function handleInput(e) {
-		data['@_srcset'][index].url = e.target.value;
-		image.src = e.target.value;
-		image = image;
-
-		if (index === 0) {
-			if (type === 'episode') {
-				$editingEpisode['itunes:image']['@_href'] = e.target.value;
-			} else {
-				$rssData['itunes:image']['@_href'] = e.target.value;
-			}
+		if (imgSrc.hasOwnProperty('url')) {
+			imgSrc.url = e.target.value;
+		} else {
+			imgSrc = e.target.value;
 		}
+		console.log($rssData);
+		$rssData = $rssData;
 	}
 </script>
 
-<img src={srcset.url} bind:this={image} />
-<input
-	class="url"
-	type="text"
-	on:input={handleInput}
-	bind:value={srcset.url}
-	use:selectTextOnFocus
-/>
-<span>{srcset.width} px</span>
+<img src={imageUrl} bind:this={image} />
+<input class="url" type="text" on:input={handleInput} bind:value={imageUrl} use:selectTextOnFocus />
 
 <style>
 	img {

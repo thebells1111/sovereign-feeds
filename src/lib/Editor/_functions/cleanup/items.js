@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import cleanPodcastImages from './images2';
+import cleanPodcastImages from './images';
+import cleanExperimentalImages from '$lib/Editor/Tags/Images/cleanImages';
 import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
@@ -53,6 +54,7 @@ async function cleanItem(item, data) {
 	cleanEpisodeValue(item, data);
 	cleanEpisodeTranscript(item);
 	cleanPodcastImages(item);
+	cleanExperimentalImages(item);
 	cleanLicense(item);
 	cleanChat(item);
 	cleanLiveValue(item);

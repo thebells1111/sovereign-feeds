@@ -49,7 +49,7 @@
 		<Value />
 	</div>
 	<div class:hide={$rightPane != 'images'}>
-		<Images />
+		<Images type={'episode'} />
 	</div>
 	<div class:hide={$rightPane != 'valueSplits'}>
 		<ValueSplits />
