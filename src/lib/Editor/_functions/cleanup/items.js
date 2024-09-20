@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import cleanPodcastImages from './images';
+import cleanPodcastImages from './images2';
 import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
