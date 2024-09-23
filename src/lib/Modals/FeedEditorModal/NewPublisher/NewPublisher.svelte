@@ -10,7 +10,7 @@
 	$: console.log($rssData);
 </script>
 
-<div class="container">
+<div class="overflow-container">
 	<div class="data-container">
 		{#if $rssData}
 			<Title />
@@ -19,30 +19,40 @@
 			<Description />
 		{/if}
 	</div>
+</div>
 
+<div class="footer">
 	<button
 		class="primary"
 		on:click={() => {
 			$newEditorScreen = 'publisherImages';
-		}}>Publisher Images</button
-	>
+		}}
+		>Publisher Images
+	</button>
 </div>
 
 <style>
-	.container {
+	.overflow-container {
+		height: calc(100% - 64px);
+		overflow: auto;
 		padding: 8px;
-		display: flex;
-		flex-direction: column;
 	}
 
-	button {
-		margin-top: 8px;
-		width: 250px;
-		align-self: flex-end;
+	.footer {
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.footer button {
+		cursor: pointer;
+		margin: 0 8px;
+		padding: 0 8px;
 	}
 
 	button.primary {
-		margin-top: 8px;
 		align-self: flex-end;
 		background-image: linear-gradient(
 			to bottom,
@@ -51,5 +61,6 @@
 		);
 		width: 235px;
 		height: 50px;
+		margin-bottom: 8px;
 	}
 </style>

@@ -1,26 +1,28 @@
 export default function cleanPodcastImages(data) {
 	if (
-		data['podcast:images'] &&
-		data['podcast:images']['@_srcset'] &&
-		typeof data['podcast:images']['@_srcset'] !== 'string'
+		data['experimental:images'] &&
+		data['experimental:images']['@_srcset'] &&
+		typeof data['experimental:images']['@_srcset'] !== 'string'
 	) {
-		data['podcast:images']['@_srcset'] = data['podcast:images']['@_srcset'].filter((v) => {
-			if (!v.url) {
-				return false;
-			}
-			if (!Number(v.width)) {
-				return false;
-			}
+		data['experimental:images']['@_srcset'] = data['experimental:images']['@_srcset'].filter(
+			(v) => {
+				if (!v.url) {
+					return false;
+				}
+				if (!Number(v.width)) {
+					return false;
+				}
 
-			return v;
-		});
+				return v;
+			}
+		);
 
-		data['podcast:images']['@_srcset'] = data['podcast:images']['@_srcset']
+		data['experimental:images']['@_srcset'] = data['experimental:images']['@_srcset']
 			.map((v) => `${v.url} ${v.width}w`)
 			.join(', ');
 
-		if (!data['podcast:images']['@_srcset']) {
-			delete data['podcast:images'];
+		if (!data['experimental:images']['@_srcset']) {
+			delete data['experimental:images'];
 		}
 	}
 }

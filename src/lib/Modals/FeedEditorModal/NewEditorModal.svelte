@@ -17,6 +17,9 @@
 	import DigitalOceanSetup from './NewPodcast/DigitalOceanSetup.svelte';
 	import NewPublisher from './NewPublisher/NewPublisher.svelte';
 	import PublisherImages from './NewPublisher/PublisherImages.svelte';
+	import PublisherValue from './NewPublisher/PublisherValue.svelte';
+
+	$: console.log($newEditorScreen);
 </script>
 
 <section>
@@ -49,8 +52,12 @@
 		<div class:hide={$newEditorScreen !== 'publisherImages'}>
 			<PublisherImages />
 		</div>
+		<div class:hide={$newEditorScreen !== 'publisherValue'}>
+			<PublisherValue />
+		</div>
 	{:else}
 		<div class:hide={$newEditorScreen !== 'podcast'}>
+			hi
 			<NewPodcast />
 		</div>
 		<div class:hide={$newEditorScreen !== 'typeSelect'}>
