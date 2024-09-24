@@ -4,46 +4,81 @@
 
 	export let data = {};
 
+	let selectedRatioIndex = data.length > 0 ? 0 : null;
+
 	function deleteSrcSetImage(srcsetIndex, index) {
 		data[srcsetIndex]['@_srcset'].splice(index, 1);
-
-		data = data;
+		data = data; // Trigger reactivity
 	}
 
 	function addSrcSetImage(srcsetIndex) {
-		data[srcsetIndex]['@_srcset'] = data[srcsetIndex]['@_srcset'].concat({ url: '', width: '' });
+		data[srcsetIndex]['@_srcset'].push({ url: '', width: '' });
+	}
+
+	function handleRadioChange(index) {
+		selectedRatioIndex = index; // Update the selected index
+	}
+
+	function getCommonName(ratio) {
+		let commonNames = {
+			'1/1': 'Square',
+			'3/1': 'Cover Photo',
+			'16/9': 'Wide Screen',
+			'4/3': 'Standard Screen',
+			'15/1': 'Banner'
+		};
+		return commonNames[ratio] || '';
 	}
 </script>
 
 <div class="images-container">
-	{#each data as ratio, srcsetIndex}
-		<h3>Aspect Ratio {ratio['@_aspect-ratio']}</h3>
+	<h3>Aspect Ratio Images</h3>
+	<div class="radio-group">
+		{#each data as ratio, srcsetIndex}
+			<label class:selected={selectedRatioIndex === srcsetIndex}>
+				<input
+					type="radio"
+					name="aspect-ratio"
+					checked={selectedRatioIndex === srcsetIndex}
+					on:change={() => handleRadioChange(srcsetIndex)}
+				/>
+				<div>
+					<p>Aspect Ratio {ratio['@_aspect-ratio'].replace('/', ':')}</p>
+					<p>{getCommonName(ratio['@_aspect-ratio'])}</p>
+				</div>
+			</label>
+		{/each}
+	</div>
 
+	{#if selectedRatioIndex !== null}
 		<div class="header">
 			<h4>Image URL</h4>
 		</div>
 		<div class="images-block">
-			<ImageBlock imgSrc={ratio['@_src']} />
+			<ImageBlock imgSrc={data[selectedRatioIndex]['@_src']} />
 		</div>
 		<div class="srcset-container">
 			<h3>Alternative Filesizes (ensure aspect ratio is consistent)</h3>
-			{#if ratio['@_srcset'].length}
+			{#if data[selectedRatioIndex]['@_srcset'].length}
 				<div class="header">
 					<h4>Image URL</h4>
 				</div>
-				{#each [].concat(ratio['@_srcset']) as srcset, index}
+				{#each data[selectedRatioIndex]['@_srcset'] as srcset, index}
 					<div class="images-block">
-						<ImageBlock imgSrc={srcset} />
+						<ImageBlock imgSrc={srcset.url} />
 
-						<button class="delete" on:click={deleteSrcSetImage.bind(this, srcsetIndex, index)}>
+						<button
+							class="delete"
+							on:click={deleteSrcSetImage.bind(this, selectedRatioIndex, index)}
+						>
 							<Cancel color={'red'} size={'24px'} />
 						</button>
 					</div>
 				{/each}
 			{/if}
-			<button class="add" on:click={addSrcSetImage.bind(this, srcsetIndex)}>Add</button>
+			<button class="add" on:click={addSrcSetImage.bind(this, selectedRatioIndex)}>Add</button>
 		</div>
-	{/each}
+	{/if}
 </div>
 
 <style>
@@ -54,6 +89,42 @@
 		width: 100%;
 		height: 100%;
 		position: relative;
+	}
+
+	.radio-group {
+		margin: 8px;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.radio-group > label {
+		margin: 0 8px 8px 8px;
+		cursor: pointer;
+		width: 160px;
+		height: 45px;
+		display: flex;
+		justify-content: center;
+		user-select: none;
+	}
+
+	.radio-group > label > div > p {
+		margin: 0;
+		padding: 0;
+		text-align: center;
+	}
+
+	.radio-group > label > input {
+		display: none;
+	}
+
+	.selected {
+		font-weight: bold; /* Bold font for selected ratio */
+
+		border-bottom: 2px solid rgb(27, 111, 246);
+	}
+
+	.selected p {
+		color: rgb(27, 111, 246);
 	}
 
 	.header {
@@ -67,32 +138,16 @@
 		color: hsla(352, 100%, 33%, 1);
 	}
 
-	.header > h4:nth-of-type(1) {
-		margin-left: 60px;
-	}
-
-	.header > h4:nth-of-type(2) {
-		float: right;
-		margin-right: 8px;
+	h3 {
+		margin: 0;
+		padding: 0;
+		color: hsla(352, 100%, 33%, 1);
 	}
 
 	.images-block {
 		width: 100%;
 		display: flex;
 		align-items: center;
-	}
-
-	p {
-		text-align: center;
-		margin: 0 72px;
-		padding: 0;
-		position: relative;
-		top: -10px;
-		color: red;
-	}
-
-	.delete-spacer {
-		width: 40px;
 	}
 
 	.delete {
@@ -120,7 +175,6 @@
 		border-radius: 50px;
 		outline: 0;
 		box-shadow: inset 0 1px hsla(0, 0%, 42.7%, 1), 0 2px 2px rgba(0, 0, 0, 0.33);
-		text-shadow: 1px 4px 6px rgb(82, 82, 82), 0 0 0 #000, 1px 4px 6px rgb(82, 82, 82);
 		width: 121px;
 		background-image: linear-gradient(
 			to bottom,

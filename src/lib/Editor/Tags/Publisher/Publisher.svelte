@@ -93,6 +93,10 @@
 		publisherFeed.splice(index, 1);
 		publisherFeed = publisherFeed;
 	}
+
+	function onClose() {
+		showModal = false;
+	}
 </script>
 
 {#each publisherFeed as item, i}
