@@ -57,7 +57,6 @@
 		</div>
 	{:else}
 		<div class:hide={$newEditorScreen !== 'podcast'}>
-			hi
 			<NewPodcast />
 		</div>
 		<div class:hide={$newEditorScreen !== 'typeSelect'}>

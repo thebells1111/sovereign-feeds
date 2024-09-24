@@ -11,7 +11,7 @@ import cleanPodcastImages from '$lib/Editor/Tags/Images/cleanImages';
 import cleanComplete from '$lib/Editor/_functions/cleanup/complete';
 import cleanLocked from '$lib/Editor/_functions/cleanup/locked';
 import cleanLicense from '$lib/Editor/_functions/cleanup/license';
-import cleanPodroll from '$lib/Editor/_functions/cleanup/podroll';
+import cleanPodroll from '$lib/Editor/Tags/Podroll/cleanPodroll';
 
 import {
 	rssData,

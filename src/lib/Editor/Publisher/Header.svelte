@@ -22,6 +22,15 @@
 
 	<li
 		on:click={() => {
+			podcastInfoPage = 'feedList';
+		}}
+		class:active={podcastInfoPage === 'feedList'}
+	>
+		Feed List
+	</li>
+
+	<li
+		on:click={() => {
 			podcastInfoPage = 'ownerInfo';
 		}}
 		class:active={podcastInfoPage === 'ownerInfo'}

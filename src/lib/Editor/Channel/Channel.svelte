@@ -9,7 +9,7 @@
 	import Support from './Support.svelte';
 	import Block from './Block.svelte';
 	import Trackers from './Trackers.svelte';
-	import Podroll from './Podroll/Podroll.svelte';
+	import Podroll from '$lib/Editor/Tags/Podroll/Podroll.svelte';
 
 	import { currentPage } from '$/editor';
 

@@ -6,7 +6,7 @@
 
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import initializeRSSData from '$lib/Editor/_functions/initializeRSSData';
-	import initializePublisherRSS from '$lib/Editor/Publisher/Initialize/initializePublisherRSS';
+	import initializePublisherRSS from '$lib/Editor/Publisher/initializePublisherRSS';
 
 	import Sync from '$lib/icons/Sync.svelte';
 

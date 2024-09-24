@@ -38,14 +38,6 @@
 
 	<li
 		on:click={() => {
-			podcastInfoPage = 'images';
-		}}
-		class:active={podcastInfoPage === 'person'}
-	>
-		Cast
-	</li>
-	<li
-		on:click={() => {
 			podcastInfoPage = 'person';
 		}}
 		class:active={podcastInfoPage === 'person'}

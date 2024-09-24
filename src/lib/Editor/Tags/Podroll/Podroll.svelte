@@ -10,8 +10,6 @@
 
 	let showModal = false;
 
-	$: console.log(podcastInfoPage);
-
 	$: if (podcastInfoPage === 'podroll') {
 		roll = [];
 		fetchGuids();

@@ -12,7 +12,7 @@ import initializeComplete from '$lib/Editor/_functions/initialize/complete';
 import initializeLocked from '$lib/Editor/_functions/initialize/locked';
 import initializeBlock from '$lib/Editor/_functions/initialize/block';
 import initializeLicenseTag from '$lib/Editor/_functions/initialize/license';
-import initializePodrollTag from '$lib/Editor/_functions/initialize/podroll';
+import initializePodrollTag from '$lib/Editor/Tags/Podroll/initializePodroll';
 import initializeOwnerTag from '$lib/Editor/_functions/initialize/owner';
 import initializeFundingTag from '$lib/Editor/_functions/initialize/funding';
 

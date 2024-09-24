@@ -3,13 +3,13 @@
 
 	import Value from '$lib/Editor/Tags/Value/Value.svelte';
 	import FeedArt from './FeedArt.svelte';
+	import Publisher from '$lib/Editor/Tags/Publisher/Publisher.svelte';
 	import FeedInfo from './FeedInfo.svelte';
 	import OwnerInfo from './OwnerInfo.svelte';
 	import Support from './Support.svelte';
 	import Person from '$lib/Editor/Tags/Person/Person.svelte';
 	import Block from './Block.svelte';
-
-	import Podroll from '$lib/Editor/Channel/Podroll/Podroll.svelte';
+	import Podroll from '$lib/Editor/Tags/Podroll/Podroll.svelte';
 
 	import { currentPage } from '$/editor';
 
@@ -18,6 +18,8 @@
 	$: if ($currentPage === 'podcastMetadata') {
 		podcastInfoPage = 'showInfo';
 	}
+
+	$: console.log(podcastInfoPage);
 </script>
 
 <Header bind:podcastInfoPage />
@@ -27,6 +29,10 @@
 </div>
 <div class:hide={podcastInfoPage !== 'showArt'}>
 	<FeedArt />
+</div>
+
+<div class:hide={podcastInfoPage !== 'feedList'}>
+	<Publisher {podcastInfoPage} />
 </div>
 
 <div class:hide={podcastInfoPage !== 'ownerInfo'}>
@@ -50,7 +56,7 @@
 </div>
 
 <div class:hide={podcastInfoPage !== 'podroll'}>
-	<Podroll {podcastInfoPage} />
+	<Podroll podcastInfoPage />
 </div>
 
 <style>

@@ -1,4 +1,4 @@
-import blankPodroll from '../blanks/podroll';
+import blankPodroll from './blankPublisher';
 import clone from 'just-clone';
 
 export default function initializePodrollTag(data) {

@@ -8,9 +8,10 @@ import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/i
 import setHeaderText from '$lib/Labels/setHeaderText';
 import initializeBlock from '$lib/Editor/_functions/initialize/block';
 import initializeLocked from '$lib/Editor/_functions/initialize/locked';
-import initializePodrollTag from '$lib/Editor/_functions/initialize/podroll';
+import initializePodrollTag from '$lib/Editor/Tags/Podroll/initializePodroll';
 import initializeOwnerTag from '$lib/Editor/_functions/initialize/owner';
 import initializeFundingTag from '$lib/Editor/_functions/initialize/funding';
+import initializePublisherTag from '$lib/Editor/Tags/Publisher/initializePublisher';
 
 import { get } from 'svelte/store';
 
@@ -59,4 +60,5 @@ export default async function initializePublisherRSS(data) {
 	$rssData['podcast:podroll'] = initializePodrollTag($rssData['podcast:podroll']);
 	$rssData['itunes:owner'] = initializeOwnerTag($rssData['itunes:owner']);
 	$rssData['podcast:funding'] = initializeFundingTag($rssData['podcast:funding']);
+	$rssData['podcast:remoteItem'] = initializePublisherTag($rssData['podcast:remoteItem']);
 }
