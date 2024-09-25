@@ -13,6 +13,7 @@
 
 	function addSrcSetImage(srcsetIndex) {
 		data[srcsetIndex]['@_srcset'].push({ url: '', width: '' });
+		data = data;
 	}
 
 	function handleRadioChange(index) {
@@ -32,7 +33,7 @@
 </script>
 
 <div class="images-container">
-	<h3>Aspect Ratio Images</h3>
+	<h3>Aspect Ratio Image</h3>
 	<div class="radio-group">
 		{#each data as ratio, srcsetIndex}
 			<label class:selected={selectedRatioIndex === srcsetIndex}>
@@ -55,29 +56,30 @@
 			<h4>Image URL</h4>
 		</div>
 		<div class="images-block">
-			<ImageBlock imgSrc={data[selectedRatioIndex]['@_src']} />
+			<ImageBlock bind:imgSrc={data[selectedRatioIndex]['@_src']} />
 		</div>
-		<div class="srcset-container">
-			<h3>Alternative Filesizes (ensure aspect ratio is consistent)</h3>
-			{#if data[selectedRatioIndex]['@_srcset'].length}
-				<div class="header">
-					<h4>Image URL</h4>
-				</div>
-				{#each data[selectedRatioIndex]['@_srcset'] as srcset, index}
-					<div class="images-block">
-						<ImageBlock imgSrc={srcset.url} />
-
-						<button
-							class="delete"
-							on:click={deleteSrcSetImage.bind(this, selectedRatioIndex, index)}
-						>
-							<Cancel color={'red'} size={'24px'} />
-						</button>
+		{#if data[selectedRatioIndex]['@_src']}
+			<div class="srcset-container">
+				<h3>Alternative Filesizes (ensure aspect ratio is consistent)</h3>
+				{#if data[selectedRatioIndex]['@_srcset'].length}
+					<div class="header">
+						<h4>Image URL</h4>
 					</div>
-				{/each}
-			{/if}
-			<button class="add" on:click={addSrcSetImage.bind(this, selectedRatioIndex)}>Add</button>
-		</div>
+					{#each data[selectedRatioIndex]['@_srcset'] as srcset, index}
+						<div class="images-block">
+							<ImageBlock bind:imgSrc={srcset.url} />
+
+							<button
+								class="delete"
+								on:click={deleteSrcSetImage.bind(this, selectedRatioIndex, index)}
+							>
+								<Cancel color={'red'} size={'24px'} />
+							</button>
+						</div>
+					{/each}
+				{/if}
+				<button class="add" on:click={addSrcSetImage.bind(this, selectedRatioIndex)}>Add</button>
+			</div>{/if}
 	{/if}
 </div>
 
