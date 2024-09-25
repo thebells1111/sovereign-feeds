@@ -32,6 +32,7 @@
 		: episodes.findIndex((v) => v === $editingEpisode?.enclosure?.['@_url']);
 
 	const mimeTypes = [
+		{ extension: 'm3u8', type: 'application/x-mpegURL' },
 		{ extension: 'aac', type: 'audio/aac' },
 		{ extension: 'mp3', type: 'audio/mpeg' },
 		{ extension: 'oga', type: 'audio/ogg' },
