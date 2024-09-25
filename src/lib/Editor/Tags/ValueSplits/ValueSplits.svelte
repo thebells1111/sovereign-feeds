@@ -164,8 +164,8 @@
 				updateRecipientData(
 					info.pubkey,
 					name + '@getalby.com',
-					info.customData[0].customValue,
-					info.customData[0].customKey
+					info.customData[0]?.customValue,
+					info.customData[0]?.customKey
 				);
 				cancelProviderSubmit();
 			} else {
