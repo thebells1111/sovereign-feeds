@@ -43,14 +43,22 @@
 	}
 </script>
 
-<img src={imageUrl} bind:this={image} />
+<div>
+	<img src={imageUrl} bind:this={image} />
+</div>
 <input class="url" type="text" on:input={handleInput} bind:value={imageUrl} use:selectTextOnFocus />
 
 <style>
-	img {
+	div {
 		height: 50px;
-		width: 50px;
+		margin: 4px 0;
+		display: flex;
+		align-items: center;
+		border: 1px solid black;
 		margin: 4px 8px 4px 0;
+	}
+	img {
+		width: 50px;
 	}
 	input {
 		padding: 0;
