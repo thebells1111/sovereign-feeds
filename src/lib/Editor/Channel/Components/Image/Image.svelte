@@ -1,5 +1,5 @@
 <script>
-	import { rssData, tagHeaders, digitalOceanEnabled } from '$/editor';
+	import { rssData, tagHeaders, digitalOceanEnabled, podcastList } from '$/editor';
 	import Upload from '$lib/Upload/Upload.svelte';
 	export let size = '75px';
 	let showUpload = false;
@@ -13,13 +13,14 @@
 		$rssData['itunes:image']['@_href'] = e.target.value;
 		$rssData['podcast:images']['@_srcset'][0].url = e.target.value;
 		$rssData = $rssData;
+		$podcastList = $podcastList;
 	}
 </script>
 
 <div class="podcast-image">
 	<label>
 		<div class="left">
-			<h3>{$tagHeaders.channel.artwork}</h3>
+			<h3>{$tagHeaders.channel.artwork} (required)</h3>
 			{#if $digitalOceanEnabled}
 				<button
 					on:click={() => {

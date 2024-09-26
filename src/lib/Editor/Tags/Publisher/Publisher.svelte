@@ -4,7 +4,7 @@
 	import Delete from '$lib/icons/Delete.svelte';
 	import AddFeed from './AddFeed.svelte';
 
-	export let podcastInfoPage;
+	export let podcastInfoPage = '';
 
 	let publisherFeed = [];
 	let showModal = false;

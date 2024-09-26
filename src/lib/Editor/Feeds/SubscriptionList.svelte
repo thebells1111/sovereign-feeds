@@ -33,6 +33,8 @@
 		remoteServerUrl
 	} from '$/editor';
 
+	$: console.log($podcastList);
+
 	export let fromChapters = false;
 
 	export let showSyncModal = false;

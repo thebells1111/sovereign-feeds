@@ -1,22 +1,16 @@
 <script>
-	import Image from '$lib/Editor/Channel/Components/Image/Image.svelte';
-	import Images from '$lib/Editor/Tags/Images/Images.svelte';
+	import Publisher from '$lib/Editor/Tags/Publisher/Publisher.svelte';
 
-	import { rssData, newEditorScreen } from '$/editor';
+	import { newEditorScreen } from '$/editor';
 </script>
 
 <div class="overflow-container">
-	<Image />
-	<Images type="podcast" />
+	<Publisher />
 </div>
 
 <div class="footer">
-	<button class="primary" on:click={() => ($newEditorScreen = 'publisher')}>
-		Publisher Data
-	</button>
-	<button class="primary" on:click={() => ($newEditorScreen = 'publisherItems')}>
-		Publisher List
-	</button>
+	<button class="primary" on:click={() => ($newEditorScreen = 'publisherImages')}> Images </button>
+	<button class="primary" on:click={() => ($newEditorScreen = 'publisherValue')}> Value </button>
 </div>
 
 <style>

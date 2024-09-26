@@ -1,8 +1,33 @@
 <script>
-	import SharedValueComponent from '$lib/Editor/Tags/Value/SharedValueComponent.svelte';
 	import Value from '$lib/Editor/Tags/Value/Value.svelte';
 
-	import { newEditorScreen } from '$/editor';
+	import {
+		newEditorScreen,
+		editingEpisode,
+		currentPage,
+		editorDB,
+		podcastList,
+		showNewEditor,
+		showSaved,
+		selectedPodcast,
+		rightPane,
+		xmlJson,
+		rssData
+	} from '$/editor';
+
+	async function getPodcast() {
+		$rightPane = 'publisherMetadata';
+
+		$xmlJson = $selectedPodcast.xml;
+		$selectedPodcast.rss = $rssData;
+
+		$editingEpisode = null;
+		$currentPage = 'podcastMetadata';
+		$newEditorScreen = 'publisher';
+		editorDB.setItem('favorites', $podcastList);
+		$showNewEditor = false;
+		$showSaved = true;
+	}
 </script>
 
 <div class="overflow-container">
@@ -11,9 +36,7 @@
 
 <div class="footer">
 	<button class="primary" on:click={() => ($newEditorScreen = 'publisherImages')}> Images </button>
-	<button class="primary" on:click={() => ($newEditorScreen = 'publisher')}>
-		Publisher Data
-	</button>
+	<button class="primary" on:click={getPodcast}> Finish Feed </button>
 </div>
 
 <style>

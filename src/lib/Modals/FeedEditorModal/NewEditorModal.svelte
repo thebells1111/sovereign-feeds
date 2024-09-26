@@ -18,6 +18,7 @@
 	import NewPublisher from './NewPublisher/NewPublisher.svelte';
 	import PublisherImages from './NewPublisher/PublisherImages.svelte';
 	import PublisherValue from './NewPublisher/PublisherValue.svelte';
+	import PublisherItems from './NewPublisher/PublisherItems.svelte';
 
 	$: console.log($newEditorScreen);
 </script>
@@ -51,6 +52,9 @@
 		</div>
 		<div class:hide={$newEditorScreen !== 'publisherImages'}>
 			<PublisherImages />
+		</div>
+		<div class:hide={$newEditorScreen !== 'publisherItems'}>
+			<PublisherItems />
 		</div>
 		<div class:hide={$newEditorScreen !== 'publisherValue'}>
 			<PublisherValue />
