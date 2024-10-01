@@ -1,7 +1,7 @@
 <script>
 	import { editingEpisode, episodesList, editingIndex } from '$/editor';
 	import blankTranscript from '$lib/Editor/_functions/blanks/transcript';
-	import TextBlock from '$lib/Editor/Tags/Shared/TextBlock.svelte';
+	import TextBlock from '$lib/Tags/Shared/TextBlock.svelte';
 	import Select from 'svelte-select';
 	import Upload from '$lib/Upload/Upload.svelte';
 	export let data;

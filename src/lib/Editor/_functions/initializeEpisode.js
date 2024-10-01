@@ -4,22 +4,24 @@ import initializeValueTag from './initializeValueTag';
 import initializeSocialInteractTag from './initialize/socialInteract';
 import initializeTranscriptTag from './initialize/transcript';
 import initializeImagesTag from './initialize/images';
-import initializeExperimentalImagesTag from '$lib/Editor/Tags/Images/initializeImages';
+import initializeExperimentalImagesTag from '$lib/Tags/Images/initializeImages';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import initializeContentLink from './initialize/contentLink';
 import initializeLiveTime from './initialize/liveItemTime';
 import initializeEpisodeGuid from './initialize/episodeGuid';
 import initializeLicenseTag from './initialize/license';
-import initializeValueTimeSplit from '$lib/Editor/Tags/ValueSplits/initializeValueTimeSplit';
-import initializeChat from '$lib/Editor/Tags/Chat/initializeChat';
-import initializeLiveValue from '$lib/Editor/Tags/LiveValue/initializeLiveValue';
+import initializeValueTimeSplit from '$lib/Tags/ValueSplits/initializeValueTimeSplit';
+import initializeChat from '$lib/Tags/Chat/initializeChat';
+import initializeLiveValue from '$lib/Tags/LiveValue/initializeLiveValue';
 import initializeAlternateEnclosure from './initialize/alternateEnclosure';
+import initializeFunding from '$lib/Tags/Funding/inititalizeFunding';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
 
 export default async function initializeEpisode(episode, type) {
 	episode['itunes:image'] = initializeItunesImageTag(episode);
 	episode['podcast:person'] = initializePersonTag(episode?.['podcast:person']);
+	episode['podcast:funding'] = initializeFunding(episode?.['podcast:funding']);
 	episode['podcast:socialInteract'] = initializeSocialInteractTag(
 		episode?.['podcast:socialInteract']
 	);

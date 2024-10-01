@@ -1,5 +1,5 @@
 <script>
-	import NumberInput from '$lib/Editor/Tags/Shared/NumberInput.svelte';
+	import NumberInput from '$lib/Tags/Shared/NumberInput.svelte';
 
 	export let time = 0;
 	export let chapter;

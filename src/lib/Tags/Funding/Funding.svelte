@@ -1,48 +1,32 @@
 <script>
-	import { rssData, selectedPodcast, tagHeaders } from '$/editor';
+	import { rssData, tagHeaders } from '$/editor';
 
-	let blankFunding = {
-		'#text': '',
-		'@_url': ''
-	};
-	let fundingArray;
-	let locked;
-
-	$: if ($selectedPodcast && $rssData) {
-		if ($rssData?.['podcast:funding']) {
-			fundingArray = $rssData?.['podcast:funding']
-				? $rssData?.['podcast:funding']
-				: [{ ...blankFunding }];
-			if (!Array.isArray(fundingArray)) {
-				fundingArray = [fundingArray];
-			}
-		} else {
-			fundingArray = [{ ...blankFunding }];
-		}
-	}
+	export let data;
 </script>
 
-{#if $rssData}
+{#if data}
 	<div class="funding header">
 		<h3>{$tagHeaders.channel.funding.title}</h3>
 		<button
 			on:click={() => {
-				fundingArray.push({ ...blankFunding });
-				$rssData['podcast:funding'] = fundingArray;
+				data['podcast:funding'] = data['podcast:funding'].concat({
+					'#text': '',
+					'@_url': ''
+				});
 			}}
 		>
 			Add New {`${$tagHeaders.channel.funding.block}`}
 		</button>
 	</div>
-	{#each fundingArray as funding, i}
+	{#each data['podcast:funding'] as funding, i}
 		<div class="funding block">
 			<h4 style={`color: hsla(${352 - ((i + 1) % 4) * 90}, 100%, 33%, 1)`}>
 				{`${$tagHeaders.channel.funding.block} `} #{i + 1}:
 			</h4>
 			<button
 				on:click={(e) => {
-					fundingArray.splice(i, 1);
-					$rssData['podcast:funding'] = fundingArray;
+					data['podcast:funding'].splice(i, 1);
+					data['podcast:funding'] = data['podcast:funding'];
 				}}
 				style={`background-image: linear-gradient(
           to bottom,

@@ -1,7 +1,7 @@
 <script>
 	import ImageLoader from '$lib/Loaders/ImageLoader.svelte';
 	import SubscriptionContextMenu from './SubscriptionContextMenu.svelte';
-	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 	import Cancel from '$lib/icons/CancelFilled.svelte';
 
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';

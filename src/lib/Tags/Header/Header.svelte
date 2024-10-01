@@ -1,6 +1,6 @@
 <script>
 	import { rightPane, rssData, editingEpisode, selectorList, showLiveEpisodes } from '$/editor';
-	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 
 	$rightPane = 'episodeMetadata';
 </script>
@@ -70,6 +70,14 @@
 		}}
 	>
 		Value
+	</li>
+	<li
+		class:active={$rightPane === 'funding'}
+		on:click={() => {
+			$rightPane = 'funding';
+		}}
+	>
+		Funding
 	</li>
 
 	<li

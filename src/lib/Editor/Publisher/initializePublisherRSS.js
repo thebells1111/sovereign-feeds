@@ -3,15 +3,15 @@ import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
 import initializeCategories from '$lib/Editor/_functions/initialize/categories';
 import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
 import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
-import initializeExperimentalImagesTag from '$lib/Editor/Tags/Images/initializeImages';
+import initializeExperimentalImagesTag from '$lib/Tags/Images/initializeImages';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import setHeaderText from '$lib/Labels/setHeaderText';
 import initializeBlock from '$lib/Editor/_functions/initialize/block';
 import initializeLocked from '$lib/Editor/_functions/initialize/locked';
-import initializePodrollTag from '$lib/Editor/Tags/Podroll/initializePodroll';
+import initializePodrollTag from '$lib/Tags/Podroll/initializePodroll';
 import initializeOwnerTag from '$lib/Editor/_functions/initialize/owner';
-import initializeFundingTag from '$lib/Editor/_functions/initialize/funding';
-import initializePublisherTag from '$lib/Editor/Tags/Publisher/initializePublisher';
+import initializeFundingTag from '$lib/Tags/Funding/inititalizeFunding';
+import initializePublisherTag from '$lib/Tags/Publisher/initializePublisher';
 
 import { get } from 'svelte/store';
 

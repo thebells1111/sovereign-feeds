@@ -1,17 +1,17 @@
 <script>
 	import Header from './Header.svelte';
 
-	import Value from '$lib/Editor/Tags/Value/Value.svelte';
+	import Value from '$lib/Tags/Value/Value.svelte';
 	import FeedArt from './FeedArt.svelte';
-	import Publisher from '$lib/Editor/Tags/Publisher/Publisher.svelte';
+	import Publisher from '$lib/Tags/Publisher/Publisher.svelte';
 	import FeedInfo from './FeedInfo.svelte';
 	import OwnerInfo from './OwnerInfo.svelte';
-	import Support from './Support.svelte';
-	import Person from '$lib/Editor/Tags/Person/Person.svelte';
+	import Funding from '$lib/Tags/Funding/Funding.svelte';
+	import Person from '$lib/Tags/Person/Person.svelte';
 	import Block from './Block.svelte';
-	import Podroll from '$lib/Editor/Tags/Podroll/Podroll.svelte';
+	import Podroll from '$lib/Tags/Podroll/Podroll.svelte';
 
-	import { currentPage } from '$/editor';
+	import { currentPage, rssData } from '$/editor';
 
 	let podcastInfoPage = 'showInfo';
 
@@ -40,7 +40,7 @@
 </div>
 
 <div class:hide={podcastInfoPage !== 'support'}>
-	<Support />
+	<Funding bind:data={$rssData} />
 </div>
 
 <div class:hide={podcastInfoPage !== 'value'}>

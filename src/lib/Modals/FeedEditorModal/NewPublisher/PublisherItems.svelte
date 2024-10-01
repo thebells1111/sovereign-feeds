@@ -1,5 +1,5 @@
 <script>
-	import Publisher from '$lib/Editor/Tags/Publisher/Publisher.svelte';
+	import Publisher from '$lib/Tags/Publisher/Publisher.svelte';
 
 	import { newEditorScreen } from '$/editor';
 </script>

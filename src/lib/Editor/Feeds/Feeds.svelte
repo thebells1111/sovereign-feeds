@@ -5,7 +5,7 @@
 	import PodcastSearch from './PodcastSearch.svelte';
 	import getRSSEditorFeed from '../_functions/getRSSFeed';
 	import initializeRSSData from '../_functions/initializeRSSData';
-	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 
 	import {
 		podcastSearchResults,

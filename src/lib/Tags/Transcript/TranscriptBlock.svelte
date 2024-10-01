@@ -1,7 +1,7 @@
 <script>
 	import { tagHeaders, editingEpisode } from '$/editor';
 	import blankTranscript from '$lib/Editor/_functions/blanks/transcript';
-	import TextBlock from '$lib/Editor/Tags/Shared/TextBlock.svelte';
+	import TextBlock from '$lib/Tags/Shared/TextBlock.svelte';
 	import Select from 'svelte-select';
 	export let data;
 	import IndexScroll from '../Shared/IndexScroll.svelte';

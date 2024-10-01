@@ -1,7 +1,7 @@
 <script>
 	import LeftPane from './2-LeftPane/LeftPane.svelte';
 	import Episodes from './Episodes/Episodes.svelte';
-	import Editor from './Tags/Editor.svelte';
+	import Editor from '$lib/Tags/Editor.svelte';
 	import Feeds from './Feeds/Feeds.svelte';
 	import Webhooks from './Webhooks/Webhooks.svelte';
 	import Manual from './Manual/Manual.svelte';
@@ -14,7 +14,7 @@
 
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import initializeRSSData from '$lib/Editor/_functions/initializeRSSData';
-	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 
 	import { showMobile } from '$/stores';
 	import {

@@ -2,7 +2,7 @@
 	import Chapters from './Chapters.svelte';
 	import Transcript from './Transcript.svelte';
 	import SocialInteract from './SocialInteract.svelte';
-	import IndexScroll from '$lib/Editor/Tags/Shared/IndexScroll.svelte';
+	import IndexScroll from '$lib/Tags/Shared/IndexScroll.svelte';
 
 	import blankTranscript from '$lib/Editor/_functions/blanks/transcript';
 

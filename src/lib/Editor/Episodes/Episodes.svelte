@@ -1,6 +1,5 @@
 <script>
 	import EpisodeList from './EpisodeList/EpisodeList.svelte';
-	import { expandPodcastList } from '$/editor';
 	export let fromChapters = false;
 </script>
 

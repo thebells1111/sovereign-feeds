@@ -38,6 +38,15 @@
 
 	<li
 		on:click={() => {
+			podcastInfoPage = 'support';
+		}}
+		class:active={podcastInfoPage === 'support'}
+	>
+		Support Links
+	</li>
+
+	<li
+		on:click={() => {
 			podcastInfoPage = 'person';
 		}}
 		class:active={podcastInfoPage === 'person'}

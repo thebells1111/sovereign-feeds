@@ -1,5 +1,5 @@
 <script>
-	import Podcast from '$lib/Editor/Tags/Person/PersonEditor.svelte';
+	import Podcast from '$lib/Tags/Person/PersonEditor.svelte';
 	import {
 		rssData,
 		editingEpisode,

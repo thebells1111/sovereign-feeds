@@ -11,7 +11,7 @@
 		selectorList,
 		showSaved
 	} from '$/editor';
-	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 
 	$rightPane = 'episodeMetadata';
 </script>

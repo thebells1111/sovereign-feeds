@@ -1,6 +1,6 @@
 <script>
 	import { editingEpisode, rssData } from '$/editor';
-	import BoostagramChapters from '$lib/Editor/Tags/Chapters/BoostagramChapters.svelte';
+	import BoostagramChapters from '$lib/Tags/Chapters/BoostagramChapters.svelte';
 
 	let blankChapters = {
 		'@type': 'application/json',

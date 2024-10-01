@@ -22,7 +22,6 @@
 
 	import Settings from './Settings.svelte';
 	import Image from '$functions/Image.svelte';
-	import { bind } from 'svelte/internal';
 
 	let titleHeight;
 	export let headerHeight;

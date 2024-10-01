@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import cleanPodcastImages from './images';
-import cleanExperimentalImages from '$lib/Editor/Tags/Images/cleanImages';
+import cleanExperimentalImages from '$lib/Tags/Images/cleanImages';
 import cleanEpisodePerson from './episodePerson';
 import cleanPodcastSocialInteract from './socialInteract';
 import cleanLicense from './license';
-import cleanChat from '$lib/Editor/Tags/Chat/cleanChat';
-import cleanLiveValue from '$lib/Editor/Tags/LiveValue/cleanLiveValue';
-import cleanValueTimeSplit from '$lib/Editor/Tags/ValueSplits/cleanValueTimeSplit';
+import cleanChat from '$lib/Tags/Chat/cleanChat';
+import cleanLiveValue from '$lib/Tags/LiveValue/cleanLiveValue';
+import cleanValueTimeSplit from '$lib/Tags/ValueSplits/cleanValueTimeSplit';
 import cleanAlternateEnclosure from './alternateEnclosure';
 import { get } from 'svelte/store';
 

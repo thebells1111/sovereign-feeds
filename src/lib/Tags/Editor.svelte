@@ -7,14 +7,15 @@
 	import Chapters from './Chapters/Chapters.svelte';
 	import Transcript from './Transcript/Transcript.svelte';
 	import Value from './Value/Value.svelte';
+	import Funding from './Funding/Funding.svelte';
 	import EditShowNotes from './ShowNotes/EditShowNotes.svelte';
 	import Social from './Social/Social.svelte';
 	import Images from './Images/Images.svelte';
 	import ValueSplits from './ValueSplits/ValueSplits.svelte';
 	import AlternateEnclosure from './AlternateEnclosure/AlternateEnclosure.svelte';
-	import initTinyMCE from '$lib/Editor/Tags/ShowNotes/initTinyMCE';
+	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 
-	import { rightPane, showNotesPane } from '$/editor';
+	import { rightPane, showNotesPane, editingEpisode } from '$/editor';
 </script>
 
 <svelte:head>
@@ -47,6 +48,9 @@
 	</div>
 	<div class:hide={$rightPane != 'value'}>
 		<Value />
+	</div>
+	<div class:hide={$rightPane != 'funding'}>
+		<Funding bind:data={$editingEpisode} />
 	</div>
 	<div class:hide={$rightPane != 'images'}>
 		<Images type={'episode'} />

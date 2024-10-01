@@ -1,5 +1,5 @@
 <script>
-	import Value from '$lib/Editor/Tags/Value/Value.svelte';
+	import Value from '$lib/Tags/Value/Value.svelte';
 
 	import {
 		newEditorScreen,

@@ -2,7 +2,7 @@ import clone from '$functions/clone';
 import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
 import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
 import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
-import initializeExperimentalImagesTag from '$lib/Editor/Tags/Images/initializeImages';
+import initializeExperimentalImagesTag from '$lib/Tags/Images/initializeImages';
 import initializeEpisode from '$lib/Editor/_functions/initializeEpisode';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import blankLiveItem from '$lib/Editor/_functions/blanks/liveItem';
@@ -12,9 +12,9 @@ import initializeComplete from '$lib/Editor/_functions/initialize/complete';
 import initializeLocked from '$lib/Editor/_functions/initialize/locked';
 import initializeBlock from '$lib/Editor/_functions/initialize/block';
 import initializeLicenseTag from '$lib/Editor/_functions/initialize/license';
-import initializePodrollTag from '$lib/Editor/Tags/Podroll/initializePodroll';
+import initializePodrollTag from '$lib/Tags/Podroll/initializePodroll';
 import initializeOwnerTag from '$lib/Editor/_functions/initialize/owner';
-import initializeFundingTag from '$lib/Editor/_functions/initialize/funding';
+import initializeFundingTag from '$lib/Tags/Funding/inititalizeFunding';
 
 import { get } from 'svelte/store';
 
@@ -146,7 +146,7 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:license'] = initializeLicenseTag($rssData['podcast:license']);
 	$rssData['podcast:podroll'] = initializePodrollTag($rssData['podcast:podroll']);
 	$rssData['itunes:owner'] = initializeOwnerTag($rssData['itunes:owner']);
-	$rssData['podcast:funding'] = initializeOwnerTag($rssData['podcast:funding']);
+	$rssData['podcast:funding'] = initializeFundingTag($rssData['podcast:funding']);
 
 	let $editingEpisode = get(editingEpisode);
 
