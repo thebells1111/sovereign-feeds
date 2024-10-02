@@ -3,7 +3,6 @@
 
 	import Value from '$lib/Tags/Value/Value.svelte';
 	import FeedArt from './FeedArt.svelte';
-	import Publisher from '$lib/Tags/Publisher/Publisher.svelte';
 	import FeedInfo from './FeedInfo.svelte';
 	import OwnerInfo from './OwnerInfo.svelte';
 	import Funding from '$lib/Tags/Funding/Funding.svelte';
@@ -29,10 +28,6 @@
 </div>
 <div class:hide={podcastInfoPage !== 'showArt'}>
 	<FeedArt />
-</div>
-
-<div class:hide={podcastInfoPage !== 'feedList'}>
-	<Publisher {podcastInfoPage} />
 </div>
 
 <div class:hide={podcastInfoPage !== 'ownerInfo'}>

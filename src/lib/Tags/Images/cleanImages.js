@@ -24,5 +24,7 @@ export default function cleanPodcastImages(data) {
 		if (!data['experimental:images']['@_srcset']) {
 			delete data['experimental:images'];
 		}
+	} else {
+		delete data['experimental:images'];
 	}
 }

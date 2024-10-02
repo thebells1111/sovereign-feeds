@@ -42,7 +42,7 @@
 		}}
 		class:active={podcastInfoPage === 'support'}
 	>
-		Support Links
+		Funding
 	</li>
 
 	<li

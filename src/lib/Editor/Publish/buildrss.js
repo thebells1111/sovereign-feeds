@@ -7,11 +7,13 @@ import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 import cleanItems from '$lib/Editor/_functions/cleanup/items';
 
 import cleanPodcastPerson from '$lib/Editor/_functions/cleanup/podcastPerson';
-import cleanPodcastImages from '$lib/Tags/Images/cleanImages';
 import cleanComplete from '$lib/Editor/_functions/cleanup/complete';
 import cleanLocked from '$lib/Editor/_functions/cleanup/locked';
 import cleanLicense from '$lib/Editor/_functions/cleanup/license';
 import cleanPodroll from '$lib/Tags/Podroll/cleanPodroll';
+import cleanPodcastImages from '../_functions/cleanup/images';
+import cleanExperimentalImages from '$lib/Tags/Images/cleanImages';
+import cleanFunding from '$lib/Tags/Funding/cleanFunding';
 
 import {
 	rssData,
@@ -83,23 +85,28 @@ export default async function buildRSS() {
 	rssDataProxy.lastBuildDate = pubDate;
 
 	createCategory();
+	cleanLink(rssDataProxy);
 	cleanPodcastPerson(rssDataProxy);
 	cleanPodcastValue();
 	cleanPodcastImages(rssDataProxy);
+	cleanExperimentalImages(rssDataProxy);
 	cleanChannelImage();
 	cleanComplete(rssDataProxy);
 	cleanLocked(rssDataProxy);
 	cleanLicense(rssDataProxy);
+	cleanFunding(rssDataProxy);
 	changeGenerator(rssDataProxy);
 	await cleanGuid(rssDataProxy);
 	cleanPodroll(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
-	rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
-	rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
 
-	await cleanItems(rssDataProxy);
+	if (rssDataProxy?.['podcast:medium'] !== 'publisher') {
+		rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
+		rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
 
+		await cleanItems(rssDataProxy);
+	}
 	if (!$xmlJson) {
 		$xmlJson = await getRSSEditorFeed(`${window.location.origin}/blankfeed.xml`);
 	}
@@ -118,7 +125,19 @@ export default async function buildRSS() {
 }
 
 function createCategory() {
-	rssDataProxy.category = rssDataProxy['itunes:category'].map((item) => item['@_text']);
+	if (rssDataProxy?.['itunes:category']?.[0]?.['@_text']) {
+		console.log('bitch');
+		rssDataProxy.category = rssDataProxy['itunes:category'].map((item) => item['@_text']);
+	} else {
+		delete rssDataProxy.category;
+		delete rssDataProxy['itunes:category'];
+	}
+}
+
+function cleanLink(data) {
+	if (!data.link) {
+		delete data.link;
+	}
 }
 
 function cleanPodcastValue() {
@@ -210,10 +229,6 @@ function getDuplicateGuids(episodes) {
 }
 
 async function cleanGuid(rss) {
-	if (rss['podcast:guid'] === 'f556dbfe-a100-47ed-85da-7fc9424d99ad') {
-		rss['podcast:guid'] = '6dfbd8e4-f9f3-5ea1-98a1-574134999b3b';
-	}
-
 	let isValidGuid = checkValidGuid(rss['podcast:guid']);
 
 	if (!isValidGuid) {

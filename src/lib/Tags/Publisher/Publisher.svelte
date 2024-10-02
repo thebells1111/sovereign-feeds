@@ -4,11 +4,11 @@
 	import Delete from '$lib/icons/Delete.svelte';
 	import AddFeed from './AddFeed.svelte';
 
-	export let podcastInfoPage = '';
+	export let reload;
 
 	let publisherFeed = [];
 	let showModal = false;
-	$: if (podcastInfoPage === 'feedList') {
+	$: if (reload) {
 		publisherFeed = [];
 		fetchGuids();
 	}

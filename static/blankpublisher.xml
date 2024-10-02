@@ -16,6 +16,5 @@
                   <link></link>
                   <description>Podcast Description</description>
             </image>
-            <media:thumbnail url='' width='600' height='100' />
       </channel>
 </rss>

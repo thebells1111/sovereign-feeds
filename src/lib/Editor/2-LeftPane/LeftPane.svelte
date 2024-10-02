@@ -86,7 +86,7 @@
 			<li
 				class:active={$currentPage === 'editor'}
 				on:click={() => {
-					if ($rssData?.['podcast:medium'] === 'publisher') {
+					if ($rssData?.['podcast:medium'] !== 'publisher') {
 						$currentPage = 'editor';
 					}
 				}}

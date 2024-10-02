@@ -33,7 +33,7 @@
 </script>
 
 <div class="images-container">
-	<h3>Aspect Ratio Image</h3>
+	<h3>Aspect Ratio Images</h3>
 	<div class="radio-group">
 		{#each data as ratio, srcsetIndex}
 			<label class:selected={selectedRatioIndex === srcsetIndex}>

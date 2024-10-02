@@ -8,6 +8,7 @@ import cleanChat from '$lib/Tags/Chat/cleanChat';
 import cleanLiveValue from '$lib/Tags/LiveValue/cleanLiveValue';
 import cleanValueTimeSplit from '$lib/Tags/ValueSplits/cleanValueTimeSplit';
 import cleanAlternateEnclosure from './alternateEnclosure';
+import cleanFunding from '$lib/Tags/Funding/cleanFunding';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -59,6 +60,7 @@ async function cleanItem(item, data) {
 	cleanChat(item);
 	cleanLiveValue(item);
 	cleanAlternateEnclosure(item);
+	cleanFunding(item);
 
 	if (!item.guid?.['#text']) {
 		item.guid = { '#text': uuidv4(), '@_isPermaLink': false };
