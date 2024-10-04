@@ -1,30 +1,30 @@
 export default function cleanPodcastImages(data) {
-	if (
-		data['experimental:images'] &&
-		data['experimental:images']['@_srcset'] &&
-		typeof data['experimental:images']['@_srcset'] !== 'string'
-	) {
-		data['experimental:images']['@_srcset'] = data['experimental:images']['@_srcset'].filter(
-			(v) => {
-				if (!v.url) {
-					return false;
-				}
-				if (!Number(v.width)) {
-					return false;
-				}
+	// Ensure 'experimental:images' is an array
+	data['experimental:images'] = [].concat(data['experimental:images']).filter(Boolean); // Convert to array and filter out falsy values
 
-				return v;
+	// Clean each image in the array
+	data['experimental:images'] = data['experimental:images']
+		.filter((image) => image && image['@_src']) // Remove images without '@_src'
+		.map((image) => {
+			// Process '@_srcset' if it exists and is not a string
+			if (image['@_srcset'] && Array.isArray(image['@_srcset'])) {
+				if (image['@_srcset'].length > 0) {
+					// Convert array to string if it's not empty
+					image['@_srcset'] = image['@_srcset']
+						.filter((v) => v.url && Number(v.width)) // Filter invalid entries
+						.map((v) => `${v.url} ${v.width}w`) // Format entries
+						.join(', ');
+				} else {
+					// Remove '@_srcset' if the array is empty
+					delete image['@_srcset'];
+				}
 			}
-		);
 
-		data['experimental:images']['@_srcset'] = data['experimental:images']['@_srcset']
-			.map((v) => `${v.url} ${v.width}w`)
-			.join(', ');
+			return image; // Return cleaned image
+		});
 
-		if (!data['experimental:images']['@_srcset']) {
-			delete data['experimental:images'];
-		}
-	} else {
+	// If 'experimental:images' is now an empty array, delete it from data
+	if (data['experimental:images'].length === 0) {
 		delete data['experimental:images'];
 	}
 }
