@@ -1,4 +1,5 @@
 export default function cleanPodcastImages(data) {
+	delete data['experimental:images'];
 	data['podcast:aspectImages'] = [].concat(data['podcast:aspectImages']).filter(Boolean); // Convert to array and filter out falsy values
 	// Clean each image in the array
 	data['podcast:aspectImages'] = data['podcast:aspectImages']
