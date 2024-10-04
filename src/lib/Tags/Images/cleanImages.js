@@ -1,10 +1,8 @@
 export default function cleanPodcastImages(data) {
-	// Ensure 'experimental:images' is an array
-	data[['podcast:aspectImages']= [].concat(data['experimental:images']).filter(Boolean); // Convert to array and filter out falsy values
-['podcast:aspectImages']
-	// Clean eac['podcast:aspectImages']
-	data['experimental:images'] = data['experimental:images']
-		.fil['podcast:aspectImages'] image['@_src']) //['podcast:aspectImages']'@_src'
+	data['podcast:aspectImages'] = [].concat(data['podcast:aspectImages']).filter(Boolean); // Convert to array and filter out falsy values
+	// Clean each image in the array
+	data['podcast:aspectImages'] = data['podcast:aspectImages']
+		.filter((image) => image && image['@_src']) // Remove images without '@_src'
 		.map((image) => {
 			// Process '@_srcset' if it exists and is not a string
 			if (image['@_srcset'] && Array.isArray(image['@_srcset'])) {
@@ -17,14 +15,13 @@ export default function cleanPodcastImages(data) {
 				} else {
 					// Remove '@_srcset' if the array is empty
 					delete image['@_srcset'];
-				}['podcast:aspectImages']['podcast:aspectImages']
+				}
 			}
 
 			return image; // Return cleaned image
-		});['podcast:aspectImages']
-['podcast:aspectImages']
-	// If 'experimental:images' is now an empty array, delete it from data
-	if (data['experimental:images'].length === 0) {
+		});
+
+	if (data['podcast:aspectImages'].length === 0) {
 		delete data['podcast:aspectImages'];
 	}
 }
