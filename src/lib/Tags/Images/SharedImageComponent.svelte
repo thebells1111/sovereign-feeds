@@ -26,7 +26,8 @@
 			'3/1': 'Cover Photo',
 			'16/9': 'Wide Screen',
 			'4/3': 'Standard Screen',
-			'15/1': 'Banner'
+			'6/1': 'Wide Banner',
+			'15/1': 'Narrow Banner'
 		};
 		return commonNames[ratio] || '';
 	}

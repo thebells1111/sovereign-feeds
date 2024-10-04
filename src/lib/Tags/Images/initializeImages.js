@@ -8,7 +8,7 @@ export default function initializeImagesTag(data, type) {
 			: get(rssData)?.['itunes:image']?.['@_href'];
 
 	// Default aspect ratios we need
-	const requiredAspectRatios = ['1/1', '15/1', '3/1', '16/9', '4/3'];
+	const requiredAspectRatios = ['1/1', '6/1',  '3/1', '16/9', '4/3', '15/1'];
 
 	// Initialize or update existing data
 	if (!data || !Array.isArray(data)) data = [];
