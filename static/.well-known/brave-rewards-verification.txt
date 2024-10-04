@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: curiocaster.com
-Token: 96aa82ddbdecd29de77c6b82a81dc971ba61efca26e7a9bf25f68d19dbbbf7b9
