@@ -39,8 +39,8 @@ export default async function initializeEpisode(episode, type) {
 	}
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
-	episode['experimental:images'] = initializeExperimentalImagesTag(
-		episode?.['experimental:images'],
+	episode['podcast:aspectImages'] = initializeExperimentalImagesTag(
+		episode?.['podcast:aspectImages'],
 		'episode'
 	);
 	// This is for adding trackers

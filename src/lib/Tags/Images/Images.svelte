@@ -9,9 +9,9 @@
 {#if $rssData}
 	<div>
 		{#if type === 'episode'}
-			<SharedImageComponent bind:data={$editingEpisode['experimental:images']} />
+			<SharedImageComponent bind:data={$editingEpisode['podcast:aspectImages']} />
 		{:else}
-			<SharedImageComponent bind:data={$rssData['experimental:images']} />
+			<SharedImageComponent bind:data={$rssData['podcast:aspectImages']} />
 		{/if}
 	</div>
 {/if}
