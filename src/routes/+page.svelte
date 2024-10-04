@@ -39,6 +39,7 @@
 		$selectedPodcast.rss = $xmlJson.rss.channel;
 		// $rssData = $xmlJson.rss.channel;
 		await initializeRSSData($selectedPodcast.rss);
+		
 
 		/* add error handling */
 	}

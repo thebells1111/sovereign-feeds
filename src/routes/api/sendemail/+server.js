@@ -1,13 +1,15 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+
 dotenv.config();
 
 const { MAIL_USER, MAIL_PW, MAIL_HOST, MAIL_PORT, JWT, MAIL_LINK } = process.env;
 
-export const post = async (req) => {
-	const body = typeof req.body === 'object' ? req.body : JSON.parse(req.body);
+export async function POST(event) {
+	const body = await event.request.json();
 	const email = body.email;
+
 	if (body.type === 'signin' && email) {
 		const token = jwt.sign({ email: email }, JWT, { expiresIn: '10m' });
 		let transporter = nodemailer.createTransport({
@@ -29,16 +31,13 @@ export const post = async (req) => {
 			html: `<a href="${MAIL_LINK}verify-token?token=${token}">Click here to sign in to your Sovereign Feeds account.</a>` // plain text body
 		};
 
-		let info = await transporter.sendMail(mailOptions);
+		await transporter.sendMail(mailOptions);
 
-		return {
+		return new Response(JSON.stringify({ success: 'Mail Time!!!' }), {
 			status: 200,
-			body: { success: 'Mail Time!!!' }
-		};
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
 	} else {
-		return {
-			status: 200,
-			body: 'No URL provided'
-		};
-	}
-};
+		return new Response(JSON.stringify({ message: 

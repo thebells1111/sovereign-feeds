@@ -1,22 +1,34 @@
 <script>
-	import CodeMirror from "svelte-codemirror-editor";	
+	import CodeMirror from './CodeMirror.svelte';
 	import { basicSetup, EditorView } from 'codemirror';
 	import { xml } from '@codemirror/lang-xml';
 	import { feedText, currentPage } from '$/editor';
+	let store;
 
+	function changeHandler({ detail: { tr } }) {
+		$feedText = $store;
+	}
 
+	$: handleNewText($currentPage);
 
-
+	function handleNewText(page) {
+		setTimeout(() => {
+			if (page === 'manual' && store) {
+				store.set($feedText);
+			}
+		}, 100);
+	}
 </script>
 
 <div class="container">
 	<p>Editing your feed by hand can cause problems if you don't know what you're doing.</p>
 	<div class="code-mirror-container">
-		{#if $feedText}			
-			<CodeMirror 
-			bind:value = {$feedText}
-			lang={xml()} 			
-			extensions={[basicSetup, xml(), EditorView.lineWrapping]}
+		{#if $feedText}
+			<CodeMirror
+				bind:doc={$feedText}
+				bind:docStore={store}
+				extensions={[basicSetup, xml(), EditorView.lineWrapping]}
+				on:change={changeHandler}
 			/>
 		{/if}
 	</div>

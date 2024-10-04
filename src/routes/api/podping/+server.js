@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { error } from '@sveltejs/kit';
 
 if (!process.env.API_KEY) {
 	dotenv.config();
@@ -6,10 +7,10 @@ if (!process.env.API_KEY) {
 
 const { PODPING } = process.env;
 
-export const get = async (request) => {
+export async function GET(event) {
 	try {
 		let options = {
-			method: 'get',
+			method: 'GET',
 			headers: {
 				Authorization: PODPING,
 				'User-Agent': 'Sovereign Feeds'
@@ -17,13 +18,15 @@ export const get = async (request) => {
 		};
 
 		let baseUrl = 'https://podping.cloud/?url=';
-		let feed = request.url.searchParams.get('url');
-		let reason = request.url.searchParams.get('reason');
-		let medium = request.url.searchParams.get('medium');
+		let feed = event.url.searchParams.get('url');
+		let reason = event.url.searchParams.get('reason');
+		let medium = event.url.searchParams.get('medium');
+		let response;
+
 		if (feed) {
-			let url = baseUrl + feed;
+			let url = baseUrl + encodeURIComponent(feed);
 			if (reason) {
-				url = url + `&reason=${reason}`;
+				url += `&reason=${encodeURIComponent(reason)}`;
 			}
 
 			const res = await fetch(url, options);
@@ -34,7 +37,7 @@ export const get = async (request) => {
 			};
 
 			if (response.status === 404) {
-				return { body: 'Fail!' };
+				return new Response('Fail!', { status: 404 });
 			}
 		} else {
 			response = {
@@ -43,12 +46,14 @@ export const get = async (request) => {
 			};
 		}
 
-		return response;
+		return new Response(response.body, { status: response.status });
 	} catch (err) {
 		console.error('podping err: ', err);
-		return {
+		return new Response(JSON.stringify({ message: err.message }), {
 			status: 500,
-			body: { message: err }
-		};
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
 	}
-};
+}
