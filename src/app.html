@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base target="_blank" rel="noopener noreferrer" />
+		<link rel="icon" href="/SF32.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>Sovereign Feeds</title>
+		<link rel="manifest" href="manifest.json" />
+
+		<meta name="description" content="Own your feed, own your life." />
+
+		<meta name="application-name" content="Sovereign Feeds" />
+
+		<script src="/localforage.js"></script>
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap"
+			rel="stylesheet"
+		/>
+
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div id="svelte" style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
