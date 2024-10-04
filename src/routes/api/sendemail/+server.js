@@ -40,4 +40,11 @@ export async function POST(event) {
 			}
 		});
 	} else {
-		return new Response(JSON.stringify({ message: 
+		return new Response(JSON.stringify({ message: 'No URL provided' }), {
+			status: 400,
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+	}
+}
