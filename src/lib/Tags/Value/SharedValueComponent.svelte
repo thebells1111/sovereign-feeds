@@ -95,8 +95,8 @@
 				updateRecipientData(
 					info.pubkey,
 					name + '@getalby.com',
-					info.customData[0].customValue,
-					info.customData[0].customKey
+					info.customData[0]?.customValue,
+					info.customData[0]?.customKey
 				);
 				cancelProviderSubmit();
 			} else {
@@ -116,8 +116,8 @@
 				updateRecipientData(
 					info.pubkey,
 					name + '@fountain.fm',
-					info.customData[0].customValue,
-					info.customData[0].customKey
+					info.customData[0]?.customValue,
+					info.customData[0]?.customKey
 				);
 				cancelProviderSubmit();
 			} else {
@@ -146,8 +146,16 @@
 		let recipient = data['podcast:valueRecipient'][index - 1];
 		recipient['@_address'] = address;
 		recipient['@_name'] = name;
-		recipient['@_customValue'] = customValue;
-		recipient['@_customKey'] = customKey;
+
+		// Only add customValue if it's not blank
+		if (customValue) {
+			recipient['@_customValue'] = customValue;
+		}
+
+		// Only add customKey if it's not blank
+		if (customKey) {
+			recipient['@_customKey'] = customKey;
+		}
 	}
 
 	function cancelProviderSubmit() {
@@ -319,7 +327,9 @@
 		opacity: 0;
 		top: 8px;
 		right: -60%;
-		transition: opacity 0.5s, right 0.5s;
+		transition:
+			opacity 0.5s,
+			right 0.5s;
 	}
 
 	.value-blocks-container {
@@ -329,7 +339,9 @@
 	.show {
 		opacity: 1;
 		right: 0;
-		transition: opacity 0s, right 0.5s;
+		transition:
+			opacity 0s,
+			right 0.5s;
 	}
 
 	.cancel {
