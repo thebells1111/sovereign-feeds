@@ -30,9 +30,7 @@
 		listHeight = sectionHeight - headerHeight;
 	}
 
-	let showEpisodeSorter = true;
-
-	$: console.log($selectedPodcast);
+	let showEpisodeSorter = false;
 </script>
 
 {#if $selectedPodcast?.id}
