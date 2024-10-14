@@ -164,8 +164,8 @@
 				updateRecipientData(
 					info.pubkey,
 					name + '@getalby.com',
-					info.customData[0].customValue,
-					info.customData[0].customKey
+					info.customData[0]?.customValue,
+					info.customData[0]?.customKey
 				);
 				cancelProviderSubmit();
 			} else {
@@ -223,14 +223,22 @@
 	async function updateRecipientData(address, name, customValue, customKey) {
 		console.log($editingEpisode.valueTimeSplit);
 		console.log(activeRecipient);
+
 		activeRecipient['@_address'] = address;
 		activeRecipient['@_name'] = name;
-		activeRecipient['@_customValue'] = customValue;
-		activeRecipient['@_customKey'] = customKey;
+
+		if (customValue) {
+			activeRecipient['@_customValue'] = customValue;
+		}
+
+		if (customKey) {
+			activeRecipient['@_customKey'] = customKey;
+		}
+
 		console.log(activeRecipient);
-		activeRecipient = activeRecipient;
 		$editingEpisode = $editingEpisode;
 		console.log($editingEpisode);
+
 		await delay(10000);
 		$editingEpisode.valueTimeSplit = $editingEpisode.valueTimeSplit;
 		$editingEpisode = $editingEpisode;
