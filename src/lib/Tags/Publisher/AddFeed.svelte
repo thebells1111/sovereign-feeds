@@ -43,9 +43,9 @@
 				let episodesData = await episodesRes.json();
 				let episodes = [].concat(episodesData.items ? episodesData.items : []);
 
-				feed.episodes = episodes;
+				feed.item = episodes;
 
-				episodeResults = feed.episodes || [];
+				episodeResults = feed.item || [];
 				selectedFeed = feed;
 			})
 			.catch((err) => {

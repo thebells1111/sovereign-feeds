@@ -99,7 +99,7 @@
 			$selectedPodcast.rss['podcast:liveItem'] = $episodesList;
 			$liveEpisodes = $episodesList;
 		} else {
-			$selectedPodcast.episodes = $episodesList;
+			$selectedPodcast.item = $episodesList;
 			$selectedPodcast.rss.item = $episodesList;
 			$regularEpisodes = $episodesList;
 		}

@@ -45,7 +45,7 @@
 
 	onMount(async () => {
 		if (!podcast?.episodes) {
-			podcast.episodes = episodes;
+			podcast.item = episodes;
 			$selectedPodcast = podcast;
 			$episodesList = episodes;
 			$filteredEpisodesList = episodes;

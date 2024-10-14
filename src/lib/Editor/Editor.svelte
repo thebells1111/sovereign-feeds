@@ -55,7 +55,7 @@
 				(data) => {
 					if (data[0].status) {
 						let feed = data[0].feed;
-						feed.episodes = data[1].items;
+						feed.item = data[1].items;
 						$selectedPodcast = feed;
 						$rightPane = 'episodeMetadata';
 						getRSSEditorFeed($selectedPodcast.url).then(async (feed) => {

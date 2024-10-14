@@ -25,6 +25,7 @@
 
 	let titleHeight;
 	export let headerHeight;
+	export let showEpisodeSorter = false;
 
 	function handleLiveToggle(liveStatus) {
 		$showLiveEpisodes = liveStatus || false;
@@ -83,6 +84,13 @@
 				}}>Add to Favorites</button
 			>
 		{/if}
+
+		<button
+			class="primary"
+			on:click={() => {
+				showEpisodeSorter = true;
+			}}>Sort Episodes</button
+		>
 
 		<label class="max-episodes"
 			>Max Episodes<NumberInput

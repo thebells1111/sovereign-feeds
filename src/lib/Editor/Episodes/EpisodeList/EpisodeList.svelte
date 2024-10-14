@@ -4,6 +4,8 @@
 	import VirtualList from 'svelte-tiny-virtual-list';
 	import EpisodeListItem from './EpisodeListItem.svelte';
 	import EpisodeListLoadingItems from './EpisodeListLoadingItems.svelte';
+	import Modal from '$lib/Modals/Modal/Modal.svelte';
+	import EpisodeSorter from './EpisodeSorter.svelte';
 
 	import {
 		episodesList,
@@ -27,6 +29,10 @@
 	$: if (sectionHeight && headerHeight) {
 		listHeight = sectionHeight - headerHeight;
 	}
+
+	let showEpisodeSorter = true;
+
+	$: console.log($selectedPodcast);
 </script>
 
 {#if $selectedPodcast?.id}
@@ -34,9 +40,8 @@
 		{#if fromChapters}
 			<MobileHeader bind:headerHeight />
 		{:else}
-			<Header bind:headerHeight />
+			<Header bind:headerHeight bind:showEpisodeSorter />
 		{/if}
-
 		{#if $filteredEpisodesList && $filteredEpisodesList?.length}
 			<div class="list-height">
 				<VirtualList
@@ -68,6 +73,18 @@
 			{/each}
 		{/if}
 	</section>
+{/if}
+
+{#if showEpisodeSorter && $episodesList?.length > 1}
+	<Modal
+		bind:showModal={showEpisodeSorter}
+		onClose={() => {
+			$selectedPodcast.item = $episodesList;
+			$episodesList = $episodesList;
+		}}
+	>
+		<EpisodeSorter bind:episodes={$episodesList} />
+	</Modal>
 {/if}
 
 <style>
