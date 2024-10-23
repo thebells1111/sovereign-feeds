@@ -21,6 +21,7 @@ export async function GET(event) {
 		};
 
 		const xmlJson = parse(feed, parserOptions);
+		console.log(xmlJson);
 
 		if (xmlJson) {
 			return new Response(JSON.stringify(xmlJson), {
@@ -33,7 +34,7 @@ export async function GET(event) {
 			return new Response(null, { status: 304 });
 		}
 	} catch (err) {
-		console.log('getepisodes.js Error:', err);
+		console.log('rsscreator Error:', err);
 		return new Response(null, { status: 500 });
 	}
 }

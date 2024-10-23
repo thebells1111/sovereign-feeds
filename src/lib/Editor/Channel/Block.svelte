@@ -3,6 +3,7 @@
 	let slugList = [];
 	let slugs = [];
 	import Select from 'svelte-select';
+	import { onMount } from 'svelte';
 
 	async function getSlugList() {
 		let res = await fetch(
@@ -11,8 +12,7 @@
 		let data = await res.text();
 		slugList = data.split(/\r?\n/);
 	}
-
-	getSlugList();
+	onMount(getSlugList);
 
 	$: initializeBlockType($rssData?.['podcast:block']);
 

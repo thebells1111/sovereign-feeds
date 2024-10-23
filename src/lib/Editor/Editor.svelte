@@ -53,6 +53,7 @@
 			];
 			Promise.all(urls.map((url) => fetch(url).then((response) => response.json()))).then(
 				(data) => {
+					console.log(data);
 					if (data[0].status) {
 						let feed = data[0].feed;
 						feed.item = data[1].items;
