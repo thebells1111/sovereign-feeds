@@ -6,7 +6,7 @@
 	export let data = {};
 	let index = 1;
 	let activeRecipient = data['podcast:valueRecipient']?.[index - 1];
-	let showValues = false;
+	let showValues = true;
 	let provider = '';
 	let username = '';
 	let noUserFound = false;
@@ -48,6 +48,16 @@
 			}
 		} catch (error) {
 			console.error('Error:', error);
+		}
+	}
+
+	$: shares = getSharesValue(data?.['podcast:valueRecipient']);
+
+	function getSharesValue(recipient) {
+		if (Array.isArray(recipient)) {
+			return recipient.reduce((acc, v) => (v?.['@_fee'] ? acc : acc + Number(v?.['@_split'])), 0);
+		} else {
+			return 0;
 		}
 	}
 
@@ -173,7 +183,7 @@
 				Support Sovereign Feeds! Add us to your Value Block!
 			</button>
 		{/if}
-		<SplitsList bind:data bind:index bind:activeRecipient bind:showValues />
+		<SplitsList bind:data bind:index bind:activeRecipient bind:showValues {shares} />
 		<FeesList bind:data bind:index bind:activeRecipient bind:showValues />
 	</div>
 
@@ -238,7 +248,7 @@
 
 					<div class="split-top">
 						<label class="split-label">
-							<h4>Split</h4>
+							<h4>{data['podcast:valueRecipient'][index - 1]['@_fee'] ? 'Percent' : 'Shares'}</h4>
 
 							<input
 								type="text"
@@ -247,7 +257,7 @@
 							/>
 						</label>
 						<div class="fee">
-							<h4>Fee:</h4>
+							<h4>Fee</h4>
 							<div class="fee-container">
 								<label>
 									<input
@@ -270,8 +280,9 @@
 						</div>
 					</div>
 					<p>
-						for splits and fees, use whole numbers only <br />(99 would receive 99% of the split
-						after fees are paid)
+						{data['podcast:valueRecipient'][index - 1]['@_fee']
+							? 'When fee is selected, the amount is a percent of the boost that is taken off the top before splitting amongst all the other splits. Use whole numbers only.'
+							: "Shares are not percentages, they're shares of the total shares. Use whole numbers only."}
 					</p>
 
 					<label>
@@ -407,24 +418,19 @@
 
 	.fee {
 		display: flex;
+		flex-direction: column;
+		margin-left: 8px;
 	}
 
 	.fee-container {
 		display: flex;
-		padding-left: 8px;
-		padding-right: 8px;
+		padding: 8px;
 	}
 
 	.split-label {
 		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
-	.split-label > input {
-		margin: 0 8px;
-		width: 48px;
+		flex-direction: column;
+		width: 100%;
 	}
 
 	.fee-container > label {

@@ -6,7 +6,7 @@
 	export let index = 1;
 	export let activeRecipient = {};
 	export let showValues = false;
-	export let isEpisode = false;
+	export let shares = 0;
 
 	let blankRecipient = {
 		'@_name': 'New Split',
@@ -18,15 +18,6 @@
 		'@_fee': false
 	};
 
-	$: splits = getSplitValue(data?.['podcast:valueRecipient']);
-
-	function getSplitValue(recipient) {
-		if (Array.isArray(recipient)) {
-			return recipient.reduce((acc, v) => (v?.['@_fee'] ? acc : acc + Number(v?.['@_split'])), 0);
-		} else {
-			return 0;
-		}
-	}
 	function getSplitRecipients(recipients) {
 		if (Array.isArray(recipients)) {
 			return recipients.filter((v) => !v['@_fee']);
@@ -92,16 +83,10 @@
 	}
 </script>
 
-{#if splits !== 100}
-	<p class="split-warning">
-		<Warning color={'red'} size={'2em'} />
-		<span>Remember: Non-fee splits need to add up to 100%</span>
-	</p>
-{/if}
-
 <div class="splits-list">
 	<div class="head">
-		<h4>Splits</h4>
+		<h4>%</h4>
+		<h4>Shares</h4>
 	</div>
 
 	{#if getSplitRecipients(data?.['podcast:valueRecipient'])?.length}
@@ -114,7 +99,8 @@
 					activeRecipient?.['@_customValue'] === r['@_customValue']}
 				on:click={(e) => selectRecipient(r)}
 			>
-				<p>{r['@_split']}%</p>
+				<p>({((r['@_split'] / shares) * 100).toFixed(2)}%)</p>
+				<p>{r['@_split']}</p>
 				<p>{r['@_name']}</p>
 
 				<button on:click|stopPropagation={handleDelete.bind(this, r)} class="delete"
@@ -128,20 +114,10 @@
 
 	{#if getSplitRecipients(data?.['podcast:valueRecipient'])?.length}
 		<div class="splits-list-total">
-			<p
-				style={splits < 100
-					? 'color:red; font-weight:700'
-					: 'color:hsla(292, 100%, 33%, 1); font-weight:700'}
-			>
-				{splits}%
+			<p style="color:hsla(292, 100%, 33%, 1); font-weight:700">
+				{shares}
 			</p>
-			<p
-				style={splits < 100
-					? 'color:red; font-weight:700'
-					: 'color:hsla(292, 100%, 33%, 1); font-weight:700'}
-			>
-				Total Split Percentage
-			</p>
+			<p style="color:hsla(292, 100%, 33%, 1); font-weight:700">Total Shares</p>
 
 			<p class="spacer" />
 		</div>
@@ -149,19 +125,6 @@
 </div>
 
 <style>
-	.split-warning {
-		position: relative;
-		text-align: center;
-	}
-
-	.split-warning > span {
-		position: relative;
-		bottom: 8px;
-		color: red;
-		font-size: 14px;
-		font-weight: 700;
-	}
-
 	.splits-list {
 		padding-bottom: 8px;
 		margin-bottom: 16px;
@@ -172,7 +135,6 @@
 	.head {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 	}
 
 	.head h4 {
@@ -200,12 +162,32 @@
 		align-items: center;
 	}
 	.splits-recepient p:first-of-type,
-	.splits-list-total p:first-of-type {
-		width: 50px;
+	.splits-list-total p:first-of-type,
+	.head h4:first-of-type {
+		width: 90px;
+		max-width: 90px;
 	}
 
-	.splits-recepient p:nth-of-type(2),
+	.head h4:first-of-type {
+		padding-left: 32px;
+	}
+
+	.splits-recepient p:nth-of-type(2) {
+		margin-left: 14px;
+		width: 90px;
+		text-align: left;
+	}
+
+	.splits-list-total p:first-of-type {
+		padding-left: 8px;
+	}
+
 	.splits-list-total p:nth-of-type(2) {
+		width: 200px;
+		text-align: left;
+	}
+	.splits-recepient p:nth-of-type(3),
+	.splits-list-total p:nth-of-type(3) {
 		font-size: 1.1em;
 		font-weight: 600;
 		text-align: left;
