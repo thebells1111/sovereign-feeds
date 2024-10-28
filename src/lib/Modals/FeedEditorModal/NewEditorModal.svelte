@@ -43,7 +43,7 @@
 		</button>
 	</div>
 
-	{#if $rssData?.['podcast:medium'] === 'publisher'}
+	{#if ['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])}
 		<div class:hide={$newEditorScreen !== 'typeSelect'}>
 			<NewPodcastTypeSelect />
 		</div>

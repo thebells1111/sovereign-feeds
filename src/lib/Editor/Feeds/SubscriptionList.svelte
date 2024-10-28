@@ -84,7 +84,7 @@
 		if (podcast.rss) {
 			console.log(podcast);
 			$xmlJson = podcast.xml;
-			if (podcast?.rss?.['podcast:medium'] === 'publisher') {
+			if (['publisher', 'musicL'].find((v) => v === podcast?.rss?.['podcast:medium'])) {
 				await initializePublisherRSS(podcast.rss);
 			} else {
 				await initializeRSSData(podcast.rss);
@@ -93,12 +93,12 @@
 		} else if (!fromChapters) {
 			syncWithFeed(podcast);
 		}
-		if (podcast?.rss?.['podcast:medium'] !== 'publisher') {
-			$editingEpisode = $episodesList[0];
-			$currentPage = 'episodes';
-		} else {
+		if (['publisher', 'musicL'].find((v) => v === podcast?.rss?.['podcast:medium'])) {
 			$editingEpisode = null;
 			$currentPage = 'podcastMetadata';
+		} else {
+			$editingEpisode = $episodesList[0];
+			$currentPage = 'episodes';
 		}
 
 		if (fromChapters) {

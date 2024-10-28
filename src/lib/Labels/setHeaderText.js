@@ -1,10 +1,11 @@
-import getSelectorList from '$lib/Labels/SideSelector/getSelectorList';
+import getSelectorList from '$lib/Labels/HeaderSelector/getSelectorList';
 import getTagHeaders from '$lib/Labels/TagHeaderList/getTagHeaders';
 import getNewEpisodeHeaders from '$lib/Labels/NewEpisodeHeaders/getNewEpisodeHeaders';
+import getLeftPaneSelectorList from '$lib/Labels/LeftPaneSelector/getLeftPaneSelectorList';
 
-import { selectorList, tagHeaders, newEpisodeHeaders } from '$/editor';
+import { selectorList, tagHeaders, newEpisodeHeaders, leftPaneSelector } from '$/editor';
 
-let mediums = ['podcast', 'music', 'publisher'];
+let mediums = ['podcast', 'music', 'publisher', 'musicL'];
 
 export default function setHeaderText(data) {
 	selectorList.set(
@@ -15,6 +16,11 @@ export default function setHeaderText(data) {
 	);
 	newEpisodeHeaders.set(
 		getNewEpisodeHeaders(
+			mediums.includes(data['podcast:medium']) ? data['podcast:medium'] : 'podcast'
+		)
+	);
+	leftPaneSelector.set(
+		getLeftPaneSelectorList(
 			mediums.includes(data['podcast:medium']) ? data['podcast:medium'] : 'podcast'
 		)
 	);

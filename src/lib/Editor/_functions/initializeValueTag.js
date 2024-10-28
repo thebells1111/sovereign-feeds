@@ -13,12 +13,12 @@ export default function initializeValueTag(data) {
 							'@_address': '',
 							'@_customKey': '',
 							'@_customValue': '',
-							'@_split': '',
+							'@_split': '100',
 							'@_fee': ''
 						}
 					]
 				}
-		  ];
+			];
 
 	value.forEach((v) => {
 		if (v['podcast:valueRecipient']) {

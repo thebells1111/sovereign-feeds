@@ -48,7 +48,7 @@ const escapeAttr = (str) =>
 				'>': '&gt;',
 				"'": '&#39;',
 				'"': '&quot;'
-			}[tag])
+			})[tag]
 	);
 
 const escapeTag = (str) => {
@@ -101,7 +101,7 @@ export default async function buildRSS() {
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
 
-	if (rssDataProxy?.['podcast:medium'] !== 'publisher') {
+	if (!['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])) {
 		rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
 		rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
 

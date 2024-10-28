@@ -104,7 +104,7 @@
 				<Episodes />
 			</div>
 		{/if}
-		{#if $rssData?.['podcast:medium'] === 'publisher'}
+		{#if ['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])}
 			<div class:hide={$currentPage !== 'publisherRemoteItems'}>
 				<PublisherRemoteItems />
 			</div>
@@ -125,7 +125,7 @@
 		<div class:hide={$currentPage !== 'podping'}>
 			<Podping />
 		</div>
-		{#if $rssData?.['podcast:medium'] === 'publisher'}
+		{#if ['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])}
 			<div class:hide={$currentPage !== 'podcastMetadata'}>
 				<PublisherMetadata />
 			</div>

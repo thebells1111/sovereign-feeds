@@ -62,6 +62,21 @@
 		$podcastList = $podcastList.concat($selectedPodcast);
 		console.log($podcastList);
 	}
+
+	async function addNewPlaylist() {
+		$selectedPodcast = {
+			title: 'New Playlist',
+			url: `${window.location.origin}/blankplaylist.xml`,
+			id: 'new',
+			image: 'none',
+			artwork: 'none'
+		};
+		let feed = await getRSSEditorFeed(`${window.location.origin}/blankplaylist.xml`);
+		$xmlJson = feed;
+		await initializePublisherRSS();
+		$selectedPodcast.rss = $rssData;
+		$podcastList = $podcastList.concat($selectedPodcast);
+	}
 </script>
 
 <div class="container">
@@ -94,6 +109,14 @@
 				$newEditorScreen = 'publisher';
 				setHeaderText($rssData);
 			}}>Publisher Feed</button
+		>
+		<button
+			class="primary"
+			on:click={async () => {
+				await addNewPlaylist();
+				$newEditorScreen = 'publisher';
+				setHeaderText($rssData);
+			}}>Music Playlist</button
 		>
 	</div>
 </div>

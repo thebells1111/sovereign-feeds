@@ -1,8 +1,9 @@
 import { writable } from 'svelte/store';
 import { browser, dev } from '$app/environment';
-import podcastSelectorList from '$lib/Labels/SideSelector/podcast';
+import headerSelectorList from '$lib/Labels/HeaderSelector/podcast';
 import tagHeadersList from '$lib/Labels/TagHeaderList/podcast';
 import newEpisodeHeadersList from '$lib/Labels/NewEpisodeHeaders/podcast';
+import leftPaneSelectorList from '$lib/Labels/LeftPaneSelector/podcast';
 
 const mode = dev ? 'dev' : 'prod';
 
@@ -80,9 +81,10 @@ export const socialInteractProtocolOptions = writable([
 	'twitter',
 	'lightning'
 ]);
-export const selectorList = writable(podcastSelectorList);
+export const selectorList = writable(headerSelectorList);
 export const tagHeaders = writable(tagHeadersList);
 export const newEpisodeHeaders = writable(newEpisodeHeadersList);
+export const leftPaneSelector = writable(leftPaneSelectorList);
 
 export const showSaved = writable(false);
 export const showServerSending = writable(false);

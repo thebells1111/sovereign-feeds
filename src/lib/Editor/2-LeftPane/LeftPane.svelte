@@ -10,7 +10,8 @@
 		rssData,
 		feedText,
 		xmlJson,
-		editingEpisode
+		editingEpisode,
+		leftPaneSelector
 	} from '$/editor';
 
 	import buildRSS from '../Publish/buildrss';
@@ -56,14 +57,14 @@
 			<span>Favorite Feeds</span>
 		</li>
 		{#if $selectedPodcast.title}
-			{#if $rssData?.['podcast:medium'] === 'publisher'}
+			{#if ['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])}
 				<li
 					class:active={$currentPage === 'publisherRemoteItems'}
 					on:click={() => {
 						$currentPage = 'publisherRemoteItems';
 					}}
 				>
-					<span>Publisher Items</span>
+					<span>{$leftPaneSelector.items}</span>
 				</li>
 			{:else}
 				<li
@@ -72,7 +73,7 @@
 						$currentPage = 'episodes';
 					}}
 				>
-					<span>Episodes</span>
+					<span>{$leftPaneSelector.items}</span>
 				</li>
 			{/if}
 			<li
@@ -81,17 +82,21 @@
 					$currentPage = 'podcastMetadata';
 				}}
 			>
-				<span>{$rssData?.['podcast:medium'] === 'publisher' ? 'Publisher Info' : 'Show Info'}</span>
+				<span>
+					{$leftPaneSelector.channelInfo}
+				</span>
 			</li>
 			<li
 				class:active={$currentPage === 'editor'}
 				on:click={() => {
-					if ($rssData?.['podcast:medium'] !== 'publisher') {
+					if (!['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])) {
 						$currentPage = 'editor';
 					}
 				}}
 			>
-				<span>{$rssData?.['podcast:medium'] === 'publisher' ? ' ' : 'Episode Info'}</span>
+				<span>
+					{$leftPaneSelector.itemInfo}
+				</span>
 			</li>
 			<li
 				class:active={$currentPage === 'manual'}
