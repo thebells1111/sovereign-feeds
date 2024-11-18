@@ -30,7 +30,8 @@ import {
 	maxEpisodes,
 	editorDB,
 	liveEpisodes,
-	regularEpisodes
+	regularEpisodes,
+	currentPage
 } from '$/editor';
 
 const uid = () =>
@@ -90,16 +91,21 @@ export default async function initializeRSSData(data) {
 		rssData.set(clone(get(xmlJson).rss.channel));
 	}
 	let $rssData = get(rssData);
-	$rssData.item = [].concat($rssData.item);
-	regularEpisodes.set(
-		$rssData.item.map((v) => {
-			v.sfID = uid();
-			if (v['itunes:duration']) {
-				v['itunes:duration'] = durationToSeconds(v['itunes:duration']);
-			}
-			return v;
-		})
-	);
+	if ($rssData['podcast:medium'] === 'musicL') {
+		currentPage.set('podcastMetadata');
+	}
+	if ($rssData.item) {
+		$rssData.item = [].concat($rssData.item);
+		regularEpisodes.set(
+			$rssData.item.map((v) => {
+				v.sfID = uid();
+				if (v['itunes:duration']) {
+					v['itunes:duration'] = durationToSeconds(v['itunes:duration']);
+				}
+				return v;
+			})
+		);
+	}
 	if ($rssData['podcast:liveItem']) {
 		$rssData['podcast:liveItem'] = [].concat($rssData['podcast:liveItem']);
 	} else {
@@ -115,8 +121,10 @@ export default async function initializeRSSData(data) {
 	let maxEps = savedData?.maxEpisodes || 1000;
 	episodesList.set(episodes);
 	filteredEpisodesList.set(clone(episodes).slice(0, maxEps));
-	editingEpisode.set($rssData.item[0] || $rssData.item);
-	maxEpisodes.set(maxEps);
+	if ($rssData.item) {
+		editingEpisode.set($rssData.item[0] || $rssData.item);
+		maxEpisodes.set(maxEps);
+	}
 	$rssData['podcast:medium'] = $rssData['podcast:medium'] || 'podcast';
 	setHeaderText($rssData);
 
@@ -151,5 +159,7 @@ export default async function initializeRSSData(data) {
 	let $editingEpisode = get(editingEpisode);
 
 	//Episode
-	initializeEpisode($editingEpisode);
+	if ($rssData.item) {
+		initializeEpisode($editingEpisode);
+	}
 }
