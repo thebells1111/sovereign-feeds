@@ -7,6 +7,7 @@
 	export let activeRecipient = {};
 	export let showValues = false;
 	export let shares = 0;
+	export let paymentType = 'keysend';
 
 	let blankRecipient = {
 		'@_name': 'New Split',
@@ -40,13 +41,15 @@
 	}
 
 	function selectRecipient(recipient) {
-		let i = getRecipientIndex(recipient);
+		if (paymentType === 'keysend') {
+			let i = getRecipientIndex(recipient);
 
-		if (i > -1) {
-			index = i + 1;
-			activeRecipient = recipient;
+			if (i > -1) {
+				index = i + 1;
+				activeRecipient = recipient;
+			}
+			showValues = true;
 		}
-		showValues = true;
 	}
 
 	function handleDelete(recipient) {
@@ -100,8 +103,14 @@
 				on:click={(e) => selectRecipient(r)}
 			>
 				<p>({((r['@_split'] / shares) * 100).toFixed(2)}%)</p>
-				<p>{r['@_split']}</p>
-				<p>{r['@_name']}</p>
+
+				{#if paymentType === 'lnaddress'}
+					<input bind:value={r['@_split']} />
+					<input bind:value={r['@_name']} />
+				{:else}
+					<p>{r['@_split']}</p>
+					<p>{r['@_name']}</p>
+				{/if}
 
 				<button on:click|stopPropagation={handleDelete.bind(this, r)} class="delete"
 					><Delete /></button

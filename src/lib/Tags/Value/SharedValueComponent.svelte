@@ -13,6 +13,7 @@
 	let showProviderInput = false;
 	let showChannelImport = true;
 	export let support = true;
+	export let paymentType = 'keysend';
 
 	// Check if Sovereign Feeds is not added
 	$: noSF = (() => {
@@ -180,7 +181,7 @@
 				Support Sovereign Feeds! Add us to your Value Block!
 			</button>
 		{/if}
-		<SplitsList bind:data bind:index bind:activeRecipient bind:showValues {shares} />
+		<SplitsList bind:data bind:index bind:activeRecipient bind:showValues {shares} {paymentType} />
 		<FeesList bind:data bind:index bind:activeRecipient bind:showValues />
 	</div>
 
