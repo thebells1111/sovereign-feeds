@@ -70,10 +70,13 @@ async function cleanItem(item, data) {
 		delete item.author;
 	}
 
+	console.log(item);
+
+	//status is used for live items, so this filters out live items
 	if (!item['@_status']) {
-		if (!item.enclosure['@_length']) {
+		if (item?.enclosure?.['@_url'] && !item?.enclosure?.['@_length']) {
 			await getEnclosureLength(item);
-			if (!item.enclosure['@_length']) {
+			if (!item?.enclosure?.['@_length']) {
 				item.enclosure['@_length'] = 33;
 			}
 		}
