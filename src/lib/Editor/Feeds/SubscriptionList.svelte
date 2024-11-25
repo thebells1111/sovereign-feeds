@@ -33,8 +33,6 @@
 		remoteServerUrl
 	} from '$/editor';
 
-	$: console.log($podcastList);
-
 	export let fromChapters = false;
 
 	export let showSyncModal = false;
@@ -189,7 +187,7 @@
 				<div class="title" class:selected={podcast.id === $selectedPodcast?.id}>
 					{podcast?.rss?.title || podcast?.title}
 				</div>
-				{#if podcast.id != 'new' && !fromChapters}
+				{#if !podcast?.id?.toString().includes('new') && !fromChapters}
 					<button
 						class="podcast-sync"
 						on:click={() => {

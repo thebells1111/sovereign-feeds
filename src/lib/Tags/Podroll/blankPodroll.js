@@ -1,10 +1,5 @@
 const blankPodroll = {
-	'podcast:remoteItem': [
-		{
-			'@_feedGuid': ''
-			// '@_itemGuid': ''
-		}
-	]
+	'podcast:remoteItem': []
 };
 
 export default blankPodroll;

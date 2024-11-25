@@ -14,9 +14,6 @@
 	let showChannelImport = true;
 	export let support = true;
 
-	$: console.log(data);
-	$: console.log(index);
-	$: console.log(data['podcast:valueRecipient']);
 	// Check if Sovereign Feeds is not added
 	$: noSF = (() => {
 		try {

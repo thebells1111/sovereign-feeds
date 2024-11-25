@@ -16,11 +16,20 @@
 		newEditorScreen
 	} from '$/editor';
 
+	function generateRandomString() {
+		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let result = '';
+		for (let i = 0; i < 8; i++) {
+			result += chars.charAt(Math.floor(Math.random() * chars.length));
+		}
+		return result;
+	}
+
 	async function addNewFeed() {
 		$selectedPodcast = {
 			title: 'New Podcast',
 			url: `${window.location.origin}/blankfeed.xml`,
-			id: 'new',
+			id: 'new' + generateRandomString(),
 			image: 'none',
 			artwork: 'none',
 			episodes: [
@@ -47,7 +56,7 @@
 		$selectedPodcast = {
 			title: 'New Publisher Feed',
 			url: `${window.location.origin}/blankpublisher.xml`,
-			id: 'new',
+			id: 'new' + generateRandomString(),
 			image: 'none',
 			artwork: 'none'
 		};
@@ -67,7 +76,7 @@
 		$selectedPodcast = {
 			title: 'New Playlist',
 			url: `${window.location.origin}/blankplaylist.xml`,
-			id: 'new',
+			id: 'new' + generateRandomString(),
 			image: 'none',
 			artwork: 'none'
 		};

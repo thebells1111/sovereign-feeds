@@ -85,6 +85,8 @@ export default async function initializeRSSData(data) {
 	console.log(get(selectedPodcast));
 	let savedData = await editorDB.getItem(`${get(selectedPodcast).id}`);
 
+	console.log(savedData);
+
 	if (data) {
 		rssData.set(data);
 	} else {

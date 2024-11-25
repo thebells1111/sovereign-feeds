@@ -1,4 +1,5 @@
 <script>
+	import clone from 'just-clone';
 	import LeftPane from './2-LeftPane/LeftPane.svelte';
 	import Episodes from './Episodes/Episodes.svelte';
 	import Editor from '$lib/Tags/Editor.svelte';
@@ -35,15 +36,22 @@
 	let rssChangeTimeout;
 
 	$: if ($rssData) {
+		saveFeed();
+	}
+
+	function saveFeed() {
 		clearTimeout(rssChangeTimeout);
 		rssChangeTimeout = setTimeout(() => {
+			let i = $podcastList.findIndex(({ id }) => id === $selectedPodcast.id);
+			$selectedPodcast.rss = $rssData;
+			$podcastList[i] = $selectedPodcast;
+			$podcastList = $podcastList;
 			editorDB.setItem('favorites', $podcastList);
-			console.log($rssData);
 		}, 1000);
 	}
 
 	async function syncWithFeed(podcast) {
-		if (podcast.id) {
+		if (!podcast?.id?.toString().includes('new')) {
 			isSyncing = true;
 			let urls = [
 				remoteServerUrl + `/api/queryindex?q=podcasts/byfeedid?id=` + podcast.id,
@@ -88,7 +96,6 @@
 			isSyncing = false;
 		}
 	}
-	$: console.log($rssData);
 </script>
 
 <div class="container">

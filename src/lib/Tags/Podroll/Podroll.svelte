@@ -1,6 +1,12 @@
 <script>
 	import Modal from '$lib/Modals/Modal/Modal.svelte';
-	import { rssData, remoteServerUrl, podcastSearchResults, selectedPodcast } from '$/editor';
+	import {
+		rssData,
+		remoteServerUrl,
+		podcastSearchResults,
+		selectedPodcast,
+		podcastList
+	} from '$/editor';
 	import PodcastSearch from '$lib/Editor/Feeds/PodcastSearch.svelte';
 	import SearchBar from '$lib/Editor/Feeds/Header/PodcastListHeader.svelte';
 	import Delete from '$lib/icons/Delete.svelte';
@@ -11,6 +17,7 @@
 	let showModal = false;
 
 	$: if (podcastInfoPage === 'podroll') {
+		console.log('podroll');
 		roll = [];
 		fetchGuids();
 	}
@@ -21,6 +28,12 @@
 			$rssData?.['podcast:podroll']?.['podcast:remoteItem'] || []
 		).concat({ '@_feedGuid': podcast.podcastGuid, '@_feedUrl': podcast.url });
 		roll = roll.concat(podcast);
+		console.log($rssData['podcast:podroll']);
+
+		$rssData = $rssData;
+		$podcastList = $podcastList;
+		console.log($podcastList);
+		console.log(roll);
 		showModal = false;
 		onClose();
 	}
@@ -30,6 +43,7 @@
 	}
 
 	async function fetchGuids() {
+		console.log($rssData?.['podcast:podroll']);
 		if ($rssData && $rssData?.['podcast:podroll']?.['podcast:remoteItem']) {
 			let guids = [].concat($rssData?.['podcast:podroll']?.['podcast:remoteItem']);
 			console.log(guids);
@@ -68,8 +82,8 @@
 
 {#each roll as item, i}
 	<div>
-		<img width="60" src={item.artwork} />
-		<p>{item.title}</p>
+		<img width="60" src={item?.artwork} />
+		<p>{item?.title}</p>
 		<button class="delete" on:click={deleteRoll.bind(this, i)}>
 			<Delete size="30" />
 		</button>

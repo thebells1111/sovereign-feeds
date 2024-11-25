@@ -6,8 +6,6 @@
 	import Link from '$lib/Editor/Channel/Components/Link/Link.svelte';
 
 	import { rssData, newEditorScreen } from '$/editor';
-
-	$: console.log($rssData);
 </script>
 
 <div class="overflow-container">

@@ -14,8 +14,6 @@
 		newEpisodeHeaders,
 		tagHeaders
 	} from '$/editor';
-
-	// $: console.log($rssData);
 </script>
 
 <div class="container">
@@ -47,6 +45,7 @@
 		padding: 8px;
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 	}
 
 	button {
