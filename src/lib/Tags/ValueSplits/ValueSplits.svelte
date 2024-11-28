@@ -1,7 +1,8 @@
 <script>
 	import Modal from '$lib/Modals/Modal/Modal.svelte';
-	import initializeValueTimeSplit from './initializeValueTimeSplit';
-	import { remoteServerUrl, editingEpisode, liveEpisodes } from '$/editor';
+	import initializeValueTimeSplit from '$lib/Tags/ValueSplits/initializeValueTimeSplit';
+	import SplitWallet from './SplitWallet.svelte';
+	import { remoteServerUrl, editingEpisode } from '$/editor';
 
 	let isImporting = false;
 
@@ -9,12 +10,8 @@
 	let badValueBlocks = [];
 	let badDurationBlocks = [];
 
-	let provider = '';
-	let username = '';
-	let noUserFound = false;
 	let showProviderInput = false;
 	let showImportModal = false;
-	let activeRecipient;
 	let liveValueLink;
 	async function loadBlocks() {
 		let guid = stripGUID(liveValueLink);
@@ -73,7 +70,7 @@
 								return {
 									'@_name': v.name,
 									'@_split': v.split,
-									'@_type': 'node',
+									'@_type': v.type,
 									'@_address': v.address,
 									'@_customValue': v.customValue,
 									'@_customKey': v.customKey
@@ -108,7 +105,7 @@
 								'@_startTime': '',
 								'@_duration': '',
 								'@_remotePercentage': '',
-								valueRecipient: []
+								'podcast:valueRecipient': []
 							}
 						]
 					}
@@ -128,162 +125,19 @@
 		return null;
 	};
 
-	async function handleProviderSelect(providerName, tsindex, index) {
-		showProviderInput = true;
-		provider = providerName;
-		username = '';
-		activeRecipient = $editingEpisode.valueTimeSplit[tsindex]['podcast:valueRecipient'][index];
-
-		$editingEpisode = $editingEpisode;
-	}
-
-	async function handleProviderSubmit() {
-		noUserFound = false;
-		let name = username.split('@');
-		if (!name[0]) {
-			name.shift();
-		}
-
-		const providers = {
-			Alby: handleAlbySubmit,
-			Fountain: handleFountainSubmit,
-			'v4v.app': handleV4vAppSubmit
-		};
-
-		if (providers.hasOwnProperty(provider)) {
-			await providers[provider](name[0]);
-		}
-	}
-
-	async function handleAlbySubmit(name) {
-		try {
-			let res = await fetch(`https://getalby.com/.well-known/keysend/${name}`);
-			let info = await res.json();
-
-			if (info.status === 'OK') {
-				updateRecipientData(
-					info.pubkey,
-					name + '@getalby.com',
-					info.customData[0]?.customValue,
-					info.customData[0]?.customKey
-				);
-				cancelProviderSubmit();
-			} else {
-				throw new Error();
-			}
-		} catch (error) {
-			console.log(error);
-			noUserFound = true;
-		}
-	}
-
-	async function handleFountainSubmit(name) {
-		try {
-			let res = await fetch('https://api.fountain.fm/v1/content/lookup', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ username: name })
-			});
-			let info = await res.json();
-
-			if (!info?.keysend?.customValue) {
-				throw new Error();
-			}
-
-			if (info?.username) {
-				updateRecipientData(
-					info.keysend.address,
-					info.keysend.name,
-					info.keysend.customValue,
-					info.keysend.customKey
-				);
-				cancelProviderSubmit();
-			}
-		} catch (error) {
-			noUserFound = true;
-		}
-	}
-
-	async function handleV4vAppSubmit(name) {
-		if (name) {
-			updateRecipientData(
-				'0266ad2656c7a19a219d37e82b280046660f4d7f3ae0c00b64a1629de4ea567668',
-				name,
-				name,
-				818818
-			);
-			cancelProviderSubmit();
-		} else {
-			noUserFound = true;
-		}
-	}
-
-	async function updateRecipientData(address, name, customValue, customKey) {
-		console.log($editingEpisode.valueTimeSplit);
-		console.log(activeRecipient);
-
-		activeRecipient['@_address'] = address;
-		activeRecipient['@_name'] = name;
-
-		if (customValue) {
-			activeRecipient['@_customValue'] = customValue;
-		}
-
-		if (customKey) {
-			activeRecipient['@_customKey'] = customKey;
-		}
-
-		console.log(activeRecipient);
-		$editingEpisode = $editingEpisode;
-		console.log($editingEpisode);
-
-		await delay(10000);
-		$editingEpisode.valueTimeSplit = $editingEpisode.valueTimeSplit;
-		$editingEpisode = $editingEpisode;
-
-		await delay(5000);
-		console.log('delayed');
-
-		function delay(ms) {
-			return new Promise((resolve) => setTimeout(resolve, ms));
-		}
-	}
-
-	function cancelProviderSubmit() {
-		showProviderInput = false;
-		provider = '';
-		username = '';
-		noUserFound = false;
-	}
-
 	function addRecipient(ts) {
 		ts['podcast:valueRecipient'] = ts?.['podcast:valueRecipient'] || [];
 
 		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
 			'@_name': '',
 			'@_split': '',
-			'@_type': 'node',
+			'@_type': 'lnaddress',
 			'@_address': '',
 			'@_customValue': '',
 			'@_customKey': ''
 		});
 
 		$editingEpisode = $editingEpisode;
-	}
-
-	function deleteAddress(ts, index) {
-		let confirmation = confirm('Are you sure you want to delete this recipient?');
-
-		if (confirmation) {
-			ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].filter((v, i) => i !== index);
-			if (ts['podcast:valueRecipient']?.length === 0) {
-				addRecipient(ts);
-			} else {
-				$editingEpisode = $editingEpisode;
-			}
-		}
 	}
 
 	async function addSplit() {
@@ -298,7 +152,7 @@
 						'@_startTime': '',
 						'@_duration': '',
 						'@_remotePercentage': '',
-						valueRecipient: []
+						'podcast:valueRecipient': []
 					}
 				]
 			}
@@ -364,8 +218,8 @@
 			<remote-block>
 				<title>
 					<h3>
-						{ts.feed || 'Custom Value'}
-						{ts.item ? ` - ${ts.item}` : ''}
+						{ts?.feed || 'Custom Value'}
+						{ts?.item ? ` - ${ts.item}` : ''}
 					</h3>
 					<button class="primary delete" on:click={deleteSplit.bind(this, tsindex)}
 						><span>Delete Split</span></button
@@ -402,80 +256,15 @@
 						>Add Recipient</button
 					>
 				</value-header>
-				{#if ts['podcast:valueRecipient']?.length > 0}
+				{#if ts?.['podcast:valueRecipient']?.length > 0}
 					{#each ts['podcast:valueRecipient'] as vr, index}
-						<value-top>
-							<label>
-								<h4>Name</h4>
-								<input bind:value={vr['@_name']} />
-							</label>
-							<label>
-								<h4>Split</h4>
-								<input bind:value={vr['@_split']} />
-							</label>
-						</value-top>
-						<label>
-							<h4>Lightning Address</h4>
-							<input bind:value={vr['@_address']} />
-						</label>
-
-						<value-bottom>
-							<label>
-								<h4>Custom Value</h4>
-								<input bind:value={vr['@_customValue']} />
-							</label>
-							<label>
-								<h4>Custom Key</h4>
-								<input bind:value={vr['@_customKey']} />
-							</label>
-						</value-bottom>
-						<providers>
-							<button
-								class="provider alby"
-								on:click={handleProviderSelect.bind(this, 'Alby', tsindex, index)}
-							>
-								<img src="alby.png" />
-								<span>Use Alby</span>
-							</button>
-							<button
-								class="provider fountain"
-								on:click={handleProviderSelect.bind(this, 'Fountain', vr)}
-							>
-								<img src="fountain.png" />
-								<span>Use Fountain</span>
-							</button>
-							<button
-								class="provider v4vapp"
-								on:click={handleProviderSelect.bind(this, 'v4v.app', vr)}
-							>
-								<img src="v4vapp.webp" />
-								<span>Use v4v.app</span>
-							</button>
-							<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
-								<span>Delete <br /> Recpient</span>
-							</button>
-						</providers>
+						<SplitWallet bind:data={vr} {index} bind:ts {tsindex} bind:showProviderInput />
 					{/each}
 				{/if}
 			</remote-block>
 		{/each}
 	{/if}
 </container>
-
-{#if showProviderInput}
-	<Modal bind:showModal={showProviderInput}>
-		<div class="wallet-provider">
-			<input bind:value={username} placeholder={`Enter Your ${provider} User Name`} />
-			<div class="wallet-provider-button-container">
-				<button class="submit-provider primary" on:click={handleProviderSubmit}>Submit</button>
-				<button class="cancel-provider primary" on:click={cancelProviderSubmit}>Cancel</button>
-			</div>
-			{#if noUserFound}
-				<p>That username doesn't exist.</p>
-			{/if}
-		</div>
-	</Modal>
-{/if}
 
 {#if showImportModal}
 	<Modal bind:showModal={showImportModal}>
@@ -548,22 +337,10 @@
 		display: flex;
 	}
 
-	value-top {
-		display: flex;
-	}
-
-	value-bottom {
-		display: flex;
-	}
-
 	select-container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-	}
-
-	select-component {
-		flex: 1;
 	}
 
 	select-container button {
@@ -593,40 +370,6 @@
 		margin: 0;
 	}
 
-	.wallet-provider {
-		margin: 16px 32px 32px 32px;
-		height: 120px;
-	}
-
-	.wallet-provider input {
-		margin-bottom: 8px;
-	}
-
-	button.provider {
-		margin: 0 0 8px 8px;
-		width: 140px;
-		font-weight: 600;
-		border-radius: 20px;
-		padding: 0;
-		display: inline-flex;
-		padding: 0 4px;
-		align-items: center;
-	}
-
-	button.alby {
-		background-color: hsl(41, 92%, 65%);
-	}
-
-	button.fountain {
-		background-color: hsl(225, 7%, 11%);
-		color: white;
-	}
-
-	button.v4vapp {
-		background-color: hsl(0, 0%, 0%);
-		color: white;
-	}
-
 	button.delete {
 		align-items: center;
 		justify-content: center;
@@ -643,44 +386,12 @@
 		);
 	}
 
-	button > img {
-		height: 30px;
-	}
-
-	button.v4vapp > img {
-		padding: 0 6px 0 0;
-	}
-
-	button.alby > img {
-		height: 28px;
-		padding-left: 4px;
-	}
-
-	button.alby > span {
-		width: 100%;
-	}
-
 	button.add-rec {
 		background-image: linear-gradient(
 			to bottom,
 			hsla(197, 100%, 43.7%, 1),
 			hsla(197, 100%, 26.7%, 1)
 		);
-	}
-
-	button.cancel-provider {
-		background-image: linear-gradient(
-			to bottom,
-			hsla(352, 100%, 43.7%, 1),
-			hsla(352, 100%, 26.7%, 1)
-		);
-	}
-
-	providers {
-		margin: 8px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 
 	.split-kit-import {

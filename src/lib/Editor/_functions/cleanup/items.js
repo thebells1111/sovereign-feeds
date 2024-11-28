@@ -9,6 +9,7 @@ import cleanLiveValue from '$lib/Tags/LiveValue/cleanLiveValue';
 import cleanValueTimeSplit from '$lib/Tags/ValueSplits/cleanValueTimeSplit';
 import cleanAlternateEnclosure from './alternateEnclosure';
 import cleanFunding from '$lib/Tags/Funding/cleanFunding';
+import cleanValue from '$lib/Tags/Value/cleanValue';
 import { get } from 'svelte/store';
 
 import { selectedPodcast, trackerDB } from '$/editor';
@@ -17,21 +18,21 @@ let alerted = false;
 let confirmed = false;
 let trackers;
 
-export default async function cleanItems(data) {
+export default async function cleanItems(channel) {
 	trackers = (await trackerDB.getItem(`${get(selectedPodcast).url}`)) || { active: [] };
 
-	if (data.item) {
-		for (let item of data.item) {
-			await cleanItem(item, data);
+	if (channel.item) {
+		for (let item of channel.item) {
+			await cleanItem(item, channel);
 		}
 	}
 
-	if (data['podcast:liveItem']) {
-		data['podcast:liveItem'] = data['podcast:liveItem'].filter((v) => {
+	if (channel['podcast:liveItem']) {
+		channel['podcast:liveItem'] = channel['podcast:liveItem'].filter((v) => {
 			return v?.enclosure?.['@_url'];
 		});
-		if (data['podcast:liveItem'].length > 0) {
-			for (let item of data['podcast:liveItem']) {
+		if (channel['podcast:liveItem'].length > 0) {
+			for (let item of channel['podcast:liveItem']) {
 				console.log('liveItem: ', item);
 				await cleanItem(item);
 				await cleanLiveItem(item);
@@ -39,20 +40,21 @@ export default async function cleanItems(data) {
 				//add cleaners for liveItem
 			}
 		} else {
-			delete data['podcast:liveItem'];
+			delete channel['podcast:liveItem'];
 		}
 	}
 	alerted = false;
 	confirmed = false;
 }
 
-async function cleanItem(item, data) {
+async function cleanItem(item, channel) {
 	delete item.sfID;
 
 	// handleTrackers(item);
 	cleanPodcastSocialInteract(item);
 	cleanEpisodePerson(item);
-	cleanEpisodeValue(item, data);
+	cleanValueTimeSplit(item, channel);
+	cleanValue(item);
 	cleanEpisodeTranscript(item);
 	cleanPodcastImages(item);
 	cleanExperimentalImages(item);
@@ -146,8 +148,6 @@ async function cleanItem(item, data) {
 	} else {
 		delete item['podcast:chapters'].boostagrams;
 	}
-
-	cleanValueTimeSplit(item);
 }
 
 async function handleTrackers(item) {
@@ -235,60 +235,6 @@ function processLiveItemTimes(item) {
 	item['@_end'] = new Date(t + addTime).toISOString();
 }
 
-function cleanEpisodeValue(item, data) {
-	if (item?.['podcast:value']) {
-		if (item?.['podcast:value']?.['podcast:valueRecipient']) {
-			item['podcast:value']['podcast:valueRecipient'] = [].concat(
-				item['podcast:value']['podcast:valueRecipient']
-			);
-		} else if (item['podcast:value']?.['podcast:valueTimeSplit']) {
-			item['podcast:value']['@_method'] = data['podcast:value']['@_method'];
-			item['podcast:value']['@_suggested'] = data['podcast:value']['@_suggested'];
-			item['podcast:value']['@_type'] = data['podcast:value']['@_type'];
-			item['podcast:value']['podcast:valueRecipient'] = [].concat(
-				data['podcast:value']['podcast:valueRecipient']
-			);
-		}
-
-		item['podcast:value']['podcast:valueRecipient'] = item['podcast:value'][
-			'podcast:valueRecipient'
-		]?.filter((v) => {
-			if (!v?.['@_name']) {
-				delete v['@_name'];
-			}
-			if (!v?.['@_customKey']) {
-				delete v['@_customKey'];
-			}
-			if (!v?.['@_customValue']) {
-				delete v['@_customValue'];
-			}
-			if (!v?.['@_fee']) {
-				delete v['@_fee'];
-			}
-			if (!v?.['@_address'] || !v['@_split']) {
-				return false;
-			}
-			//use this to update address for SF
-			if (
-				v['@_address'] === '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3' &&
-				v['@_customValue'] === 'eChoVKtO1KujpAA5HCoB'
-			) {
-				v['@_address'] = '035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8';
-				delete v['@_customKey'];
-				delete v['@_customValue'];
-			}
-			return v;
-		});
-		if (
-			(!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_address'] ||
-				!item?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_split']) &&
-			!item['podcast:value']?.['podcast:valueTimeSplit']
-		) {
-			delete item['podcast:value'];
-		}
-	}
-}
-
 function cleanEpisodeTranscript(item) {
 	if (item['podcast:transcript']) {
 		item['podcast:transcript'] = [].concat(item['podcast:transcript']).filter((v) => {
@@ -326,9 +272,9 @@ async function getDuration(item) {
 				resolve();
 			});
 
-			// Once the metadata has been loaded, display the duration in the console
+			// Once the metachannel has been loaded, display the duration in the console
 			a.addEventListener(
-				'loadedmetadata',
+				'loadedmetachannel',
 				function () {
 					console.log(a);
 					console.log(a.duration);

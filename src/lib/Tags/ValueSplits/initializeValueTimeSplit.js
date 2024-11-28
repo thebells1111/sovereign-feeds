@@ -55,11 +55,11 @@ export default async function initializeValueTimeSplit(episode) {
 				'@_startTime': '',
 				'@_duration': '',
 				'@_remotePercentage': '',
-				valueRecipient: [
+				'podcast:valueRecipient': [
 					{
 						'@_name': '',
 						'@_address': '',
-						'@_type': 'node',
+						'@_type': 'lnaddress',
 						'@_customKey': '',
 						'@_customValue': '',
 						'@_split': ''

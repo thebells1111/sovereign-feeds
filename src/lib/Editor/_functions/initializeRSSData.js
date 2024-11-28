@@ -1,6 +1,6 @@
 import clone from '$functions/clone';
 import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
-import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
+import initializeValueTag from '$lib/Tags/Value/initializeValueTag';
 import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
 import initializeExperimentalImagesTag from '$lib/Tags/Images/initializeImages';
 import initializeEpisode from '$lib/Editor/_functions/initializeEpisode';

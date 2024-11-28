@@ -1,7 +1,7 @@
 <script>
 	import SharedValueComponent from '$lib/Tags/Value/SharedValueComponent.svelte';
 	import { rssData, editingEpisode, duplicateEditorScreen, newEpisodeHeaders } from '$/editor';
-	import blankValue from '$lib/Editor/_functions/blanks/value';
+	import blankValue from '$lib/Tags/Value/cleanValue';
 	import clone from 'just-clone';
 
 	let episodeValueBlock1 = $editingEpisode?.['podcast:value']?.['podcast:valueRecipient']?.[0];
@@ -13,7 +13,7 @@
 		if (!block['podcast:valueRecipient'][0]) {
 			block['podcast:valueRecipient'][0] = {
 				'@_name': '',
-				'@_type': 'node',
+				'@_type': 'lnaddress',
 				'@_address': '',
 				'@_customKey': '',
 				'@_customValue': '',

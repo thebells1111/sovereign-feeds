@@ -1,6 +1,6 @@
 import clone from '$functions/clone';
 import initializePersonTag from './initializePersonTag';
-import initializeValueTag from './initializeValueTag';
+import initializeValueTag from '$lib/Tags/Value/initializeValueTag';
 import initializeSocialInteractTag from './initialize/socialInteract';
 import initializeTranscriptTag from './initialize/transcript';
 import initializeImagesTag from './initialize/images';

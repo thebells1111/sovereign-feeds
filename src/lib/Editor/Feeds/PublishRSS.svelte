@@ -10,6 +10,7 @@
 
 	import cleanPodcastPerson from '../_functions/cleanup/podcastPerson';
 	import cleanPodcastSocial from '../_functions/cleanup/social';
+	import cleanValue from '$lib/Tags/Value/cleanValue';
 
 	import { rssData, episodesList, maxEpisodes } from '$/editor';
 
@@ -54,7 +55,7 @@
 		rssDataProxy.lastBuildDate = pubDate;
 		cleanPodcastSocial(rssDataProxy);
 		cleanPodcastPerson(rssDataProxy);
-		cleanPodcastValue();
+		cleanValue(rssDataProxy);
 
 		delete rssDataProxy.item;
 		rssDataProxy.item = clone($episodesList).splice(0, $maxEpisodes);
@@ -74,35 +75,6 @@
 		// see FileSaver.js
 		saveAs(content, 'example.zip');
 		// initializeRSSData();
-	}
-
-	function cleanPodcastValue() {
-		if (rssDataProxy['podcast:value']) {
-			if (
-				!rssDataProxy['podcast:value']['podcast:valueRecipient'][0]['@_address'] ||
-				!rssDataProxy['podcast:value']['podcast:valueRecipient'][0]['@_split']
-			) {
-				delete rssDataProxy['podcast:value'];
-			} else {
-				rssDataProxy['podcast:value']['podcast:valueRecipient'] = rssDataProxy['podcast:value'][
-					'podcast:valueRecipient'
-				].filter((v) => {
-					if (!v['@_name']) {
-						delete v['@_name'];
-					}
-					if (!v['@_customKey']) {
-						delete v['@_customKey'];
-					}
-					if (!v['@_customValue']) {
-						delete v['@_customValue'];
-					}
-					if (!v['@_fee']) {
-						delete v['@_fee'];
-					}
-					return v;
-				});
-			}
-		}
 	}
 </script>
 

@@ -14,6 +14,7 @@ import cleanPodroll from '$lib/Tags/Podroll/cleanPodroll';
 import cleanPodcastImages from '../_functions/cleanup/images';
 import cleanExperimentalImages from '$lib/Tags/Images/cleanImages';
 import cleanFunding from '$lib/Tags/Funding/cleanFunding';
+import cleanValue from '$lib/Tags/Value/cleanValue';
 
 import {
 	rssData,
@@ -87,7 +88,7 @@ export default async function buildRSS() {
 	createCategory();
 	cleanLink(rssDataProxy);
 	cleanPodcastPerson(rssDataProxy);
-	cleanPodcastValue();
+	cleanValue(rssDataProxy);
 	cleanPodcastImages(rssDataProxy);
 	cleanExperimentalImages(rssDataProxy);
 	cleanChannelImage();
@@ -137,47 +138,6 @@ function createCategory() {
 function cleanLink(data) {
 	if (!data.link) {
 		delete data.link;
-	}
-}
-
-function cleanPodcastValue() {
-	if (rssDataProxy['podcast:value']) {
-		rssDataProxy['podcast:value']['podcast:valueRecipient'] = rssDataProxy['podcast:value'][
-			'podcast:valueRecipient'
-		].filter((v) => {
-			if (!v['@_name']) {
-				delete v['@_name'];
-			}
-			if (!v['@_customKey']) {
-				delete v['@_customKey'];
-			}
-			if (!v['@_customValue']) {
-				delete v['@_customValue'];
-			}
-			if (!v['@_fee']) {
-				delete v['@_fee'];
-			}
-			if (!v['@_address'] || !v['@_split']) {
-				return false;
-			}
-			//use this to update address for SF
-			if (
-				v['@_address'] === '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3' &&
-				v['@_customValue'] === 'eChoVKtO1KujpAA5HCoB'
-			) {
-				v['@_address'] = '035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8';
-				delete v['@_customKey'];
-				delete v['@_customValue'];
-			}
-			return v;
-		});
-	}
-
-	if (
-		!rssDataProxy?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_address'] ||
-		!rssDataProxy?.['podcast:value']?.['podcast:valueRecipient']?.[0]?.['@_split']
-	) {
-		delete rssDataProxy['podcast:value'];
 	}
 }
 

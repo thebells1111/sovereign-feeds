@@ -1,6 +1,6 @@
 <script>
 	import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
-	import initializeValueTag from '$lib/Editor/_functions/initializeValueTag';
+	import initializeValueTag from '$lib/Tags/Value/initializeValueTag';
 	import initializeSocialInteractTag from '$lib/Editor/_functions/initialize/socialInteract';
 	import initializeEpisodeGuid from '$lib/Editor/_functions/initialize/episodeGuid';
 	import blankLiveEpisode from '$lib/Editor/_functions/blanks/liveItem';

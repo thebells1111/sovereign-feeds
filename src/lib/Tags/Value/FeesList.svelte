@@ -6,7 +6,7 @@
 	export let activeRecipient = {};
 	let blankRecipient = {
 		'@_name': 'New Fee',
-		'@_type': 'node',
+		'@_type': 'lnaddress',
 		'@_address': '',
 		'@_customKey': '',
 		'@_customValue': '',
