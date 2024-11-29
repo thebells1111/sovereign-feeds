@@ -1,5 +1,4 @@
 <script>
-	import clone from 'just-clone';
 	import LeftPane from './2-LeftPane/LeftPane.svelte';
 	import Episodes from './Episodes/Episodes.svelte';
 	import Editor from '$lib/Tags/Editor.svelte';
