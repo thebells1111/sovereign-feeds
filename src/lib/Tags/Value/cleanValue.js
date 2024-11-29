@@ -18,10 +18,11 @@ export default function cleanValue(data) {
 			if (!v['@_name']) {
 				delete v['@_name'];
 			}
-			if (v['@type'] === 'lnaddress' || !v['@_customKey']) {
+			console.log(v['@_type']);
+			if (v['@_type'] === 'lnaddress' || !v['@_customKey']) {
 				delete v['@_customKey'];
 			}
-			if (v['@type'] === 'lnaddress' || !v['@_customValue']) {
+			if (v['@_type'] === 'lnaddress' || !v['@_customValue']) {
 				delete v['@_customValue'];
 			}
 			if (!v['@_fee']) {

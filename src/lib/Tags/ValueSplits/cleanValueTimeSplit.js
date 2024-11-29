@@ -53,10 +53,10 @@ export default async function cleanValueTimeSplit(item, channel) {
 						} else {
 							split['podcast:valueRecipient'] = v['podcast:valueRecipient']
 								.map((v) => {
-									if (v['@_node'] === 'lnaddress' || !v['@_customValue']) {
+									if (v['@_type'] === 'lnaddress' || !v['@_customValue']) {
 										delete v['@_customValue'];
 									}
-									if (v['@_node'] === 'lnaddress' || !v['@_customKey']) {
+									if (v['@_type'] === 'lnaddress' || !v['@_customKey']) {
 										delete v['@_customKey'];
 									}
 									if (v['@_address']) {

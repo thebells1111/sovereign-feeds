@@ -3,7 +3,7 @@
 	import BoostagramChapters from '$lib/Tags/Chapters/BoostagramChapters.svelte';
 
 	let blankChapters = {
-		'@type': 'application/json',
+		'@_type': 'application/json',
 		'@_url': ''
 	};
 
