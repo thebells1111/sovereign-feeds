@@ -6,6 +6,7 @@
 	import Feeds from './Feeds/Feeds.svelte';
 	import Webhooks from './Webhooks/Webhooks.svelte';
 	import Manual from './Manual/Manual.svelte';
+	import UpdateValueBlock from './UpdateValueBlock/UpdateValueBlock.svelte';
 	import Publish from './Publish/Publish.svelte';
 	import Podping from './Podping/PodPing.svelte';
 	import PodcastMetadata from './Channel/Channel.svelte';
@@ -144,6 +145,11 @@
 		{#if $currentPage === 'webhooks'}
 			<div>
 				<Webhooks />
+			</div>
+		{/if}
+		{#if $currentPage === 'updateValueBlock'}
+			<div>
+				<UpdateValueBlock />
 			</div>
 		{/if}
 	</div>

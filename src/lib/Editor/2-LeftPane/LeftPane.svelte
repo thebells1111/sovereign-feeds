@@ -141,6 +141,15 @@
 			>
 				<span>Web Hooks</span>
 			</li>
+			<li
+				class:active={$currentPage === 'updateValueBlock'}
+				class="webhooks"
+				on:click={() => {
+					$currentPage = 'updateValueBlock';
+				}}
+			>
+				<span>Value Block Updater</span>
+			</li>
 		{/if}
 	</ul>
 	{#if !$selectedPodcast.title}
