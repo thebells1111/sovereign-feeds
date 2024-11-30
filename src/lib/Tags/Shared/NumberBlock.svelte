@@ -1,5 +1,5 @@
 <script>
-	export let data = {};
+	export let data;
 	export let index = 1;
 	export let title = '';
 	export let min = 0;
