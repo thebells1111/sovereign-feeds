@@ -16,5 +16,4 @@ export default function cleanPodroll(data) {
 	if (!data?.['podcast:podroll']?.['podcast:remoteItem']?.length) {
 		delete data['podcast:podroll'];
 	}
-	console.log(data?.['podcast:podroll']);
 }

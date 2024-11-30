@@ -20,7 +20,8 @@
 		currentPage,
 		liveEpisodes,
 		regularEpisodes,
-		valueAudioItem
+		valueAudioItem,
+		rssData
 	} from '$/editor';
 
 	import { showMobile } from '$/stores';
@@ -58,6 +59,7 @@
 		$editingIndex = episodeIndex;
 		await initializeEpisode($editingEpisode, $showLiveEpisodes ? 'live' : null);
 		$editingEpisode = $editingEpisode;
+		console.log($rssData);
 
 		if (!window?.tinymce?.activeEditor && !fromChapters) {
 			initTinyMCE();

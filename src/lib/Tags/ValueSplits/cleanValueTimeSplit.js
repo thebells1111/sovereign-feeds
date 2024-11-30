@@ -1,9 +1,7 @@
 export default async function cleanValueTimeSplit(item, channel) {
 	if (item?.['podcast:value']) {
 		let vts = item?.valueTimeSplit;
-		console.log(vts);
 		if (vts) {
-			console.log(item['podcast:value']);
 			item['podcast:value'] = (() => {
 				const valueRecipients = [].concat(
 					item?.['podcast:value']?.['podcast:valueRecipient'] || []
@@ -23,11 +21,16 @@ export default async function cleanValueTimeSplit(item, channel) {
 				);
 			}
 
+			if (!item['podcast:value']?.['@_type']) {
+				item['podcast:value']['@_type'] = 'lightning';
+				item['podcast:value']['@_method'] = 'keysend';
+				item['podcast:value']['@_suggested'] = '0.00000005000';
+			}
+
 			let splits = []
 				.concat(vts)
 				.map((v) => {
 					let split = {};
-					console.log(v);
 					if (v['@_startTime']) {
 						split['@_startTime'] = v['@_startTime'];
 					} else {

@@ -18,7 +18,6 @@ export default function cleanValue(data) {
 			if (!v['@_name']) {
 				delete v['@_name'];
 			}
-			console.log(v['@_type']);
 			if (v['@_type'] === 'lnaddress' || !v['@_customKey']) {
 				delete v['@_customKey'];
 			}
@@ -43,6 +42,12 @@ export default function cleanValue(data) {
 			}
 			return true;
 		});
+
+		if (!data['podcast:value']?.['@_type']) {
+			data['podcast:value']['@_type'] = 'lightning';
+			data['podcast:value']['@_method'] = 'keysend';
+			data['podcast:value']['@_suggested'] = '0.00000005000';
+		}
 
 		if (
 			!data['podcast:value']['podcast:valueRecipient']?.[0]?.['@_address'] ||

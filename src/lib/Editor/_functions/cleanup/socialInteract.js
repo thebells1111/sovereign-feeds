@@ -2,7 +2,6 @@ export default function cleanPodcastSocialInteract(data) {
 	if (data['podcast:socialInteract']) {
 		data['podcast:socialInteract'] = [].concat(data['podcast:socialInteract']).filter((v, i) => {
 			if (!v['@_uri']) {
-				console.log(v);
 				if (v['#text']) {
 					v['@_uri'] = v['#text'];
 				} else {
