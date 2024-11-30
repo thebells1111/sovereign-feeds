@@ -53,6 +53,7 @@ export default async function initializePublisherRSS(data) {
 		selectedChannelPersonGroups.update((r) => r.concat(v['@_group']?.toLowerCase() || 'cast'));
 	});
 
+	console.log('initializePublishRSS');
 	$rssData['podcast:value'] = initializeValueTag($rssData['podcast:value']);
 	$rssData['itunes:category'] = initializeCategories($rssData['itunes:category']);
 	$rssData['podcast:locked'] = initializeLocked($rssData['podcast:locked']);

@@ -1,4 +1,5 @@
 export default function initializeValueTag(data) {
+	console.log(data);
 	let value = data
 		? [].concat(data)
 		: [
@@ -38,7 +39,10 @@ export default function initializeValueTag(data) {
 		}
 	});
 
+	console.log(value);
+
 	value = value.find((v) => v?.['@_type'] === 'lightning');
 
+	console.log(value);
 	return value;
 }

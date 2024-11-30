@@ -57,6 +57,7 @@
 
 		let newEp;
 
+		console.log('CreateEpisode');
 		if (type === 'copy') {
 			newEp = clone($episodesList[0]);
 			newEp.title = newEp.title + ' - Copy';
