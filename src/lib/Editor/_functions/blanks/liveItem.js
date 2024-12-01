@@ -22,7 +22,6 @@ const liveItem = {
 	'podcast:liveValue': { '@_uri': '', '@_protocol': 'socket.io' },
 	author: null,
 	description: '',
-	duration: null,
 	enclosure: { '@_length': null, '@_type': null, '@_url': null },
 	guid: { '#text': null, '@_isPermaLink': false },
 	'itunes:image': { '@_href': null },
