@@ -1,19 +1,28 @@
 <script>
+	import { onMount } from 'svelte';
+	import RecepientEditor from './RecepientEditor.svelte';
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
 	import { podcastList } from '$/editor';
+	import Modal from '$lib/Modals/Modal/Modal.svelte';
 	let feeds = [];
 	let uniqueAddresses = [];
 	let selectedFeed = null;
+	let showModal = false;
+	let selectedPerson;
 	$: console.log(feeds);
 
-	getAllAddresses($podcastList).then((list) => {
-		console.log(list);
-		console.log(feeds);
+	onMount(fetchAddresses);
 
-		uniqueAddresses = getUniqueObjects(list);
-		console.log(uniqueAddresses);
-		feeds = feeds;
-	});
+	function fetchAddresses() {
+		getAllAddresses($podcastList).then((list) => {
+			console.log(list);
+			console.log(feeds);
+
+			uniqueAddresses = getUniqueObjects(list);
+			console.log(uniqueAddresses);
+			feeds = feeds;
+		});
+	}
 
 	async function getAllAddresses(list) {
 		let allAddresses = [];
@@ -44,10 +53,11 @@
 				const compositeKey = `${item['@_address']}-${item['@_customValue'] || ''}-${item['@_customKey'] || ''}`;
 				if (!uniqueMap.has(compositeKey)) {
 					uniqueMap.set(compositeKey, {
-						name: item['@_name'] || null,
-						address: item['@_address'],
-						customValue: item['@_customValue'] || null,
-						customKey: item['@_customKey'] || null
+						['@_name']: item['@_name'] || null,
+						['@_address']: item['@_address'],
+						['@_customValue']: item['@_customValue'] || null,
+						['@_customKey']: item['@_customKey'] || null,
+						['@_type']: item['@_type'] || null
 					});
 				}
 			}
@@ -64,46 +74,53 @@
 			if (
 				feed.addresses.findIndex(
 					(v) =>
-						v.address === address.address &&
-						v.customValue === address.customValue &&
-						v.customKey === address.customKey
+						v['@_address'] === address['@_address'] &&
+						v['@_customValue'] === address['@_customValue'] &&
+						v['@_customKey'] === address['@_customKey']
 				) > -1
 			) {
 				console.log('found');
-				console.log(address.address);
+				console.log(address['@_address']);
 				podcasts += `${feed.feed.title}, `;
 			}
 		});
 		return podcasts;
 	}
 
+	function selectPerson(person) {
+		console.log(person);
+		selectedPerson = person;
+		showModal = true;
+	}
+
 	function updateAddresses(address) {
 		feeds.forEach((feed) => {
-			console.log(feed.feed);
-			console.log(feed?.feed?.['podcast:value']?.['podcast:valueRecipient']);
-			if (feed?.feed?.['podcast:value']?.['podcast:valueRecipient']) {
-				feed.feed['podcast:value']['podcast:valueRecipient'] = feed.feed['podcast:value'][
-					'podcast:valueRecipient'
-				].map((v) => {
-					console.log(
-						v['@_address'] === address.address &&
-							v?.['@_customValue'] == address.customValue &&
-							v?.['@_customKey'] == address.customKey
-					);
-					if (
-						v['@_address'] === address.address &&
-						v?.['@_customValue'] == address.customValue &&
-						v?.['@_customKey'] == address.customKey
-					) {
-						v['@_address'] = 'dude@dude.com';
-						delete v['@_customValue'];
-						delete v['@_customKey'];
-					}
-					return v;
-				});
-			}
+			updateSingleAddress(feed?.feed, address);
+			let items = [].concat(feed?.feed?.item || []);
+			items.forEach((item) => {
+				updateSingleAddress(item, address);
+			});
 		});
 		console.log(feeds);
+	}
+
+	function updateSingleAddress(data, address, newAddress) {
+		if (data?.['podcast:value']?.['podcast:valueRecipient']) {
+			data['podcast:value']['podcast:valueRecipient'] = data['podcast:value'][
+				'podcast:valueRecipient'
+			].map((v) => {
+				if (
+					v['@_address'] === address['@_address'] &&
+					v?.['@_customValue'] == address['@_customValue'] &&
+					v?.['@_customKey'] == address['@_customKey']
+				) {
+					v['@_address'] = 'dude@dude.com';
+					delete v['@_customValue'];
+					delete v['@_customKey'];
+				}
+				return v;
+			});
+		}
 	}
 
 	const handleSelectFeed = (event) => {
@@ -127,11 +144,17 @@
 </div>
 <ul>
 	{#each uniqueAddresses as address}
-		<li on:click={updateAddresses.bind(this, address)}>
-			{address['name']} - {findPodcasts(address)}
+		<li on:click={selectPerson.bind(this, address)}>
+			{address['@_name']} - {findPodcasts(address)}
 		</li>
 	{/each}
 </ul>
+
+{#if showModal}
+	<Modal bind:showModal>
+		<RecepientEditor bind:selectedPerson />
+	</Modal>
+{/if}
 
 <style>
 	.dropdown {
