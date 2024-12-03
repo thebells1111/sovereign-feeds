@@ -34,13 +34,11 @@
 		if ($rssData && $rssData['podcast:remoteItem']) {
 			let guids = [].concat($rssData['podcast:remoteItem']);
 			for (let i = 0; i < guids.length; i++) {
-				console.log($selectedPodcast.title);
 				if (guids[i]['@_feedGuid']) {
 					try {
 						let item = await fetchEpisodes(guids[i]['@_feedGuid'], guids[i]['@_itemGuid']);
 						if (item) {
 							publisherFeed[i] = item;
-							console.log(item);
 							$rssData['podcast:remoteItem'][i]['@_feedUrl'] = item.url;
 						}
 					} catch (err) {

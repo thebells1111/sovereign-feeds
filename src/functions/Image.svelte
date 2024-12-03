@@ -1,8 +1,8 @@
 <script>
-	export let src;
-	export let style;
-	export let alt;
-	export let errorImg;
+	export let src = '';
+	export let style = '';
+	export let alt = '';
+	export let errorImg = '';
 	let img;
 
 	import { proxy } from '$/editor';

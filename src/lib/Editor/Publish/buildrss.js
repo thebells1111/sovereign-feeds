@@ -105,7 +105,6 @@ export default async function buildRSS() {
 	if (!['publisher', 'musicL'].find((v) => v === $rssData?.['podcast:medium'])) {
 		rssDataProxy['podcast:liveItem'] = clone($liveEpisodes).splice(0, get(maxEpisodes));
 		rssDataProxy.item = clone($regularEpisodes).splice(0, $maxEpisodes);
-
 		await cleanItems(rssDataProxy);
 	}
 	if (!$xmlJson) {
@@ -127,7 +126,6 @@ export default async function buildRSS() {
 
 function createCategory() {
 	if (rssDataProxy?.['itunes:category']?.[0]?.['@_text']) {
-		console.log('bitch');
 		rssDataProxy.category = rssDataProxy['itunes:category'].map((item) => item['@_text']);
 	} else {
 		delete rssDataProxy.category;

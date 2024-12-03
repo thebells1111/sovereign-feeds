@@ -24,8 +24,6 @@
 	export let imgSrc;
 	let imageUrl;
 
-	$: console.log('src: ', imgSrc);
-
 	function handleInput(e) {
 		if (imgSrc.hasOwnProperty('url')) {
 			imgSrc.url = e.target.value;

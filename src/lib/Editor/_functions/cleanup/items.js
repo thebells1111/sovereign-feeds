@@ -33,7 +33,6 @@ export default async function cleanItems(channel) {
 		});
 		if (channel['podcast:liveItem'].length > 0) {
 			for (let item of channel['podcast:liveItem']) {
-				console.log('liveItem: ', item);
 				await cleanItem(item);
 				await cleanLiveItem(item);
 
@@ -71,8 +70,6 @@ async function cleanItem(item, channel) {
 	if (!item.author) {
 		delete item.author;
 	}
-
-	console.log(item);
 
 	//status is used for live items, so this filters out live items
 	if (!item['@_status']) {
@@ -257,7 +254,6 @@ function cleanEpisodeTranscript(item) {
 }
 
 async function getDuration(item) {
-	console.log(item);
 	if (item?.enclosure?.['@_url']) {
 		return new Promise((resolve, reject) => {
 			// Create a non-dom allocated Audio element
@@ -276,11 +272,8 @@ async function getDuration(item) {
 			a.addEventListener(
 				'loadedmetachannel',
 				function () {
-					console.log(a);
-					console.log(a.duration);
 					let duration = a.duration;
 					item['itunes:duration'] = Math.round(duration);
-					console.log(item['itunes:duration']);
 
 					a.remove();
 					resolve();

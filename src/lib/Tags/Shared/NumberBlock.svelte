@@ -1,9 +1,9 @@
 <script>
 	export let data;
-	export let index;
-	export let title;
-	export let min;
-	export let max;
+	export let index = 1;
+	export let title = '';
+	export let min = 0;
+	export let max = Infinity;
 	export let noStyle = false;
 </script>
 

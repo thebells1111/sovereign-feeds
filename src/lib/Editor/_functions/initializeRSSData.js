@@ -148,6 +148,7 @@ export default async function initializeRSSData(data) {
 		selectedChannelPersonGroups.update((r) => r.concat(v['@_group']?.toLowerCase() || 'cast'));
 	});
 
+	console.log('initializeRSSData');
 	$rssData['podcast:value'] = initializeValueTag($rssData['podcast:value']);
 	$rssData['itunes:category'] = initializeCategories($rssData['itunes:category']);
 	$rssData['podcast:complete'] = initializeComplete($rssData['podcast:complete']);

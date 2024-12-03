@@ -46,6 +46,8 @@ export default async function initializeEpisode(episode, type) {
 	// This is for adding trackers
 	// episode.enclosure = await initializeEnclosure(episode?.enclosure);
 
+	console.log('initializeEpisode');
+	console.log(clone(episode));
 	episode['podcast:value'] = initializeValueTag(episode['podcast:value']);
 	if (!episode.valueTimeSplit) {
 		episode.valueTimeSplit = await initializeValueTimeSplit(episode);
@@ -71,7 +73,6 @@ export default async function initializeEpisode(episode, type) {
 		episode['@_status'] = episode['@_status'].toLowerCase();
 		episode['@_start'] = initializeLiveTime(episode);
 		episode['podcast:liveValue'] = initializeLiveValue(episode['podcast:liveValue']);
-		console.log(episode);
 
 		if (episode['@_liveValueLink']) {
 			console.log(episode['@_liveValueLink']);
@@ -79,5 +80,4 @@ export default async function initializeEpisode(episode, type) {
 			delete episode['@_liveValueLink'];
 		}
 	}
-	console.log(episode);
 }

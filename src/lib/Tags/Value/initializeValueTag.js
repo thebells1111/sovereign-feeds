@@ -21,6 +21,11 @@ export default function initializeValueTag(data) {
 			];
 
 	value.forEach((v) => {
+		if (!v['@_type']) {
+			v['@_type'] = 'lightning';
+			v['@_method'] = 'keysend';
+			v['@_suggested'] = '0.00000005000';
+		}
 		if (v['podcast:valueRecipient']) {
 			v['podcast:valueRecipient'] = [].concat(v['podcast:valueRecipient']);
 		} else {
