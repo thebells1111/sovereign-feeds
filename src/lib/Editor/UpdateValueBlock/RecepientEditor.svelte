@@ -1,8 +1,12 @@
 <script>
+	import clone from 'just-clone';
 	import Keysend from './Keysend.svelte';
 	import LNAdress from './LNAddress.svelte';
 
 	export let selectedPerson = {};
+	let originalPerson = clone(selectedPerson);
+	export let updatePerson = () => {};
+	let showProviderInput = false;
 </script>
 
 <div class="value-input-container">
@@ -19,11 +23,18 @@
 			</label>
 		</div>
 
-		{#if selectedPerson['@_type'] === 'node'}
-			<Keysend bind:selectedPerson />
-		{:else if selectedPerson['@_type'] === 'lnaddress'}
-			<LNAdress bind:selectedPerson />
-		{/if}
+		<section>
+			{#if selectedPerson['@_type'] === 'node'}
+				<Keysend bind:selectedPerson bind:showProviderInput />
+			{:else if selectedPerson['@_type'] === 'lnaddress'}
+				<LNAdress bind:selectedPerson />
+			{/if}
+		</section>
+		<button
+			class="primary"
+			class:hide={showProviderInput}
+			on:click={updatePerson.bind(this, originalPerson, selectedPerson)}>Update Person</button
+		>
 	{/if}
 </div>
 
@@ -45,7 +56,7 @@
 	}
 
 	.value-input-container {
-		height: 450px;
+		height: 400px;
 		width: 60%;
 		min-width: 700px;
 		display: flex;
@@ -55,5 +66,18 @@
 		overflow: auto;
 		margin: 8px;
 		background-color: white;
+	}
+
+	section {
+		flex: 1;
+		width: 100%;
+	}
+
+	button {
+		margin-bottom: 8px;
+	}
+
+	.hide {
+		display: none;
 	}
 </style>

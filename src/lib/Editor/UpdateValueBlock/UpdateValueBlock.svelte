@@ -67,10 +67,8 @@
 	}
 
 	function findPodcasts(address) {
-		console.log(address);
 		let podcasts = '';
 		feeds.forEach((feed) => {
-			console.log(feed);
 			if (
 				feed.addresses.findIndex(
 					(v) =>
@@ -79,8 +77,6 @@
 						v['@_customKey'] === address['@_customKey']
 				) > -1
 			) {
-				console.log('found');
-				console.log(address['@_address']);
 				podcasts += `${feed.feed.title}, `;
 			}
 		});
@@ -93,30 +89,53 @@
 		showModal = true;
 	}
 
-	function updateAddresses(address) {
+	function updatePerson(originalPerson, selectedPerson) {
+		let person = uniqueAddresses.find(
+			(v) =>
+				v['@_address'] === originalPerson['@_address'] &&
+				v?.['@_customValue'] == originalPerson['@_customValue'] &&
+				v?.['@_customKey'] == originalPerson['@_customKey']
+		);
+
+		person['@_name'] = selectedPerson['@_name'];
+		person['@_address'] = selectedPerson['@_address'];
+		person['@_type'] = selectedPerson['@_type'];
+		person['@_customValue'] = selectedPerson['@_customValue'];
+		person['@_customKey'] = selectedPerson['@_customKey'];
+		person.updated = true;
+		uniqueAddresses = uniqueAddresses;
+
 		feeds.forEach((feed) => {
-			updateSingleAddress(feed?.feed, address);
+			updateSingleAddress(feed?.feed, originalPerson, selectedPerson);
 			let items = [].concat(feed?.feed?.item || []);
 			items.forEach((item) => {
-				updateSingleAddress(item, address);
+				updateSingleAddress(item, originalPerson, selectedPerson);
 			});
 		});
 		console.log(feeds);
+		showModal = false;
 	}
 
-	function updateSingleAddress(data, address, newAddress) {
+	function updateSingleAddress(data, originalPerson, selectedPerson) {
 		if (data?.['podcast:value']?.['podcast:valueRecipient']) {
 			data['podcast:value']['podcast:valueRecipient'] = data['podcast:value'][
 				'podcast:valueRecipient'
 			].map((v) => {
 				if (
-					v['@_address'] === address['@_address'] &&
-					v?.['@_customValue'] == address['@_customValue'] &&
-					v?.['@_customKey'] == address['@_customKey']
+					v['@_address'] === originalPerson['@_address'] &&
+					v?.['@_customValue'] == originalPerson['@_customValue'] &&
+					v?.['@_customKey'] == originalPerson['@_customKey']
 				) {
-					v['@_address'] = 'dude@dude.com';
-					delete v['@_customValue'];
-					delete v['@_customKey'];
+					v['@_name'] = selectedPerson['@_name'];
+					v['@_address'] = selectedPerson['@_address'];
+					v['@_type'] = selectedPerson['@_type'];
+					if (selectedPerson?.['@_type'] === 'lnaddress') {
+						delete v['@_customValue'];
+						delete v['@_customKey'];
+					} else if (selectedPerson?.['@_type'] === 'node') {
+						v['@_customValue'] = selectedPerson['@_customValue'];
+						v['@_customKey'] = selectedPerson['@_customKey'];
+					}
 				}
 				return v;
 			});
@@ -143,16 +162,16 @@
 	{/if}
 </div>
 <ul>
-	{#each uniqueAddresses as address}
-		<li on:click={selectPerson.bind(this, address)}>
-			{address['@_name']} - {findPodcasts(address)}
+	{#each uniqueAddresses as person}
+		<li on:click={selectPerson.bind(this, person)}>
+			{person['@_name']} - {findPodcasts(person)}{person.updated ? ' - updated' : ''}
 		</li>
 	{/each}
 </ul>
 
 {#if showModal}
 	<Modal bind:showModal>
-		<RecepientEditor bind:selectedPerson />
+		<RecepientEditor bind:selectedPerson {updatePerson} />
 	</Modal>
 {/if}
 
