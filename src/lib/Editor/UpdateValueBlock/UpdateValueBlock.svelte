@@ -1,25 +1,59 @@
 <script>
+	import parser from 'fast-xml-parser';
+	import pkg from 'file-saver';
+	const { saveAs } = pkg;
+
 	import { onMount } from 'svelte';
 	import RecepientEditor from './RecepientEditor.svelte';
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
-	import { podcastList } from '$/editor';
 	import Modal from '$lib/Modals/Modal/Modal.svelte';
+
+	import { podcastList, showBuildingRSS } from '$/editor';
 	let feeds = [];
-	let uniqueAddresses = [];
+	let uniqueAddresses = null;
 	let selectedFeed = null;
 	let showModal = false;
 	let selectedPerson;
 	$: console.log(feeds);
 
+	let js2xml = new parser.j2xParser({
+		attributeNamePrefix: '@_',
+		//attrNodeName: false,
+		textNodeName: '#text',
+		ignoreAttributes: false,
+		ignoreNameSpace: false,
+		format: true,
+		indentBy: '  ',
+		supressEmptyNode: true,
+		attrValueProcessor: (val, attrName) => escapeAttr(`${val}`),
+		tagValueProcessor: (val, tagName) => escapeTag(`${val}`)
+	});
+
+	const escapeAttr = (str) =>
+		str.replace(
+			/[&<>'"]/g,
+			(tag) =>
+				({
+					'&': '&amp;',
+					'<': '&lt;',
+					'>': '&gt;',
+					"'": '&#39;',
+					'"': '&quot;'
+				})[tag]
+		);
+
+	const escapeTag = (str) => {
+		if (str.match(/[&<>'"]/g)) {
+			return '<![CDATA[' + str + ']]>';
+		}
+		return str;
+	};
+
 	onMount(fetchAddresses);
 
 	function fetchAddresses() {
 		getAllAddresses($podcastList).then((list) => {
-			console.log(list);
-			console.log(feeds);
-
 			uniqueAddresses = getUniqueObjects(list);
-			console.log(uniqueAddresses);
 			feeds = feeds;
 		});
 	}
@@ -80,11 +114,11 @@
 				podcasts += `${feed.feed.title}, `;
 			}
 		});
-		return podcasts;
+
+		return podcasts.replace(/, $/, '');
 	}
 
 	function selectPerson(person) {
-		console.log(person);
 		selectedPerson = person;
 		showModal = true;
 	}
@@ -112,7 +146,6 @@
 				updateSingleAddress(item, originalPerson, selectedPerson);
 			});
 		});
-		console.log(feeds);
 		showModal = false;
 	}
 
@@ -142,11 +175,29 @@
 		}
 	}
 
-	const handleSelectFeed = (event) => {
+	function handleSelectFeed(event) {
 		const selectedIndex = event.target.value;
 		selectedFeed = feeds[selectedIndex] ? feeds[selectedIndex].feed : null;
 		console.log(`Selected feed:`, selectedFeed);
-	};
+	}
+
+	function publishFeed() {
+		$showBuildingRSS = true;
+		let xmlFile = js2xml.parse(selectedFeed);
+		if (!xmlFile) {
+			$showBuildingRSS = false;
+			return;
+		}
+		let date = new Date();
+		let d = date.toLocaleString('en-US', { hour12: false });
+		var blob = new Blob([xmlFile], { type: 'text/plain;charset=utf-8' });
+
+		saveAs(
+			blob,
+			`${selectedFeed?.title} - ${d.replace(/\//g, '-').replace(',', '').replace(/:/g, '.')}.xml`
+		);
+		$showBuildingRSS = false;
+	}
 </script>
 
 <div class="dropdown">
@@ -158,16 +209,21 @@
 		{/each}
 	</select>
 	{#if selectedFeed}
-		<button class="primary"> Publish </button>
+		<button class="primary" on:click={publishFeed}> Publish </button>
 	{/if}
 </div>
-<ul>
-	{#each uniqueAddresses as person}
-		<li on:click={selectPerson.bind(this, person)}>
-			{person['@_name']} - {findPodcasts(person)}{person.updated ? ' - updated' : ''}
-		</li>
-	{/each}
-</ul>
+<h4>Update a person:</h4>
+{#if uniqueAddresses}
+	<ul>
+		{#each uniqueAddresses as person}
+			<li on:click={selectPerson.bind(this, person)}>
+				{person['@_name']} - {findPodcasts(person)}{person.updated ? ' - updated' : ''}
+			</li>
+		{/each}
+	</ul>
+{:else}
+	Loading Recepients
+{/if}
 
 {#if showModal}
 	<Modal bind:showModal>
@@ -195,9 +251,9 @@
 		cursor: pointer;
 	}
 
-	.dropdown-feedback {
-		margin-top: 8px;
-		font-style: italic;
-		color: #555;
+	li {
+		margin: 4px 0;
+		font-weight: 600;
+		cursor: pointer;
 	}
 </style>
