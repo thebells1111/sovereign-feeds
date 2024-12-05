@@ -11,6 +11,8 @@
 	import { podcastList, showBuildingRSS } from '$/editor';
 	let feeds = [];
 	let uniqueAddresses = null;
+	let filteredAddresses = [];
+	let searchInput = '';
 	let selectedFeed = null;
 	let showModal = false;
 	let selectedPerson;
@@ -54,6 +56,7 @@
 	function fetchAddresses() {
 		getAllAddresses($podcastList).then((list) => {
 			uniqueAddresses = getUniqueObjects(list);
+			filteredAddresses = uniqueAddresses;
 			feeds = feeds;
 		});
 	}
@@ -97,7 +100,7 @@
 			}
 		});
 
-		return Array.from(uniqueMap.values());
+		return Array.from(uniqueMap.values()).sort((a, b) => a['@_name'].localeCompare(b['@_name']));
 	}
 
 	function findPodcasts(address) {
@@ -138,6 +141,7 @@
 		person['@_customKey'] = selectedPerson['@_customKey'];
 		person.updated = true;
 		uniqueAddresses = uniqueAddresses;
+		filteredAddresses = filteredAddresses;
 
 		feeds.forEach((feed) => {
 			updateSingleAddress(feed?.feed, originalPerson, selectedPerson);
@@ -151,27 +155,27 @@
 
 	function updateSingleAddress(data, originalPerson, selectedPerson) {
 		if (data?.['podcast:value']?.['podcast:valueRecipient']) {
-			data['podcast:value']['podcast:valueRecipient'] = data['podcast:value'][
-				'podcast:valueRecipient'
-			].map((v) => {
-				if (
-					v['@_address'] === originalPerson['@_address'] &&
-					v?.['@_customValue'] == originalPerson['@_customValue'] &&
-					v?.['@_customKey'] == originalPerson['@_customKey']
-				) {
-					v['@_name'] = selectedPerson['@_name'];
-					v['@_address'] = selectedPerson['@_address'];
-					v['@_type'] = selectedPerson['@_type'];
-					if (selectedPerson?.['@_type'] === 'lnaddress') {
-						delete v['@_customValue'];
-						delete v['@_customKey'];
-					} else if (selectedPerson?.['@_type'] === 'node') {
-						v['@_customValue'] = selectedPerson['@_customValue'];
-						v['@_customKey'] = selectedPerson['@_customKey'];
+			data['podcast:value']['podcast:valueRecipient'] = []
+				.concat(data['podcast:value']['podcast:valueRecipient'])
+				.map((v) => {
+					if (
+						v['@_address'] === originalPerson['@_address'] &&
+						v?.['@_customValue'] == originalPerson['@_customValue'] &&
+						v?.['@_customKey'] == originalPerson['@_customKey']
+					) {
+						v['@_name'] = selectedPerson['@_name'];
+						v['@_address'] = selectedPerson['@_address'];
+						v['@_type'] = selectedPerson['@_type'];
+						if (selectedPerson?.['@_type'] === 'lnaddress') {
+							delete v['@_customValue'];
+							delete v['@_customKey'];
+						} else if (selectedPerson?.['@_type'] === 'node') {
+							v['@_customValue'] = selectedPerson['@_customValue'];
+							v['@_customKey'] = selectedPerson['@_customKey'];
+						}
 					}
-				}
-				return v;
-			});
+					return v;
+				});
 		}
 	}
 
@@ -198,24 +202,31 @@
 		);
 		$showBuildingRSS = false;
 	}
+
+	function filterByName() {
+		filteredAddresses = uniqueAddresses.filter(
+			(item) => item['@_name'] && item['@_name'].toLowerCase().includes(searchInput.toLowerCase())
+		);
+	}
 </script>
 
-<div class="dropdown">
-	<label for="dropdown-menu" class="dropdown-label">Publish a Feed:</label>
-	<select id="dropdown-menu" class="dropdown-select" on:change={handleSelectFeed}>
-		<option value="" disabled selected>Choose a feed</option>
-		{#each feeds as { feed }, index}
-			<option value={index}>{feed.title}</option>
-		{/each}
-	</select>
-	{#if selectedFeed}
-		<button class="primary" on:click={publishFeed}> Publish </button>
-	{/if}
-</div>
-<h4>Update a person:</h4>
 {#if uniqueAddresses}
+	<div class="dropdown">
+		<label for="dropdown-menu" class="dropdown-label">Publish a Feed:</label>
+		<select id="dropdown-menu" class="dropdown-select" on:change={handleSelectFeed}>
+			<option value="" disabled selected>Choose a feed</option>
+			{#each feeds as { feed }, index}
+				<option value={index}>{feed.title}</option>
+			{/each}
+		</select>
+		{#if selectedFeed}
+			<button class="primary" on:click={publishFeed}> Publish </button>
+		{/if}
+	</div>
+	<h4>Update a person:</h4>
+	<input type="text" placeholder="find person" bind:value={searchInput} on:input={filterByName} />
 	<ul>
-		{#each uniqueAddresses as person}
+		{#each filteredAddresses as person}
 			<li on:click={selectPerson.bind(this, person)}>
 				<p class:strike={person.updated}>
 					{person['@_name']} - {findPodcasts(person)}
