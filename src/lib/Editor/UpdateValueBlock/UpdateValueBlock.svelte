@@ -1,6 +1,8 @@
 <script>
 	import parser from 'fast-xml-parser';
 	import pkg from 'file-saver';
+
+	import cleanValue from '$lib/Tags/Value/cleanValue';
 	const { saveAs } = pkg;
 
 	import { onMount } from 'svelte';
@@ -127,19 +129,9 @@
 	}
 
 	function updatePerson(originalPerson, selectedPerson) {
-		let person = uniqueAddresses.find(
-			(v) =>
-				v['@_address'] === originalPerson['@_address'] &&
-				v?.['@_customValue'] == originalPerson['@_customValue'] &&
-				v?.['@_customKey'] == originalPerson['@_customKey']
-		);
+		console.log(uniqueAddresses);
 
-		person['@_name'] = selectedPerson['@_name'];
-		person['@_address'] = selectedPerson['@_address'];
-		person['@_type'] = selectedPerson['@_type'];
-		person['@_customValue'] = selectedPerson['@_customValue'];
-		person['@_customKey'] = selectedPerson['@_customKey'];
-		person.updated = true;
+		selectedPerson.updated = true;
 		uniqueAddresses = uniqueAddresses;
 		filteredAddresses = filteredAddresses;
 
@@ -150,9 +142,9 @@
 				updateSingleAddress(item, originalPerson, selectedPerson);
 			});
 		});
+
 		showModal = false;
 	}
-
 	function updateSingleAddress(data, originalPerson, selectedPerson) {
 		if (data?.['podcast:value']?.['podcast:valueRecipient']) {
 			data['podcast:value']['podcast:valueRecipient'] = []
@@ -185,9 +177,25 @@
 		console.log(`Selected feed:`, selectedFeed);
 	}
 
-	function publishFeed() {
+	async function publishFeed() {
 		$showBuildingRSS = true;
-		let xmlFile = js2xml.parse(selectedFeed);
+
+		cleanValue(selectedFeed);
+		if (selectedFeed?.item) {
+			for (let item of selectedFeed.item) {
+				cleanValue(item);
+			}
+		}
+
+		let feed = { rss: {} };
+		feed.rss.channel = selectedFeed;
+		feed.rss['@_version'] = '2.0';
+		feed.rss['@_xmlns:itunes'] = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
+		feed.rss['@_xmlns:podcast'] =
+			'https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md';
+		// initializeRSSData();
+
+		let xmlFile = js2xml.parse(feed);
 		if (!xmlFile) {
 			$showBuildingRSS = false;
 			return;
