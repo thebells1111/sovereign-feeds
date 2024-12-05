@@ -217,7 +217,12 @@
 	<ul>
 		{#each uniqueAddresses as person}
 			<li on:click={selectPerson.bind(this, person)}>
-				{person['@_name']} - {findPodcasts(person)}{person.updated ? ' - updated' : ''}
+				<p class:strike={person.updated}>
+					{person['@_name']} - {findPodcasts(person)}
+				</p>
+				{#if person.updated}
+					<span>updated</span>
+				{/if}
 			</li>
 		{/each}
 	</ul>
@@ -255,5 +260,20 @@
 		margin: 4px 0;
 		font-weight: 600;
 		cursor: pointer;
+		display: flex;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
+
+	.strike {
+		text-decoration: line-through;
+	}
+
+	span {
+		padding-left: 8px;
+		color: red;
 	}
 </style>
