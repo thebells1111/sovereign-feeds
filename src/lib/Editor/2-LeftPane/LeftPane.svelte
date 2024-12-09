@@ -152,13 +152,7 @@
 			<span>Value Block Updater</span>
 		</li>
 	</ul>
-	{#if !$selectedPodcast.title}
-		<div class="support">
-			<p>How much do you value being Sovereign?</p>
-			<img src="./LNURL.png" />
-			<p>⚡Value 4 Value⚡</p>
-		</div>
-	{/if}
+
 	{#if $selectedPodcast.title}
 		<button
 			class="primary save-state"

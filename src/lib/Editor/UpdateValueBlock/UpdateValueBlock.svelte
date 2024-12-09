@@ -1,25 +1,64 @@
 <script>
+	import parser from 'fast-xml-parser';
+	import pkg from 'file-saver';
+
+	import cleanValue from '$lib/Tags/Value/cleanValue';
+	const { saveAs } = pkg;
+
 	import { onMount } from 'svelte';
 	import RecepientEditor from './RecepientEditor.svelte';
 	import getRSSEditorFeed from '$lib/Editor/_functions/getRSSFeed';
-	import { podcastList } from '$/editor';
 	import Modal from '$lib/Modals/Modal/Modal.svelte';
+
+	import { podcastList, showBuildingRSS } from '$/editor';
 	let feeds = [];
-	let uniqueAddresses = [];
+	let uniqueAddresses = null;
+	let filteredAddresses = [];
+	let searchInput = '';
 	let selectedFeed = null;
 	let showModal = false;
 	let selectedPerson;
 	$: console.log(feeds);
 
+	let js2xml = new parser.j2xParser({
+		attributeNamePrefix: '@_',
+		//attrNodeName: false,
+		textNodeName: '#text',
+		ignoreAttributes: false,
+		ignoreNameSpace: false,
+		format: true,
+		indentBy: '  ',
+		supressEmptyNode: true,
+		attrValueProcessor: (val, attrName) => escapeAttr(`${val}`),
+		tagValueProcessor: (val, tagName) => escapeTag(`${val}`)
+	});
+
+	const escapeAttr = (str) =>
+		str.replace(
+			/[&<>'"]/g,
+			(tag) =>
+				({
+					'&': '&amp;',
+					'<': '&lt;',
+					'>': '&gt;',
+					"'": '&#39;',
+					'"': '&quot;'
+				})[tag]
+		);
+
+	const escapeTag = (str) => {
+		if (str.match(/[&<>'"]/g)) {
+			return '<![CDATA[' + str + ']]>';
+		}
+		return str;
+	};
+
 	onMount(fetchAddresses);
 
 	function fetchAddresses() {
 		getAllAddresses($podcastList).then((list) => {
-			console.log(list);
-			console.log(feeds);
-
 			uniqueAddresses = getUniqueObjects(list);
-			console.log(uniqueAddresses);
+			filteredAddresses = uniqueAddresses;
 			feeds = feeds;
 		});
 	}
@@ -63,7 +102,7 @@
 			}
 		});
 
-		return Array.from(uniqueMap.values());
+		return Array.from(uniqueMap.values()).sort((a, b) => a['@_name'].localeCompare(b['@_name']));
 	}
 
 	function findPodcasts(address) {
@@ -80,30 +119,21 @@
 				podcasts += `${feed.feed.title}, `;
 			}
 		});
-		return podcasts;
+
+		return podcasts.replace(/, $/, '');
 	}
 
 	function selectPerson(person) {
-		console.log(person);
 		selectedPerson = person;
 		showModal = true;
 	}
 
 	function updatePerson(originalPerson, selectedPerson) {
-		let person = uniqueAddresses.find(
-			(v) =>
-				v['@_address'] === originalPerson['@_address'] &&
-				v?.['@_customValue'] == originalPerson['@_customValue'] &&
-				v?.['@_customKey'] == originalPerson['@_customKey']
-		);
+		console.log(uniqueAddresses);
 
-		person['@_name'] = selectedPerson['@_name'];
-		person['@_address'] = selectedPerson['@_address'];
-		person['@_type'] = selectedPerson['@_type'];
-		person['@_customValue'] = selectedPerson['@_customValue'];
-		person['@_customKey'] = selectedPerson['@_customKey'];
-		person.updated = true;
+		selectedPerson.updated = true;
 		uniqueAddresses = uniqueAddresses;
+		filteredAddresses = filteredAddresses;
 
 		feeds.forEach((feed) => {
 			updateSingleAddress(feed?.feed, originalPerson, selectedPerson);
@@ -112,62 +142,112 @@
 				updateSingleAddress(item, originalPerson, selectedPerson);
 			});
 		});
-		console.log(feeds);
+
 		showModal = false;
 	}
-
 	function updateSingleAddress(data, originalPerson, selectedPerson) {
 		if (data?.['podcast:value']?.['podcast:valueRecipient']) {
-			data['podcast:value']['podcast:valueRecipient'] = data['podcast:value'][
-				'podcast:valueRecipient'
-			].map((v) => {
-				if (
-					v['@_address'] === originalPerson['@_address'] &&
-					v?.['@_customValue'] == originalPerson['@_customValue'] &&
-					v?.['@_customKey'] == originalPerson['@_customKey']
-				) {
-					v['@_name'] = selectedPerson['@_name'];
-					v['@_address'] = selectedPerson['@_address'];
-					v['@_type'] = selectedPerson['@_type'];
-					if (selectedPerson?.['@_type'] === 'lnaddress') {
-						delete v['@_customValue'];
-						delete v['@_customKey'];
-					} else if (selectedPerson?.['@_type'] === 'node') {
-						v['@_customValue'] = selectedPerson['@_customValue'];
-						v['@_customKey'] = selectedPerson['@_customKey'];
+			data['podcast:value']['podcast:valueRecipient'] = []
+				.concat(data['podcast:value']['podcast:valueRecipient'])
+				.map((v) => {
+					if (
+						v['@_address'] === originalPerson['@_address'] &&
+						v?.['@_customValue'] == originalPerson['@_customValue'] &&
+						v?.['@_customKey'] == originalPerson['@_customKey']
+					) {
+						v['@_name'] = selectedPerson['@_name'];
+						v['@_address'] = selectedPerson['@_address'];
+						v['@_type'] = selectedPerson['@_type'];
+						if (selectedPerson?.['@_type'] === 'lnaddress') {
+							delete v['@_customValue'];
+							delete v['@_customKey'];
+						} else if (selectedPerson?.['@_type'] === 'node') {
+							v['@_customValue'] = selectedPerson['@_customValue'];
+							v['@_customKey'] = selectedPerson['@_customKey'];
+						}
 					}
-				}
-				return v;
-			});
+					return v;
+				});
 		}
 	}
 
-	const handleSelectFeed = (event) => {
+	function handleSelectFeed(event) {
 		const selectedIndex = event.target.value;
 		selectedFeed = feeds[selectedIndex] ? feeds[selectedIndex].feed : null;
 		console.log(`Selected feed:`, selectedFeed);
-	};
+	}
+
+	async function publishFeed() {
+		$showBuildingRSS = true;
+
+		cleanValue(selectedFeed);
+		if (selectedFeed?.item) {
+			for (let item of selectedFeed.item) {
+				cleanValue(item);
+			}
+		}
+
+		let feed = { rss: {} };
+		feed.rss.channel = selectedFeed;
+		feed.rss['@_version'] = '2.0';
+		feed.rss['@_xmlns:itunes'] = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
+		feed.rss['@_xmlns:podcast'] =
+			'https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md';
+		// initializeRSSData();
+
+		let xmlFile = js2xml.parse(feed);
+		if (!xmlFile) {
+			$showBuildingRSS = false;
+			return;
+		}
+		let date = new Date();
+		let d = date.toLocaleString('en-US', { hour12: false });
+		var blob = new Blob([xmlFile], { type: 'text/plain;charset=utf-8' });
+
+		saveAs(
+			blob,
+			`${selectedFeed?.title} - ${d.replace(/\//g, '-').replace(',', '').replace(/:/g, '.')}.xml`
+		);
+		$showBuildingRSS = false;
+	}
+
+	function filterByName() {
+		filteredAddresses = uniqueAddresses.filter(
+			(item) => item['@_name'] && item['@_name'].toLowerCase().includes(searchInput.toLowerCase())
+		);
+	}
 </script>
 
-<div class="dropdown">
-	<label for="dropdown-menu" class="dropdown-label">Publish a Feed:</label>
-	<select id="dropdown-menu" class="dropdown-select" on:change={handleSelectFeed}>
-		<option value="" disabled selected>Choose a feed</option>
-		{#each feeds as { feed }, index}
-			<option value={index}>{feed.title}</option>
+{#if uniqueAddresses}
+	<div class="dropdown">
+		<label for="dropdown-menu" class="dropdown-label">Publish a Feed:</label>
+		<select id="dropdown-menu" class="dropdown-select" on:change={handleSelectFeed}>
+			<option value="" disabled selected>Choose a feed</option>
+			{#each feeds as { feed }, index}
+				<option value={index}>{feed.title}</option>
+			{/each}
+		</select>
+		{#if selectedFeed}
+			<button class="primary" on:click={publishFeed}> Publish </button>
+		{/if}
+	</div>
+	<h4>Update a person:</h4>
+	<input type="text" placeholder="find person" bind:value={searchInput} on:input={filterByName} />
+	<ul>
+		{#each filteredAddresses as person}
+			<li on:click={selectPerson.bind(this, person)}>
+				<p class:strike={person.updated}>
+					{person['@_name']} - {findPodcasts(person)}
+				</p>
+				{#if person.updated}
+					<span>updated</span>
+				{/if}
+			</li>
 		{/each}
-	</select>
-	{#if selectedFeed}
-		<button class="primary"> Publish </button>
-	{/if}
-</div>
-<ul>
-	{#each uniqueAddresses as person}
-		<li on:click={selectPerson.bind(this, person)}>
-			{person['@_name']} - {findPodcasts(person)}{person.updated ? ' - updated' : ''}
-		</li>
-	{/each}
-</ul>
+	</ul>
+{:else}
+	Loading Recepients
+{/if}
 
 {#if showModal}
 	<Modal bind:showModal>
@@ -195,9 +275,24 @@
 		cursor: pointer;
 	}
 
-	.dropdown-feedback {
-		margin-top: 8px;
-		font-style: italic;
-		color: #555;
+	li {
+		margin: 4px 0;
+		font-weight: 600;
+		cursor: pointer;
+		display: flex;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
+
+	.strike {
+		text-decoration: line-through;
+	}
+
+	span {
+		padding-left: 8px;
+		color: red;
 	}
 </style>
