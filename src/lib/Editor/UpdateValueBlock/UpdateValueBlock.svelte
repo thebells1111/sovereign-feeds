@@ -182,7 +182,7 @@
 
 		cleanValue(selectedFeed);
 		if (selectedFeed?.item) {
-			for (let item of selectedFeed.item) {
+			for (let item of [].concat(selectedFeed.item)) {
 				cleanValue(item);
 			}
 		}
