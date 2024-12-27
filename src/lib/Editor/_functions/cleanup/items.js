@@ -33,8 +33,8 @@ export default async function cleanItems(channel) {
 		});
 		if (channel['podcast:liveItem'].length > 0) {
 			for (let item of channel['podcast:liveItem']) {
-				await cleanItem(item);
-				await cleanLiveItem(item);
+				await cleanItem(item, channel);
+				await cleanLiveItem(item, channel);
 
 				//add cleaners for liveItem
 			}
@@ -47,6 +47,12 @@ export default async function cleanItems(channel) {
 }
 
 async function cleanItem(item, channel) {
+	if (channel?.['podcast:guid'] === '917393e3-1b1e-5cef-ace4-edaa54e1f810') {
+		item['podcast:splitbox'] = {
+			'@_invoice': 'https://thesplitbox.com/invoice?address=thesplitbox@getalby.com',
+			'@_webhook': 'https://thesplitbox.com/webhook?address=thesplitbox@getalby.com'
+		};
+	}
 	delete item.sfID;
 
 	// handleTrackers(item);
