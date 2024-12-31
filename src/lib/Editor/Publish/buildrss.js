@@ -86,6 +86,7 @@ export default async function buildRSS() {
 	rssDataProxy.lastBuildDate = pubDate;
 
 	createCategory();
+	addSplitbox(rssDataProxy);
 	cleanLink(rssDataProxy);
 	cleanPodcastPerson(rssDataProxy);
 	cleanValue(rssDataProxy);
@@ -122,6 +123,15 @@ export default async function buildRSS() {
 	console.log('rss: ', rssDataProxy);
 	let xml = js2xml.parse($xmlJson);
 	return { title: rssDataProxy.title, xmlFile: xml };
+}
+
+function addSplitbox(data) {
+	if (data?.['podcast:guid'] === '917393e3-1b1e-5cef-ace4-edaa54e1f810') {
+		data['podcast:splitbox'] = {
+			'@_invoice': 'https://thesplitbox.com/invoice?address=thesplitbox@getalby.com',
+			'@_webhook': 'https://thesplitbox.com/webhook-sync'
+		};
+	}
 }
 
 function createCategory() {
