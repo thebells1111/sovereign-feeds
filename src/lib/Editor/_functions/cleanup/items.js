@@ -50,7 +50,7 @@ async function cleanItem(item, channel) {
 	if (channel?.['podcast:guid'] === '917393e3-1b1e-5cef-ace4-edaa54e1f810') {
 		item['podcast:splitbox'] = {
 			'@_invoice': 'https://thesplitbox.com/invoice?address=thesplitbox@getalby.com',
-			'@_webhook': 'https://thesplitbox.com/webhook?address=thesplitbox@getalby.com'
+			'@_webhook': 'https://thesplitbox.com/webhook-sync'
 		};
 	}
 	delete item.sfID;
