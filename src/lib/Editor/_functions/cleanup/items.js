@@ -33,8 +33,8 @@ export default async function cleanItems(channel) {
 		});
 		if (channel['podcast:liveItem'].length > 0) {
 			for (let item of channel['podcast:liveItem']) {
-				await cleanItem(item);
-				await cleanLiveItem(item);
+				await cleanItem(item, channel);
+				await cleanLiveItem(item, channel);
 
 				//add cleaners for liveItem
 			}
@@ -255,36 +255,43 @@ function cleanEpisodeTranscript(item) {
 
 async function getDuration(item) {
 	if (item?.enclosure?.['@_url']) {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			// Create a non-dom allocated Audio element
-			let a = document.createElement('audio');
+			const a = document.createElement('audio');
 
 			// Define the URL of the MP3 audio file
-			a.src = item?.enclosure?.['@_url'];
+			a.src = item.enclosure['@_url'];
 
-			a.addEventListener('error', function failed(e) {
+			// Set a timeout to handle unresponsive audio element
+			const timeout = setTimeout(() => {
 				a.remove();
-				delete item['itunes:duration'];
+				item['itunes:duration'] = 0;
+				alert('Not able to fetch your duration. Usually a CORS issue with your files.');
+				resolve(); // Resolve without setting duration
+			}, 5000); // Adjust timeout as needed (e.g., 5000ms = 5 seconds)
+
+			a.addEventListener('error', () => {
+				clearTimeout(timeout);
+				a.remove();
+				item['itunes:duration'] = 0;
+				alert('Not able to fetch your duration. Usually a CORS issue with your files.');
 				resolve();
 			});
 
-			// Once the metachannel has been loaded, display the duration in the console
-			a.addEventListener(
-				'loadedmetachannel',
-				function () {
-					let duration = a.duration;
-					item['itunes:duration'] = Math.round(duration);
-
-					a.remove();
-					resolve();
-				},
-				false
-			);
+			// Once the metadata has been loaded, calculate and set the duration
+			a.addEventListener('loadedmetadata', () => {
+				clearTimeout(timeout);
+				const duration = a.duration;
+				item['itunes:duration'] = Math.round(duration);
+				a.remove();
+				resolve();
+			});
 		});
 	} else {
-		return new Promise((resolve, reject) => {
-			delete item['itunes:duration'];
-			resolve();
+		// No URL provided, simply resolve
+		return Promise.resolve(() => {
+			item['itunes:duration'] = 0;
+			alert('Not able to fetch your duration. Usually a CORS issue with your files.');
 		});
 	}
 }
