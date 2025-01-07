@@ -78,9 +78,8 @@
 		<SplitsList bind:data bind:index bind:activeRecipient bind:showValues {shares} />
 		<FeesList bind:data bind:index bind:activeRecipient bind:showValues />
 	</div>
-
-	<RecepientEditor bind:data bind:showValues bind:index />
 </div>
+<RecepientEditor bind:data bind:showValues bind:index />
 
 <style>
 	.persons-container {

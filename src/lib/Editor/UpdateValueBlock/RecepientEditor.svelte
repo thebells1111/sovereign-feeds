@@ -9,8 +9,8 @@
 	let showProviderInput = false;
 </script>
 
-<div class="value-input-container">
-	{#if selectedPerson}
+{#if selectedPerson}
+	<div class="value-input-container">
 		<div class="type-select">
 			<h4>Wallet Type:</h4>
 			<label>
@@ -35,8 +35,8 @@
 			class:hide={showProviderInput}
 			on:click={updatePerson.bind(this, originalPerson, selectedPerson)}>Update Person</button
 		>
-	{/if}
-</div>
+	</div>
+{/if}
 
 <style>
 	.type-select {

@@ -88,7 +88,6 @@
 		height: 450px;
 		width: 60%;
 		min-width: 700px;
-		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
@@ -105,9 +104,11 @@
 		transition:
 			opacity 0.5s,
 			right 0.5s;
+		display: none;
 	}
 
 	.show {
+		display: flex;
 		opacity: 1;
 		right: 0;
 		transition:
