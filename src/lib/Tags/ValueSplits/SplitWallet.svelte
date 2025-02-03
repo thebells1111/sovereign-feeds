@@ -156,7 +156,7 @@
 		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
 			'@_name': '',
 			'@_split': '',
-			'@_type': 'lnaddress',
+			'@_type': 'node',
 			'@_address': '',
 			'@_customValue': '',
 			'@_customKey': ''
@@ -263,7 +263,10 @@
 			<span>Use v4v.app</span>
 		</button>
 	{:else}
-		<spacer></spacer>
+		<h3>
+			Don't use lnaddress if you don't know what you're doing. Most apps aren't supporting it
+			anyway.
+		</h3>
 	{/if}
 	<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
 		<span>Delete <br /> Recpient</span>

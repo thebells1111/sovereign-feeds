@@ -9,7 +9,7 @@ export default function initializeValueTag(data) {
 					'podcast:valueRecipient': [
 						{
 							'@_name': '',
-							'@_type': 'lnaddress',
+							'@_type': 'node',
 							'@_address': '',
 							'@_customKey': '',
 							'@_customValue': '',
@@ -32,7 +32,7 @@ export default function initializeValueTag(data) {
 			v['podcast:valueRecipient'] = [
 				{
 					'@_name': '',
-					'@_type': 'lnaddress',
+					'@_type': 'node',
 					'@_address': '',
 					'@_customKey': '',
 					'@_customValue': '',

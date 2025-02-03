@@ -58,8 +58,8 @@
 	function addSovereignFeeds() {
 		data['podcast:valueRecipient'].push({
 			'@_name': 'Sovereign Feeds',
-			'@_address': 'steven@curiohoster.com',
-			'@_type': 'lnaddress',
+			'@_address': '035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8',
+			'@_type': 'node',
 			'@_fee': true,
 			'@_split': 5
 		});

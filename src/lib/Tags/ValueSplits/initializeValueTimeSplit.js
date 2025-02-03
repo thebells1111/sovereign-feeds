@@ -59,7 +59,7 @@ export default async function initializeValueTimeSplit(episode) {
 					{
 						'@_name': '',
 						'@_address': '',
-						'@_type': 'lnaddress',
+						'@_type': 'node',
 						'@_customKey': '',
 						'@_customValue': '',
 						'@_split': ''

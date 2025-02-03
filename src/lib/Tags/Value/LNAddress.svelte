@@ -4,6 +4,9 @@
 </script>
 
 <div class="person-block">
+	<h3>
+		Don't use lnaddress if you don't know what you're doing. Most apps aren't supporting it anyway.
+	</h3>
 	<label>
 		<h4>Value Recipient Name</h4>
 		<input
