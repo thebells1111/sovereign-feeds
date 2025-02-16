@@ -40,6 +40,16 @@ export default function cleanValue(data) {
 				delete v['@_customKey'];
 				delete v['@_customValue'];
 			}
+
+			//use this to update address for Reflex
+			if (
+				v['@_address'] === '030a58b8653d32b99200a2334cfe913e51dc7d155aa0116c176657a4f1722677a3' &&
+				v['@_customValue'] === 'x3VXZtbcfIBVLIUqzWKV'
+			) {
+				v['@_address'] = '03a2cb3058309f7a0355b9583fc4347d82b251ee94997aec4d4e5573b181a49657';
+				delete v['@_customKey'];
+				delete v['@_customValue'];
+			}
 			return true;
 		});
 
