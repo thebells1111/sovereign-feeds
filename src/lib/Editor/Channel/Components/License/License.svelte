@@ -79,12 +79,14 @@
 		}
 	}
 
-	function handleUrlChange(url) {
+	function handleUrlChange(e) {
+		let url = e.target.value;
 		if (isEpisode && $editingEpisode?.['podcast:license']) {
 			$editingEpisode['podcast:license']['@_url'] = url;
 		} else if ($rssData?.['podcast:license']) {
 			$rssData['podcast:license']['@_url'] = url;
 		}
+		console.log($rssData['podcast:license']);
 	}
 </script>
 
@@ -102,13 +104,9 @@
 		URL (url that points to the full, legal language of the license, required for custom license)
 	</h4>
 	{#if isEpisode}
-		<input
-			type="text"
-			bind:value={editingEpisodeUrl}
-			on:input={() => handleUrlChange(editingEpisodeUrl)}
-		/>
+		<input type="text" value={editingEpisodeUrl} on:input={handleUrlChange} />
 	{:else}
-		<input type="text" bind:value={rssDataUrl} on:input={() => handleUrlChange(rssDataUrl)} />
+		<input type="text" value={rssDataUrl} on:input={handleUrlChange} />
 	{/if}
 </label>
 
