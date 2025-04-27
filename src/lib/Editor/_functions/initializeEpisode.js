@@ -15,6 +15,7 @@ import initializeChat from '$lib/Tags/Chat/initializeChat';
 import initializeLiveValue from '$lib/Tags/LiveValue/initializeLiveValue';
 import initializeAlternateEnclosure from './initialize/alternateEnclosure';
 import initializeFunding from '$lib/Tags/Funding/inititalizeFunding';
+import initializeLocationTag from '$lib/Tags/Location/initializeLocation';
 
 import { selectedEpisodePersonRoles, selectedEpisodePersonGroups } from '$/editor';
 
@@ -40,10 +41,10 @@ export default async function initializeEpisode(episode, type) {
 	}
 
 	episode['podcast:images'] = initializeImagesTag(episode?.['podcast:images'], 'episode');
-	episode['podcast:aspectImages'] = initializeExperimentalImagesTag(
-		episode?.['podcast:aspectImages'],
-		'episode'
-	);
+	// episode['podcast:aspectImages'] = initializeExperimentalImagesTag(
+	// 	episode?.['podcast:aspectImages'],
+	// 	'episode'
+	// );
 	// This is for adding trackers
 	// episode.enclosure = await initializeEnclosure(episode?.enclosure);
 
@@ -67,6 +68,7 @@ export default async function initializeEpisode(episode, type) {
 	episode['podcast:alternateEnclosure'] = initializeAlternateEnclosure(
 		episode['podcast:alternateEnclosure']
 	);
+	episode['podcast:location'] = initializeLocationTag(episode['podcast:location']);
 
 	if (type === 'live') {
 		episode['podcast:contentLink'] = initializeContentLink(episode['podcast:contentLink']);

@@ -79,15 +79,23 @@
 	>
 		Funding
 	</li>
-
 	<li
+		class:active={$rightPane === 'location'}
+		on:click={() => {
+			$rightPane = 'location';
+		}}
+	>
+		Location
+	</li>
+
+	<!-- <li
 		class:active={$rightPane === 'images'}
 		on:click={() => {
 			$rightPane = 'images';
 		}}
 	>
 		{$selectorList.images}
-	</li>
+	</li> -->
 
 	{#if !$showLiveEpisodes}
 		<li

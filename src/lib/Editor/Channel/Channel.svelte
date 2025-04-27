@@ -10,6 +10,7 @@
 	import Block from './Block.svelte';
 	import Trackers from './Trackers.svelte';
 	import Podroll from '$lib/Tags/Podroll/Podroll.svelte';
+	import Location from '$lib/Tags/Location/Location.svelte';
 
 	import { currentPage, rssData } from '$/editor';
 
@@ -38,6 +39,12 @@
 <div class:hide={podcastInfoPage !== 'support'}>
 	<Funding bind:data={$rssData} />
 </div>
+
+{#if $rssData?.['podcast:location']}
+	<div class:hide={podcastInfoPage !== 'location'}>
+		<Location bind:data={$rssData['podcast:location']} />
+	</div>
+{/if}
 
 <div class:hide={podcastInfoPage !== 'person'}>
 	<Person type="podcast" />

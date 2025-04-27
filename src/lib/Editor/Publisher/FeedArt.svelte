@@ -4,4 +4,4 @@
 </script>
 
 <Image />
-<Images type="podcast" />
+<!-- <Images type="podcast" /> -->

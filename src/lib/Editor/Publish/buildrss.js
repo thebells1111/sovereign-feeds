@@ -15,6 +15,7 @@ import cleanPodcastImages from '../_functions/cleanup/images';
 import cleanExperimentalImages from '$lib/Tags/Images/cleanImages';
 import cleanFunding from '$lib/Tags/Funding/cleanFunding';
 import cleanValue from '$lib/Tags/Value/cleanValue';
+import cleanLocation from '$lib/Tags/Location/cleanLocation';
 
 import {
 	rssData,
@@ -100,6 +101,7 @@ export default async function buildRSS() {
 	changeGenerator(rssDataProxy);
 	await cleanGuid(rssDataProxy);
 	cleanPodroll(rssDataProxy);
+	cleanLocation(rssDataProxy);
 	delete rssDataProxy.item;
 	delete rssDataProxy['podcast:liveItem'];
 

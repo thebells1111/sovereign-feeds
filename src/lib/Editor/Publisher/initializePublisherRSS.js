@@ -3,7 +3,7 @@ import initializePersonTag from '$lib/Editor/_functions/initializePersonTag';
 import initializeCategories from '$lib/Editor/_functions/initialize/categories';
 import initializeValueTag from '$lib/Tags/Value/initializeValueTag';
 import initializeImagesTag from '$lib/Editor/_functions/initialize/images';
-import initializeExperimentalImagesTag from '$lib/Tags/Images/initializeImages';
+// import initializeExperimentalImagesTag from '$lib/Tags/Images/initializeImages';
 import initializeItunesImageTag from '$lib/Editor/_functions/initialize/itunes/itunesImage';
 import setHeaderText from '$lib/Labels/setHeaderText';
 import initializeBlock from '$lib/Editor/_functions/initialize/block';
@@ -38,9 +38,9 @@ export default async function initializePublisherRSS(data) {
 	setHeaderText($rssData);
 
 	$rssData['podcast:images'] = initializeImagesTag($rssData?.['podcast:images']);
-	$rssData['podcast:aspectImages'] = initializeExperimentalImagesTag(
-		$rssData?.['podcast:aspectImages']
-	);
+	// $rssData['podcast:aspectImages'] = initializeExperimentalImagesTag(
+	// 	$rssData?.['podcast:aspectImages']
+	// );
 
 	$rssData['itunes:image'] = initializeItunesImageTag($rssData);
 

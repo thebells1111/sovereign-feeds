@@ -44,7 +44,14 @@
 	>
 		Funding
 	</li>
-
+	<li
+		class:active={podcastInfoPage === 'location'}
+		on:click={() => {
+			podcastInfoPage = 'location';
+		}}
+	>
+		Location
+	</li>
 	<li
 		on:click={() => {
 			podcastInfoPage = 'person';

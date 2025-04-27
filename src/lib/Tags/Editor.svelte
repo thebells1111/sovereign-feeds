@@ -12,6 +12,7 @@
 	import Images from './Images/Images.svelte';
 	import ValueSplits from './ValueSplits/ValueSplits.svelte';
 	import AlternateEnclosure from './AlternateEnclosure/AlternateEnclosure.svelte';
+	import Location from '$lib/Tags/Location/Location.svelte';
 	import initTinyMCE from '$lib/Tags/ShowNotes/initTinyMCE';
 
 	import { rightPane, showNotesPane, editingEpisode } from '$/editor';
@@ -51,15 +52,20 @@
 	<div class:hide={$rightPane != 'funding'}>
 		<Funding bind:data={$editingEpisode} />
 	</div>
-	<div class:hide={$rightPane != 'images'}>
+	<!-- <div class:hide={$rightPane != 'images'}>
 		<Images type={'episode'} />
-	</div>
+	</div> -->
 	<div class:hide={$rightPane != 'valueSplits'}>
 		<ValueSplits />
 	</div>
 	<div class:hide={$rightPane != 'altEnclosures'}>
 		<AlternateEnclosure />
 	</div>
+	{#if $editingEpisode?.['podcast:location']}
+		<div class:hide={$rightPane != 'location'}>
+			<Location bind:data={$editingEpisode['podcast:location']} />
+		</div>
+	{/if}
 </div>
 
 <style>

@@ -3,6 +3,7 @@
 	export let data;
 	export let index = 5;
 	export let title;
+	export let subtitle;
 	export let noStyle = false;
 	export let showUpload;
 	export let showUploadButton = false;
@@ -15,6 +16,7 @@
 				<h4 style={noStyle ? '' : `color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}>
 					{title}
 				</h4>
+
 				{#if $digitalOceanEnabled && showUploadButton}
 					<button
 						on:click={() => {
@@ -25,6 +27,11 @@
 					</button>
 				{/if}
 			</div>
+			{#if subtitle}
+				<p style={noStyle ? '' : `color: hsla(${352 - ((index + 1) % 6) * 60}, 100%, 33%, 1)`}>
+					{subtitle}
+				</p>
+			{/if}
 		</div>
 		<input type="text" bind:value={data} />
 	</label>
@@ -97,7 +104,17 @@
 			hsla(352, 100%, 43.7%, 1),
 			hsla(352, 100%, 26.7%, 1)
 		);
-		box-shadow: inset 0 1px hsla(0, 0%, 42.7%, 1), 0 2px 2px rgba(0, 0, 0, 0.33);
-		text-shadow: 1px 4px 6px rgb(82, 82, 82), 0 0 0 #000, 1px 4px 6px rgb(82, 82, 82);
+		box-shadow:
+			inset 0 1px hsla(0, 0%, 42.7%, 1),
+			0 2px 2px rgba(0, 0, 0, 0.33);
+		text-shadow:
+			1px 4px 6px rgb(82, 82, 82),
+			0 0 0 #000,
+			1px 4px 6px rgb(82, 82, 82);
+	}
+
+	p {
+		margin: 0;
+		padding: 0 4px;
 	}
 </style>

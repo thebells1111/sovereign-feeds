@@ -7,7 +7,7 @@
 
 <div class="overflow-container">
 	<Image />
-	<Images type="podcast" />
+	<!-- <Images type="podcast" /> -->
 </div>
 
 <div class="footer">

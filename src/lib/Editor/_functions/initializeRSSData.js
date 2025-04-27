@@ -15,6 +15,7 @@ import initializeLicenseTag from '$lib/Editor/_functions/initialize/license';
 import initializePodrollTag from '$lib/Tags/Podroll/initializePodroll';
 import initializeOwnerTag from '$lib/Editor/_functions/initialize/owner';
 import initializeFundingTag from '$lib/Tags/Funding/inititalizeFunding';
+import initializeLocationTag from '$lib/Tags/Location/initializeLocation';
 
 import { get } from 'svelte/store';
 
@@ -131,9 +132,9 @@ export default async function initializeRSSData(data) {
 	setHeaderText($rssData);
 
 	$rssData['podcast:images'] = initializeImagesTag($rssData?.['podcast:images']);
-	$rssData['podcast:aspectImages'] = initializeExperimentalImagesTag(
-		$rssData?.['podcast:aspectImages']
-	);
+	// $rssData['podcast:aspectImages'] = initializeExperimentalImagesTag(
+	// 	$rssData?.['podcast:aspectImages']
+	// );
 
 	$rssData['itunes:image'] = initializeItunesImageTag($rssData);
 
@@ -158,6 +159,7 @@ export default async function initializeRSSData(data) {
 	$rssData['podcast:podroll'] = initializePodrollTag($rssData['podcast:podroll']);
 	$rssData['itunes:owner'] = initializeOwnerTag($rssData['itunes:owner']);
 	$rssData['podcast:funding'] = initializeFundingTag($rssData['podcast:funding']);
+	$rssData['podcast:location'] = initializeLocationTag($rssData['podcast:location']);
 
 	let $editingEpisode = get(editingEpisode);
 
@@ -165,4 +167,5 @@ export default async function initializeRSSData(data) {
 	if ($rssData.item) {
 		initializeEpisode($editingEpisode);
 	}
+	console.log($rssData);
 }
