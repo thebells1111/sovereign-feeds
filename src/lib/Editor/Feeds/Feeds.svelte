@@ -46,6 +46,7 @@
 		console.log(podcast);
 		fetchDOEnabled(podcast);
 		$currentPage = 'episodes';
+
 		let urls = [
 			remoteServerUrl + `/api/queryindex?q=podcasts/byfeedid?id=` + podcast.id,
 			remoteServerUrl +
@@ -58,6 +59,10 @@
 				feed.item = data[1].items;
 				$selectedPodcast = feed;
 				$rightPane = 'episodeMetadata';
+				if (feed.medium === 'publisher') {
+					$currentPage = 'podcastMetadata';
+				}
+
 				getRSSEditorFeed($selectedPodcast.url).then((feed) => {
 					console.log(feed);
 					$xmlJson = feed;

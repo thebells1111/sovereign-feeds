@@ -10,7 +10,14 @@
 	import Block from './Block.svelte';
 	import Podroll from '$lib/Tags/Podroll/Podroll.svelte';
 
-	import { currentPage, rssData } from '$/editor';
+	import {
+		currentPage,
+		podcastList,
+		selectedPodcast,
+		editorDB,
+		podcastSearchResults,
+		rssData
+	} from '$/editor';
 
 	let podcastInfoPage = 'showInfo';
 
@@ -24,6 +31,19 @@
 <Header bind:podcastInfoPage />
 
 <div class:hide={podcastInfoPage !== 'showInfo'}>
+	{#if $podcastList && $podcastList.findIndex(({ id }) => id === $selectedPodcast.id) === -1}
+		<button
+			class="primary"
+			on:click={async () => {
+				$podcastList.push($selectedPodcast);
+				$podcastList = $podcastList;
+				let favs = (await editorDB.getItem('favorites')) || [];
+				favs.push($selectedPodcast);
+				editorDB.setItem('favorites', favs);
+				$podcastSearchResults = {};
+			}}>Add to Favorites</button
+		>
+	{/if}
 	<FeedInfo />
 </div>
 <div class:hide={podcastInfoPage !== 'showArt'}>
