@@ -22,7 +22,8 @@
 							v?.['@_address'] ===
 							'035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8'
 					) === -1 &&
-					valueRecipient.findIndex((v) => v?.['@_address'] === 'steven@curiohoster.com') === -1
+					valueRecipient.findIndex((v) => v?.['@_address'] === 'steven@curiohoster.com') === -1 &&
+					valueRecipient.findIndex((v) => v?.['@_address'] === 'steven@getalby.com') === -1
 				);
 			}
 			return true;
