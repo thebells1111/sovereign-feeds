@@ -13,7 +13,7 @@
 		if (!block['podcast:valueRecipient'][0]) {
 			block['podcast:valueRecipient'][0] = {
 				'@_name': '',
-				'@_type': 'node',
+				'@_type': 'lnaddress',
 				'@_address': '',
 				'@_customKey': '',
 				'@_customValue': '',

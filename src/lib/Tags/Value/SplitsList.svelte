@@ -10,7 +10,7 @@
 
 	let blankRecipient = {
 		'@_name': 'New Split',
-		'@_type': 'node',
+		'@_type': 'lnaddress',
 		'@_address': '',
 		'@_customKey': '',
 		'@_customValue': '',
@@ -103,6 +103,9 @@
 
 				<p>{r['@_split']}</p>
 				<p>{r['@_name']}</p>
+				{#if r['@_type'] === 'node'}
+					<p class="warning">( Please update to use lnaddress )</p>
+				{/if}
 
 				<button on:click|stopPropagation={handleDelete.bind(this, r)} class="delete"
 					><Delete /></button
@@ -166,7 +169,7 @@
 	.splits-list-total p:first-of-type,
 	.head h4:first-of-type {
 		width: 90px;
-		max-width: 90px;
+		min-width: 90px;
 	}
 
 	.head h4:first-of-type {
@@ -175,7 +178,8 @@
 
 	.splits-recepient p:nth-of-type(2) {
 		margin-left: 14px;
-		width: 90px;
+		width: 60px;
+		min-width: 60px;
 		text-align: left;
 	}
 
@@ -221,8 +225,16 @@
 		border: none;
 		padding: 0;
 		width: 32px;
+		min-width: 32px;
 	}
 	button.delete:hover {
 		color: red;
+	}
+
+	p.warning {
+		font-size: 0.8em;
+		color: red;
+		font-weight: 650;
+		width: 440px;
 	}
 </style>

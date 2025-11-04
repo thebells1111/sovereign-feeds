@@ -21,14 +21,7 @@
 	{#if data && data?.['podcast:valueRecipient']?.length > 0}
 		<div class="type-select">
 			<h4>Wallet Type:</h4>
-			<label>
-				<input
-					type="radio"
-					value="node"
-					bind:group={data['podcast:valueRecipient'][index - 1]['@_type']}
-				/>
-				node
-			</label>
+
 			<label>
 				<input
 					type="radio"
@@ -36,6 +29,14 @@
 					bind:group={data['podcast:valueRecipient'][index - 1]['@_type']}
 				/>
 				lnaddress
+			</label>
+			<label>
+				<input
+					type="radio"
+					value="node"
+					bind:group={data['podcast:valueRecipient'][index - 1]['@_type']}
+				/>
+				node
 			</label>
 		</div>
 

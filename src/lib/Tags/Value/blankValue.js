@@ -5,7 +5,7 @@ const blankValue = {
 	'podcast:valueRecipient': [
 		{
 			'@_name': '',
-			'@_type': 'node',
+			'@_type': 'lnaddress',
 			'@_address': '',
 			'@_customKey': '',
 			'@_customValue': '',

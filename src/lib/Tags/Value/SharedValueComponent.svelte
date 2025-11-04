@@ -58,9 +58,8 @@
 	function addSovereignFeeds() {
 		data['podcast:valueRecipient'].push({
 			'@_name': 'Sovereign Feeds',
-			'@_address': '035ad2c954e264004986da2d9499e1732e5175e1dcef2453c921c6cdcc3536e9d8',
-			'@_type': 'node',
-			'@_fee': true,
+			'@_address': 'steven@getalby.com',
+			'@_type': 'lnaddress',
 			'@_split': 5
 		});
 		data = data;
@@ -76,7 +75,7 @@
 			</button>
 		{/if}
 		<SplitsList bind:data bind:index bind:activeRecipient bind:showValues {shares} />
-		<FeesList bind:data bind:index bind:activeRecipient bind:showValues />
+		<!-- <FeesList bind:data bind:index bind:activeRecipient bind:showValues /> -->
 	</div>
 </div>
 <RecepientEditor bind:data bind:showValues bind:index />

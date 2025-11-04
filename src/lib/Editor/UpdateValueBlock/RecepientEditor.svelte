@@ -13,13 +13,14 @@
 	<div class="value-input-container">
 		<div class="type-select">
 			<h4>Wallet Type:</h4>
-			<label>
-				<input type="radio" value="node" bind:group={selectedPerson['@_type']} />
-				node
-			</label>
+
 			<label>
 				<input type="radio" value="lnaddress" bind:group={selectedPerson['@_type']} />
 				lnaddress
+			</label>
+			<label>
+				<input type="radio" value="node" bind:group={selectedPerson['@_type']} />
+				node
 			</label>
 		</div>
 

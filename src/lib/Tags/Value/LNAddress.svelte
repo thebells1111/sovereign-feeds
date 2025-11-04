@@ -4,9 +4,6 @@
 </script>
 
 <div class="person-block">
-	<h3>
-		Don't use lnaddress if you don't know what you're doing. Most apps aren't supporting it anyway.
-	</h3>
 	<label>
 		<h4>Value Recipient Name</h4>
 		<input
@@ -34,28 +31,6 @@
 				placeholder="whole numbers only"
 			/>
 		</label>
-		<div class="fee">
-			<h4>Fee</h4>
-			<div class="fee-container">
-				<label>
-					<input
-						type="radio"
-						bind:group={data['podcast:valueRecipient'][index - 1]['@_fee']}
-						value={false}
-					/>
-					No
-				</label>
-
-				<label>
-					<input
-						type="radio"
-						bind:group={data['podcast:valueRecipient'][index - 1]['@_fee']}
-						value={true}
-					/>
-					Yes
-				</label>
-			</div>
-		</div>
 	</div>
 	<p>
 		{data['podcast:valueRecipient'][index - 1]['@_fee']

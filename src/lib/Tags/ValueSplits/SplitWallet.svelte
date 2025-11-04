@@ -156,7 +156,7 @@
 		ts['podcast:valueRecipient'] = ts['podcast:valueRecipient'].concat({
 			'@_name': '',
 			'@_split': '',
-			'@_type': 'node',
+			'@_type': 'lnaddress',
 			'@_address': '',
 			'@_customValue': '',
 			'@_customKey': ''
@@ -205,10 +205,6 @@
 <div class="type-select">
 	<h4>Wallet Type:</h4>
 	<label>
-		<input type="radio" value="node" name={`vts-wallet-type-${index}`} on:change={changeWallet} />
-		node
-	</label>
-	<label>
 		<input
 			type="radio"
 			value="lnaddress"
@@ -216,6 +212,10 @@
 			on:change={changeWallet}
 		/>
 		lnaddress
+	</label>
+	<label>
+		<input type="radio" value="node" name={`vts-wallet-type-${index}`} on:change={changeWallet} />
+		node
 	</label>
 </div>
 <value-top>
@@ -262,11 +262,6 @@
 			<img src="v4vapp.webp" />
 			<span>Use v4v.app</span>
 		</button>
-	{:else}
-		<h3>
-			Don't use lnaddress if you don't know what you're doing. Most apps aren't supporting it
-			anyway.
-		</h3>
 	{/if}
 	<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
 		<span>Delete <br /> Recpient</span>

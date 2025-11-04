@@ -120,6 +120,10 @@
 		{/if}
 	</div>
 {:else}
+	<h3>
+		Don't use "node" anymore!!! <br />Apps and wallets are starting to not support this method.
+		<br /> Use lnaddress instead to keep earning sats.
+	</h3>
 	<div class="person-block">
 		<label>
 			<h4>
@@ -162,28 +166,6 @@
 					placeholder="whole numbers only"
 				/>
 			</label>
-			<div class="fee">
-				<h4>Fee</h4>
-				<div class="fee-container">
-					<label>
-						<input
-							type="radio"
-							bind:group={data['podcast:valueRecipient'][index - 1]['@_fee']}
-							value={false}
-						/>
-						No
-					</label>
-
-					<label>
-						<input
-							type="radio"
-							bind:group={data['podcast:valueRecipient'][index - 1]['@_fee']}
-							value={true}
-						/>
-						Yes
-					</label>
-				</div>
-			</div>
 		</div>
 		<p>
 			{data['podcast:valueRecipient'][index - 1]['@_fee']
@@ -218,6 +200,10 @@
 	p {
 		margin: 0;
 		padding: 0;
+	}
+
+	h3 {
+		text-align: center;
 	}
 	h4 {
 		margin: 0;
