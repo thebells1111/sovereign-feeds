@@ -28,7 +28,7 @@
 					value="lnaddress"
 					bind:group={data['podcast:valueRecipient'][index - 1]['@_type']}
 				/>
-				lnaddress
+				Lightning Address
 			</label>
 			<label>
 				<input
@@ -36,7 +36,7 @@
 					value="node"
 					bind:group={data['podcast:valueRecipient'][index - 1]['@_type']}
 				/>
-				node
+				Keysend
 			</label>
 		</div>
 

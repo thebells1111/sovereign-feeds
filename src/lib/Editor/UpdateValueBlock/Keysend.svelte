@@ -123,15 +123,7 @@
 		<button-container>
 			<button class="provider alby" on:click={handleProviderSelect.bind(this, 'Alby')}>
 				<img src="alby.png" />
-				<span>Use Alby</span>
-			</button>
-			<button class="provider fountain" on:click={handleProviderSelect.bind(this, 'Fountain')}>
-				<img src="fountain.png" />
-				<span>Use Fountain</span>
-			</button>
-			<button class="provider v4vapp" on:click={handleProviderSelect.bind(this, 'v4v.app')}>
-				<img src="v4vapp.webp" />
-				<span>Use v4v.app</span>
+				<span>Import from Alby</span>
 			</button>
 		</button-container>
 		<label>
@@ -213,7 +205,7 @@
 
 	button.provider {
 		margin: 0 0 8px 8px;
-		width: 140px;
+		width: 200px;
 		font-weight: 600;
 		border-radius: 20px;
 		padding: 0;

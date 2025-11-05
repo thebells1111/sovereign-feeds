@@ -16,11 +16,11 @@
 
 			<label>
 				<input type="radio" value="lnaddress" bind:group={selectedPerson['@_type']} />
-				lnaddress
+				Lightning Address
 			</label>
 			<label>
 				<input type="radio" value="node" bind:group={selectedPerson['@_type']} />
-				node
+				Keysend
 			</label>
 		</div>
 

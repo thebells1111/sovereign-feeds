@@ -121,8 +121,8 @@
 	</div>
 {:else}
 	<h3>
-		Don't use "node" anymore!!! <br />Apps and wallets are starting to not support this method.
-		<br /> Use lnaddress instead to keep earning sats.
+		Don't use "Keysend" anymore!!! <br />Apps and wallets are starting to not support this method.
+		<br /> Use Lightning Address instead to keep earning sats.
 	</h3>
 	<div class="person-block">
 		<label>
@@ -130,15 +130,7 @@
 				Value Recipient Name
 				<button class="provider alby" on:click={handleProviderSelect.bind(this, 'Alby')}>
 					<img src="alby.png" />
-					<span>Use Alby</span>
-				</button>
-				<button class="provider fountain" on:click={handleProviderSelect.bind(this, 'Fountain')}>
-					<img src="fountain.png" />
-					<span>Use Fountain</span>
-				</button>
-				<button class="provider v4vapp" on:click={handleProviderSelect.bind(this, 'v4v.app')}>
-					<img src="v4vapp.webp" />
-					<span>Use v4v.app</span>
+					<span>Import from Alby</span>
 				</button>
 			</h4>
 			<input
@@ -241,29 +233,10 @@
 		justify-content: space-between;
 	}
 
-	.fee {
-		display: flex;
-		flex-direction: column;
-		margin-left: 8px;
-	}
-
-	.fee-container {
-		display: flex;
-		padding: 8px;
-	}
-
 	.split-label {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-	}
-
-	.fee-container > label {
-		padding-right: 8px;
-		margin-right: 12px;
-		cursor: pointer;
-		display: block;
-		width: 48px;
 	}
 
 	button.primary {
@@ -274,7 +247,7 @@
 
 	button.provider {
 		margin: 0 0 8px 8px;
-		width: 140px;
+		width: 200px;
 		font-weight: 600;
 		border-radius: 20px;
 		padding: 0;

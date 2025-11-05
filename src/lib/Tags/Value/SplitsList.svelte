@@ -104,7 +104,7 @@
 				<p>{r['@_split']}</p>
 				<p>{r['@_name']}</p>
 				{#if r['@_type'] === 'node'}
-					<p class="warning">( Please update to use lnaddress )</p>
+					<p class="warning">( Please update to use Lightning Address )</p>
 				{/if}
 
 				<button on:click|stopPropagation={handleDelete.bind(this, r)} class="delete"

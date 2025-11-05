@@ -211,11 +211,11 @@
 			name={`vts-wallet-type-${index}`}
 			on:change={changeWallet}
 		/>
-		lnaddress
+		Lightning Address
 	</label>
 	<label>
 		<input type="radio" value="node" name={`vts-wallet-type-${index}`} on:change={changeWallet} />
-		node
+		Keysend
 	</label>
 </div>
 <value-top>
@@ -252,15 +252,7 @@
 			on:click={handleProviderSelect.bind(this, 'Alby', tsindex, index)}
 		>
 			<img src="alby.png" />
-			<span>Use Alby</span>
-		</button>
-		<button class="provider fountain" on:click={handleProviderSelect.bind(this, 'Fountain', data)}>
-			<img src="fountain.png" />
-			<span>Use Fountain</span>
-		</button>
-		<button class="provider v4vapp" on:click={handleProviderSelect.bind(this, 'v4v.app', data)}>
-			<img src="v4vapp.webp" />
-			<span>Use v4v.app</span>
+			<span>Import from Alby</span>
 		</button>
 	{/if}
 	<button class="provider delete" on:click={deleteAddress.bind(this, ts, index)}>
@@ -316,7 +308,7 @@
 
 	button.provider {
 		margin: 0 0 8px 8px;
-		width: 140px;
+		width: 200px;
 		font-weight: 600;
 		border-radius: 20px;
 		padding: 0;
@@ -327,16 +319,6 @@
 
 	button.alby {
 		background-color: hsl(41, 92%, 65%);
-	}
-
-	button.fountain {
-		background-color: hsl(225, 7%, 11%);
-		color: white;
-	}
-
-	button.v4vapp {
-		background-color: hsl(0, 0%, 0%);
-		color: white;
 	}
 
 	button.delete {
@@ -350,10 +332,6 @@
 
 	button > img {
 		height: 30px;
-	}
-
-	button.v4vapp > img {
-		padding: 0 6px 0 0;
 	}
 
 	button.alby > img {
