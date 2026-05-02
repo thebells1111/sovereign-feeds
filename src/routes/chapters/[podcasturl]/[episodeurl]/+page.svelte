@@ -1,60 +1,3 @@
-<script context="module">
-	export async function load({ params, fetch }) {
-		let podcasturl = params.podcasturl;
-		let episodeurl = params.episodeurl;
-		let { chapters, episode, title } = await getChapters();
-
-		return {
-			props: {
-				podcast: podcasturl,
-				enclosure: episodeurl,
-				chapters: chapters,
-				episode: episode,
-				title: title
-			}
-		};
-
-		function getChapters() {
-			if (podcasturl) {
-				return new Promise(async (resolve, reject) => {
-					const res1 = await fetch(`/api/rsscreator?url=${encodeURIComponent(podcasturl)}`);
-					const feed = await res1.json();
-					let episodes = feed?.rss?.channel?.item;
-					let selectedEpisode = episodes?.find(({ enclosure }) => {
-						return enclosure?.['@_url'] === episodeurl;
-					});
-					let chapters = [
-						{
-							title: '',
-							url: '',
-							img: '',
-							startTime: 0
-						}
-					];
-					let title = feed?.rss?.channel?.title;
-					try {
-						let chaptersUrl = selectedEpisode?.['podcast:chapters']?.['@_url'];
-						if (chaptersUrl) {
-							let res2 = await fetch(
-								remoteServerUrl + `/api/proxy?url=` + encodeURIComponent(chaptersUrl)
-							);
-							let json = await res2.json();
-							chapters = json.chapters;
-						}
-						resolve({ chapters: chapters, episode: selectedEpisode, title: title });
-					} catch (error) {
-						resolve({
-							chapters: chapters,
-							episode: selectedEpisode,
-							title: title
-						});
-					}
-				});
-			}
-		}
-	}
-</script>
-
 <script>
 	import pkg from 'file-saver';
 	const { saveAs } = pkg;
@@ -84,14 +27,14 @@
 	import Delete from '$lib/icons/Delete.svelte';
 	import DownloadIcon from '$lib/icons/Download.svelte';
 
-	export let chapters = [];
 	$playingEpisodeChapters = [];
-	export let enclosure;
-	export let podcast;
-	export let episode;
-	export let title;
+
 	let notSaved = false;
 	let editingIndex = 0;
+
+	export let data;
+	$: ({ chapters, enclosure, episode, podcast, title } = data);
+	$: console.log(data);
 
 	async function fetchChapters() {
 		if (browser) {
